@@ -33,7 +33,7 @@ export function Contact() {
     return (
         <section id="contact" className="py-20 md:py-32 bg-gray-950 relative overflow-hidden">
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+                <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent"></div>
                 <motion.div
                     animate={{
                         scale: [1, 1.2, 1],
@@ -59,7 +59,7 @@ export function Contact() {
                     <h2 className="text-3xl sm:text-4xl md:text-5xl text-white mb-4">
                         Get In Touch
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
+                    <div className="w-20 h-1 bg-linear-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
                     <p className="text-gray-400 max-w-2xl mx-auto">
                         Have a project in mind or want to collaborate? I'd love to hear from you.
                     </p>
@@ -177,7 +177,7 @@ export function Contact() {
 
                                 <Button
                                     type="submit"
-                                    className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-6 
+                                    className="w-full bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-6 
                                     shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 group relative overflow-hidden rounded-md
                                     hover:cursor-pointer"
                                 >
@@ -185,7 +185,7 @@ export function Contact() {
                                         Send Message
                                         <Send className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                                     </span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div className="absolute inset-0 bg-linear-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </Button>
                             </form>
                         </Card>

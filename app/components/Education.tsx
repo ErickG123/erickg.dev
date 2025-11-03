@@ -35,7 +35,7 @@ export function Education() {
     return (
         <section className="py-20 md:py-32 bg-gray-900 relative overflow-hidden">
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+                <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent"></div>
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -49,7 +49,7 @@ export function Education() {
                     <h2 className="text-3xl sm:text-4xl md:text-5xl text-white mb-4">
                         Education & Competencies
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
+                    <div className="w-20 h-1 bg-linear-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
                     <p className="text-gray-400 max-w-2xl mx-auto">
                         Academic background and professional certifications
                     </p>
@@ -79,7 +79,7 @@ export function Education() {
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                 >
                                     <Card className="group bg-gray-950/30 backdrop-blur-sm border border-gray-800/50 p-6 hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden rounded-md">
-                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                        <div className="absolute inset-0 bg-linear-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                         <div className="relative z-10">
                                             <h4 className="text-xl text-white mb-2">{edu.degree}</h4>
                                             <p className="text-blue-400 mb-1">{edu.institution}</p>
@@ -144,9 +144,9 @@ export function Education() {
                                     transition={{ delay: index * 0.1 }}
                                 >
                                     <Card className="group bg-gray-950/30 backdrop-blur-sm border border-gray-800/50 p-4 hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden rounded-md">
-                                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                        <div className="absolute inset-0 bg-linear-to-r from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                         <div className="relative z-10 flex items-start gap-3">
-                                            <div className="w-2 h-2 rounded-full bg-blue-400 mt-2 flex-shrink-0"></div>
+                                            <div className="w-2 h-2 rounded-full bg-blue-400 mt-2 shrink-0"></div>
                                             <p className="text-gray-300">{cert}</p>
                                         </div>
                                     </Card>

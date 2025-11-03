@@ -13,7 +13,7 @@ export function Footer() {
 
     return (
         <footer className="bg-gray-950 border-t border-gray-800/50 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+            <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent"></div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -23,7 +23,7 @@ export function Footer() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        <h3 className="text-xl bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-4">
+                        <h3 className="text-xl bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-4">
                             {'<erickg.dev />'}
                         </h3>
                         <p className="text-gray-400">

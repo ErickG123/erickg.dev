@@ -19,7 +19,7 @@ const socialLinks = [
 export function SocialLinks() {
     return (
         <section className="py-16 bg-gray-900 border-t border-gray-800/50 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+            <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent"></div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div

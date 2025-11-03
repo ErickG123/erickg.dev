@@ -43,8 +43,8 @@ export function Experience() {
     return (
         <section id="experience" className="py-20 md:py-32 bg-gray-950 relative overflow-hidden">
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+                <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent"></div>
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -58,7 +58,7 @@ export function Experience() {
                     <h2 className="text-3xl sm:text-4xl md:text-5xl text-white mb-4">
                         Work Experience
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
+                    <div className="w-20 h-1 bg-linear-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
                     <p className="text-gray-400 max-w-2xl mx-auto">
                         Building innovative solutions across different industries
                     </p>
@@ -66,7 +66,7 @@ export function Experience() {
 
                 <div className="max-w-4xl mx-auto">
                     <div className="relative">
-                        <div className="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/50 via-blue-400/30 to-blue-500/50"></div>
+                        <div className="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-linear-to-b from-blue-500/50 via-blue-400/30 to-blue-500/50"></div>
 
                         <div className="space-y-12">
                             {experiences.map((exp, index) => (
@@ -89,7 +89,7 @@ export function Experience() {
                                     </motion.div>
 
                                     <Card className="group bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 p-6 md:ml-20 hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden rounded-md">
-                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                        <div className="absolute inset-0 bg-linear-to-br from-blue-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                                         <div className="relative z-10">
                                             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
@@ -112,7 +112,7 @@ export function Experience() {
                                                         transition={{ delay: index * 0.1 + i * 0.05 }}
                                                         className="text-gray-400 flex items-start gap-2"
                                                     >
-                                                        <span className="text-blue-400 mt-1.5 flex-shrink-0">▸</span>
+                                                        <span className="text-blue-400 shrink-0">▸</span>
                                                         <span>{resp}</span>
                                                     </motion.li>
                                                 ))}

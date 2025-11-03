@@ -35,13 +35,13 @@ export function Header() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 md:h-20">
                     <motion.div
-                        className="flex-shrink-0"
+                        className="shrink-0"
                         whileHover={{ scale: 1.05 }}
                         transition={{ type: 'spring', stiffness: 400 }}
                     >
                         <button
                             onClick={() => scrollToSection('hero')}
-                            className="text-xl md:text-2xl bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent hover:from-blue-300 hover:to-blue-500 transition-all duration-300"
+                            className="text-xl md:text-2xl bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent hover:from-blue-300 hover:to-blue-500 transition-all duration-300"
                         >
                             {'<erickg.dev />'}
                         </button>
@@ -58,7 +58,7 @@ export function Header() {
                                 className="relative px-4 py-2 text-gray-300 hover:text-white transition-colors group"
                             >
                                 {item}
-                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 group-hover:w-full transition-all duration-300"></span>
+                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-blue-400 to-blue-600 group-hover:w-full transition-all duration-300"></span>
                             </motion.button>
                         ))}
                     </nav>

@@ -22,7 +22,7 @@ export function Hero({ backgroundImage }: HeroProps) {
                     alt="Workspace background"
                     className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-950/98 via-blue-950/95 to-gray-900/97"></div>
+                <div className="absolute inset-0 bg-linear-to-br from-gray-950/98 via-blue-950/95 to-gray-900/97"></div>
 
                 <motion.div
                     animate={{
@@ -74,7 +74,7 @@ export function Hero({ backgroundImage }: HeroProps) {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-6"
                     >
-                        <span className="inline-block bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                        <span className="inline-block bg-linear-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
                             Full-Stack Developer
                         </span>
                     </motion.h1>
@@ -101,7 +101,7 @@ export function Hero({ backgroundImage }: HeroProps) {
                     >
                         <Button
                             onClick={() => scrollToSection('experience')}
-                            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-3 
+                            className="bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-3 
                                        shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 group relative overflow-hidden
                                        hover:cursor-pointer rounded-md"
                         >
@@ -109,7 +109,7 @@ export function Hero({ backgroundImage }: HeroProps) {
                                 View My Work
                                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                             </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div className="absolute inset-0 bg-linear-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </Button>
                         <Button
                             onClick={() => scrollToSection('contact')}

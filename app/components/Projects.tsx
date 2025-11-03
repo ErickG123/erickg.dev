@@ -21,7 +21,7 @@ export function Projects() {
     return (
         <section id="projects" className="py-20 md:py-32 bg-gray-900 relative overflow-hidden">
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+                <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-blue-500/20 to-transparent"></div>
             </div>
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -35,7 +35,7 @@ export function Projects() {
                     <h2 className="text-3xl sm:text-4xl md:text-5xl text-white mb-4">
                         My Projects
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
+                    <div className="w-20 h-1 bg-linear-to-r from-blue-500 to-blue-600 mx-auto mb-4"></div>
                     <p className="text-gray-400 max-w-2xl mx-auto">
                         A selection of recent projects showcasing my technical expertise
                     </p>
@@ -52,7 +52,7 @@ export function Projects() {
                         >
                             <Card className="group h-full bg-gray-950/30 backdrop-blur-sm border border-gray-800/50 p-6 hover:border-blue-500/50 transition-all duration-500 flex flex-col relative overflow-hidden rounded-md">
                                 <motion.div
-                                    className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                    className="absolute inset-0 bg-linear-to-br from-blue-500/5 via-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                                     animate={{
                                         background: [
                                             'radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)',
@@ -68,7 +68,7 @@ export function Projects() {
                                         <motion.div
                                             whileHover={{ rotate: 360 }}
                                             transition={{ duration: 0.6 }}
-                                            className="p-3 rounded-xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 backdrop-blur-sm border border-blue-500/20 group-hover:border-blue-500/50 transition-all duration-500"
+                                            className="p-3 rounded-xl bg-linear-to-br from-blue-500/10 to-blue-600/5 backdrop-blur-sm border border-blue-500/20 group-hover:border-blue-500/50 transition-all duration-500"
                                         >
                                             <FolderGit2 className="text-blue-400" size={24} />
                                         </motion.div>
@@ -94,7 +94,7 @@ export function Projects() {
                                         {project.name}
                                     </h3>
 
-                                    <p className="text-gray-400 mb-6 flex-grow leading-relaxed">
+                                    <p className="text-gray-400 mb-6 grow leading-relaxed">
                                         {project.description}
                                     </p>
 
