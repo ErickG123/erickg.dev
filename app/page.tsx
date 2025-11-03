@@ -1,5 +1,6 @@
 "use client";
 
+import { Analytics } from "@vercel/analytics/next";
 import { Contact } from "./components/Contact";
 import { Education } from "./components/Education";
 import { Experience } from "./components/Experience";
@@ -24,6 +25,7 @@ export default function Home() {
         <SocialLinks />
       </main>
       <Footer />
+      <Analytics />
     </div>
   );
 }
