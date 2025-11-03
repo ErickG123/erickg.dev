@@ -47,7 +47,7 @@ export function Footer() {
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.05 }}
                                     onClick={() => scrollToSection(item.toLowerCase())}
-                                    className="block text-gray-400 hover:text-blue-400 transition-colors duration-300 hover:translate-x-1 transform"
+                                    className="block text-gray-400 hover:text-blue-400 transition-colors duration-300 hover:translate-x-1 transform hover:cursor-pointer"
                                 >
                                     {item}
                                 </motion.button>
@@ -63,9 +63,9 @@ export function Footer() {
                     >
                         <h4 className="text-white mb-4">Contact</h4>
                         <div className="space-y-2 text-gray-400">
-                            <p className="hover:text-blue-400 transition-colors cursor-pointer">developer@example.com</p>
-                            <p className="hover:text-blue-400 transition-colors cursor-pointer">+1 (555) 123-4567</p>
-                            <p className="hover:text-blue-400 transition-colors cursor-pointer">San Francisco, CA</p>
+                            <p className="hover:text-blue-400 transition-colors cursor-pointer">erickgabrielalves0@gmail.com</p>
+                            <p className="hover:text-blue-400 transition-colors cursor-pointer">+55 (14) 99777-8864</p>
+                            <p className="hover:text-blue-400 transition-colors cursor-pointer">Barra Bonita, SP</p>
                         </div>
                     </motion.div>
                 </div>

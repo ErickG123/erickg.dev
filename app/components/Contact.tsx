@@ -177,7 +177,7 @@ export function Contact() {
 
                                 <Button
                                     type="submit"
-                                    className="w-full bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-6 
+                                    className="w-full bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-3 
                                     shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300 group relative overflow-hidden rounded-md
                                     hover:cursor-pointer"
                                 >
