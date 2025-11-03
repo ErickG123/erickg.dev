@@ -4,35 +4,17 @@ import { motion } from 'motion/react';
 
 const projects = [
     {
-        name: 'E-Commerce Platform',
-        description: 'A full-featured online shopping platform with real-time inventory management, payment processing, and admin dashboard.',
-        technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Redux'],
+        name: 'ForesenciLab',
+        description: 'ForenseLab is a modular digital forensic analysis toolkit developed as a Computer Engineering capstone project. Its main goal is to serve as an educational bridge for students, educators, and cybersecurity enthusiasts.',
+        technologies: ['Python', 'Typer', 'PyPi', 'CI/CD'],
+        link: 'https://github.com/ErickG123/devkit_forense'
     },
     {
-        name: 'Task Management App',
-        description: 'Collaborative project management tool with drag-and-drop interface, team chat, and real-time updates.',
-        technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Socket.io', 'Tailwind'],
-    },
-    {
-        name: 'AI Content Generator',
-        description: 'AI-powered tool for generating marketing copy and blog posts using natural language processing.',
-        technologies: ['Python', 'FastAPI', 'OpenAI API', 'React', 'Docker'],
-    },
-    {
-        name: 'Weather Dashboard',
-        description: 'Real-time weather tracking application with interactive maps, forecasts, and historical data visualization.',
-        technologies: ['Vue.js', 'Express', 'Redis', 'Chart.js', 'Weather API'],
-    },
-    {
-        name: 'Social Media Analytics',
-        description: 'Comprehensive analytics platform for tracking social media performance across multiple platforms.',
-        technologies: ['React', 'GraphQL', 'MongoDB', 'AWS', 'D3.js'],
-    },
-    {
-        name: 'Fitness Tracker',
-        description: 'Mobile-responsive fitness app with workout plans, progress tracking, and nutritional guidance.',
-        technologies: ['React Native', 'Firebase', 'Redux', 'Chart.js', 'Expo'],
-    },
+        name: 'ForesenciLab SPA',
+        description: 'A SPA that offers clear and interactive documentation for the ForensicLab project, a modular toolkit for digital forensic analysis.',
+        technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Vercel'],
+        link: 'https://github.com/ErickG123/forensiclab-spa'
+    }
 ];
 
 export function Projects() {
@@ -90,22 +72,22 @@ export function Projects() {
                                         >
                                             <FolderGit2 className="text-blue-400" size={24} />
                                         </motion.div>
-                                        <div className="flex gap-2">
+                                        <a href={project.link} target='_blank' className="flex gap-2">
                                             <motion.button
                                                 whileHover={{ scale: 1.1, rotate: 5 }}
-                                                className="text-gray-500 hover:text-blue-400 transition-colors"
+                                                className="text-gray-500 hover:text-blue-400 transition-colors hover:cursor-pointer"
                                                 aria-label="View on GitHub"
                                             >
                                                 <Github size={20} />
                                             </motion.button>
                                             <motion.button
                                                 whileHover={{ scale: 1.1, rotate: -5 }}
-                                                className="text-gray-500 hover:text-blue-400 transition-colors"
+                                                className="text-gray-500 hover:text-blue-400 transition-colors hover:cursor-pointer"
                                                 aria-label="View project"
                                             >
                                                 <ExternalLink size={20} />
                                             </motion.button>
-                                        </div>
+                                        </a>
                                     </div>
 
                                     <h3 className="text-xl text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
