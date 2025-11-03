@@ -78,7 +78,7 @@ export function Education() {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                 >
-                                    <Card className="group bg-gray-950/30 backdrop-blur-sm border border-gray-800/50 p-6 hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden">
+                                    <Card className="group bg-gray-950/30 backdrop-blur-sm border border-gray-800/50 p-6 hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden rounded-md">
                                         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                         <div className="relative z-10">
                                             <h4 className="text-xl text-white mb-2">{edu.degree}</h4>
@@ -143,7 +143,7 @@ export function Education() {
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
                                 >
-                                    <Card className="group bg-gray-950/30 backdrop-blur-sm border border-gray-800/50 p-4 hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden">
+                                    <Card className="group bg-gray-950/30 backdrop-blur-sm border border-gray-800/50 p-4 hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden rounded-md">
                                         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                         <div className="relative z-10 flex items-start gap-3">
                                             <div className="w-2 h-2 rounded-full bg-blue-400 mt-2 flex-shrink-0"></div>

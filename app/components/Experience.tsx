@@ -3,40 +3,39 @@ import { motion } from 'motion/react';
 
 const experiences = [
     {
-        title: 'Senior Full-Stack Developer',
-        company: 'Tech Innovations Inc.',
-        period: 'Jan 2023 - Present',
+        title: 'Full-Stack Developer',
+        company: 'Freelance',
+        period: 'Jul 2025 - Present',
         responsibilities: [
-            'Led development of a microservices architecture serving 2M+ users',
-            'Implemented CI/CD pipelines reducing deployment time by 60%',
-            'Mentored 5 junior developers and conducted code reviews',
-            'Architected and built real-time data processing system using Node.js and Redis',
+            'Frontend development of web applications, focusing on performance, componentization, and architectural best practices.',
+            'Active participation in the entire development cycle, from implementing responsive interfaces to integrating APIs and optimizing user experience.',
         ],
-        technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker'],
+        technologies: ['React', 'Node.js', 'Angular', 'Python', 'PHP', 'MySQL', 'PostgreSQL', 'AWS', 'Docker'],
     },
     {
         title: 'Full-Stack Developer',
-        company: 'Digital Solutions Co.',
-        period: 'Jun 2021 - Dec 2022',
+        company: 'Compu Informática',
+        period: 'dec 2023 - Present',
         responsibilities: [
-            'Developed and maintained 10+ client-facing web applications',
-            'Optimized database queries improving performance by 40%',
-            'Collaborated with UX team to implement responsive designs',
-            'Integrated third-party APIs and payment gateways',
+            'Building responsive and high-performance web systems with great user experience',
+            'Involved in both frontend design and backend logic, delivering efficient and scalable solutions',
+            'Also work as a Computer Maintenance Technician, performing diagnostics, repairs, and preventive maintenance on IT equipment',
+            'Ensure system reliability and user productivity through hands-on technical support',
         ],
-        technologies: ['Vue.js', 'Express', 'MongoDB', 'Tailwind CSS'],
+        technologies: ['HTML', 'CSS', 'JavaScript', 'Tailwind CSS', 'PHP'],
     },
     {
         title: 'Junior Developer',
-        company: 'StartUp Labs',
-        period: 'Jan 2020 - May 2021',
+        company: 'SIALOG Software Solutions',
+        period: 'Apr 2021 - May 2023',
         responsibilities: [
-            'Built RESTful APIs for mobile and web applications',
-            'Participated in agile development process and sprint planning',
-            'Wrote unit tests achieving 85% code coverage',
-            'Fixed bugs and implemented new features based on user feedback',
+            'Developed and maintained web applications using Ruby on Rails with PostgreSQL as the main database',
+            'Built modern, responsive, and intuitive interfaces using HTML, TailwindCSS, and JavaScript',
+            'Actively participated in all stages of the development cycle, from modeling to deployment',
+            'Contributed to automated testing, improving system stability and reliability',
+            'Gained strong experience with agile methodologies, clean code practices, and efficient problem-solving',
         ],
-        technologies: ['React', 'Django', 'MySQL', 'Git'],
+        technologies: ['Ruby on Rails', 'JavaScript', 'Tailwind CSS', 'Docker', 'PostgreSQL'],
     },
 ];
 
@@ -89,7 +88,7 @@ export function Experience() {
                                         <div className="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-75"></div>
                                     </motion.div>
 
-                                    <Card className="group bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 p-6 md:ml-20 hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden">
+                                    <Card className="group bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 p-6 md:ml-20 hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden rounded-md">
                                         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                                         <div className="relative z-10">

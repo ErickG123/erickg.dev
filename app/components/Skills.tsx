@@ -64,7 +64,7 @@ export function Skills() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                            <Card className="group relative bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 p-6 hover:border-blue-500/50 transition-all duration-500 overflow-hidden">
+                            <Card className="group relative bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 p-6 hover:border-blue-500/50 transition-all duration-500 overflow-hidden rounded-md">
                                 <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
                                 <div className="relative z-10">

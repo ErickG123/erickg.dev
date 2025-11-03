@@ -105,7 +105,7 @@ export function Contact() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="lg:col-span-2"
                     >
-                        <Card className="bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 p-8 hover:border-blue-500/30 transition-all duration-500">
+                        <Card className="bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 p-8 hover:border-blue-500/30 transition-all duration-500 rounded-md">
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     <div>

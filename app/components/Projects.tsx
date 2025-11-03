@@ -50,7 +50,7 @@ export function Projects() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                            <Card className="group h-full bg-gray-950/30 backdrop-blur-sm border border-gray-800/50 p-6 hover:border-blue-500/50 transition-all duration-500 flex flex-col relative overflow-hidden">
+                            <Card className="group h-full bg-gray-950/30 backdrop-blur-sm border border-gray-800/50 p-6 hover:border-blue-500/50 transition-all duration-500 flex flex-col relative overflow-hidden rounded-md">
                                 <motion.div
                                     className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                                     animate={{
