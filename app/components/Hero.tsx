@@ -86,10 +86,10 @@ export function Hero({ backgroundImage }: HeroProps) {
                             transition={{ duration: 0.6, delay: 0.4 }}
                             className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed"
                         >
-                            I'm a passionate developer who crafts elegant solutions to complex problems.
-                            With expertise spanning frontend frameworks to backend architectures, I build
-                            scalable, user-focused applications that make a difference. Let's turn your
-                            ideas into reality.
+                            I'm driven by curiosity to understand how things work and how I can make them better through technology. 
+                            Throughout my journey in Computer Engineering, I've deepened my knowledge in various areas such as web 
+                            and mobile development, Arduino automation, computer maintenance, and language learning, always seeking 
+                            to integrate different skills in a practical and creative way.
                         </motion.p>
                     </div>
 

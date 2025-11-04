@@ -106,7 +106,7 @@ export function Contact() {
                         className="lg:col-span-2"
                     >
                         <Card className="bg-gray-900/30 backdrop-blur-sm border border-gray-800/50 p-8 hover:border-blue-500/30 transition-all duration-500 rounded-md">
-                            <form onSubmit={handleSubmit} className="space-y-6">
+                            <form action="https://formspree.io/f/mzzkloar" method="POST" className="space-y-6">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     <div>
                                         <label htmlFor="name" className="block text-gray-300 mb-2">
