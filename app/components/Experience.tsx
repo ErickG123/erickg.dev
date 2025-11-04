@@ -15,7 +15,7 @@ const experiences = [
     {
         title: 'Full-Stack Developer',
         company: 'Compu Informática',
-        period: 'dec 2023 - Present',
+        period: 'Dec 2023 - Present',
         responsibilities: [
             'Building responsive and high-performance web systems with great user experience',
             'Involved in both frontend design and backend logic, delivering efficient and scalable solutions',
