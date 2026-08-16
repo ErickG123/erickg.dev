@@ -51,7 +51,7 @@ export class App implements OnInit {
     }, 3500);
 
     this.seo.setSocialMediaTags(
-      'ERICK.DEV
+      'ERICK.DEV',
       'Portfólio interativo de engenharia de software no formato de jogo retrô 16-bits. Construído com Angular.',
       '/assets/og-image.jpg',
       'https://erickg.dev'
