@@ -4,3 +4,97 @@
   /* overflow-y não deve ser hidden para permitir o scroll da página */
   display: block;
 }
+
+.terminal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  padding: 1rem;
+}
+
+.terminal-window {
+  border: 2px solid #0f0;
+  background: #050505;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+}
+
+.terminal-text {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  color: #0f0;
+  line-height: 1.6;
+}
+
+.terminal-btn {
+  background: transparent;
+  color: #0f0;
+  border: 2px solid #0f0;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.1s;
+  text-transform: uppercase;
+  
+  &:hover {
+    background: #0f0;
+    color: #000;
+  }
+}
+
+.glitch-text {
+  animation: glitch 2s linear infinite;
+}
+
+@keyframes glitch {
+  2%, 64% { transform: translate(2px, 0) skew(0deg); }
+  4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+  62% { transform: translate(0, 0) skew(5deg); }
+}
+
+/* --- GBA BOOT SCREEN --- */
+.gba-boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.boot-logo {
+  font-family: var(--font-pixel);
+  font-size: 3rem;
+  color: #ffffff;
+  animation: nintendo-drop 2.5s linear forwards;
+}
+
+.boot-subtitle {
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  color: #eab308; /* Dourado estilo selo de qualidade */
+  margin-top: 1.5rem;
+  opacity: 0;
+  animation: fade-in 0s linear forwards;
+  animation-delay: 2.5s;
+}
+
+@keyframes nintendo-drop {
+  0% { transform: translateY(-50vh); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

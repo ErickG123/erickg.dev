@@ -1,0 +1,32 @@
+{
+  "HEADER": {
+    "START": "INÍCIO",
+    "STATUS": "STATUS",
+    "BAG": "MOCHILA",
+    "LOG": "HISTÓRICO",
+    "GUILD": "CONTATO"
+  },
+  "HOME": {
+    "LEVEL_UP": "LEVEL_UP",
+    "DESCRIPTION": "Um desenvolvedor Full-Stack invocou habilidades de engenharia para forjar interfaces de alta performance.",
+    "START_QUEST": "START QUEST",
+    "GUILD_BOARD": "GUILD BOARD"
+  },
+  "GUILD": {
+    "TITLE": "> GUILD_MESSAGE_BOARD",
+    "SUBTITLE": "Deixe um pergaminho no mural para discutir novas quests e alianças de desenvolvimento. Transmissões são criptografadas via magia de rede.",
+    "PLAYER_NAME": "PLAYER_NAME",
+    "PLAYER_PLACEHOLDER": "Seu nome ou gamertag...",
+    "CONTACT_RUNES": "CONTACT_RUNES",
+    "CONTACT_PLACEHOLDER": "Onde a coruja deve entregar a resposta...",
+    "QUEST_DETAILS": "QUEST_DETAILS",
+    "QUEST_PLACEHOLDER": "Descreva os requisitos da missão, tech stack e desafios...",
+    "TRANSMIT": "> TRANSMIT_MESSAGE"
+  },
+  "BAG": {
+    "TITLE": "BAG // KEY_ITEMS",
+    "EMPTY_SLOT": "Selecione um item para ver seus atributos.",
+    "EQUIP": "> EQUIP / USE",
+    "CLOSE": "[ X ] CLOSE"
+  }
+}

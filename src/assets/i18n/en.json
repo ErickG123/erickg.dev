@@ -1,0 +1,32 @@
+{
+  "HEADER": {
+    "START": "START",
+    "STATUS": "STATUS",
+    "BAG": "BAG",
+    "LOG": "LOG",
+    "GUILD": "GUILD"
+  },
+  "HOME": {
+    "LEVEL_UP": "LEVEL_UP",
+    "DESCRIPTION": "A Full-Stack developer summoned engineering skills to forge high-performance interfaces.",
+    "START_QUEST": "START QUEST",
+    "GUILD_BOARD": "GUILD BOARD"
+  },
+  "GUILD": {
+    "TITLE": "> GUILD_MESSAGE_BOARD",
+    "SUBTITLE": "Leave a scroll on the board to discuss new quests and development alliances. Transmissions are encrypted via network magic.",
+    "PLAYER_NAME": "PLAYER_NAME",
+    "PLAYER_PLACEHOLDER": "Your name or gamertag...",
+    "CONTACT_RUNES": "CONTACT_RUNES",
+    "CONTACT_PLACEHOLDER": "Where the owl should deliver the reply...",
+    "QUEST_DETAILS": "QUEST_DETAILS",
+    "QUEST_PLACEHOLDER": "Describe the quest requirements, tech stack and challenges...",
+    "TRANSMIT": "> TRANSMIT_MESSAGE"
+  },
+  "BAG": {
+    "TITLE": "BAG // KEY_ITEMS",
+    "EMPTY_SLOT": "Select an item to view its attributes.",
+    "EQUIP": "> EQUIP / USE",
+    "CLOSE": "[ X ] CLOSE"
+  }
+}

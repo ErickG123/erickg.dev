@@ -1,3 +1,12 @@
+@if (isBooting()) {
+  <div class="gba-boot-screen">
+    <div class="boot-logo">ERICK_DEV</div>
+    <div class="boot-subtitle">Licensed by the Developer</div>
+  </div>
+}
+
+<app-achievement-toast></app-achievement-toast>
+
 <div class="flex flex-column" style="min-height: 100vh;">
   <app-header></app-header>
   <main class="flex-grow-1 p-4 route-container" [@routeAnimations]="prepareRoute(outlet)">
@@ -9,3 +18,21 @@
     <span class="pixel-font text-red" style="font-size: 0.6rem;">MADE WITH COFFEE AND MAGIC</span>
   </footer>
 </div>
+
+@if (konamiService.isUnlocked()) {
+  <div class="terminal-overlay flex justify-center align-center">
+    <div class="terminal-window p-4 flex flex-column">
+      <p class="terminal-text glitch-text mb-1">> SYSTEM OVERRIDE ACCEPTED.</p>
+      <p class="terminal-text mb-1">> ACCESSING RELATIONAL DATABASE BACKEND...</p>
+      <p class="terminal-text mb-3">> BUSINESS INTELLIGENCE API INTEGRATION <span style="color: #fff;">[UNLOCKED]</span>.</p>
+      
+      <p class="terminal-text mt-3 mb-4" style="color: var(--gba-text-muted);">
+        Parabéns. Você acessou os arquivos confidenciais do Arquiteto.
+      </p>
+      
+      <div class="text-right">
+        <button (click)="konamiService.closeTerminal()" class="terminal-btn pixel-font">> CLOSE_TERMINAL</button>
+      </div>
+    </div>
+  </div>
+}

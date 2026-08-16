@@ -1,57 +1,60 @@
 <div class="flex flex-column gap-4">
   
-  <!-- HERO SECTION: Split Layout -->
-  <section class="flex flex-column justify-between gap-4 mt-4" style="flex-direction: row; flex-wrap: wrap;">
-    
-    <!-- Left Side: Text and Buttons -->
-    <div class="flex flex-column justify-center p-4" style="flex: 1; min-width: 320px;">
-      <div class="gba-card mb-4 relative" style="padding-top: 3rem;">
+  <!-- HERO SECTION: Tactical Layout Mode -->
+  <section 
+    cdkDropList 
+    (cdkDropListDropped)="drop($event)"
+    class="flex gap-4 mt-4 tactical-board" 
+    style="flex-wrap: wrap; justify-content: center;"
+  >
+    @for (block of tacticalBlocks; track block.id) {
+      <div cdkDrag class="tactical-block gba-card relative flex flex-column justify-center p-4" style="flex: 1; min-width: 320px; border: 2px dashed var(--gba-border-dark);">
         
-        <div class="gba-badge absolute" style="top: -1rem; left: 1rem;">
-          LEVEL_UP
+        <div cdkDragHandle class="drag-handle absolute" style="top: 0.5rem; right: 0.5rem; cursor: grab; font-family: var(--font-pixel); color: var(--gba-text-muted);">
+          [=]
         </div>
-        
-        <h1 class="pixel-font m-0 text-red" style="font-size: 3rem;">ERICK_DEV</h1>
-        <h2 class="pixel-font m-0 mt-2" style="font-size: 1.5rem;">FINAL_BUILD_V21.0</h2>
-        
-        <p class="mt-4 font-bold">
-          "Um desenvolvedor Full-Stack invocou habilidades de engenharia para forjar interfaces de alta performance."
-        </p>
-      </div>
-      
-      <div class="mobile-stack flex gap-2">
-        <a routerLink="/projects" class="gba-btn">START QUEST</a>
-        <a routerLink="/contact" class="gba-btn gba-btn-secondary">GUILD BOARD</a>
-      </div>
-    </div>
 
-    <!-- Right Side: Pixel Avatar SVG via Code -->
-    <div class="flex flex-column align-center justify-center p-4" style="flex: 1; min-width: 320px;">
-      <div class="avatar-container">
-        <svg viewBox="0 0 12 12" class="pixel-avatar-svg" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-          <!-- Cabelo -->
-          <rect x="3" y="0" width="6" height="1" fill="#151515"/>
-          <rect x="2" y="1" width="8" height="2" fill="#151515"/>
-          <!-- Rosto -->
-          <rect x="2" y="3" width="8" height="4" fill="#FAFAFA"/>
-          <!-- Óculos (Armação e Lente) -->
-          <rect x="1" y="4" width="10" height="2" fill="#151515"/>
-          <rect x="2" y="4" width="3" height="1" fill="#E60012"/> <!-- Lente vermelha esq -->
-          <rect x="7" y="4" width="3" height="1" fill="#E60012"/> <!-- Lente vermelha dir -->
-          <!-- Boca/Sombra -->
-          <rect x="5" y="6" width="2" height="1" fill="#151515"/>
-          <!-- Capuz Vermelho Interno -->
-          <rect x="2" y="7" width="2" height="2" fill="#E60012"/>
-          <rect x="8" y="7" width="2" height="2" fill="#E60012"/>
-          <!-- Corpo do Moletom -->
-          <rect x="1" y="8" width="10" height="4" fill="#151515"/>
-          <rect x="0" y="10" width="12" height="2" fill="#151515"/>
-          <!-- Zíper/Cordão central -->
-          <rect x="5" y="8" width="2" height="4" fill="#0A0A0A"/>
-        </svg>
-        <div class="avatar-shadow"></div>
+        @if (block.id === 'text') {
+           <div class="relative" style="padding-top: 1rem;">
+             <div class="gba-badge absolute" style="top: -2rem; left: 0;">{{ 'HOME.LEVEL_UP' | translate }}</div>
+             <h1 class="pixel-font m-0 text-red" style="font-size: 3rem;">ERICK_DEV</h1>
+             <h2 class="pixel-font m-0 mt-2" style="font-size: 1.5rem;">FINAL_BUILD_V21.0</h2>
+             <p class="mt-4 font-bold" [appTypewriter]="'HOME.DESCRIPTION' | translate" [speed]="40"></p>
+           </div>
+        }
+
+        @if (block.id === 'actions') {
+           <div class="flex flex-column justify-center align-center h-full mt-4">
+             <div class="mobile-stack flex gap-2 w-full justify-center">
+               <a routerLink="/projects" class="gba-btn text-center">> {{ 'HOME.START_QUEST' | translate }}</a>
+               <a routerLink="/contact" class="gba-btn gba-btn-secondary text-center">{{ 'HOME.GUILD_BOARD' | translate }}</a>
+             </div>
+           </div>
+        }
+
+        @if (block.id === 'avatar') {
+           <div class="flex flex-column align-center justify-center h-full">
+             <div class="avatar-container">
+               <svg viewBox="0 0 12 12" class="pixel-avatar-svg" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                 <rect x="3" y="0" width="6" height="1" fill="#151515"/>
+                 <rect x="2" y="1" width="8" height="2" fill="#151515"/>
+                 <rect x="2" y="3" width="8" height="4" fill="#FAFAFA"/>
+                 <rect x="1" y="4" width="10" height="2" fill="#151515"/>
+                 <rect x="2" y="4" width="3" height="1" fill="#E60012"/> 
+                 <rect x="7" y="4" width="3" height="1" fill="#E60012"/> 
+                 <rect x="5" y="6" width="2" height="1" fill="#151515"/>
+                 <rect x="2" y="7" width="2" height="2" fill="#E60012"/>
+                 <rect x="8" y="7" width="2" height="2" fill="#E60012"/>
+                 <rect x="1" y="8" width="10" height="4" fill="#151515"/>
+                 <rect x="0" y="10" width="12" height="2" fill="#151515"/>
+                 <rect x="5" y="8" width="2" height="4" fill="#0A0A0A"/>
+               </svg>
+               <div class="avatar-shadow"></div>
+             </div>
+           </div>
+        }
       </div>
-    </div>
+    }
   </section>
 
   <!-- FEATURED PROJECTS -->

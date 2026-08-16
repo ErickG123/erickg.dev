@@ -1,0 +1,27 @@
+<header class="gba-header">
+  <h1 class="header-title" routerLink="/" style="cursor: pointer;" aria-label="Go to Home">ERICK_DEV.EXE</h1>
+  <nav class="header-nav">
+    <button 
+      class="gba-btn bgm-btn" 
+      [class.active]="audioService.isBgmPlaying()" 
+      (click)="audioService.toggleBgm()"
+      aria-label="Toggle Background Music"
+      tabindex="0"
+    >
+      {{ audioService.isBgmPlaying() ? '[ ■ BGM_OFF ]' : '[ ▶ BGM_ON ]' }}
+    </button>
+    <button 
+      class="gba-btn" 
+      (click)="toggleLanguage()" 
+      aria-label="Toggle Language"
+      tabindex="0"
+    >
+      [ {{ currentLang() | uppercase }} ]
+    </button>
+    <a routerLink="/" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.START' | translate }}</a>
+    <a routerLink="/about" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.STATUS' | translate }}</a>
+    <a routerLink="/projects" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.BAG' | translate }}</a>
+    <a routerLink="/log" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.LOG' | translate }}</a>
+    <a routerLink="/contact" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.GUILD' | translate }}</a>
+  </nav>
+</header>

@@ -1,35 +1,55 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, effect, signal } from '@angular/core';
 import { ProjectService } from './services/project.service';
-import { ProjectCardComponent } from './components/project-card/project-card.component';
+import { Project } from '../../core/models/project.interface';
+import { UpperCasePipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { track } from '@vercel/analytics';
+import { GameStateService } from '../../core/state/game-state.service';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [ProjectCardComponent],
-  template: `
-    <section class="container flex flex-column gap-4 fadein">
-      <div class="flex align-center gap-2 mb-4" style="border-bottom: 2px dashed var(--gba-border); padding-bottom: 1rem;">
-        <h2 class="pixel-font m-0" style="font-size: 2rem;">QUEST_LOG</h2>
-      </div>
-
-      @if (projectService.isLoading()) {
-        <div class="flex justify-center align-center" style="height: 15rem;">
-          <span class="pixel-font">LOADING...</span>
-        </div>
-      } @else {
-        <div class="projects-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
-          @for (project of projectService.projects(); track project.id) {
-            <app-project-card [project]="project"></app-project-card>
-          }
-        </div>
-      }
-    </section>
-  `
+  imports: [UpperCasePipe, TranslatePipe],
+  templateUrl: './projects.component.html',
+  styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
   projectService = inject(ProjectService);
+  gameState = inject(GameStateService);
+  selectedProject = signal<Project | null>(null);
+  activeDemo = signal<string | null>(null);
+
+  constructor() {
+    effect(() => {
+      const projects = this.projectService.projects();
+      if (projects.length > 0 && !this.selectedProject()) {
+        this.selectedProject.set(projects[0]);
+      }
+    });
+  }
 
   ngOnInit() {
     this.projectService.loadProjects();
+  }
+
+  onSelectProject(project: Project) {
+    this.selectedProject.set(project);
+    this.activeDemo.set(null); 
+  }
+
+  onEquipProject(project: Project) {
+    if (project.demoType === 'sleuth' || project.title === 'Cyber Sleuth Toolkit') {
+      this.activeDemo.set('sleuth');
+      try { track('Viewed Project Demo', { project: project.title }); } catch (e) {}
+    } else if (project.demoType === 'forge' || project.title === 'The Architect\'s Forge') {
+      this.activeDemo.set('forge');
+      try { track('Viewed Project Demo', { project: project.title }); } catch (e) {}
+    } else if (project.title === 'Corporate Glasses' || project.title.includes('Corporate')) {
+      try { track('Equipped Corporate Glasses'); } catch (e) {}
+      this.gameState.toggleCorporateMode();
+      if (project.url) window.open(project.url, '_blank');
+    } else {
+      if (project.url) window.open(project.url, '_blank');
+    }
   }
 }

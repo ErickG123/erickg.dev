@@ -5,7 +5,7 @@ import { DOCUMENT } from '@angular/common';
   providedIn: 'root'
 })
 export class ThemeService {
-  readonly isDarkMode = signal<boolean>(true); // Iniciando em dark mode, como no seu portfólio atual
+  readonly isDarkMode = signal<boolean>(true);
 
   constructor(@Inject(DOCUMENT) private document: Document) {
     this.applyTheme();

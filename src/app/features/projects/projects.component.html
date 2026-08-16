@@ -1,0 +1,89 @@
+<section class="container fadein mb-4 mt-4">
+  <div class="flex align-center gap-2 mb-4" style="border-bottom: 2px dashed var(--gba-border-light); padding-bottom: 1rem;">
+    <h2 class="pixel-font m-0" style="font-size: 2rem;">{{ 'BAG.TITLE' | translate }}</h2>
+  </div>
+
+  @if (projectService.isLoading()) {
+    <div class="flex justify-center align-center" style="height: 15rem;">
+      <span class="pixel-font text-red">LOADING...</span>
+    </div>
+  } @else {
+    <div class="inventory-grid">
+      
+      <!-- Coluna Esquerda: Lista de Itens -->
+      <div class="gba-card item-list-panel">
+        <ul class="inventory-list">
+          @for (project of projectService.projects(); track project.id) {
+            <li 
+              class="inventory-item pixel-font"
+              [class.active]="selectedProject()?.id === project.id"
+              (click)="onSelectProject(project)"
+            >
+              <span class="selector" [style.visibility]="selectedProject()?.id === project.id ? 'visible' : 'hidden'">></span>
+              {{ project.title | uppercase }}
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Coluna Direita: Detalhes do Item -->
+      <div class="gba-card item-details-panel flex flex-column">
+        @if (selectedProject(); as project) {
+          <div class="item-icon-box mb-3 flex justify-center align-center">
+            <!-- Simulação de Ícone de Item (ex. Disco/Cartucho/Ferramenta) -->
+            <div class="pixel-sprite">?</div>
+          </div>
+          
+          <h3 class="pixel-font text-red m-0 mb-3 text-center" style="font-size: 1rem;">
+            {{ project.title | uppercase }}
+          </h3>
+          
+          <div class="description-box flex-grow-1">
+            @if (activeDemo() === 'sleuth') {
+              <div class="node-graph-demo flex flex-column align-center justify-center p-3">
+                <div class="node-header text-red pixel-font mb-3" style="font-size: 0.6rem;">> FORENSIC_TRACE_ROUTING</div>
+                <div class="node-canvas flex align-center justify-center w-full my-3">
+                  <div class="node source pixel-font">IP_SOURCE</div>
+                  <div class="flow-line"></div>
+                  <div class="node process pixel-font">PACKET_INSPECTION</div>
+                  <div class="flow-line blocked"></div>
+                  <div class="node loop-error pixel-font text-red">RESTRICTED</div>
+                </div>
+                <button class="gba-btn mt-3" style="padding: 0.5rem; font-size: 0.6rem;" (click)="activeDemo.set(null)">[ X ] CLOSE_TRACE</button>
+              </div>
+            } @else if (activeDemo() === 'forge') {
+              <div class="cli-terminal-demo flex flex-column">
+                <div class="terminal-header flex justify-between align-center px-2 py-1">
+                  <span>architect-cli.exe</span>
+                <button class="close-btn" (click)="activeDemo.set(null)">{{ 'BAG.CLOSE' | translate }}</button>
+              </div>
+              <div class="terminal-body flex-grow-1">
+                <p class="prompt m-0 mb-2"><span class="path">C:\\dev\\project></span> <span class="typing-cmd">forge generate layout --dynamic</span></p>
+                <div class="cli-output">
+                  <p class="log success m-0">[OK] Estrutura do dashboard inicializada.</p>
+                  <p class="log m-0">[BUILD] Forjando grids configuráveis...</p>
+                  <p class="log m-0">[BUILD] Aplicando capacidades fullscreen...</p>
+                  <p class="log success m-0">[DONE] Arquitetura forjada com sucesso em 0.8s.</p>
+                </div>
+                <p class="prompt m-0 mt-2"><span class="path">C:\\dev\\project></span> <span class="cursor-blink">█</span></p>
+              </div>
+            </div>
+          } @else {
+            <p class="description m-0">
+              {{ project.description }}
+            </p>
+          }
+        </div>
+        
+        @if (!activeDemo()) {
+          <div class="item-actions mt-4">
+            <!-- Usando botão GBA com intercepção TypeScript para abrir o link ou a demo -->
+            <button class="gba-btn w-full" style="font-size: 0.75rem;" (click)="onEquipProject(project)">{{ 'BAG.EQUIP' | translate }}</button>
+          </div>
+        }
+        }
+      </div>
+
+    </div>
+  }
+</section>

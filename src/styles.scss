@@ -80,7 +80,7 @@ body::after {
 }
 
 /* Borda de Foco de Acessibilidade */
-:focus {
+:focus-visible {
   outline: 2px dashed var(--gba-text);
   outline-offset: 4px;
 }
@@ -267,5 +267,87 @@ p, .description {
   .mobile-stack > * {
     width: 100% !important;
     margin-bottom: 0.75rem;
+  }
+}
+
+/* Efeito Typewriter RPG */
+.typing-cursor::after {
+  content: ' █';
+  animation: blink 1s step-start infinite;
+  color: var(--gba-text-muted);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* --- Custom GBA Scrollbar --- */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gba-bg);
+  border-left: 3px solid var(--gba-border-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gba-red);
+  border: 3px solid var(--gba-border-dark);
+  border-radius: 0;
+  /* Cria uma textura tátil na barra usando box-shadow interno */
+  box-shadow: inset 2px 2px 0px rgba(255, 255, 255, 0.2), inset -2px -2px 0px rgba(0, 0, 0, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gba-red-hover);
+}
+
+/* --- Pixel Art Cursors --- */
+body {
+  /* Cursor padrão (Seta Vermelha e Branca) */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23E60012" stroke="%23FFFFFF" stroke-width="2" stroke-linejoin="miter" d="M2,2 L18,8 L11,11 L16,18 L12,21 L7,13 L2,18 Z" shape-rendering="crispEdges"/></svg>'), auto;
+}
+
+a, button, .gba-btn, input, textarea {
+  /* Cursor de interação (Pointer Clássico em Pixel) */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23E60012" stroke="%23FFFFFF" stroke-width="2" d="M10,2 L10,6 L6,6 L6,12 L2,12 L2,22 L14,22 L14,16 L18,16 L18,10 L14,10 L14,2 Z" shape-rendering="crispEdges"/></svg>'), pointer !important;
+}
+
+/* --- GBA Markdown Renderer --- */
+markdown {
+  display: block;
+  color: var(--gba-text);
+  font-family: sans-serif;
+  line-height: 1.8;
+  
+  h1, h2, h3 {
+    font-family: var(--font-pixel);
+    color: var(--gba-red);
+    margin-top: 2rem;
+    border-bottom: 2px dashed var(--gba-border-dark);
+    padding-bottom: 0.5rem;
+  }
+  
+  /* O Loot / Code Blocks */
+  pre {
+    background: #000;
+    border: 2px solid var(--gba-border-dark);
+    padding: 1rem;
+    overflow-x: auto;
+  }
+  
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    color: #00FF00; /* Hacker Green para os códigos */
+  }
+  
+  blockquote {
+    border-left: 4px solid var(--gba-red);
+    padding-left: 1rem;
+    margin-left: 0;
+    font-style: italic;
+    color: #a1a1aa;
   }
 }

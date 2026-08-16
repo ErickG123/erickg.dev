@@ -1,0 +1,243 @@
+.inventory-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.item-list-panel {
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.inventory-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; /* Espaço para não errar o clique no mobile */
+}
+
+.inventory-item {
+  font-size: 0.8rem;
+  color: var(--gba-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.1s;
+  
+  &:hover {
+    color: var(--gba-text);
+  }
+  
+  &.active {
+    color: var(--gba-text);
+  }
+}
+
+.selector {
+  color: var(--gba-red);
+  display: inline-block;
+  width: 1rem;
+  font-weight: bold;
+}
+
+.item-details-panel {
+  height: 100%;
+  border: 4px solid var(--gba-border-dark); /* Borda mais pesada para o painel de status do item */
+}
+
+.item-icon-box {
+  height: 120px;
+  width: 100%;
+  background: var(--gba-bg);
+  /* Efeito tátil reverso (afundado) */
+  border: 2px solid var(--gba-border-dark);
+  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.8), inset -2px -2px 0px rgba(255,255,255,0.05);
+}
+
+.pixel-sprite {
+  font-family: var(--font-pixel);
+  font-size: 3rem;
+  color: var(--gba-text-muted);
+  animation: floatSprite 2s infinite ease-in-out;
+}
+
+@keyframes floatSprite {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.description-box {
+  border-top: 2px dashed var(--gba-border-dark);
+  padding-top: 1rem;
+}
+
+/* --- Node Graph Demo (Cyber Sleuth) --- */
+.node-graph-demo {
+  background-color: #030303;
+  border: 2px dashed var(--gba-red);
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.node-canvas {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os nós desçam de linha em telas pequenas */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.node {
+  background-color: #000;
+  color: var(--gba-text);
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--gba-text);
+  font-size: 0.6rem;
+  text-align: center;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.node.loop-error {
+  border-color: var(--gba-red);
+}
+
+.flow-line {
+  height: 2px;
+  width: 20px;
+  background-color: var(--gba-text-muted);
+  position: relative;
+  overflow: hidden;
+}
+
+.flow-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  animation: data-flow 1.5s linear infinite;
+}
+
+.flow-line.blocked {
+  background-color: var(--gba-red-hover);
+}
+
+.flow-line.blocked::after {
+  background: var(--gba-red);
+  animation: data-block 1.5s linear infinite;
+}
+
+@keyframes data-flow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes data-block {
+  0% { transform: translateX(-100%); opacity: 1; }
+  49% { transform: translateX(50%); opacity: 1; }
+  50% { transform: translateX(50%); opacity: 0; } /* Simula batida violenta contra firewall */
+  100% { transform: translateX(50%); opacity: 0; }
+}
+
+/* --- CLI Terminal Demo (The Architect's Forge) --- */
+.cli-terminal-demo {
+  background-color: #0c0c0c;
+  border: 2px solid #555;
+  border-radius: 2px;
+  height: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.terminal-header {
+  background-color: #333;
+  color: #fff;
+  font-size: 0.6rem;
+  font-family: var(--font-pixel);
+}
+
+.terminal-header .close-btn {
+  background: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 0.6rem;
+  font-family: var(--font-pixel);
+}
+
+.terminal-header .close-btn:hover {
+  color: var(--gba-red-hover);
+}
+
+.terminal-body {
+  padding: 1rem;
+  color: #00FF00;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-wrap; /* Permite que o comando do terminal quebre a linha sem vazar do card */
+}
+
+.path {
+  color: #a0a0ff;
+}
+
+/* Animação do comando sendo digitado */
+.typing-cmd {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing-cmd-anim 1.5s steps(30, end) forwards;
+}
+
+@keyframes typing-cmd-anim {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Aparecimento sequencial dos logs */
+.log {
+  opacity: 0;
+  animation: log-appear 0s linear forwards;
+}
+
+.log:nth-child(1) { animation-delay: 1.8s; }
+.log:nth-child(2) { animation-delay: 2.3s; }
+.log:nth-child(3) { animation-delay: 2.8s; }
+.log:nth-child(4) { animation-delay: 3.5s; }
+
+.log.success {
+  color: #00FF00;
+}
+.log:not(.success) {
+  color: #ccc;
+}
+
+@keyframes log-appear {
+  to { opacity: 1; }
+}
+
+.terminal-body > .prompt:last-child {
+  opacity: 0;
+  animation: log-appear 0s linear forwards;
+  animation-delay: 4.0s;
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}

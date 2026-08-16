@@ -1,0 +1,93 @@
+/* --- Quest Journal Timeline --- */
+.timeline-container {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 2rem;
+}
+
+/* A Linha Vertical Vermelha */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px; /* Centraliza a linha no dot */
+  width: 2px;
+  border-left: 2px dashed var(--gba-red);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+/* O "Nó" da Timeline (Bullet point retro) */
+.timeline-dot {
+  position: absolute;
+  left: -2rem; /* Move para cima da linha pontilhada */
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  background-color: var(--gba-card-bg);
+  border: 3px solid var(--gba-red);
+  border-radius: 0; /* Formato 8-bits (quadrado) */
+  z-index: 1;
+}
+
+/* Card da Missão */
+.timeline-content {
+  padding: 1.5rem;
+  border-top: 4px solid var(--gba-border-light);
+}
+
+.quest-title {
+  font-family: var(--font-pixel);
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin: 0 0 1.5rem 0;
+  text-shadow: 2px 2px 0px var(--gba-border-dark);
+}
+
+.section-label {
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.section-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--gba-text-muted);
+  margin: 0;
+}
+
+/* Lista de Loot Acquired */
+.loot-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.loot-item {
+  background-color: #0c0c0c;
+  color: #eab308; /* Dourado/Amarelo raro para loots */
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #555;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Efeito de interatividade GBA-feel no card */
+.timeline-content:hover {
+  border-left: 4px solid var(--gba-red-hover);
+  transition: all 0.2s;
+}
+
+.timeline-item:hover .timeline-dot {
+  background-color: var(--gba-red);
+  box-shadow: 0 0 8px var(--gba-red);
+}

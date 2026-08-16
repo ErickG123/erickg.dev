@@ -1,0 +1,57 @@
+.gba-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  gap: 1.5rem; /* Cria um respiro exato entre o título e a barra de botões */
+  border-bottom: 4px solid var(--gba-red);
+  background-color: var(--gba-bg);
+}
+
+.header-title {
+  color: var(--gba-red);
+  font-family: var(--font-pixel);
+  margin: 0; /* Remove a margem do navegador que causa o empuxo para a direita */
+  text-align: center;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 0px var(--gba-border-dark); /* Dá um peso de 8-bits ao título */
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem; /* Adiciona espaçamento uniforme entre cada botão */
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.gba-btn {
+  /* Garante que o texto dentro de todos os botões fique centralizado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Mantém a altura igual para todos */
+  
+  /* Mantendo as propriedades que antes eram inline para proteger do css global */
+  font-size: 0.6rem;
+  padding: 0.5rem;
+  width: auto;
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.bgm-btn {
+  background: var(--gba-bg); /* Fica escuro quando desligado */
+  color: var(--gba-text);
+  border-color: var(--gba-border-dark);
+  box-shadow: none;
+}
+
+.bgm-btn.active {
+  background: var(--gba-red); /* Fica vermelho e brilhante quando tocando */
+  color: #ffffff;
+  border-color: var(--gba-border-light);
+  box-shadow: inset 2px 2px 0px rgba(255,255,255,0.3), 0 0 8px var(--gba-red);
+}
