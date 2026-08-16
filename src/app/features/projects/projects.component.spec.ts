@@ -1,8 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectsComponent } from './projects.component';
 import { ProjectService } from './services/project.service';
-import { signal } from '@angular/core';
+import { signal, Pipe, PipeTransform } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+
+@Pipe({ name: 'translate', standalone: true })
+class MockTranslatePipe implements PipeTransform {
+  transform(value: string): string { return value; }
+}
 
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent;
@@ -24,9 +30,15 @@ describe('ProjectsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ProjectsComponent],
       providers: [
-        { provide: ProjectService, useValue: mockProjectService }
+        { provide: ProjectService, useValue: mockProjectService },
+        { provide: TranslateService, useValue: { get: () => ({ subscribe: () => {} }) } }
       ]
-    }).compileComponents();
+    })
+    .overrideComponent(ProjectsComponent, {
+      remove: { imports: [TranslatePipe] },
+      add: { imports: [MockTranslatePipe] }
+    })
+    .compileComponents();
 
     fixture = TestBed.createComponent(ProjectsComponent);
     component = fixture.componentInstance;
@@ -51,7 +63,6 @@ describe('ProjectsComponent', () => {
     fixture.detectChanges();
 
     const terminalEl = fixture.debugElement.query(By.css('.cli-terminal-demo'));
-    
     expect(terminalEl).toBeTruthy();
   });
 });

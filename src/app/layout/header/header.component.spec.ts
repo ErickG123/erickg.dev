@@ -1,14 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { AudioService } from '../../core/audio.service';
-import { signal } from '@angular/core';
+import { signal, Pipe, PipeTransform } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { By } from '@angular/platform-browser';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+
+@Pipe({ name: 'translate', standalone: true })
+class MockTranslatePipe implements PipeTransform {
+  transform(value: string): string { return value; }
+}
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  
   let mockAudioService: any;
   let bgmSignal: any;
 
@@ -23,9 +28,19 @@ describe('HeaderComponent', () => {
       imports: [HeaderComponent],
       providers: [
         provideRouter([]),
-        { provide: AudioService, useValue: mockAudioService }
+        { provide: AudioService, useValue: mockAudioService },
+        { provide: TranslateService, useValue: { 
+          get: () => ({ subscribe: () => {} }),
+          setFallbackLang: jest.fn(),
+          use: jest.fn()
+        } }
       ]
-    }).compileComponents();
+    })
+    .overrideComponent(HeaderComponent, {
+      remove: { imports: [TranslatePipe] },
+      add: { imports: [MockTranslatePipe] }
+    })
+    .compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -39,7 +54,6 @@ describe('HeaderComponent', () => {
 
   it('deve exibir dinamicamente o texto do botão baseado no estado isolado do Mock de Áudio', () => {
     const buttonEl = fixture.debugElement.query(By.css('.bgm-btn')).nativeElement;
-    
     expect(buttonEl.textContent).toContain('[ ▶ BGM_ON ]');
 
     bgmSignal.set(true);
@@ -50,9 +64,7 @@ describe('HeaderComponent', () => {
 
   it('deve disparar a função toggleBgm() do serviço ao interceptar um clique falso no DOM', () => {
     const buttonEl = fixture.debugElement.query(By.css('.bgm-btn'));
-    
     buttonEl.triggerEventHandler('click', null);
-    
     expect(mockAudioService.toggleBgm).toHaveBeenCalled();
   });
 });

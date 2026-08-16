@@ -20,9 +20,9 @@ describe('SaveStateService', () => {
       }
     };
 
-    jest.spyOn(window.localStorage, 'getItem').mockImplementation(mockLocalStorage.getItem);
-    jest.spyOn(window.localStorage, 'setItem').mockImplementation(mockLocalStorage.setItem);
-    jest.spyOn(window.localStorage, 'clear').mockImplementation(mockLocalStorage.clear);
+    jest.spyOn(Storage.prototype, 'getItem').mockImplementation(mockLocalStorage.getItem);
+    jest.spyOn(Storage.prototype, 'setItem').mockImplementation(mockLocalStorage.setItem);
+    jest.spyOn(Storage.prototype, 'clear').mockImplementation(mockLocalStorage.clear);
 
     jest.spyOn(window, 'Audio').mockImplementation(() => ({
       play: () => Promise.resolve(),
@@ -45,17 +45,17 @@ describe('SaveStateService', () => {
 
   it('deve salvar e recuperar uma preferência do usuário corretamente', () => {
     service.savePreference('theme', 'dark');
-    expect(window.localStorage.setItem).toHaveBeenCalledWith('gba_pref_theme', '"dark"');
+    expect(Storage.prototype.setItem).toHaveBeenCalledWith('gba_pref_theme', '"dark"');
 
     const result = service.getPreference('theme');
-    expect(window.localStorage.getItem).toHaveBeenCalledWith('gba_pref_theme');
+    expect(Storage.prototype.getItem).toHaveBeenCalledWith('gba_pref_theme');
     expect(result).toBe('dark');
   });
 
   it('ao destravar uma conquista inédia, deve verificar storage, salvar, emitir Signal, e resetar após 4s', fakeAsync(() => {
     service.unlockAchievement('TEST_ACHIEVEMENT', 'First Blood');
 
-    expect(window.localStorage.setItem).toHaveBeenCalledWith('gba_achievements', JSON.stringify(['TEST_ACHIEVEMENT']));
+    expect(Storage.prototype.setItem).toHaveBeenCalledWith('gba_achievements', JSON.stringify(['TEST_ACHIEVEMENT']));
     
     const activeSignal = service.latestAchievement();
     expect(activeSignal).toEqual({ id: 'TEST_ACHIEVEMENT', title: 'First Blood' });
