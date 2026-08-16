@@ -1,0 +1,55 @@
+<section class="container fadein mb-4 mt-4">
+  <div class="flex align-center gap-2 mb-4" style="border-bottom: 2px dashed var(--gba-border-light); padding-bottom: 1rem;">
+    <h2 class="pixel-font m-0" style="font-size: 2rem;">GUILD_BOARD</h2>
+  </div>
+
+  <div class="contact-grid">
+    
+    <!-- Formulário (Esquerda) -->
+    <section class="gba-card form-panel">
+      <h3 class="pixel-font m-0 mb-4 pb-2" style="font-size: 1.2rem; border-bottom: 2px solid var(--gba-border-dark);"><span style="white-space: nowrap;">&gt;</span> GUILD_MESSAGE_BOARD</h3>
+      
+      <p class="description mb-4">
+        Deixe um pergaminho no mural para discutir novas quests e alianças de desenvolvimento. 
+        Transmissões são criptografadas via magia de rede.
+      </p>
+
+      <div class="flex flex-column gap-3">
+        <div class="flex flex-column gap-1">
+          <label for="name" class="pixel-font text-red" style="font-size: 0.7rem;">PLAYER_NAME</label>
+          <input class="gba-input" id="name" type="text" placeholder="Seu nome ou gamertag..." />
+        </div>
+        
+        <div class="flex flex-column gap-1">
+          <label for="email" class="pixel-font text-red" style="font-size: 0.7rem;">CONTACT_RUNES</label>
+          <input class="gba-input" id="email" type="email" placeholder="Onde a coruja deve entregar a resposta..." />
+        </div>
+        
+        <div class="flex flex-column gap-1">
+          <label for="message" class="pixel-font text-red" style="font-size: 0.7rem;">QUEST_DETAILS</label>
+          <textarea class="gba-input" id="message" rows="5" style="resize: none;" placeholder="Descreva os requisitos da missão, tech stack e desafios..."></textarea>
+        </div>
+        
+        <div class="mt-3 text-right">
+          <button class="gba-btn">> TRANSMIT_MESSAGE</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Redes Sociais (Direita) -->
+    <section class="gba-card social-panel flex flex-column gap-4">
+      <h3 class="pixel-font text-center m-0 pb-2" style="font-size: 1.2rem; border-bottom: 2px solid var(--gba-border-dark);"><span style="white-space: nowrap;">&gt;</span> SOCIAL_LINKS</h3>
+      
+      <div class="social-links-container mt-2">
+        <a href="https://www.linkedin.com/in/erickgdev/" target="_blank" class="gba-btn gba-btn-secondary" style="justify-content: flex-start; padding-top: 1rem; padding-bottom: 1rem;">
+          <span class="pixel-font text-red" style="margin-right: 0.75rem;">[ IN ]</span> LINKEDIN
+        </a>
+        
+        <a href="https://dev.to/erickg123" target="_blank" class="gba-btn gba-btn-secondary" style="justify-content: flex-start; padding-top: 1rem; padding-bottom: 1rem;">
+          <span class="pixel-font text-red" style="margin-right: 0.75rem;">[ DEV ]</span> DEV.TO
+        </a>
+      </div>
+    </section>
+
+  </div>
+</section>

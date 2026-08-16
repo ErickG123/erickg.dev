@@ -1,0 +1,26 @@
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @media (min-width: 768px) {
+    /* O formulário ocupa mais espaço (2/3) e os links (1/3) */
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.social-panel {
+  /* Impede que o painel da direita estique verticalmente acompanhando o tamanho do formulário */
+  align-self: start;
+}
+
+.social-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Cria o espaço entre os botões sem usar margin */
+  width: 100%;
+  
+  .gba-btn {
+    margin-top: 0; /* Remove o auto-margin do rodapé herdado globalmente */
+  }
+}

@@ -1,0 +1,6 @@
+.route-container {
+  position: relative;
+  overflow-x: hidden;
+  /* overflow-y não deve ser hidden para permitir o scroll da página */
+  display: block;
+}

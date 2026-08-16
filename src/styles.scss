@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --gba-bg: #050505; /* Fundo quase breu */
+  --gba-card-bg: #121212; /* Um tom acima do fundo para dar separação */
+  --gba-border-dark: #000000;
+  --gba-border-light: #2A2A2A; /* Para criar o efeito de bisel/chanfro */
+  --gba-text: #F3F4F6;
+  --gba-text-muted: #D1D5DB; /* Cinza claro para não cansar a vista */
+  --gba-red: #D10000; /* Vermelho rico e denso */
+  --gba-red-hover: #FF1A1A; /* Vermelho vibrante para interações */
+  --gba-red-active: #990000;
+  
+  --gba-hp-green: #48D0B0;
+  --gba-mp-blue: #3B82F6;
+  
+  --font-pixel: 'Press Start 2P', monospace;
+}
+
+body {
+  background-color: var(--gba-bg);
+  color: var(--gba-text-muted);
+  font-family: var(--font-pixel);
+  margin: 0;
+  font-size: 0.7rem;
+  line-height: 1.8;
+  text-transform: none; /* Leitura longa em minúsculas/case normal */
+}
+
+/* --- EFEITOS CRT & ACESSIBILIDADE --- */
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Linhas horizontais sutis para o efeito CRT */
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Scrollbar Customizada (Retro Mecânico) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--gba-bg);
+  border-left: 2px solid var(--gba-border-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gba-red);
+  border: 2px solid var(--gba-border-dark);
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gba-red-hover);
+}
+
+/* Seleção de Texto Customizada */
+::selection {
+  background: var(--gba-red);
+  color: var(--gba-text);
+}
+::-moz-selection {
+  background: var(--gba-red);
+  color: var(--gba-text);
+}
+
+/* Borda de Foco de Acessibilidade */
+:focus {
+  outline: 2px dashed var(--gba-text);
+  outline-offset: 4px;
+}
+
+/* --- CLASSES UTILITÁRIAS --- */
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-grow-1 { flex-grow: 1; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.align-center { align-items: center; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 1.5rem; }
+.gap-4 { gap: 2rem; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.m-0 { margin: 0; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.p-4 { padding: 2rem; }
+.pb-2 { padding-bottom: 1rem; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+/* --- GBA UI Components --- */
+
+.gba-card {
+  background: var(--gba-card-bg);
+  color: var(--gba-text);
+  padding: 1.5rem;
+  border-radius: 4px;
+  /* Efeito tátil de relevo em pixel */
+  border: 2px solid var(--gba-border-dark);
+  box-shadow: inset 2px 2px 0px rgba(255,255,255,0.05), 
+              inset -2px -2px 0px rgba(0,0,0,0.8), 
+              4px 4px 0px rgba(0,0,0,0.5);
+              
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.gba-btn {
+  background: var(--gba-red);
+  color: var(--gba-text);
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  text-decoration: none;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  margin-top: auto;
+
+  /* Relevo de acrílico clássico */
+  border: 2px solid var(--gba-border-dark);
+  box-shadow: inset 2px 2px 0px rgba(255,255,255,0.3), 
+              inset -2px -2px 0px rgba(0,0,0,0.4), 
+              3px 3px 0px var(--gba-border-dark);
+
+  &:hover {
+    background: var(--gba-red-hover);
+    box-shadow: inset 2px 2px 0px rgba(255,255,255,0.5), 
+                inset -2px -2px 0px rgba(0,0,0,0.4), 
+                3px 3px 0px var(--gba-border-dark);
+  }
+
+  &:active {
+    background: var(--gba-red-active);
+    transform: translate(3px, 3px);
+    /* Afunda perdendo a sombra externa */
+    box-shadow: inset 2px 2px 0px rgba(0,0,0,0.6);
+  }
+}
+
+/* Secondary Button (Cinza escuro tátil) */
+.gba-btn.gba-btn-secondary {
+  background: var(--gba-card-bg);
+  
+  &:hover {
+    background: var(--gba-border-light);
+  }
+
+  &:active {
+    background: var(--gba-bg);
+  }
+}
+
+.gba-badge {
+  display: inline-block;
+  background: var(--gba-bg);
+  color: var(--gba-red-hover);
+  border: 2px dashed var(--gba-red-active);
+  padding: 0.35rem 0.5rem;
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+.gba-input {
+  /* Tipografia de sistema limpa para leitura/digitação sem cansar */
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  padding: 0.75rem 1rem;
+  /* Sem bordas arredondadas (0) para manter o visual quadrado mecânico */
+  border-radius: 0;
+  background-color: var(--gba-bg);
+  color: var(--gba-text);
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Borda espessa cinza chumbo */
+  border: 3px solid var(--gba-border-dark);
+  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.8), 
+              inset -2px -2px 0px rgba(255,255,255,0.05);
+
+  &:focus {
+    outline: none;
+    /* Borda acende em vermelho no foco */
+    border-color: var(--gba-red);
+    background-color: #000;
+  }
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6, .pixel-font {
+  font-family: var(--font-pixel);
+  text-transform: uppercase;
+  color: var(--gba-text);
+  line-height: 1.4;
+  margin: 0;
+}
+
+p, .description {
+  font-size: 0.7rem;
+  line-height: 1.8;
+  color: var(--gba-text-muted);
+  text-transform: none;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.text-red { color: var(--gba-red-hover); }
+
+/* --- RESPONSIVIDADE MOBILE FIXES --- */
+@media (max-width: 768px) {
+  h1 { font-size: 1.5rem !important; }
+  h2 { font-size: 1.2rem !important; }
+  h3 { font-size: 1rem !important; }
+
+  /* Impede o overflow de títulos grandes vazando para fora do card */
+  .gba-card h1, .gba-card h2, .gba-card h3 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Diminui o padding interno dos cards para ganhar respiro de tela */
+  .gba-card {
+    padding: 1rem !important;
+  }
+
+  /* Força elementos lado a lado (ex: START QUEST) a se empilharem */
+  .mobile-stack {
+    flex-direction: column !important;
+    width: 100%;
+  }
+  .mobile-stack > * {
+    width: 100% !important;
+    margin-bottom: 0.75rem;
+  }
+}
