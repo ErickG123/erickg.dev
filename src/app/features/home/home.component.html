@@ -1,78 +1,540 @@
-<div class="flex flex-column gap-4">
-  
-  <!-- HERO SECTION: Tactical Layout Mode -->
-  <section 
-    cdkDropList 
-    (cdkDropListDropped)="drop($event)"
-    class="flex gap-4 mt-4 tactical-board" 
-    style="flex-wrap: wrap; justify-content: center;"
-  >
-    @for (block of tacticalBlocks; track block.id) {
-      <div cdkDrag class="tactical-block gba-card relative flex flex-column justify-center p-4" style="flex: 1; min-width: 320px; border: 2px dashed var(--gba-border-dark);">
-        
-        <div cdkDragHandle class="drag-handle absolute" style="top: 0.5rem; right: 0.5rem; cursor: grab; font-family: var(--font-pixel); color: var(--gba-text-muted);">
-          [=]
-        </div>
+<div class="manga-container" style="padding-top: var(--space-4); padding-bottom: var(--space-16);">
 
-        @if (block.id === 'text') {
-           <div class="relative" style="padding-top: 1rem;">
-             <div class="gba-badge absolute" style="top: -2rem; left: 0;">{{ 'HOME.LEVEL_UP' | translate }}</div>
-             <h1 class="pixel-font m-0 text-red" style="font-size: 3rem;">ERICK_DEV</h1>
-             <h2 class="pixel-font m-0 mt-2" style="font-size: 1.5rem;">FINAL_BUILD_V21.0</h2>
-             <p class="mt-4 font-bold" [appTypewriter]="'HOME.DESCRIPTION' | translate" [speed]="40"></p>
-           </div>
-        }
+  <!-- EXPERIÊNCIA INICIAL: CAPA EDITORIAL INTERATIVA (VOLUME 01) -->
+  <app-book-cover></app-book-cover>
 
-        @if (block.id === 'actions') {
-           <div class="flex flex-column justify-center align-center h-full mt-4">
-             <div class="mobile-stack flex gap-2 w-full justify-center">
-               <a routerLink="/projects" class="gba-btn text-center">> {{ 'HOME.START_QUEST' | translate }}</a>
-               <a routerLink="/contact" class="gba-btn gba-btn-secondary text-center">{{ 'HOME.GUILD_BOARD' | translate }}</a>
-             </div>
-           </div>
-        }
-
-        @if (block.id === 'avatar') {
-           <div class="flex flex-column align-center justify-center h-full">
-             <div class="avatar-container">
-               <svg viewBox="0 0 12 12" class="pixel-avatar-svg" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-                 <rect x="3" y="0" width="6" height="1" fill="#151515"/>
-                 <rect x="2" y="1" width="8" height="2" fill="#151515"/>
-                 <rect x="2" y="3" width="8" height="4" fill="#FAFAFA"/>
-                 <rect x="1" y="4" width="10" height="2" fill="#151515"/>
-                 <rect x="2" y="4" width="3" height="1" fill="#E60012"/> 
-                 <rect x="7" y="4" width="3" height="1" fill="#E60012"/> 
-                 <rect x="5" y="6" width="2" height="1" fill="#151515"/>
-                 <rect x="2" y="7" width="2" height="2" fill="#E60012"/>
-                 <rect x="8" y="7" width="2" height="2" fill="#E60012"/>
-                 <rect x="1" y="8" width="10" height="4" fill="#151515"/>
-                 <rect x="0" y="10" width="12" height="2" fill="#151515"/>
-                 <rect x="5" y="8" width="2" height="4" fill="#0A0A0A"/>
-               </svg>
-               <div class="avatar-shadow"></div>
-             </div>
-           </div>
-        }
-      </div>
-    }
-  </section>
-
-  <!-- FEATURED PROJECTS -->
-  <section class="container w-full mt-4">
-    <div class="flex align-center mb-4 gap-2" style="border-bottom: 2px dashed var(--gba-border); padding-bottom: 1rem;">
-      <h2 class="pixel-font m-0 text-red">FEATURED_QUESTS</h2>
+  <!-- BARRA DE SELEÇÃO DE MODO DE LEITURA (DUALIDADE INTEGRADA) -->
+  <aside class="reading-mode-selector manga-panel p-3 mb-6 flex justify-between align-center flex-wrap gap-2" aria-label="Seletor de Modo de Leitura">
+    <div class="manga-flex manga-gap-3 manga-items-center manga-flex-wrap">
+      <span class="manga-mono" style="font-weight: 800; font-size: 0.75rem;">
+        MODO DE LEITURA:
+      </span>
+      <span class="manga-badge manga-badge--vermilion">
+        {{ readerState.isMangaReaderMode() ? 'LEITOR DE PÁGINAS IMERSIVO' : 'EDITORIAL CONTÍNUO (ROLAGEM)' }}
+      </span>
+      <span class="manga-mono manga-text-gray section-indicator" style="font-size: 0.75rem;">
+        | SEÇÃO ATIVA: <strong class="manga-text-ink">{{ readerState.currentMapping().chapterNumber }} &bull; {{ readerState.currentMapping().title }}</strong>
+      </span>
     </div>
 
-    @if (projectService.isLoading()) {
-      <div class="flex justify-center align-center" style="height: 10rem;">
-        <span class="pixel-font">LOADING...</span>
-      </div>
-    } @else {
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-        @for (project of featuredProjects(); track project.id) {
-          <app-project-card [project]="project"></app-project-card>
-        }
+    <button
+      type="button"
+      class="manga-btn manga-btn--secondary btn-toggle-reader-mode"
+      style="padding: 0.45rem 0.85rem; font-size: 0.72rem;"
+      (click)="readerState.toggleReaderMode()"
+    >
+      {{ readerState.isMangaReaderMode() ? 'ATIVAR ROLAGEM CONTÍNUA 📜' : 'ATIVAR LEITOR DE MANGÁ 📖' }}
+    </button>
+  </aside>
+
+  @if (readerState.isMangaReaderMode()) {
+    <!-- MODO IMERSIVO DE PÁGINAS DE MANGÁ -->
+    <app-manga-reader></app-manga-reader>
+  } @else {
+    <!-- MODO EDITORIAL CONVENCIONAL COM ROLAGEM -->
+    <!-- =========================================================================
+         SEÇÃO 1: CAPA E INTRODUÇÃO (FRONTISPIECE / HERO)
+         ========================================================================= -->
+  <section id="cover" class="manga-section cover-section mb-8" aria-label="Capa e Hero do Portfólio">
+    <app-manga-hero [hero]="heroData"></app-manga-hero>
+  </section>
+
+  <!-- =========================================================================
+       SEÇÃO 2: ÍNDICE DE CAPÍTULOS (MOKUROKU)
+       ========================================================================= -->
+  <nav id="index-section" class="manga-section index-section mb-8" aria-labelledby="index-title">
+    <app-chapter-heading
+      chapter="MOKUROKU // 01"
+      title="ÍNDICE DE CAPÍTULOS"
+      subtitle="Mapa editorial de progressão e narrativa deste volume"
+      meta="7 SEÇÕES &bull; LEITURA COMPLETA"
+    ></app-chapter-heading>
+
+    <div class="manga-grid">
+      @for (chap of chapters; track chap.id) {
+        <div class="col-4">
+          <a
+            [href]="chap.anchor"
+            (click)="onSectionNavigate(chap.id)"
+            class="chapter-nav-card manga-panel manga-panel--interactive h-full flex flex-column justify-between"
+            [class.is-active]="readerState.activeSection() === chap.id"
+            style="text-decoration: none; color: inherit;"
+          >
+            <div>
+              <div class="manga-flex manga-justify-between manga-items-center mb-2">
+                <span class="manga-mono manga-text-vermilion" style="font-weight: 900; font-size: 1.1rem;">
+                  #{{ chap.num }}
+                </span>
+                <div class="manga-flex manga-gap-2 manga-items-center">
+                  @if (readerState.activeSection() === chap.id) {
+                    <span class="chapter-badge chapter-badge--vermilion" style="font-size: 0.6rem; padding: 0.1rem 0.35rem;">
+                      SEÇÃO ATIVA
+                    </span>
+                  }
+                  <span class="manga-mono manga-text-gray" style="font-size: 0.7rem;">
+                    {{ chap.pagesCount }}
+                  </span>
+                </div>
+              </div>
+              <h3 class="manga-heading-md mb-1">
+                {{ chap.title }}
+              </h3>
+              <p class="manga-body-sm" style="margin-bottom: 0;">
+                {{ chap.subtitle }}
+              </p>
+            </div>
+            <div class="manga-text-right mt-3">
+              <span class="manga-mono manga-text-vermilion" style="font-weight: 700; font-size: 0.75rem;">
+                ACESSAR <span class="action-arrow-hover">&rarr;</span>
+              </span>
+            </div>
+          </a>
+        </div>
+      }
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       SEÇÃO 3: PROJETOS SELECIONADOS (FEATURED PROJECTS)
+       ========================================================================= -->
+  <section id="projects" class="manga-section projects-section mb-8" aria-labelledby="projects-title">
+    <app-chapter-heading
+      chapter="CHAPTER 02"
+      title="OBRAS SELECIONADAS"
+      subtitle="Quatro projetos autorais de engenharia forjados para resolver problemas reais de arquitetura e resiliência"
+      [accentBadge]="true"
+      meta="REPOSITÓRIOS OFICIAIS VERIFICADOS"
+    ></app-chapter-heading>
+
+    <div class="manga-grid mb-6">
+      @for (project of projects; track project.id) {
+        <div [class]="project.layoutSpan || 'col-6'">
+          <app-manga-project-card [project]="project"></app-manga-project-card>
+        </div>
+      }
+    </div>
+
+    <!-- CTA do GitHub -->
+    <div class="manga-panel manga-panel--dashed manga-text-center p-6">
+      <h3 class="manga-heading-md mb-2">PROJETOS & CONTRIBUIÇÕES ADICIONAIS</h3>
+      <p class="manga-body-md" style="max-width: 650px; margin: 0 auto var(--space-4) auto;">
+        Explore outros códigos, templates arquiteturais e experimentos públicos no perfil oficial de Erick Gabriel.
+      </p>
+      <a
+        href="https://github.com/ErickG123?tab=repositories"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="manga-btn manga-btn--primary"
+      >
+        EXPLORAR REPOSITÓRIOS NO GITHUB &nearr;
+      </a>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SEÇÃO 4: MÉTODO DE TRABALHO: THINK, BREAK, REBUILD
+       ========================================================================= -->
+  <section id="method" class="manga-section method-section mb-8" aria-labelledby="method-title">
+    <app-chapter-heading
+      chapter="CHAPTER 03"
+      title="O MÉTODO: THINK, BREAK, REBUILD"
+      subtitle="A esteira contínua de pensamento arquitetural, validação sob estresse e entrega de alta performance"
+    ></app-chapter-heading>
+
+    <div class="manga-grid">
+      @for (pillar of methodPillars; track pillar.step) {
+        <div class="col-4">
+          <article class="manga-panel h-full flex flex-column justify-between" [class.manga-panel--accent]="pillar.title === 'BREAK'">
+            <div>
+              <div class="panel-frame-header mb-2">
+                <span class="chapter-badge" [class.chapter-badge--vermilion]="pillar.title === 'BREAK'">
+                  {{ pillar.step }}
+                </span>
+                <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem;">
+                  FASE DE CICLO
+                </span>
+              </div>
+
+              <h3 class="manga-display-lg mb-1" [class.manga-text-vermilion]="pillar.title === 'BREAK'">
+                {{ pillar.title }}
+              </h3>
+              
+              <h4 class="manga-heading-md manga-text-gray mb-3" style="font-size: 0.95rem;">
+                {{ pillar.subtitle }}
+              </h4>
+
+              <p class="manga-body-md">
+                {{ pillar.description }}
+              </p>
+            </div>
+
+            <div class="pillar-principles mt-4 pt-3" style="border-top: var(--border-thin);">
+              <span class="manga-mono" style="font-weight: 700; font-size: 0.7rem; color: var(--manga-gray); display: block; margin-bottom: var(--space-2);">
+                DIRETRIZES FUNDAMENTAIS:
+              </span>
+              <ul style="padding-left: var(--space-4); margin: 0; font-size: 0.85rem; line-height: 1.6;">
+                @for (p of pillar.principles; track p) {
+                  <li style="margin-bottom: var(--space-1); font-family: var(--font-body);">
+                    {{ p }}
+                  </li>
+                }
+              </ul>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+
+    <!-- DIAGRAMA VISUAL DO CICLO CONTÍNUO DE ENGENHARIA -->
+    <div class="mt-6">
+      <app-manga-image
+        src="/assets/images/case-studies/method-think-break-rebuild.svg"
+        alt="Diagrama editorial do método Think, Break, Rebuild em nanquim"
+        aspectRatio="16:9"
+        caption="FIG 03.1 • CICLO CONTÍNUO DE ENGENHARIA: MODELAGEM DE DOMÍNIO, ESTRESSE CONTROLADO E ENTREGA DE ALTA PERFORMANCE"
+      ></app-manga-image>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SEÇÃO 5: FIELD NOTES (CADERNO DE CAMPO)
+       ========================================================================= -->
+  <section id="notes" class="manga-section notes-section mb-8" aria-labelledby="notes-title">
+    <app-chapter-heading
+      chapter="CHAPTER 04"
+      title="FIELD NOTES & APRENDIZADOS"
+      subtitle="Ensaios técnicos, decisões de design de software e lições aprendidas em produção"
+    ></app-chapter-heading>
+
+    <div class="manga-grid mb-4">
+      @for (note of fieldNotes; track note.id) {
+        <div class="col-4">
+          <article
+            class="manga-panel manga-panel--interactive h-full flex flex-column justify-between"
+            (click)="openFieldNote(note.id)"
+            (keydown.enter)="openFieldNote(note.id)"
+            tabindex="0"
+            role="button"
+            [attr.aria-label]="'Abrir nota de campo completa: ' + note.title"
+            style="cursor: pointer;"
+          >
+            <div>
+              <div class="manga-flex manga-justify-between manga-items-center mb-2">
+                <span class="manga-badge manga-badge--screentone">
+                  {{ note.category }}
+                </span>
+                <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">
+                  {{ note.date }}
+                </span>
+              </div>
+
+              <h3 class="manga-heading-lg mb-2">
+                {{ note.title }}
+              </h3>
+
+              <p class="manga-body-md" style="margin-bottom: var(--space-4);">
+                {{ note.synopsis }}
+              </p>
+            </div>
+
+            <div class="manga-flex manga-justify-between manga-items-center pt-3" style="border-top: var(--border-thin);">
+              <span class="manga-mono manga-text-gray" style="font-size: 0.7rem;">
+                {{ note.readTime }}
+              </span>
+              <span class="manga-mono manga-text-vermilion" style="font-weight: 700; font-size: 0.75rem;">
+                {{ note.linkText }} <span class="action-arrow-hover">&rarr;</span>
+              </span>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+
+    <!-- MODAL / PAINEL EXPANSÍVEL DE FIELD NOTE COMPLETA -->
+    @if (activeFieldNote(); as activeNote) {
+      <div
+        class="field-note-modal-backdrop"
+        (click)="closeFieldNote()"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="active-note-title"
+        aria-describedby="active-note-synopsis"
+      >
+        <div class="field-note-modal manga-panel manga-panel--hero" (click)="$event.stopPropagation()">
+          
+          <!-- Barra Superior do Leitor de Notas -->
+          <div class="panel-frame-header mb-4">
+            <div class="manga-flex manga-gap-2 manga-items-center">
+              <span class="chapter-badge chapter-badge--vermilion">{{ activeNote.noteNumber }}</span>
+              <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem;">CADERNO DE CAMPO // DISPATCH</span>
+            </div>
+            <button type="button" class="manga-btn manga-btn--secondary" (click)="closeFieldNote()" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" aria-label="Fechar nota de campo [ESC]">
+              FECHAR [ &times; ]
+            </button>
+          </div>
+
+          <div class="manga-flex manga-justify-between manga-items-center mb-2">
+            <span class="manga-badge manga-badge--screentone">{{ activeNote.category }}</span>
+            <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">{{ activeNote.date }} &bull; {{ activeNote.readTime }}</span>
+          </div>
+
+          <h3 id="active-note-title" class="manga-heading-xl mb-3">{{ activeNote.title }}</h3>
+          
+          <div class="p-3 mb-4 text-surface text-surface--muted halftone-corner-accent" style="border-left: 4px solid var(--manga-vermilion); border-top: var(--border-thin); border-right: var(--border-thin); border-bottom: var(--border-thin);">
+            <p id="active-note-synopsis" class="manga-body-md" style="margin: 0; font-weight: 500; position: relative; z-index: 1;">{{ activeNote.synopsis }}</p>
+          </div>
+
+          <h4 class="manga-heading-md mb-2">CONTEXTO DO EXPERIMENTO</h4>
+          <p class="manga-body-md mb-4">{{ activeNote.context }}</p>
+
+          <h4 class="manga-heading-md mb-2">ANÁLISE DE ENGENHARIA</h4>
+          <p class="manga-body-md mb-4">{{ activeNote.analysis }}</p>
+
+          <h4 class="manga-heading-md mb-2">TRADEOFFS & LIÇÕES</h4>
+          <ul style="padding-left: var(--space-4); margin-bottom: var(--space-4);">
+            @for (t of activeNote.tradeoffs; track t) {
+              <li class="manga-body-sm" style="margin-bottom: var(--space-1); font-family: var(--font-body);">{{ t }}</li>
+            }
+          </ul>
+
+          @if (activeNote.codeSnippet; as snippet) {
+            <div class="p-3 mb-2" style="background-color: var(--manga-ink); border: var(--border-thin);">
+              <pre class="manga-mono" style="color: #FFF; font-size: 0.8rem; margin: 0; overflow-x: auto;"><code>{{ snippet.code }}</code></pre>
+            </div>
+            @if (snippet.caption) {
+              <span class="manga-mono manga-text-gray" style="font-size: 0.7rem; display: block; margin-bottom: var(--space-4);">
+                // {{ snippet.caption }}
+              </span>
+            }
+          }
+
+          <div class="mt-4 pt-3" style="border-top: var(--border-thin);">
+            <h4 class="manga-heading-sm mb-1">CONCLUSÃO DO AUTOR</h4>
+            <p class="manga-body-sm mb-3">{{ activeNote.conclusion }}</p>
+            @if (activeNote.editorNote) {
+              <span class="manga-mono manga-text-gray" style="font-size: 0.7rem;">{{ activeNote.editorNote }}</span>
+            }
+          </div>
+
+          <div class="manga-text-right mt-4">
+            <button type="button" class="manga-btn manga-btn--primary" (click)="closeFieldNote()">
+              CONCLUIR LEITURA &rarr;
+            </button>
+          </div>
+
+        </div>
       </div>
     }
+
+    <!-- Aviso de Conteúdo Dinâmico / Provisório -->
+    <div class="manga-panel manga-panel--dashed manga-text-center p-4">
+      <span class="manga-mono manga-text-gray" style="font-size: 0.8rem;">
+        [Novos ensaios técnicos de engenharia e notas de campo serão anexados periodicamente a este volume]
+      </span>
+    </div>
   </section>
+
+  <!-- =========================================================================
+       SEÇÃO 6: SOBRE O AUTOR (FICHA DO ENGENHEIRO)
+       ========================================================================= -->
+  <section id="about" class="manga-section about-section mb-8" aria-labelledby="about-title">
+    <app-chapter-heading
+      chapter="CHAPTER 05"
+      title="FICHA DO ENGENHEIRO"
+      subtitle="Perfil biográfico, competências técnicas e trajetória de evolução"
+    ></app-chapter-heading>
+
+    <div class="manga-grid">
+      <!-- Coluna Esquerda: Retrato & Dados Chave -->
+      <div class="col-4">
+        <div class="manga-panel h-full flex flex-column justify-between">
+          <div>
+            <div class="profile-frame mb-4" style="border: var(--border-medium); overflow: hidden; background-color: var(--manga-surface-muted);">
+              @if (author.avatarUrl) {
+                <app-manga-image
+                  [src]="author.avatarUrl"
+                  alt="Retrato editorial autoral de Erick Gabriel"
+                  aspectRatio="1:1"
+                ></app-manga-image>
+              } @else {
+                <div class="screentone-dots-dense flex align-center justify-center" style="height: 240px; position: relative;">
+                  <div class="hanko-stamp" style="font-size: 1.4rem; padding: 0.8rem 1.2rem; background-color: var(--manga-surface);">
+                    <span>ERICK</span>
+                    <span class="hanko-sub">江里克 // AUTHOR</span>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <h3 class="manga-heading-xl mb-1">{{ author.name }}</h3>
+            <div class="manga-mono manga-text-vermilion mb-3" style="font-weight: 800; font-size: 0.8rem;">
+              {{ author.role }}
+            </div>
+
+            <div class="manga-mono" style="font-size: 0.8rem; line-height: 1.8; color: var(--manga-gray);">
+              <div><strong>LOCALIZAÇÃO:</strong> {{ author.location }}</div>
+              <div><strong>PERÍODO ATIVO:</strong> {{ author.careerPeriod }}</div>
+              <div><strong>FOCO ATUAL:</strong> Angular 21 Zoneless & Arquitetura</div>
+            </div>
+          </div>
+
+          <!-- Nota Provisória Explicita de Mídia -->
+          <div class="mt-4 p-2 text-surface text-surface--muted" style="border: 1px dashed var(--manga-gray); text-align: center;">
+            <span class="manga-mono" style="font-size: 0.72rem; color: var(--manga-ink); font-weight: 600;">
+              {{ author.pendingNotes }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna Direita: Biografia & Matriz de Competências -->
+      <div class="col-8">
+        <div class="manga-panel h-full flex flex-column justify-between">
+          <div>
+            <h3 class="manga-heading-xl mb-3">TRAJETÓRIA & FILOSOFIA</h3>
+            <p class="manga-body-lg">
+              {{ author.bio }}
+            </p>
+            <p class="manga-body-md" style="color: var(--manga-gray);">
+              {{ author.journeySummary }}
+            </p>
+
+            <div class="gutter-divider--dashed my-4"></div>
+
+            <h3 class="manga-heading-lg mb-3">MATRIZ DE COMPETÊNCIAS</h3>
+            <div class="manga-grid">
+              @for (skillGroup of author.skills; track skillGroup.category) {
+                <div class="col-4">
+                  <div class="manga-panel manga-panel--dashed p-3 h-full">
+                    <span class="manga-mono manga-text-vermilion" style="font-weight: 800; font-size: 0.75rem; display: block; margin-bottom: var(--space-2);">
+                      // {{ skillGroup.category }}
+                    </span>
+                    <ul style="padding-left: var(--space-3); margin: 0; font-size: 0.8rem; line-height: 1.6;">
+                      @for (item of skillGroup.items; track item) {
+                        <li style="font-family: var(--font-mono); margin-bottom: 2px;">
+                          {{ item }}
+                        </li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Links Sociais Diretos -->
+          <div class="manga-flex manga-gap-3 mt-6 pt-4" style="border-top: var(--border-thin);">
+            @for (social of author.socialLinks; track social.name) {
+              <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary">
+                [{{ social.iconLabel }}] {{ social.name }} &nearr;
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SEÇÃO 7: ENCERRAMENTO E CONTATO (MURAL DE TRANSMISSÃO & COLOFÃO)
+       ========================================================================= -->
+  <footer id="contact" class="manga-section contact-section" aria-labelledby="contact-title">
+    <app-chapter-heading
+      chapter="EPÍLOGO"
+      title="MURAL DE TRANSMISSÃO & COLOFÃO"
+      subtitle="Canais de comunicação direta, alianças profissionais e ficha técnica da publicação"
+      [accentBadge]="true"
+    ></app-chapter-heading>
+
+    <div class="manga-grid mb-6">
+      
+      <!-- Formulário de Transmissão -->
+      <div class="col-7">
+        <section class="manga-panel h-full flex flex-column justify-between" aria-label="Formulário de Contato">
+          <div>
+            <div class="panel-frame-header mb-3">
+              <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem;">
+                CANAL DIRETO // DISPATCH
+              </span>
+              <span class="chapter-badge chapter-badge--vermilion">ONLINE</span>
+            </div>
+
+            <p class="manga-body-md mb-4">
+              Disponível para novos desafios de engenharia, arquitetura de software frontend/fullstack e alianças técnicas.
+            </p>
+
+            <form class="manga-flex manga-flex-col manga-gap-4" (submit)="$event.preventDefault()">
+              <div>
+                <label for="contact-name" class="manga-mono" style="display: block; margin-bottom: var(--space-1); font-weight: 700; font-size: 0.75rem;">
+                  SEU NOME OU EMPRESA <span class="manga-text-vermilion" aria-hidden="true">*</span>:
+                </label>
+                <input id="contact-name" type="text" class="manga-input" placeholder="Ex: Recrutador ou Tech Lead..." required aria-required="true" autocomplete="name" />
+              </div>
+
+              <div>
+                <label for="contact-email" class="manga-mono" style="display: block; margin-bottom: var(--space-1); font-weight: 700; font-size: 0.75rem;">
+                  SEU CANAL DE RETORNO (E-MAIL) <span class="manga-text-vermilion" aria-hidden="true">*</span>:
+                </label>
+                <input id="contact-email" type="email" class="manga-input" placeholder="seu-email@dominio.com" required aria-required="true" autocomplete="email" />
+              </div>
+
+              <div>
+                <label for="contact-msg" class="manga-mono" style="display: block; margin-bottom: var(--space-1); font-weight: 700; font-size: 0.75rem;">
+                  DETALHES DA MENSAGEM / DESAFIO <span class="manga-text-vermilion" aria-hidden="true">*</span>:
+                </label>
+                <textarea id="contact-msg" rows="4" class="manga-textarea" placeholder="Descreva os desafios técnicos, stack e escopo..." required aria-required="true"></textarea>
+              </div>
+
+              <div class="manga-text-right mt-2">
+                <button type="submit" class="manga-btn manga-btn--accent">
+                  TRANSMITIR MENSAGEM <span class="action-arrow-hover">&rarr;</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <!-- Redes e Colofão Técnico -->
+      <div class="col-5">
+        <div class="manga-panel manga-panel--dark h-full flex flex-column justify-between">
+          <div>
+            <div class="panel-frame-header mb-3" style="border-bottom-color: var(--manga-gray);">
+              <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem; color: var(--manga-text-light);">
+                CONEXÕES PROFISSIONAIS
+              </span>
+              <div class="hanko-stamp" style="font-size: 0.8rem; padding: 0.2rem 0.5rem; background-color: #000;">
+                <span>ERICK</span>
+              </div>
+            </div>
+
+            <div class="manga-flex manga-flex-col manga-gap-3 mb-6">
+              <a href="https://www.linkedin.com/in/erickgdev/" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary w-full" style="justify-content: flex-start;">
+                <span class="manga-text-vermilion" style="margin-right: var(--space-2); font-weight: 900;">[ IN ]</span> LINKEDIN / ERICKGDEV &nearr;
+              </a>
+              <a href="https://github.com/ErickG123" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary w-full" style="justify-content: flex-start;">
+                <span class="manga-text-vermilion" style="margin-right: var(--space-2); font-weight: 900;">[ GH ]</span> GITHUB / ERICKG123 &nearr;
+              </a>
+              <a href="https://dev.to/erickg123" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary w-full" style="justify-content: flex-start;">
+                <span class="manga-text-vermilion" style="margin-right: var(--space-2); font-weight: 900;">[ DEV ]</span> DEV.TO / ERICKG123 &nearr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Colofão Editorial -->
+          <div class="colophon-box pt-4" style="border-top: 1px dashed var(--manga-gray);">
+            <div class="manga-mono" style="font-size: 0.7rem; line-height: 1.8; color: var(--manga-text-light);">
+              <div><strong>PUBLICAÇÃO:</strong> ERICK GABRIEL // TALES OF AN ENGINEER</div>
+              <div><strong>RUNTIME:</strong> ANGULAR 21 ZONELESS &bull; SCSS TOKENS</div>
+              <div><strong>HOSPEDAGEM:</strong> VERCEL EDGE NETWORK</div>
+              <div><strong>DIREITOS:</strong> &copy; {{ currentYear }} ERICK GABRIEL. ALL RIGHTS RESERVED.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  }
+
 </div>

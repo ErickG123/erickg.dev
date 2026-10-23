@@ -1,0 +1,6 @@
+@if (saveState.latestAchievement(); as achievement) {
+  <div class="toast-container" role="status" aria-live="polite">
+    <div class="toast-title">🏆 ACHIEVEMENT UNLOCKED</div>
+    <div class="toast-achievement">{{ achievement.title }}</div>
+  </div>
+}

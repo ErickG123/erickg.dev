@@ -1,0 +1,97 @@
+<aside
+  class="book-cover-stage"
+  [class.is-opening]="isOpening()"
+  [class.is-opened]="readerState.isCoverOpened()"
+  aria-label="Capa de Abertura do Portfólio Editorial"
+>
+  <div class="book-cover-frame manga-panel manga-panel--hero screentone-dots-dense">
+    
+    <!-- Lombada Tátil de Livro (Spine) -->
+    <div class="book-spine" aria-hidden="true">
+      <span class="manga-mono spine-text">VOL. 01 &bull; ERICK GABRIEL &bull; RUNTIME EDITION</span>
+    </div>
+
+    <!-- Conteúdo da Capa -->
+    <div class="book-cover-inner manga-flex manga-flex-col manga-justify-between">
+      
+      <!-- Topo da Capa -->
+      <div class="panel-frame-header" style="background-color: var(--manga-surface); padding: var(--space-3); border: var(--border-medium);">
+        <div class="manga-flex manga-gap-2 manga-items-center manga-flex-wrap">
+          <span class="chapter-badge chapter-badge--vermilion">PUBLICAÇÃO OFICIAL</span>
+          <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem;">VOL. 01 // AUTUMN 2026</span>
+        </div>
+        <div class="hanko-stamp">
+          <span>ERICK</span>
+          <span class="hanko-sub">江里克</span>
+        </div>
+      </div>
+
+      <!-- Centro: Título Expressivo e Arte -->
+      <div class="cover-hero-center my-6 manga-text-center text-surface text-surface--paper" style="padding: var(--space-6); border: var(--border-medium); box-shadow: var(--shadow-md);">
+        <div class="manga-mono manga-text-vermilion mb-2" style="font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em;">
+          CHRONICLES OF A SOFTWARE ENGINEER
+        </div>
+        <h2 class="manga-display-xl" style="line-height: 0.95; margin-bottom: var(--space-2);">
+          {{ author.name }}
+        </h2>
+        <div class="manga-heading-md manga-text-gray" style="text-transform: uppercase; font-weight: 800;">
+          {{ author.role }}
+        </div>
+
+        <div class="gutter-divider my-4"></div>
+
+        <!-- Cinta Promocional de Mangá (Obi Strip) -->
+        <div class="manga-obi-strip manga-panel manga-panel--dark my-3 p-3">
+          <div class="manga-mono manga-text-vermilion" style="font-weight: 900; font-size: 0.75rem; letter-spacing: 0.05em;">
+            [ SÉRIE OFICIAL &bull; EDIÇÃO COMPLETA ]
+          </div>
+          <p class="manga-body-md" style="margin: var(--space-1) 0 0 0; color: var(--manga-text-light); font-size: 0.85rem;">
+            "Uma jornada editorial interativa em preto, branco e nanquim sobre engenharia de software de alta performance."
+          </p>
+        </div>
+      </div>
+
+      <!-- Rodapé da Capa: Ação Primária de Abertura e Atalhos Acessíveis -->
+      <div class="cover-actions-box manga-flex manga-flex-col manga-items-center manga-gap-3" style="background-color: var(--manga-surface); padding: var(--space-4); border: var(--border-medium);">
+        
+        <!-- Botão Primário: Abertura Interativa com Suporte a Teclado/Clique -->
+        <button
+          type="button"
+          class="manga-btn manga-btn--accent btn-open-portfolio"
+          (click)="openPortfolio('#cover')"
+          (keydown)="onKeyDown($event)"
+          tabindex="0"
+          aria-label="Abrir portfólio e iniciar a leitura do volume"
+          [attr.aria-expanded]="readerState.isCoverOpened()"
+        >
+          <span class="open-icon">&gt;</span> ABRIR PORTFÓLIO / INICIAR LEITURA &rarr;
+        </button>
+
+        <!-- Atalhos Diretos com Links Nativos (Fallback Resiliente No-JS) -->
+        <div class="manga-flex manga-gap-3 manga-flex-wrap manga-justify-center">
+          <a
+            href="#index-section"
+            class="manga-btn manga-btn--secondary"
+            (click)="openPortfolio('#index-section')"
+          >
+            SALTAR PARA SUMÁRIO &darr;
+          </a>
+          <a
+            href="#projects"
+            class="manga-btn manga-btn--outline"
+            (click)="openPortfolio('#projects')"
+          >
+            IR DIRETO AOS PROJETOS &rarr;
+          </a>
+        </div>
+
+        <span class="manga-mono manga-text-gray" style="font-size: 0.68rem; margin-top: var(--space-1);">
+          [DICA: ROLAGEM VERTICAL DISPONÍVEL &bull; ÁUDIO 100% OPCIONAL &bull; NAVEGAÇÃO LIVRE]
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+</aside>

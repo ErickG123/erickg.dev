@@ -1,0 +1,83 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.artwork-frame {
+  position: relative;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: var(--manga-surface);
+  overflow: hidden;
+
+  /* Estilos de borda */
+  &.border-solid {
+    border: var(--border-medium);
+  }
+  &.border-dashed {
+    border: var(--border-dashed);
+  }
+  &.border-none {
+    border: none;
+  }
+
+  /* Aspect Ratios */
+  &[data-aspect="16:9"] .frame-content {
+    aspect-ratio: 16 / 9;
+  }
+  &[data-aspect="4:5"] .frame-content {
+    aspect-ratio: 4 / 5;
+  }
+  &[data-aspect="1:1"] .frame-content {
+    aspect-ratio: 1 / 1;
+  }
+  &[data-aspect="2:1"] .frame-content {
+    aspect-ratio: 2 / 1;
+  }
+  &[data-aspect="auto"] .frame-content {
+    aspect-ratio: auto;
+  }
+}
+
+.frame-technical-header {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: var(--border-thin);
+  background-color: var(--manga-surface);
+  font-size: 0.75rem;
+}
+
+.frame-label {
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.frame-content {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* Retículas de Fundo do Frame */
+  &.tone-light {
+    background-image: var(--screentone-dots-light);
+    background-size: 10px 10px;
+  }
+  &.tone-medium {
+    background-image: var(--screentone-dots-medium);
+    background-size: 8px 8px;
+  }
+  &.tone-dense {
+    background-image: var(--screentone-dots-dense);
+    background-size: 6px 6px;
+  }
+  &.tone-crosshatch {
+    background-image: var(--screentone-crosshatch);
+  }
+  &.tone-blueprint {
+    background-image: var(--grid-blueprint);
+    background-size: 20px 20px;
+  }
+}

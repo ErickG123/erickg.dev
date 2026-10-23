@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { trigger, transition, style, animate, query } from '@angular/animations';
 import { HeaderComponent } from './layout/header/header.component';
@@ -42,18 +42,12 @@ export class App implements OnInit {
   seo = inject(SeoService);
   swUpdate = inject(SwUpdate);
   currentYear = new Date().getFullYear();
-  isBooting = signal(true);
 
   ngOnInit() {
-
-    setTimeout(() => {
-      this.isBooting.set(false);
-    }, 3500);
-
     this.seo.setSocialMediaTags(
-      'ERICK.DEV',
-      'Portfólio interativo de engenharia de software no formato de jogo retrô 16-bits. Construído com Angular.',
-      '/assets/og-image.jpg',
+      'ERICK GABRIEL // Software Engineer Portfolio',
+      'Portfólio editorial em formato de mangá digital sobre engenharia de software, arquitetura de sistemas e interfaces reativas de alto desempenho.',
+      '/assets/images/social/og-image.svg',
       'https://erickg.dev'
     );
 

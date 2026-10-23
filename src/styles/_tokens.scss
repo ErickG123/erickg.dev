@@ -1,0 +1,144 @@
+/* ==========================================================================
+   DESIGN TOKENS — MANGA EDITORIAL SYSTEM
+   erickg.dev // Volume 01
+   ========================================================================== */
+
+:root {
+  /* --- PALETA PRINCIPAL --- */
+  --manga-ink: #111111;            /* Ink Black puro (nanquim denso) */
+  --manga-paper: #F4F0E9;          /* Paper White (papel de mangá aquecido) */
+  --manga-vermilion: #D9363E;      /* Vermilion Red (tinta vermelha / hanko) */
+  --manga-vermilion-text: #B32027; /* Vermilion escuro para contraste AA em texto corrido */
+  --manga-gray: #595552;           /* Ink Gray editorial calibrado para WCAG AA (> 6.3:1) */
+
+  /* --- CORES SEMÂNTICAS E DE SUPERFÍCIE --- */
+  --manga-surface: #FFFFFF;        /* Superfície elevada / puro contraste */
+  --manga-surface-muted: #EAE5DC;  /* Superfície afundada / sarjetas cinzas */
+  --manga-surface-dark: #1A1A1A;   /* Inversão para painéis noturnos/códigos */
+  --manga-text-light: #F4F0E9;     /* Texto sobre fundo nanquim escuro */
+  
+  --manga-border-dark: #111111;    /* Borda principal de quadrinho */
+  --manga-border-subtle: #D8D2C7;  /* Separadores secundários */
+  --manga-border-red: #D9363E;     /* Borda com destaque de ação */
+
+  /* --- FEEDBACK E STATUS --- */
+  --manga-success: #1E824C;        /* Verde selo de aprovação */
+  --manga-warning: #D35400;        /* Âmbar de alerta editorial */
+  --manga-error: #D9363E;          /* Vermilion de erro */
+  --manga-info: #2980B9;           /* Azul de anotação de margem */
+
+  /* --- TIPOGRAFIA --- */
+  --font-display: 'Anton', Impact, 'Arial Black', sans-serif;
+  --font-heading: 'Inter Tight', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+
+  /* --- ESCALA TIPOGRÁFICA RESPONSIVA (CLAMP) --- */
+  --text-display-2xl: clamp(3.2rem, 8vw + 1rem, 6.5rem);
+  --text-display-xl: clamp(2.4rem, 5vw + 0.8rem, 4.2rem);
+  --text-display-lg: clamp(1.8rem, 3.2vw + 0.6rem, 2.8rem);
+  --text-heading-xl: clamp(1.4rem, 2.2vw + 0.4rem, 2rem);
+  --text-heading-lg: clamp(1.2rem, 1.6vw + 0.3rem, 1.6rem);
+  --text-heading-md: clamp(1.05rem, 1.1vw + 0.2rem, 1.3rem);
+  --text-body-lg: clamp(1.05rem, 0.4vw + 0.9rem, 1.15rem);
+  --text-body-md: clamp(0.95rem, 0.2vw + 0.85rem, 1rem);
+  --text-body-sm: clamp(0.85rem, 0.15vw + 0.8rem, 0.9rem);
+  --text-mono-xs: clamp(0.72rem, 0.1vw + 0.7rem, 0.8rem);
+
+  /* --- ESPAÇAMENTOS --- */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+
+  /* --- LARGURAS DE CONTEÚDO --- */
+  --content-max-sm: 640px;
+  --content-max-md: 768px;
+  --content-max-lg: 1024px;
+  --content-max-xl: 1240px;
+  --content-max-2xl: 1440px;
+
+  /* --- BORDAS E SARJETAS --- */
+  --border-thick: 4px solid var(--manga-ink);
+  --border-medium: 2.5px solid var(--manga-ink);
+  --border-thin: 1.5px solid var(--manga-ink);
+  --border-dashed: 2px dashed var(--manga-ink);
+  --border-subtle: 1px solid var(--manga-border-subtle);
+
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* --- SOMBRAS SÓLIDAS DE QUADRINHO (HARD OFFSET) --- */
+  --shadow-flat: none;
+  --shadow-sm: 2px 2px 0px var(--manga-ink);
+  --shadow-md: 4px 4px 0px var(--manga-ink);
+  --shadow-lg: 6px 6px 0px var(--manga-ink);
+  --shadow-red: 4px 4px 0px var(--manga-vermilion);
+  --shadow-white: 4px 4px 0px #FFFFFF;
+
+  /* --- CAMADAS (Z-INDEX) --- */
+  --z-base: 1;
+  --z-panel: 10;
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-modal: 1000;
+  --z-toast: 2000;
+  --z-overlay: 9999;
+
+  /* --- TRANSIÇÕES E ANIMAÇÕES EDITORIAIS --- */
+  --transition-instant: 0.05s ease;
+  --transition-snappy: 0.15s cubic-bezier(0, 0, 0.2, 1);
+  --transition-smooth: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-editorial: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0, 0, 0.2, 1);
+
+  /* --- RETÍCULAS CSS (SCREENTONES MATEMÁTICOS) --- */
+  --screentone-dots-dense: radial-gradient(var(--manga-ink) 25%, transparent 26%);
+  --screentone-dots-medium: radial-gradient(var(--manga-ink) 18%, transparent 19%);
+  --screentone-dots-light: radial-gradient(var(--manga-gray) 12%, transparent 13%);
+  --screentone-dots-subtle: radial-gradient(rgba(17, 17, 17, 0.08) 14%, transparent 15%);
+  --screentone-lines: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    var(--manga-border-subtle) 4px,
+    var(--manga-border-subtle) 6px
+  );
+  --screentone-crosshatch: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(17, 17, 17, 0.15) 5px,
+    rgba(17, 17, 17, 0.15) 6px
+  ),
+  repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 5px,
+    rgba(17, 17, 17, 0.15) 5px,
+    rgba(17, 17, 17, 0.15) 6px
+  );
+  --grid-blueprint: linear-gradient(to right, rgba(17, 17, 17, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 17, 17, 0.08) 1px, transparent 1px);
+
+  /* --- MAPEAMENTO RETROATIVO DE COMPATIBILIDADE --- */
+  --gba-bg: var(--manga-paper);
+  --gba-card-bg: var(--manga-surface);
+  --gba-border-dark: var(--manga-ink);
+  --gba-border-light: var(--manga-border-subtle);
+  --gba-text: var(--manga-ink);
+  --gba-text-muted: var(--manga-gray);
+  --gba-red: var(--manga-vermilion);
+  --gba-red-hover: #b82229;
+  --gba-red-active: #94171d;
+  --font-pixel: 'IBM Plex Mono', monospace;
+}

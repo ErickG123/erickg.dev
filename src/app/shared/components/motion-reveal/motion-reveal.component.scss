@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.motion-reveal {
+  opacity: 0;
+  transition: opacity var(--transition-editorial), transform var(--transition-editorial);
+  will-change: opacity, transform;
+
+  &.reveal-up {
+    transform: translateY(12px);
+  }
+  &.reveal-down {
+    transform: translateY(-12px);
+  }
+  &.reveal-left {
+    transform: translateX(12px);
+  }
+  &.reveal-right {
+    transform: translateX(-12px);
+  }
+  &.reveal-fade {
+    transform: none;
+  }
+
+  &.is-revealed {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,70 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.manga-panel {
+  position: relative;
+  border-radius: var(--radius-none);
+  box-sizing: border-box;
+  transition: transform var(--transition-snappy), box-shadow var(--transition-snappy);
+
+  /* Variações de Padding */
+  &.pad-none { padding: 0; }
+  &.pad-sm { padding: var(--space-3); }
+  &.pad-md { padding: var(--space-6); }
+  &.pad-lg { padding: var(--space-8); }
+
+  /* Variação Default */
+  &.variant-default {
+    background-color: var(--manga-surface);
+    border: var(--border-medium);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Variação Dark */
+  &.variant-dark {
+    background-color: var(--manga-ink);
+    color: var(--manga-text-light);
+    border: var(--border-medium);
+    border-color: var(--manga-ink);
+    box-shadow: 4px 4px 0px var(--manga-gray);
+  }
+
+  /* Variação Accent */
+  &.variant-accent {
+    background-color: var(--manga-surface);
+    border: 2px solid var(--manga-vermilion);
+    box-shadow: var(--shadow-red);
+  }
+
+  /* Variação Dashed */
+  &.variant-dashed {
+    background-color: transparent;
+    border: var(--border-dashed);
+    box-shadow: none;
+  }
+
+  /* Variação Hero */
+  &.variant-hero {
+    background-color: var(--manga-surface);
+    border-width: 4px;
+    border-style: solid;
+    border-color: var(--manga-ink);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Estado Interativo */
+  @media (hover: hover) and (pointer: fine) {
+    &.is-interactive:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-lg);
+    }
+  }
+
+  /* Modo sem elementos decorativos */
+  &.non-decorative {
+    box-shadow: none !important;
+    border-color: var(--manga-border-subtle);
+  }
+}

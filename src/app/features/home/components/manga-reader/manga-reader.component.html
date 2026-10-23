@@ -1,0 +1,302 @@
+<div class="manga-reader-wrapper">
+
+  <!-- BARRA DE CONTROLE DO LEITOR DE MANGÁ -->
+  <div class="reader-toolbar manga-panel mb-4" role="toolbar" aria-label="Controles do Leitor de Mangá">
+    <div class="manga-flex manga-justify-between manga-items-center manga-flex-wrap manga-gap-3">
+      
+      <!-- Alternador de Modo de Leitura -->
+      <button
+        type="button"
+        class="manga-btn manga-btn--secondary btn-mode-toggle"
+        (click)="readerState.toggleReaderMode()"
+        aria-label="Alternar para o modo de rolagem editorial convencional"
+      >
+        <span class="manga-text-vermilion" style="font-weight: 900;">[ 📜 ]</span>
+        VOLTAR AO MODO EDITORIAL (SCROLL)
+      </button>
+
+      <!-- Indicador de Posição e Capítulo Atual -->
+      <div class="page-indicator manga-text-center">
+        <span class="chapter-badge chapter-badge--vermilion">
+          {{ currentPage().chapterNumber }}
+        </span>
+        <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem; margin-left: var(--space-2);">
+          PÁGINA {{ currentPageIndex() + 1 }} DE {{ totalPages() }}
+        </span>
+        <span class="manga-mono manga-text-gray" style="display: block; font-size: 0.7rem; margin-top: 2px;">
+          {{ currentPage().title }}
+        </span>
+      </div>
+
+      <!-- Controles Visíveis de Virada de Página -->
+      <div class="manga-flex manga-gap-2">
+        <button
+          type="button"
+          class="manga-btn manga-btn--secondary btn-prev"
+          (click)="previousPage()"
+          [disabled]="!canGoPrevious()"
+          aria-label="Página anterior"
+        >
+          &larr; ANTERIOR
+        </button>
+
+        <button
+          type="button"
+          class="manga-btn manga-btn--primary btn-next"
+          (click)="nextPage()"
+          [disabled]="!canGoNext()"
+          aria-label="Próxima página"
+        >
+          PRÓXIMA &rarr;
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Anúncio Acessível de Leitor de Tela -->
+    <div class="sr-only" aria-live="polite">
+      Página {{ currentPageIndex() + 1 }} de {{ totalPages() }}: {{ currentPage().title }}
+    </div>
+  </div>
+
+  <!-- PALCO DO LEITOR: PÁGINA COM TRANSIÇÃO 3D -->
+  <div
+    class="reader-book-stage"
+    [class.turn-forward]="isTurning() && turnDirection() === 'forward'"
+    [class.turn-backward]="isTurning() && turnDirection() === 'backward'"
+    role="region"
+    aria-roledescription="página de mangá"
+    [attr.aria-label]="currentPage().title"
+  >
+    <div class="manga-page-sheet manga-panel manga-panel--hero">
+
+      <!-- PÁGINA 0: CAPA & FRONTISPÍCIO -->
+      @if (currentPage().type === 'cover') {
+        <div class="page-content page-cover-view">
+          <div class="panel-frame-header mb-4">
+            <span class="chapter-badge">VOLUME 01</span>
+            <div class="hanko-stamp">
+              <span>ERICK</span>
+              <span class="hanko-sub">江里克</span>
+            </div>
+          </div>
+          <h1 class="manga-display-xl mb-2">{{ author.name }}</h1>
+          <div class="manga-heading-lg manga-text-vermilion mb-4">{{ author.role }}</div>
+          <p class="manga-body-lg" style="max-width: 600px;">{{ author.headline }}</p>
+          <div class="gutter-divider my-6"></div>
+          <div class="manga-panel p-4 manga-text-center halftone-corner-accent" style="background-color: var(--manga-surface);">
+            <span class="manga-mono" style="font-weight: 700; font-size: 0.85rem; position: relative; z-index: 1;">
+              USE OS BOTÕES ACIMA OU AS TECLAS [ &larr; ] E [ &rarr; ] PARA FOLHEAR O VOLUME
+            </span>
+          </div>
+        </div>
+      }
+
+      <!-- PÁGINA 1: MOKUROKU (SUMÁRIO) -->
+      @if (currentPage().type === 'index') {
+        <div class="page-content page-index-view">
+          <app-chapter-heading
+            chapter="MOKUROKU"
+            title="SUMÁRIO DO VOLUME"
+            subtitle="Selecione um capítulo para folhear diretamente"
+          ></app-chapter-heading>
+          <div class="manga-grid">
+            @for (chap of chapters; track chap.id; let idx = $index) {
+              <div class="col-6">
+                <button
+                  type="button"
+                  class="manga-panel manga-panel--interactive w-full text-left p-3 mb-2"
+                  (click)="goToPage(idx)"
+                  style="cursor: pointer; background-color: var(--manga-surface); border: var(--border-medium);"
+                >
+                  <div class="manga-flex manga-justify-between">
+                    <span class="manga-mono manga-text-vermilion" style="font-weight: 800;">#{{ chap.num }}</span>
+                    <span class="manga-mono manga-text-gray" style="font-size: 0.7rem;">{{ chap.pagesCount }}</span>
+                  </div>
+                  <div class="manga-heading-md" style="font-size: 0.95rem;">{{ chap.title }}</div>
+                </button>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- PÁGINA 2: OBRAS 1 & 2 -->
+      @if (currentPage().type === 'projects-1') {
+        <div class="page-content page-projects-view">
+          <app-chapter-heading
+            chapter="CHAPTER 02 (PARTE I)"
+            title="OBRAS SELECIONADAS"
+            subtitle="The Architect's Forge & Cyber Sleuth Toolkit"
+          ></app-chapter-heading>
+          <div class="manga-grid">
+            <div class="col-6">
+              <app-manga-project-card [project]="projects[0]"></app-manga-project-card>
+            </div>
+            <div class="col-6">
+              <app-manga-project-card [project]="projects[1]"></app-manga-project-card>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- PÁGINA 3: OBRAS 3 & 4 -->
+      @if (currentPage().type === 'projects-2') {
+        <div class="page-content page-projects-view">
+          <app-chapter-heading
+            chapter="CHAPTER 02 (PARTE II)"
+            title="OBRAS SELECIONADAS"
+            subtitle="Network Guardian Node & Otaku Courier Network"
+          ></app-chapter-heading>
+          <div class="manga-grid">
+            <div class="col-6">
+              <app-manga-project-card [project]="projects[2]"></app-manga-project-card>
+            </div>
+            <div class="col-6">
+              <app-manga-project-card [project]="projects[3]"></app-manga-project-card>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- PÁGINA 4: O MÉTODO (THINK, BREAK, REBUILD) -->
+      @if (currentPage().type === 'method') {
+        <div class="page-content page-method-view">
+          <app-chapter-heading
+            chapter="CHAPTER 03"
+            title="O MÉTODO: THINK, BREAK, REBUILD"
+            subtitle="A esteira de pensamento, testes e entrega contínua"
+          ></app-chapter-heading>
+          <div class="manga-grid">
+            @for (pillar of methodPillars; track pillar.step) {
+              <div class="col-4">
+                <div class="manga-panel h-full p-4" [class.manga-panel--accent]="pillar.title === 'BREAK'">
+                  <span class="chapter-badge mb-2">{{ pillar.step }}</span>
+                  <h3 class="manga-heading-lg mb-1">{{ pillar.title }}</h3>
+                  <div class="manga-heading-md manga-text-gray mb-2" style="font-size: 0.85rem;">{{ pillar.subtitle }}</div>
+                  <p class="manga-body-sm">{{ pillar.description }}</p>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- PÁGINA 5: FIELD NOTES -->
+      @if (currentPage().type === 'notes') {
+        <div class="page-content page-notes-view">
+          <app-chapter-heading
+            chapter="CHAPTER 04"
+            title="FIELD NOTES & ENSAIOS"
+            subtitle="Caderno de campo com decisões de arquitetura"
+          ></app-chapter-heading>
+          <div class="manga-grid">
+            @for (note of fieldNotes; track note.id) {
+              <div class="col-4">
+                <div class="manga-panel h-full p-4">
+                  <span class="manga-badge manga-badge--screentone mb-2">{{ note.category }}</span>
+                  <h3 class="manga-heading-md mb-2">{{ note.title }}</h3>
+                  <p class="manga-body-sm mb-3">{{ note.synopsis }}</p>
+                  <span class="manga-mono manga-text-gray" style="font-size: 0.7rem;">{{ note.readTime }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- PÁGINA 6: FICHA DO ENGENHEIRO (SOBRE) -->
+      @if (currentPage().type === 'about') {
+        <div class="page-content page-about-view">
+          <app-chapter-heading
+            chapter="CHAPTER 05"
+            title="FICHA DO ENGENHEIRO"
+            subtitle="Perfil profissional e matriz de competências"
+          ></app-chapter-heading>
+          <div class="manga-grid">
+            <div class="col-5">
+              <div class="manga-panel p-4 h-full">
+                <h3 class="manga-heading-xl mb-1">{{ author.name }}</h3>
+                <div class="manga-mono manga-text-vermilion mb-3">{{ author.role }}</div>
+                <p class="manga-body-md">{{ author.bio }}</p>
+              </div>
+            </div>
+            <div class="col-7">
+              <div class="manga-panel manga-panel--dark p-4 h-full">
+                <h3 class="manga-heading-lg mb-3" style="color: #FFF;">MATRIZ TÉCNICA</h3>
+                @for (skill of author.skills; track skill.category) {
+                  <div class="mb-3">
+                    <span class="manga-mono manga-text-vermilion" style="font-weight: 800;">// {{ skill.category }}</span>
+                    <p class="manga-mono" style="font-size: 0.75rem; color: var(--manga-text-light); margin: 2px 0 0 0;">
+                      {{ skill.items.join(' • ') }}
+                    </p>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- PÁGINA 7: TRANSMISSÃO & CONTATO -->
+      @if (currentPage().type === 'contact') {
+        <div class="page-content page-contact-view">
+          <app-chapter-heading
+            chapter="EPÍLOGO"
+            title="MURAL DE TRANSMISSÃO"
+            subtitle="Canais de comunicação e dados de publicação"
+          ></app-chapter-heading>
+          <div class="manga-grid">
+            <div class="col-6">
+              <div class="manga-panel p-4 h-full">
+                <h3 class="manga-heading-md mb-2">CANAL PROFISSIONAL</h3>
+                <p class="manga-body-md mb-4">Conecte-se para parcerias e novos desafios técnicos:</p>
+                <div class="manga-flex manga-flex-col manga-gap-2">
+                  <a href="https://www.linkedin.com/in/erickgdev/" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary">
+                    [ IN ] LINKEDIN &nearr;
+                  </a>
+                  <a href="https://github.com/ErickG123" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary">
+                    [ GH ] GITHUB &nearr;
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="manga-panel manga-panel--dark p-4 h-full">
+                <h3 class="manga-heading-md mb-3" style="color: #FFF;">COLOFÃO DO VOLUME</h3>
+                <p class="manga-mono" style="font-size: 0.75rem; color: var(--manga-text-light); line-height: 1.8;">
+                  EDIÇÃO: 2026.01<br/>
+                  FRAMEWORK: ANGULAR 21 ZONELESS<br/>
+                  ESTÉTICA: MANGÁ EDITORIAL P&amp;B<br/>
+                  AUTOR: ERICK GABRIEL
+                </p>
+                <div class="hanko-stamp mt-4" style="background-color: #000;">
+                  <span>ERICK</span>
+                  <span class="hanko-sub">江里克</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+
+  <!-- RODAPÉ DE NAVEGAÇÃO RÁPIDA ENTRE PÁGINAS (PAGINAÇÃO EM MINIATURAS) -->
+  <nav class="reader-pagination-bar manga-flex manga-justify-center manga-gap-1 mt-4" aria-label="Navegação rápida entre páginas do volume">
+    @for (page of pages; track page.index) {
+      <button
+        type="button"
+        class="pagination-dot-btn manga-mono"
+        [class.is-active]="page.index === currentPageIndex()"
+        (click)="goToPage(page.index)"
+        [attr.aria-label]="'Ir para página ' + (page.index + 1) + ': ' + page.title"
+        [attr.aria-current]="page.index === currentPageIndex() ? 'page' : null"
+      >
+        {{ page.index + 1 }}
+      </button>
+    }
+  </nav>
+
+</div>

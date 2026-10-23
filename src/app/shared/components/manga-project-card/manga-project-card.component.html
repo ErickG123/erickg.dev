@@ -1,0 +1,126 @@
+<article class="manga-panel manga-panel--interactive h-full flex flex-column justify-between" [attr.aria-labelledby]="'prj-title-' + project().id">
+  <div>
+    <!-- Cabeçalho do Card com Número, Ano e Status -->
+    <div class="panel-frame-header mb-3">
+      <div class="manga-flex manga-gap-2 manga-items-center">
+        <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem;">
+          PRJ // {{ project().id | number:'2.0-0' }}
+        </span>
+        @if (project().year) {
+          <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">
+            &bull; {{ project().year }}
+          </span>
+        }
+      </div>
+
+      <span class="manga-badge manga-badge--screentone">
+        {{ project().status }}
+      </span>
+    </div>
+
+    <!-- Frame Gráfico do Painel -->
+    @if (project().image) {
+      <div class="project-graphic-frame mb-4 manga-crop-marks">
+        <app-manga-image
+          class="manga-illustration-interactive"
+          [src]="project().image!"
+          [alt]="project().title"
+          aspectRatio="16:9"
+        ></app-manga-image>
+      </div>
+    } @else {
+      <div class="project-graphic-frame project-graphic-frame--stamp mb-4 screentone-dots-light flex align-center justify-center">
+        <div class="comic-stamp-box">
+          <span class="manga-display-lg" style="color: var(--manga-ink); font-size: 2rem;">
+            {{ project().title.substring(0, 3).toUpperCase() }}
+          </span>
+        </div>
+      </div>
+    }
+
+    <!-- Título do Projeto -->
+    <h3 [id]="'prj-title-' + project().id" class="manga-heading-lg mb-1">
+      {{ project().title }}
+    </h3>
+
+    <!-- Papel Desempenhado pelo Autor -->
+    @if (project().role) {
+      <div class="project-role-tag manga-mono mb-2">
+        <span class="manga-text-vermilion" style="font-weight: 800;">// PAPEL:</span>
+        {{ project().role }}
+      </div>
+    }
+
+    <!-- Destaque de Impacto -->
+    @if (project().highlight) {
+      <div class="manga-mono manga-text-vermilion mb-3" style="font-size: 0.75rem; font-weight: 700;">
+        &gt; {{ project().highlight }}
+      </div>
+    }
+
+    <!-- Descrição Editorial Breve -->
+    <p class="manga-body-md" style="margin-bottom: var(--space-3);">
+      {{ project().description }}
+    </p>
+
+    <!-- Bloco de Problema / Desafio de Engenharia -->
+    @if (project().problem) {
+      <div class="project-problem-box p-3 mb-4">
+        <span class="manga-mono problem-tag">
+          DESAFIO DE ARQUITETURA // PROBLEMA:
+        </span>
+        <p class="manga-body-sm" style="margin: 0; color: var(--manga-ink); font-size: 0.8rem; line-height: 1.5;">
+          {{ project().problem }}
+        </p>
+      </div>
+    }
+  </div>
+
+  <div>
+    <!-- Tech Stack Tags Verificadas -->
+    <div class="manga-flex manga-flex-wrap manga-gap-2 mb-4">
+      @for (tech of project().techStack; track tech) {
+        <span class="manga-badge">
+          {{ tech }}
+        </span>
+      }
+    </div>
+
+    <!-- Botões de Ação com Foco Acessível -->
+    <div class="manga-flex manga-flex-wrap manga-gap-2">
+      @if (project().url || project().repositoryUrl) {
+        <a
+          [href]="project().url || project().repositoryUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="manga-btn manga-btn--primary flex-1 text-center"
+          [attr.aria-label]="'Acessar repositório e código do projeto ' + project().title"
+        >
+          CÓDIGO <span class="action-arrow-hover">&nearr;</span>
+        </a>
+      }
+
+      @if (project().demoUrl) {
+        <a
+          [href]="project().demoUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="manga-btn manga-btn--secondary text-center"
+          [attr.aria-label]="'Acessar demonstração online de ' + project().title"
+        >
+          DEMO <span class="action-arrow-hover">&nearr;</span>
+        </a>
+      }
+
+      @if (project().caseStudyUrl) {
+        <a
+          [routerLink]="project().caseStudyUrl"
+          class="manga-btn manga-btn--secondary text-center"
+          [attr.aria-label]="'Acessar estudo de caso detalhado de ' + project().title"
+        >
+          ESTUDO DE CASO <span class="action-arrow-hover">&rarr;</span>
+        </a>
+      }
+    </div>
+  </div>
+</article>

@@ -1,0 +1,175 @@
+/* ==========================================================================
+   ANIMATIONS & MICROINTERACTIONS — MANGA EDITORIAL SYSTEM
+   erickg.dev // Volume 01
+   ========================================================================== */
+
+/* --- KEYFRAMES EDITORIAIS CANÔNICOS --- */
+
+/* Entrada Suave do Hero e Frontispício */
+@keyframes heroEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efeito de Carimbo Tátil (Hanko Seal) */
+@keyframes hankoStamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.15) rotate(-2deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.98) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Indicador de Rolagem Sutil */
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* Revelação Editorial de Sarjetas e Painéis */
+@keyframes panelReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Destaque Sutil da Seção Ativa (Capítulo) */
+@keyframes activeChapterPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(217, 54, 62, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(217, 54, 62, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(217, 54, 62, 0);
+  }
+}
+
+/* Leve respiração de nanquim (Ink Breathing) em ilustrações em repouso */
+@keyframes inkLineSubtle {
+  0%, 100% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* --- CLASSES UTILITÁRIAS DE ANIMAÇÃO --- */
+
+.animate-hero-entrance {
+  animation: heroEntrance var(--transition-editorial) var(--ease-editorial) forwards;
+}
+
+.animate-hanko-stamp {
+  animation: hankoStamp 0.45s var(--ease-editorial) forwards;
+}
+
+.animate-panel-reveal {
+  animation: panelReveal var(--transition-smooth) var(--ease-editorial) forwards;
+}
+
+.animate-scroll-bounce {
+  animation: scrollBounce 2.2s ease-in-out infinite;
+}
+
+/* --- MICROINTERAÇÕES DE ILUSTRAÇÕES EDITORIAIS --- */
+.manga-illustration-interactive {
+  transition: transform var(--transition-editorial), filter var(--transition-smooth);
+  will-change: transform;
+}
+
+/* Apenas em dispositivos apontadores precisos (mouse/trackpad com suporte a hover) */
+@media (hover: hover) and (pointer: fine) {
+  .manga-panel--interactive:hover .manga-illustration-interactive,
+  .manga-panel--interactive:focus-within .manga-illustration-interactive {
+    transform: scale(1.02);
+  }
+
+  /* Efeito de avanço da seta nos cards em hover */
+  .manga-panel--interactive:hover .action-arrow-hover {
+    transform: translateX(4px);
+  }
+}
+
+.action-arrow-hover {
+  display: inline-block;
+  transition: transform var(--transition-snappy);
+}
+
+/* --- TRATAMENTO PARA DISPOSITIVOS DE TOQUE (TOUCH SCREENS) --- */
+@media (hover: none) or (pointer: coarse) {
+  /* Evita que estados de hover fiquem "presos" em dispositivos móveis */
+  .manga-panel--interactive:hover {
+    transform: none;
+    box-shadow: var(--shadow-md);
+  }
+
+  .manga-btn:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .chapter-nav-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-md);
+  }
+
+  .manga-illustration-interactive {
+    transform: none !important;
+  }
+}
+
+/* --- SUPORTE MANDATÓRIO A MOVIMENTO REDUZIDO (PREFERS-REDUCED-MOTION) --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-hero-entrance,
+  .animate-hanko-stamp,
+  .animate-panel-reveal,
+  .animate-scroll-bounce {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .manga-illustration-interactive {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .action-arrow-hover {
+    transform: none !important;
+    transition: none !important;
+  }
+}

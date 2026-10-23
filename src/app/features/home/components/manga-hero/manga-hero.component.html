@@ -1,0 +1,83 @@
+<header class="manga-hero-wrapper manga-panel manga-panel--hero halftone-corner-accent animate-hero-entrance" role="banner">
+  
+  <!-- CABEÇALHO DO FRONTISPÍCIO: METADADOS EDITORIAIS -->
+  <div class="panel-frame-header mb-4">
+    <div class="manga-flex manga-gap-2 manga-items-center manga-flex-wrap">
+      <span class="chapter-badge chapter-badge--vermilion">
+        {{ hero().volumeId }}
+      </span>
+      <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem; letter-spacing: 0.05em;">
+        {{ hero().chapterId }}
+      </span>
+    </div>
+
+    <!-- Carimbo Hanko Autoral -->
+    <div class="hanko-stamp animate-hanko-stamp">
+      <span>ERICK</span>
+      <span class="hanko-sub">江里克</span>
+    </div>
+  </div>
+
+  <!-- COMPOSIÇÃO ASSIMÉTRICA: TEXTO + ILUSTRAÇÃO -->
+  <div class="manga-grid manga-items-center">
+    
+    <!-- COLUNA DA ESQUERDA: IDENTIDADE TIPOGRÁFICA E TEXTOS -->
+    <div class="col-7 hero-text-column">
+      <div class="manga-mono manga-text-vermilion mb-2" style="font-weight: 800; font-size: 0.85rem; letter-spacing: 0.05em;">
+        AUTOR // {{ hero().authorName }} &bull; {{ hero().authorRole }}
+      </div>
+
+      <!-- Título Principal Curto e Memorável -->
+      <h1 class="manga-display-2xl hero-tagline" style="margin-bottom: var(--space-3); line-height: 0.95;">
+        {{ hero().tagline }}
+      </h1>
+
+      <!-- Descrição Profissional Objetiva -->
+      <p class="manga-body-lg hero-description" style="max-width: 620px; margin-bottom: var(--space-4); font-weight: 500;">
+        {{ hero().description }}
+      </p>
+
+      <!-- Metadados de Arquitetura -->
+      <div class="manga-flex manga-flex-wrap manga-gap-2 mb-6">
+        <span class="manga-badge manga-badge--dark">ANGULAR 21 ZONELESS</span>
+        <span class="manga-badge manga-badge--dark">CLEAN ARCHITECTURE</span>
+        <span class="manga-badge manga-badge--dark">TYPESCRIPT</span>
+        <span class="manga-badge manga-badge--vermilion">TEST-DRIVEN (JEST)</span>
+      </div>
+
+      <!-- Ações de Navegação -->
+      <div class="manga-flex manga-flex-wrap manga-gap-3">
+        <a [href]="hero().primaryCtaLink" class="manga-btn manga-btn--accent">
+          {{ hero().primaryCtaText }} <span class="action-arrow-hover">&rarr;</span>
+        </a>
+        <a [href]="hero().secondaryCtaLink" class="manga-btn manga-btn--secondary">
+          {{ hero().secondaryCtaText }} <span class="action-arrow-hover">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUNA DA DIREITA: ILUSTRAÇÃO EDITORIAL EM PRETO E BRANCO -->
+    <div class="col-5 hero-image-column">
+      <div class="hero-image-frame manga-illustration-interactive">
+        <app-manga-image
+          [src]="hero().illustration.src"
+          [alt]="hero().illustration.alt"
+          [caption]="hero().illustration.caption"
+          aspectRatio="4:3"
+          [priority]="true"
+        ></app-manga-image>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INDICAÇÃO DISCRETA DE CONTEÚDO ABAIXO (SCROLL PROMPT) -->
+  <div class="hero-scroll-prompt manga-flex manga-justify-center manga-items-center mt-6 pt-4">
+    <a href="#index-section" class="scroll-link manga-mono manga-text-gray" aria-label="Rolar para o índice de capítulos">
+      <span class="scroll-arrow">&darr;</span>
+      {{ hero().scrollHintText }}
+      <span class="scroll-arrow">&darr;</span>
+    </a>
+  </div>
+
+</header>

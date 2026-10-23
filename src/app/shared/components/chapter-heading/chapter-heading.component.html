@@ -1,0 +1,24 @@
+<header class="chapter-header mb-6">
+  <div class="manga-flex manga-justify-between manga-items-center mb-2">
+    <span class="chapter-badge" [class.chapter-badge--vermilion]="accentBadge()">
+      {{ chapter() }}
+    </span>
+    @if (meta()) {
+      <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">
+        {{ meta() }}
+      </span>
+    }
+  </div>
+
+  <h2 class="manga-display-lg" [class.manga-text-vermilion]="accentTitle()">
+    {{ title() }}
+  </h2>
+
+  @if (subtitle()) {
+    <p class="manga-heading-md manga-text-gray" style="margin-top: var(--space-2); margin-bottom: 0;">
+      {{ subtitle() }}
+    </p>
+  }
+
+  <div class="gutter-divider" style="margin-top: var(--space-4); margin-bottom: var(--space-6);"></div>
+</header>

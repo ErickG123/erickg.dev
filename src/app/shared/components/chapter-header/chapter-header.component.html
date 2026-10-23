@@ -1,0 +1,26 @@
+<header class="chapter-header mb-6" [ngClass]="alignClass()">
+  <div class="header-top manga-flex manga-items-center mb-2" [ngClass]="topAlignClass()">
+    <span class="chapter-badge" [class.chapter-badge--vermilion]="accentBadge()">
+      {{ chapter() }}
+    </span>
+    @if (meta()) {
+      <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">
+        {{ meta() }}
+      </span>
+    }
+  </div>
+
+  <h2 class="manga-display-lg" [class.manga-text-vermilion]="accentTitle()">
+    {{ title() }}
+  </h2>
+
+  @if (subtitle()) {
+    <p class="manga-heading-md manga-text-gray subtitle-text">
+      {{ subtitle() }}
+    </p>
+  }
+
+  @if (showDivider()) {
+    <div class="gutter-divider" style="margin-top: var(--space-4); margin-bottom: var(--space-6);"></div>
+  }
+</header>

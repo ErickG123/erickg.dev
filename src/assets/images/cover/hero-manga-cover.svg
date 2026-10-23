@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="100%" height="100%">
+  <defs>
+    <!-- Screentone Dots Pattern -->
+    <pattern id="hero-screentone-dots" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="2" fill="#111111" opacity="0.25"/>
+    </pattern>
+    <pattern id="hero-screentone-dense" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="1.8" fill="#111111" opacity="0.4"/>
+    </pattern>
+    <!-- Linhas diagonais de sombreamento -->
+    <pattern id="hero-screentone-hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="8" x2="8" y2="0" stroke="#111111" stroke-width="1.2" opacity="0.3"/>
+    </pattern>
+    <style>
+      .ink-line { stroke: #111111; stroke-linecap: square; stroke-linejoin: miter; }
+      .ink-fill { fill: #111111; }
+      .paper-fill { fill: #F4F0E9; }
+      .accent-fill { fill: #D9363E; }
+    </style>
+  </defs>
+
+  <!-- Papel de Fundo com Sangria -->
+  <rect width="600" height="750" fill="#F4F0E9"/>
+
+  <!-- Moldura de Quadrinho Externa Nanquim -->
+  <rect x="16" y="16" width="568" height="718" fill="none" stroke="#111111" stroke-width="4"/>
+
+  <!-- Painel de Retícula no Quadrante Superior Direito -->
+  <rect x="280" y="30" width="288" height="380" fill="url(#hero-screentone-dots)"/>
+  <rect x="280" y="30" width="288" height="380" fill="none" stroke="#111111" stroke-width="2"/>
+
+  <!-- Linhas Cinéticas de Ação (Speed Lines em Wireframe) -->
+  <g opacity="0.25" stroke="#111111" stroke-width="1.5">
+    <line x1="60" y1="50" x2="220" y2="50"/>
+    <line x1="40" y1="70" x2="180" y2="70"/>
+    <line x1="80" y1="90" x2="260" y2="90"/>
+    <line x1="50" y1="120" x2="190" y2="120"/>
+    <line x1="30" y1="150" x2="140" y2="150"/>
+  </g>
+
+  <!-- Holograma de Interface / Terminal em Wireframe (Background) -->
+  <g transform="translate(300, 60)" opacity="0.85">
+    <rect x="0" y="0" width="248" height="160" fill="#FFFFFF" stroke="#111111" stroke-width="2.5"/>
+    <rect x="0" y="0" width="248" height="24" fill="#111111"/>
+    <text x="12" y="17" font-family="monospace" font-size="10" font-weight="bold" fill="#F4F0E9">TERMINAL // ARCHITECT_CORE</text>
+    <rect x="226" y="6" width="12" height="12" fill="#D9363E"/>
+    
+    <!-- Linhas de código em wireframe -->
+    <line x1="16" y1="46" x2="180" y2="46" stroke="#111111" stroke-width="2"/>
+    <line x1="16" y1="62" x2="220" y2="62" stroke="#111111" stroke-width="2"/>
+    <line x1="32" y1="78" x2="150" y2="78" stroke="#D9363E" stroke-width="2"/>
+    <line x1="32" y1="94" x2="200" y2="94" stroke="#111111" stroke-width="2"/>
+    <line x1="16" y1="110" x2="90" y2="110" stroke="#111111" stroke-width="2"/>
+    <rect x="16" y="126" width="8" height="14" fill="#111111"/>
+  </g>
+
+  <!-- =========================================================================
+       ILUSTRAÇÃO DO PROTAGONISTA ENGENHEIRO (SILHUETA EDITORIAL EM NANQUIM)
+       ========================================================================= -->
+  <g transform="translate(90, 160)">
+    <!-- Sombra Sólida Projetada -->
+    <path d="M120,480 C120,440 140,360 210,330 C270,300 290,260 290,200 C290,140 250,80 180,80 C110,80 70,140 70,200 C70,260 90,300 150,330 C220,360 240,440 240,480 Z" fill="#111111" opacity="0.08" transform="translate(14, 14)"/>
+
+    <!-- Hoodie / Ombros Estruturados (Traço Firme Nanquim) -->
+    <path d="M40,560 L100,380 L180,340 L260,380 L320,560 Z" fill="#FFFFFF" stroke="#111111" stroke-width="5"/>
+    <!-- Textura de Retícula no Moletom -->
+    <path d="M50,560 L100,390 L180,350 L260,390 L310,560 Z" fill="url(#hero-screentone-hatch)"/>
+
+    <!-- Gola Alta / Lapela -->
+    <path d="M130,370 L180,430 L230,370 L260,390 L210,480 L150,480 L100,390 Z" fill="#111111"/>
+    <!-- Realce Vermilion na Gola Interna -->
+    <polygon points="175,410 185,410 180,470" fill="#D9363E"/>
+
+    <!-- Cabeça e Queixo -->
+    <polygon points="135,270 180,340 225,270 225,210 135,210" fill="#FFFFFF" stroke="#111111" stroke-width="4"/>
+    
+    <!-- Cabelo Angular Espetado Estilo Mangá Moderno (Preto Nanquim Puro) -->
+    <path d="M110,210 L80,180 L120,165 L95,130 L150,135 L145,90 L185,115 L210,75 L230,120 L270,105 L255,145 L285,160 L245,190 L250,225 L225,200 L180,195 L135,200 Z" fill="#111111"/>
+
+    <!-- Óculos Técnicos Retangulares com Realce Vermelho -->
+    <g transform="translate(138, 205)">
+      <!-- Armação Esquerda -->
+      <rect x="0" y="0" width="38" height="22" fill="#FFFFFF" stroke="#111111" stroke-width="3.5"/>
+      <rect x="3" y="3" width="32" height="16" fill="url(#hero-screentone-dots)"/>
+      <line x1="4" y1="4" x2="34" y2="18" stroke="#D9363E" stroke-width="2.5"/>
+
+      <!-- Ponte -->
+      <line x1="38" y1="10" x2="48" y2="10" stroke="#111111" stroke-width="3"/>
+
+      <!-- Armação Direita -->
+      <rect x="48" y="0" width="38" height="22" fill="#FFFFFF" stroke="#111111" stroke-width="3.5"/>
+      <rect x="51" y="3" width="32" height="16" fill="url(#hero-screentone-dots)"/>
+      <line x1="52" y1="4" x2="82" y2="18" stroke="#D9363E" stroke-width="2.5"/>
+    </g>
+
+    <!-- Nariz e Boca (Traços Mínimos Precisos) -->
+    <line x1="180" y1="240" x2="180" y2="260" stroke="#111111" stroke-width="3"/>
+    <line x1="174" y1="285" x2="186" y2="285" stroke="#111111" stroke-width="3"/>
+
+    <!-- Detalhes do Fone de Ouvido de Monitoramento / Headset -->
+    <rect x="110" y="195" width="18" height="42" rx="4" fill="#111111" stroke="#111111" stroke-width="2"/>
+    <rect x="232" y="195" width="18" height="42" rx="4" fill="#111111" stroke="#111111" stroke-width="2"/>
+    <path d="M120,195 C120,130 240,130 240,195" fill="none" stroke="#111111" stroke-width="5"/>
+  </g>
+
+  <!-- =========================================================================
+       DETALHES EDITORIAIS DA CAPA (SARJETAS, CARIMBO E NOTAS)
+       ========================================================================= -->
+  <!-- Carimbo Hanko Autoral no Canto Inferior Direito -->
+  <g transform="translate(450, 600) rotate(-3)">
+    <rect x="0" y="0" width="95" height="95" fill="#FFFFFF" stroke="#D9363E" stroke-width="3.5" rx="3"/>
+    <text x="47" y="44" font-family="monospace" font-size="20" font-weight="900" fill="#D9363E" text-anchor="middle">ERICK</text>
+    <line x1="15" y1="54" x2="80" y2="54" stroke="#D9363E" stroke-width="2"/>
+    <text x="47" y="78" font-family="monospace" font-size="13" font-weight="900" fill="#D9363E" text-anchor="middle">江里克</text>
+  </g>
+
+  <!-- Marca D'água do Capítulo na Borda Inferior -->
+  <text x="40" y="690" font-family="monospace" font-size="12" font-weight="bold" fill="#111111" letter-spacing="1">
+    VOLUME 01 &bull; HERO FRONTISPIECE &bull; ERICK GABRIEL
+  </text>
+  <line x1="40" y1="700" x2="420" y2="700" stroke="#111111" stroke-width="2" stroke-dasharray="4,4"/>
+</svg>

@@ -1,0 +1,305 @@
+/* ==========================================================================
+   COMPONENTS — MANGA EDITORIAL SYSTEM
+   ========================================================================== */
+
+/* --- PAINÉIS DE QUADRINHO (MANGA PANELS) --- */
+.manga-panel {
+  position: relative;
+  background-color: var(--manga-surface);
+  border: var(--border-medium);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+  border-radius: var(--radius-none);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-snappy), box-shadow var(--transition-snappy);
+}
+
+.manga-panel--interactive:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.manga-panel--dark {
+  background-color: var(--manga-ink);
+  color: var(--manga-text-light);
+  border-color: var(--manga-ink);
+  box-shadow: 4px 4px 0px var(--manga-gray);
+
+  p {
+    color: var(--manga-text-light);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #FFFFFF;
+  }
+}
+
+.manga-panel--accent {
+  border-color: var(--manga-vermilion);
+  box-shadow: var(--shadow-red);
+}
+
+.manga-panel--dashed {
+  border: var(--border-dashed);
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.manga-panel--hero {
+  border-width: 4px;
+  padding: var(--space-8);
+}
+
+/* Painel Header / Label de Enquadramento */
+.panel-frame-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: var(--border-thin);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+/* --- BOTÕES TÁTEIS (MANGA BUTTONS) --- */
+.manga-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1.4rem;
+  border: var(--border-medium);
+  border-radius: var(--radius-none);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--transition-snappy), box-shadow var(--transition-snappy), background-color var(--transition-snappy);
+  white-space: nowrap;
+  user-select: none;
+
+  &:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  &:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-flat);
+  }
+
+  &:focus-visible {
+    outline: 2px dashed var(--manga-vermilion);
+    outline-offset: 4px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+/* Variantes de Botão */
+.manga-btn--primary {
+  background-color: var(--manga-ink);
+  color: var(--manga-paper);
+
+  &:hover:not(:disabled) {
+    background-color: #262626;
+  }
+}
+
+.manga-btn--accent {
+  background-color: var(--manga-vermilion);
+  color: #FFFFFF;
+  border-color: var(--manga-ink);
+
+  &:hover:not(:disabled) {
+    background-color: #e02f37;
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.manga-btn--secondary {
+  background-color: var(--manga-surface);
+  color: var(--manga-ink);
+
+  &:hover:not(:disabled) {
+    background-color: var(--manga-surface-muted);
+  }
+}
+
+.manga-btn--outline {
+  background-color: transparent;
+  color: var(--manga-ink);
+  box-shadow: none;
+
+  &:hover:not(:disabled) {
+    background-color: var(--manga-ink);
+    color: var(--manga-paper);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+/* --- CAMPOS DE ENTRADA (MANGA INPUTS) --- */
+.manga-input,
+.manga-textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: var(--text-body-md);
+  color: var(--manga-ink);
+  background-color: var(--manga-surface);
+  border: var(--border-medium);
+  border-radius: var(--radius-none);
+  padding: 0.75rem 1rem;
+  box-shadow: inset 2px 2px 0px rgba(17, 17, 17, 0.05);
+  box-sizing: border-box;
+  transition: border-color var(--transition-snappy), box-shadow var(--transition-snappy);
+
+  &::placeholder {
+    color: var(--manga-gray);
+    font-style: italic;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--manga-vermilion);
+    box-shadow: 3px 3px 0px var(--manga-vermilion), inset 2px 2px 0px rgba(17, 17, 17, 0.05);
+  }
+
+  &:disabled {
+    background-color: var(--manga-surface-muted);
+    color: var(--manga-gray);
+    cursor: not-allowed;
+  }
+
+  &.is-invalid {
+    border-color: var(--manga-vermilion);
+    background-color: #FFF5F5;
+  }
+}
+
+/* --- BALÃO DE FALA (SPEECH BUBBLE) --- */
+.speech-bubble {
+  position: relative;
+  background-color: var(--manga-surface);
+  border: var(--border-medium);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  display: inline-block;
+  margin-bottom: var(--space-4);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 24px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--manga-surface);
+    z-index: 2;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -13px;
+    left: 23px;
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-top: 13px solid var(--manga-ink);
+    z-index: 1;
+  }
+}
+
+/* --- CARIMBO HANKO (AUTORAL VERMELHO) --- */
+.hanko-stamp {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--manga-vermilion);
+  color: var(--manga-vermilion);
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 0.75rem;
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.55rem;
+  border-radius: var(--radius-sm);
+  transform: rotate(-3deg);
+  user-select: none;
+  box-shadow: inset 0 0 2px rgba(217, 54, 62, 0.4);
+  background-color: rgba(217, 54, 62, 0.04);
+
+  .hanko-sub {
+    font-size: 0.55rem;
+    font-weight: 700;
+    border-top: 1.5px solid var(--manga-vermilion);
+    margin-top: 2px;
+    padding-top: 2px;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* --- BADGES E TAGS TÉCNICAS --- */
+.manga-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border: var(--border-thin);
+  border-radius: var(--radius-none);
+  background-color: var(--manga-surface);
+  color: var(--manga-ink);
+}
+
+.manga-badge--vermilion {
+  background-color: var(--manga-vermilion);
+  border-color: var(--manga-vermilion);
+  color: #FFFFFF;
+}
+
+.manga-badge--dark {
+  background-color: var(--manga-ink);
+  color: var(--manga-paper);
+}
+
+.manga-badge--screentone {
+  position: relative;
+  background-color: var(--manga-surface);
+  border: var(--border-thin);
+  color: var(--manga-ink);
+  overflow: hidden;
+  padding-left: 0.8rem;
+
+  /* Retícula editorial autêntica confinada à faixa lateral esquerda, preservando a superfície do texto */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background-image: var(--screentone-dots-dense);
+    background-size: 4px 4px;
+    border-right: 1px solid var(--manga-ink);
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" aria-label="Ilustração editorial de The Architect's Forge">
+  <defs>
+    <!-- Retícula de Pontos Halftone -->
+    <pattern id="halftone-forge" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#111111" opacity="0.35"/>
+    </pattern>
+    <pattern id="grid-forge" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#111111" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.25"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo Paper White -->
+  <rect width="800" height="450" fill="#F4F0E9"/>
+
+  <!-- Grid Isométrico Arquitetural de Fundo -->
+  <rect width="800" height="450" fill="url(#grid-forge)"/>
+
+  <!-- Painel de Retícula Lateral -->
+  <rect x="520" y="30" width="250" height="390" fill="url(#halftone-forge)"/>
+
+  <!-- Marcas de Corte Editoriais (Crop Marks) -->
+  <path d="M 20 40 L 20 20 L 40 20 M 760 20 L 780 20 L 780 40 M 20 410 L 20 430 L 40 430 M 760 430 L 780 430 L 780 410" fill="none" stroke="#111111" stroke-width="1.5"/>
+
+  <!-- Bloco Isométrico: A Forja Arquitetural (Camadas de Software) -->
+  <!-- Bloco Base: INFRA / DATA -->
+  <polygon points="180,280 340,210 500,280 340,350" fill="#E8E2D5" stroke="#111111" stroke-width="2.5"/>
+  <polygon points="180,280 180,310 340,380 340,350" fill="#D3CBBF" stroke="#111111" stroke-width="2.5"/>
+  <polygon points="500,280 500,310 340,380 340,350" fill="#111111" stroke="#111111" stroke-width="2.5"/>
+
+  <!-- Bloco Médio: CORE / DOMAIN -->
+  <polygon points="210,210 340,155 470,210 340,265" fill="#F4F0E9" stroke="#111111" stroke-width="3"/>
+  <polygon points="210,210 210,240 340,295 340,265" fill="#E8E2D5" stroke="#111111" stroke-width="3"/>
+  <polygon points="470,210 470,240 340,295 340,265" fill="#111111" stroke="#111111" stroke-width="3"/>
+
+  <!-- Bloco Superior Flutuante: ANGULAR 21 ZONELESS UI -->
+  <polygon points="250,130 340,90 430,130 340,170" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+  <polygon points="250,130 250,150 340,190 340,170" fill="#E8E2D5" stroke="#111111" stroke-width="3"/>
+  <polygon points="430,130 430,150 340,190 340,170" fill="#D9363E" stroke="#111111" stroke-width="3"/>
+
+  <!-- Linhas de Projeção / Perspectiva Técnica -->
+  <line x1="340" y1="90" x2="340" y2="40" stroke="#111111" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="180" y1="310" x2="60" y2="360" stroke="#111111" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="500" y1="310" x2="620" y2="360" stroke="#111111" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <!-- Console / Terminal CLI em Estilo Mangá Nanquim -->
+  <rect x="50" y="50" width="310" height="95" fill="#111111" stroke="#111111" stroke-width="2"/>
+  <rect x="50" y="50" width="310" height="22" fill="#222222"/>
+  <circle cx="65" cy="61" r="3.5" fill="#D9363E"/>
+  <circle cx="78" cy="61" r="3.5" fill="#77736F"/>
+  <circle cx="91" cy="61" r="3.5" fill="#77736F"/>
+  <text x="110" y="65" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#F4F0E9" font-weight="700">FORGE_TERMINAL // CLI_V2.1</text>
+  <text x="65" y="94" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#F4F0E9" font-weight="600">> ng g &#64;architect/core --zoneless</text>
+  <text x="65" y="112" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#D9363E" font-weight="700">[OK] 14 modules built in 210ms</text>
+  <text x="65" y="130" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#77736F">> scaffolding production ready...</text>
+
+  <!-- Fagulhas Geométricas da Forja -->
+  <polygon points="340,75 344,82 352,82 346,87 348,95 340,90 332,95 334,87 328,82 336,82" fill="#D9363E"/>
+  <polygon points="440,110 442,115 448,115 444,118 445,124 440,120 435,124 436,118 432,115 438,115" fill="#111111"/>
+  <polygon points="230,160 232,164 237,164 233,167 234,172 230,169 226,172 227,167 223,164 228,164" fill="#111111"/>
+
+  <!-- Hanko Stamp Autoral Vermelho: FORGE / 鍛冶 -->
+  <g transform="translate(680, 50) rotate(2)">
+    <rect x="0" y="0" width="70" height="70" fill="none" stroke="#D9363E" stroke-width="2.5" rx="3"/>
+    <text x="35" y="30" font-family="'Anton', sans-serif" font-size="20" fill="#D9363E" text-anchor="middle">FORGE</text>
+    <line x1="12" y1="36" x2="58" y2="36" stroke="#D9363E" stroke-width="1.5"/>
+    <text x="35" y="55" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#D9363E" font-weight="900" text-anchor="middle">鍛冶</text>
+  </g>
+
+  <!-- Metadados Técnicos Editoriais Inferiores -->
+  <text x="50" y="415" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#111111" font-weight="800">FIG 02.1 // THE ARCHITECT'S FORGE</text>
+  <text x="50" y="430" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#77736F">LAYERED CLEAN ARCHITECTURE &bull; MODULAR DOMAIN BLUEPRINT</text>
+</svg>

@@ -1,0 +1,8 @@
+<div
+  class="motion-reveal"
+  [class.is-revealed]="isRevealed() || disabled()"
+  [ngClass]="'reveal-' + direction()"
+  [style.transition-delay.ms]="delayMs()"
+>
+  <ng-content></ng-content>
+</div>

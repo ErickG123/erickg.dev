@@ -1,0 +1,13 @@
+<div
+  class="halftone-surface"
+  [ngClass]="surfaceClasses()"
+  [attr.data-pattern]="pattern()"
+>
+  @if (textSurface()) {
+    <div class="halftone-content with-text-surface">
+      <ng-content></ng-content>
+    </div>
+  } @else {
+    <ng-content></ng-content>
+  }
+</div>

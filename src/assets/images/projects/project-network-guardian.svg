@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" aria-label="Ilustração editorial de Network Guardian Node">
+  <defs>
+    <!-- Retícula de Pontos -->
+    <pattern id="dots-guardian" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#111111" opacity="0.3"/>
+    </pattern>
+    <!-- Linhas Horizontais de Fluxo de Rede -->
+    <pattern id="lines-stream" width="40" height="12" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="6" x2="30" y2="6" stroke="#111111" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo Paper White -->
+  <rect width="800" height="450" fill="#F4F0E9"/>
+
+  <!-- Marcas de Corte -->
+  <path d="M 20 40 L 20 20 L 40 20 M 760 20 L 780 20 L 780 40 M 20 410 L 20 430 L 40 430 M 760 430 L 780 430 L 780 410" fill="none" stroke="#111111" stroke-width="1.5"/>
+
+  <!-- Painel Esquerdo: Tráfego Caótico de Entrada (Instável) -->
+  <rect x="50" y="50" width="220" height="340" fill="none" stroke="#111111" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <rect x="50" y="50" width="220" height="24" fill="#111111"/>
+  <text x="60" y="66" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#F4F0E9" font-weight="700">INBOUND_CHAOTIC_STREAM</text>
+
+  <!-- Linhas Caóticas de Rede com Erros HTTP (503, Timeout, Duplicates) -->
+  <path d="M 70 120 Q 120 80 180 140 T 250 110" fill="none" stroke="#111111" stroke-width="2"/>
+  <circle cx="250" cy="110" r="4" fill="#D9363E"/>
+  <text x="180" y="105" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#D9363E" font-weight="700">TIMEOUT</text>
+
+  <path d="M 70 180 Q 110 220 160 170 T 250 200" fill="none" stroke="#111111" stroke-width="2"/>
+  <circle cx="250" cy="200" r="4" fill="#D9363E"/>
+  <text x="175" y="195" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#D9363E" font-weight="700">HTTP 503</text>
+
+  <path d="M 70 240 Q 130 200 170 260 T 250 230" fill="none" stroke="#111111" stroke-width="2"/>
+  <circle cx="250" cy="230" r="4" fill="#D9363E"/>
+  <text x="170" y="225" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#D9363E" font-weight="700">DUPLICATE</text>
+
+  <path d="M 70 300 Q 140 280 190 320 T 250 300" fill="none" stroke="#111111" stroke-width="2"/>
+  <circle cx="250" cy="300" r="4" fill="#D9363E"/>
+  <text x="175" y="295" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#D9363E" font-weight="700">EXPIRED_AUTH</text>
+
+  <!-- O ESCUDO GUARDIÃO CENTRAL (NGX-SMART-INTERCEPTOR) -->
+  <g transform="translate(390, 220)">
+    <!-- Aura de Retícula Halftone do Escudo -->
+    <polygon points="0,-150 90,-50 90,70 0,160 -90,70 -90,-50" fill="url(#dots-guardian)"/>
+
+    <!-- Camadas do Escudo em Nanquim -->
+    <polygon points="0,-140 80,-45 80,65 0,150 -80,65 -80,-45" fill="#F4F0E9" stroke="#111111" stroke-width="4"/>
+    <polygon points="0,-120 65,-35 65,55 0,130 -65,55 -65,-35" fill="#111111" stroke="#111111" stroke-width="2"/>
+    <polygon points="0,-100 50,-25 50,45 0,110 -50,45 -50,-25" fill="#F4F0E9" stroke="#111111" stroke-width="2"/>
+
+    <!-- Núcleo Vermilion de Resiliência -->
+    <circle cx="0" cy="10" r="24" fill="#D9363E" stroke="#111111" stroke-width="2"/>
+    <path d="M -8 10 L -2 16 L 10 4" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Linhas de Interceptação -->
+    <line x1="-120" y1="10" x2="-80" y2="10" stroke="#D9363E" stroke-width="3"/>
+    <line x1="80" y1="10" x2="120" y2="10" stroke="#111111" stroke-width="3"/>
+  </g>
+
+  <!-- Painel Direito: Tráfego Resiliente e Ordenado (RxJS Pipeline) -->
+  <rect x="530" y="50" width="220" height="340" fill="none" stroke="#111111" stroke-width="2"/>
+  <rect x="530" y="50" width="220" height="24" fill="#111111"/>
+  <text x="540" y="66" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#F4F0E9" font-weight="700">RESILIENT_CLEAN_FLOW</text>
+
+  <!-- Linhas Perfeitamente Alinhadas e Purificadas -->
+  <g fill="none" stroke="#111111" stroke-width="2.5">
+    <line x1="490" y1="120" x2="730" y2="120"/>
+    <line x1="490" y1="180" x2="730" y2="180"/>
+    <line x1="490" y1="240" x2="730" y2="240"/>
+    <line x1="490" y1="300" x2="730" y2="300"/>
+  </g>
+
+  <!-- Status Badges -->
+  <rect x="630" y="110" width="90" height="18" fill="#111111"/>
+  <text x="675" y="123" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">200 OK &bull; 14ms</text>
+
+  <rect x="630" y="170" width="90" height="18" fill="#111111"/>
+  <text x="675" y="183" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">RETRY_SAVED</text>
+
+  <rect x="630" y="230" width="90" height="18" fill="#111111"/>
+  <text x="675" y="243" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">DEDUPED</text>
+
+  <rect x="630" y="290" width="90" height="18" fill="#111111"/>
+  <text x="675" y="303" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">TOKEN_REFRESH</text>
+
+  <!-- Hanko Stamp Autoral Vermelho: GUARD / 防護 -->
+  <g transform="translate(680, 40) rotate(3)">
+    <rect x="0" y="0" width="70" height="70" fill="none" stroke="#D9363E" stroke-width="2.5" rx="3"/>
+    <text x="35" y="30" font-family="'Anton', sans-serif" font-size="18" fill="#D9363E" text-anchor="middle">GUARD</text>
+    <line x1="12" y1="36" x2="58" y2="36" stroke="#D9363E" stroke-width="1.5"/>
+    <text x="35" y="55" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#D9363E" font-weight="900" text-anchor="middle">防護</text>
+  </g>
+
+  <!-- Metadados Técnicos Editoriais Inferiores -->
+  <text x="50" y="415" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#111111" font-weight="800">FIG 02.3 // NETWORK GUARDIAN NODE</text>
+  <text x="50" y="430" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#77736F">REACTIVE HTTP RESILIENCE PIPELINE &bull; RXJS INTERCEPTOR NODE</text>
+</svg>

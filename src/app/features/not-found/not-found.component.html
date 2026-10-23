@@ -1,0 +1,28 @@
+<div class="not-found-container" role="region" aria-label="Página não encontrada">
+  <app-manga-panel variant="default" padding="lg" class="not-found-panel halftone-corner-accent">
+    <app-chapter-header
+      chapter="EXTRA"
+      title="CAPÍTULO NÃO ENCONTRADO"
+      subtitle="Erro 404 &bull; Manuscrito Ausente"
+      align="center">
+    </app-chapter-header>
+
+    <div class="not-found-content">
+      <div class="glitch-number" aria-hidden="true">404</div>
+      <p class="not-found-lead">
+        A página solicitada se perdeu entre os rascunhos em nanquim ou foi reordenada no índice editorial.
+      </p>
+
+      <app-editorial-divider variant="solid" spacing="lg"></app-editorial-divider>
+
+      <div class="actions-group">
+        <a routerLink="/" class="manga-btn manga-btn-primary" aria-label="Retornar à capa do portfólio">
+          <span class="btn-prefix" aria-hidden="true">&laquo;</span> RETORNAR À CAPA
+        </a>
+        <a routerLink="/projects" class="manga-btn manga-btn-secondary" aria-label="Navegar para os projetos selecionados">
+          VER PROJETOS <span class="btn-suffix" aria-hidden="true">&raquo;</span>
+        </a>
+      </div>
+    </div>
+  </app-manga-panel>
+</div>

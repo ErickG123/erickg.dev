@@ -1,0 +1,66 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.halftone-surface {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+
+  /* Espaçamentos */
+  &.pad-none { padding: 0; }
+  &.pad-sm { padding: var(--space-2); }
+  &.pad-md { padding: var(--space-4); }
+  &.pad-lg { padding: var(--space-6); }
+
+  /* Borda opcional */
+  &.is-bordered {
+    border: var(--border-thin);
+  }
+
+  /* Padrões de Retícula Halftone */
+  &.pattern-dots-light:not(.is-disabled) {
+    background-image: var(--screentone-dots-light);
+    background-size: 10px 10px;
+  }
+
+  &.pattern-dots-medium:not(.is-disabled) {
+    background-image: var(--screentone-dots-medium);
+    background-size: 8px 8px;
+  }
+
+  &.pattern-dots-dense:not(.is-disabled) {
+    background-image: var(--screentone-dots-dense);
+    background-size: 6px 6px;
+  }
+
+  &.pattern-lines-diagonal:not(.is-disabled) {
+    background-image: var(--screentone-lines);
+  }
+
+  &.pattern-crosshatch:not(.is-disabled) {
+    background-image: var(--screentone-crosshatch);
+  }
+
+  &.pattern-blueprint:not(.is-disabled) {
+    background-image: var(--grid-blueprint);
+    background-size: 20px 20px;
+  }
+
+  &.is-disabled {
+    background-image: none !important;
+    background-color: var(--manga-surface);
+  }
+
+  /* Superfície de Leitura Sólida para Conteúdo Textual */
+  .halftone-content.with-text-surface {
+    position: relative;
+    z-index: 1;
+    background-color: var(--manga-surface);
+    color: var(--manga-ink);
+    padding: var(--space-4);
+    border: var(--border-thin);
+    box-shadow: var(--shadow-sm);
+  }
+}

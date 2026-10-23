@@ -1,0 +1,67 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.editorial-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  box-sizing: border-box;
+
+  /* Espaçamentos verticais */
+  &.spacing-sm {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  &.spacing-md {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-8);
+  }
+  &.spacing-lg {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-12);
+  }
+
+  /* Linha Sólida (Nanquim 4px) */
+  &.variant-solid .divider-line {
+    flex: 1;
+    height: 4px;
+    background-color: var(--manga-ink);
+  }
+
+  /* Linha Dashed */
+  &.variant-dashed .divider-line {
+    flex: 1;
+    height: 0;
+    border-top: 2px dashed var(--manga-ink);
+  }
+
+  /* Linha Double */
+  &.variant-double .divider-line {
+    flex: 1;
+    height: 6px;
+    border-top: 2px solid var(--manga-ink);
+    border-bottom: 2px solid var(--manga-ink);
+  }
+}
+
+.divider-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border: var(--border-thin);
+  background-color: var(--manga-surface);
+  color: var(--manga-ink);
+  white-space: nowrap;
+}
+
+.divider-square {
+  width: 12px;
+  height: 12px;
+  background-color: var(--manga-vermilion);
+  flex-shrink: 0;
+}

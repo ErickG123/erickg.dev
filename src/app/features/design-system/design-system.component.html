@@ -1,0 +1,411 @@
+<div class="manga-container" style="padding-top: var(--space-8); padding-bottom: var(--space-16);">
+
+  <!-- CABEÇALHO EDITORIAL DO DESIGN SYSTEM -->
+  <header class="manga-panel manga-panel--hero mb-4">
+    <div class="panel-frame-header">
+      <span class="chapter-badge">STYLEGUIDE // VOL. 01</span>
+      <div class="hanko-stamp">
+        <span>ERICK</span>
+        <span class="hanko-sub">江里克</span>
+      </div>
+    </div>
+    
+    <h1 class="manga-display-xl manga-text-vermilion">MANGA EDITORIAL</h1>
+    <h2 class="manga-heading-lg" style="margin-top: var(--space-2);">SISTEMA DE DESIGN, TOKENS VISUAIS E COMPONENTES</h2>
+    
+    <p class="manga-body-lg" style="margin-top: var(--space-4); max-width: 800px;">
+      Especificação viva dos fundamentos visuais do portfólio de engenharia de Erick Gabriel.
+      Construído com base na gramática gráfica dos mangás: forte contraste em preto e branco, 
+      intervenções pontuais em vermelho vermilion, retículas matemáticas em CSS e grid assimétrico.
+    </p>
+
+    <div class="manga-flex manga-gap-3" style="margin-top: var(--space-4);">
+      <a routerLink="/" class="manga-btn manga-btn--secondary">
+        &larr; VOLTAR AO PORTFÓLIO
+      </a>
+      <a href="#tokens" class="manga-btn manga-btn--primary">
+        EXPLORAR TOKENS &darr;
+      </a>
+    </div>
+  </header>
+
+  <!-- SEÇÃO 1: PALETA DE CORES -->
+  <section id="tokens" class="manga-panel mb-4">
+    <div class="panel-frame-header">
+      <span class="chapter-badge chapter-badge--vermilion">SECTION 01</span>
+      <span class="manga-mono manga-text-gray">PALETA PRIMÁRIA & SUPERFÍCIES</span>
+    </div>
+
+    <h3 class="manga-heading-xl mb-3">PALETA DE NANQUIM & PAPEL</h3>
+    <p class="manga-body-md">
+      Quatro cores fundamentais estabelecem a hierarquia visual dramática inspirada em mangás impressos.
+    </p>
+
+    <!-- Grid de Cores Primárias -->
+    <div class="manga-grid mb-4">
+      @for (color of colorTokens; track color.name) {
+        <div class="col-3">
+          <div class="manga-panel manga-panel--interactive" [style.background-color]="color.hex" [style.color]="color.text" style="min-height: 180px;">
+            <div class="manga-mono" style="font-weight: 700; font-size: 0.85rem;">{{ color.name }}</div>
+            <div class="manga-mono" style="font-size: 1.1rem; margin-top: var(--space-1); font-weight: 900;">{{ color.hex }}</div>
+            <div class="manga-mono" style="font-size: 0.75rem; opacity: 0.8; margin-top: auto;">{{ color.var }}</div>
+            <p style="font-size: 0.75rem; margin-top: var(--space-2); margin-bottom: 0;" [style.color]="color.text">
+              {{ color.desc }}
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <h4 class="manga-heading-md mb-2">SUPERFÍCIES E BORDAS AUXILIARES</h4>
+    <!-- Grid de Cores de Superfície -->
+    <div class="manga-grid">
+      @for (surf of surfaceTokens; track surf.name) {
+        <div class="col-3">
+          <div class="manga-panel" [style.background-color]="surf.hex" [style.color]="surf.text" style="min-height: 140px; border: var(--border-medium);">
+            <div class="manga-mono" style="font-weight: 700;">{{ surf.name }}</div>
+            <div class="manga-mono" style="font-size: 0.95rem; font-weight: 800;">{{ surf.hex }}</div>
+            <div class="manga-mono" style="font-size: 0.7rem; opacity: 0.8;">{{ surf.var }}</div>
+            <p style="font-size: 0.72rem; margin-top: var(--space-1); margin-bottom: 0;" [style.color]="surf.text">
+              {{ surf.desc }}
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- SEÇÃO 2: TIPOGRAFIA -->
+  <section class="manga-panel mb-4">
+    <div class="panel-frame-header">
+      <span class="chapter-badge">SECTION 02</span>
+      <span class="manga-mono manga-text-gray">HIERARQUIA TIPOGRÁFICA</span>
+    </div>
+
+    <h3 class="manga-heading-xl mb-3">ESCALA TIPOGRÁFICA</h3>
+
+    <div class="manga-grid">
+      <div class="col-6">
+        <div class="manga-panel manga-panel--dashed" style="padding: var(--space-4);">
+          <span class="manga-badge manga-badge--dark mb-2">Anton — Display 2XL</span>
+          <div class="manga-display-2xl">VOLUME 01</div>
+          <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">clamp(3.2rem, 8vw + 1rem, 6.5rem)</span>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="manga-panel manga-panel--dashed" style="padding: var(--space-4);">
+          <span class="manga-badge manga-badge--vermilion mb-2">Anton — Display XL</span>
+          <div class="manga-display-xl manga-text-vermilion">THE ARCHITECT</div>
+          <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">clamp(2.4rem, 5vw + 0.8rem, 4.2rem)</span>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="manga-panel" style="padding: var(--space-4);">
+          <span class="manga-badge mb-2">Inter Tight — Heading XL</span>
+          <div class="manga-heading-xl">Arquitetura Escalável & Engenharia Reativa</div>
+          <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">clamp(1.4rem, 2.2vw + 0.4rem, 2rem)</span>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="manga-panel" style="padding: var(--space-4);">
+          <span class="manga-badge mb-2">Inter — Body Text (Leitura Longa)</span>
+          <p class="manga-body-md" style="margin-bottom: 0;">
+            A legibilidade editorial é prioridade máxima. Textos corridos utilizam a fonte Inter com altura de linha generosa (1.7) e contraste calibrado para leitura confortável sem fadiga visual.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="manga-panel manga-panel--dark" style="padding: var(--space-4);">
+          <span class="manga-badge manga-badge--vermilion mb-2">IBM Plex Mono — Código & Dados</span>
+          <pre style="margin: 0; padding: var(--space-2); border: none; box-shadow: none; font-size: 0.8rem;">
+export const ARCHITECTURE = &#123;
+  framework: 'Angular 21',
+  zoneless: true,
+  bundle: '105 kB',
+  tests: 'Jest 100% PASS'
+&#125;;</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 3: RETÍCULAS (SCREENTONES) -->
+  <section class="manga-panel mb-4">
+    <div class="panel-frame-header">
+      <span class="chapter-badge chapter-badge--vermilion">SECTION 03</span>
+      <span class="manga-mono manga-text-gray">RETÍCULAS MATEMÁTICAS CSS (ZERO IMAGENS)</span>
+    </div>
+
+    <h3 class="manga-heading-xl mb-3">SCREENTONES PUROS EM CSS</h3>
+    <p class="manga-body-md">
+      Padrões de retícula gerados via <code>radial-gradient</code> matemático. Não consomem banda de rede, não pixelam em telas Retina/4K e reproduzem a textura clássica de papel impresso.
+    </p>
+
+    <div class="manga-grid">
+      <div class="col-3">
+        <div class="manga-panel screentone-dots-dense" style="min-height: 160px; justify-content: flex-end;">
+          <span class="manga-badge manga-badge--dark">DOTS DENSE (25%)</span>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="manga-panel screentone-dots-medium" style="min-height: 160px; justify-content: flex-end;">
+          <span class="manga-badge manga-badge--dark">DOTS MEDIUM (18%)</span>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="manga-panel screentone-dots-light" style="min-height: 160px; justify-content: flex-end;">
+          <span class="manga-badge manga-badge--dark">DOTS LIGHT (12%)</span>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="manga-panel screentone-lines-diagonal" style="min-height: 160px; justify-content: flex-end;">
+          <span class="manga-badge manga-badge--dark">LINES DIAGONAL</span>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="manga-panel screentone-crosshatch" style="min-height: 160px; justify-content: flex-end;">
+          <span class="manga-badge manga-badge--dark">CROSSHATCH (HACHURA DUPLA)</span>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="manga-panel blueprint-grid-bg" style="min-height: 160px; justify-content: flex-end;">
+          <span class="manga-badge manga-badge--dark">BLUEPRINT GRID</span>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="manga-panel manga-crop-marks manga-flex manga-items-center manga-justify-center" style="min-height: 160px;">
+          <span class="manga-badge manga-badge--vermilion">MANGA CROP MARKS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO 4: COMPONENTES E BOTÕES -->
+  <section class="manga-panel mb-4">
+    <div class="panel-frame-header">
+      <span class="chapter-badge">SECTION 04</span>
+      <span class="manga-mono manga-text-gray">BOTÕES TÁTEIS & ESTADOS</span>
+    </div>
+
+    <h3 class="manga-heading-xl mb-3">BOTÕES DE QUADRINHO (HARD OFFSET)</h3>
+
+    <div class="manga-flex manga-flex-wrap manga-gap-4 manga-items-center mb-4">
+      <button class="manga-btn manga-btn--primary">PRIMARY BUTTON</button>
+      <button class="manga-btn manga-btn--accent">&gt; ACCENT VERMILION</button>
+      <button class="manga-btn manga-btn--secondary">SECONDARY BUTTON</button>
+      <button class="manga-btn manga-btn--outline">OUTLINE BUTTON</button>
+      <button class="manga-btn manga-btn--primary" disabled>DISABLED BUTTON</button>
+    </div>
+
+    <div class="gutter-divider"></div>
+
+    <h3 class="manga-heading-xl mb-3">BALÕES DE FALA & CARIMBO AUTORAL</h3>
+
+    <div class="manga-grid manga-items-center">
+      <div class="col-7">
+        <div class="speech-bubble">
+          <p class="manga-body-md" style="margin: 0; font-weight: 500;">
+            "A engenharia de software contemporânea exige tanto rigor arquitetural quanto sensibilidade na experiência do usuário."
+          </p>
+          <span class="manga-mono manga-text-gray" style="display: block; font-size: 0.75rem; margin-top: var(--space-2);">
+            — Erick Gabriel, Full-Stack Engineer
+          </span>
+        </div>
+      </div>
+
+      <div class="col-5 manga-flex manga-justify-center">
+        <div class="hanko-stamp" style="font-size: 1.2rem; padding: 0.6rem 1rem;">
+          <span>ERICK</span>
+          <span class="hanko-sub">江里克 // VERIFIED</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gutter-divider--dashed"></div>
+
+    <h3 class="manga-heading-xl mb-3">FORMULÁRIOS & CAMPOS</h3>
+
+    <div class="manga-grid">
+      <div class="col-6">
+        <label for="sample-input" class="manga-mono" style="display: block; margin-bottom: var(--space-1); font-weight: 700;">CAMPO DE TEXTO PADRÃO</label>
+        <input id="sample-input" class="manga-input" placeholder="Digite aqui para testar o foco vermelho..." />
+      </div>
+
+      <div class="col-6">
+        <label for="sample-invalid" class="manga-mono manga-text-vermilion" style="display: block; margin-bottom: var(--space-1); font-weight: 700;">CAMPO COM ERRO (.is-invalid)</label>
+        <input id="sample-invalid" class="manga-input is-invalid" value="valor_invalido@dominio" />
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SEÇÃO 5: COMPONENTES DE QUADROS EDITORIAIS (MANGA FRAMES SUITE)
+       ========================================================================= -->
+  <section class="manga-panel mb-8" aria-label="Demonstração de Componentes de Quadros Editoriais">
+    <div class="panel-frame-header">
+      <span class="chapter-badge chapter-badge--vermilion">SECTION 05</span>
+      <span class="manga-mono manga-text-gray">COMPONENTES DE QUADROS & NARRATIVA VISUAL</span>
+    </div>
+
+    <!-- 1. ChapterHeader Showcase -->
+    <h3 class="manga-heading-xl mb-3">1. CHAPTER HEADER (CABEÇALHOS EDITORIAIS)</h3>
+    <app-chapter-header
+      chapter="ACT 01 // INITIATION"
+      title="CABEÇALHO PADRÃO DE CAPÍTULO"
+      subtitle="Subtítulo contextual com tipografia em meio-tom e sarjeta de divisão integrada"
+      meta="7 SEÇÕES &bull; LEITURA ESTIMADA 6 MIN"
+      [accentBadge]="true"
+    ></app-chapter-header>
+
+    <div class="manga-grid mb-6">
+      <div class="col-6">
+        <app-chapter-header
+          chapter="CAPÍTULO 02"
+          title="TÍTULO EM DESTAQUE"
+          [accentTitle]="true"
+          align="left"
+          [showDivider]="false"
+        ></app-chapter-header>
+      </div>
+      <div class="col-6">
+        <app-chapter-header
+          chapter="EPÍLOGO"
+          title="ALINHAMENTO CENTRAL"
+          align="center"
+          [showDivider]="false"
+        ></app-chapter-header>
+      </div>
+    </div>
+
+    <app-editorial-divider variant="solid" label="PAINÉIS & ENQUADRAMENTOS"></app-editorial-divider>
+
+    <!-- 2. MangaPanel Variations Showcase -->
+    <h3 class="manga-heading-xl mb-3">2. MANGA PANEL (QUADROS COM PROJEÇÃO DE CONTEÚDO)</h3>
+    <div class="manga-grid mb-6">
+      <div class="col-4">
+        <app-manga-panel variant="default" [interactive]="true">
+          <span class="manga-mono manga-text-vermilion" style="font-weight: 800; font-size: 0.75rem;">// DEFAULT INTERACTIVE</span>
+          <h4 class="manga-heading-md mt-1 mb-2">Quadro Padrão Elevado</h4>
+          <p class="manga-body-sm" style="margin: 0;">Superfície de papel com sombra sólida offset de 4px que reage ao cursor.</p>
+        </app-manga-panel>
+      </div>
+
+      <div class="col-4">
+        <app-manga-panel variant="accent">
+          <span class="manga-mono manga-text-vermilion" style="font-weight: 800; font-size: 0.75rem;">// ACCENT VERMILION</span>
+          <h4 class="manga-heading-md mt-1 mb-2">Quadro com Borda de Alerta</h4>
+          <p class="manga-body-sm" style="margin: 0;">Enquadramento com contorno e sombra sólida em vermelho vermilion.</p>
+        </app-manga-panel>
+      </div>
+
+      <div class="col-4">
+        <app-manga-panel variant="dark">
+          <span class="manga-mono" style="font-weight: 800; font-size: 0.75rem; color: var(--manga-vermilion);">// DARK MONOSPACE</span>
+          <h4 class="manga-heading-md mt-1 mb-2" style="color: #FFF;">Quadro de Nanquim</h4>
+          <p class="manga-body-sm" style="margin: 0; color: var(--manga-text-light);">Fundo escuro profundo para terminais e colofão de encerramento.</p>
+        </app-manga-panel>
+      </div>
+    </div>
+
+    <!-- 3. ArtworkFrame Showcase -->
+    <h3 class="manga-heading-xl mb-3">3. ARTWORK FRAME (ENQUADRAMENTO DE ARTES & SVGS)</h3>
+    <div class="manga-grid mb-6">
+      <div class="col-7">
+        <app-artwork-frame
+          aspectRatio="16:9"
+          frameLabel="FIG 05.1 // BLUEPRINT_MODULE"
+          statusBadge="ESQUEMA TÉCNICO"
+          screentoneBackground="blueprint"
+          [cropMarks]="true"
+        >
+          <div class="manga-text-center p-4">
+            <span class="manga-display-lg" style="color: var(--manga-ink); font-size: 1.5rem;">
+              [ ENQUADRAMENTO 16:9 COM GRADE BLUEPRINT ]
+            </span>
+          </div>
+        </app-artwork-frame>
+      </div>
+
+      <div class="col-5">
+        <app-artwork-frame
+          aspectRatio="1:1"
+          frameLabel="PORTRAIT_SLOT"
+          statusBadge="VERIFICADO"
+          statusBadgeVariant="vermilion"
+          screentoneBackground="dots-medium"
+        >
+          <div class="hanko-stamp" style="font-size: 1.2rem; padding: 0.6rem 1rem;">
+            <span>1:1 FRAME</span>
+            <span class="hanko-sub">SQUARE ASPECT</span>
+          </div>
+        </app-artwork-frame>
+      </div>
+    </div>
+
+    <!-- 4. PanelCaption & ChapterMarker Showcase -->
+    <h3 class="manga-heading-xl mb-3">4. PANEL CAPTION & CHAPTER MARKERS</h3>
+    <div class="manga-grid mb-6">
+      <div class="col-4">
+        <app-panel-caption type="narration" stampText="NARRAÇÃO EDITORIAL">
+          "A clareza de uma arquitetura manifesta-se nos seus limites bem delimitados."
+        </app-panel-caption>
+      </div>
+
+      <div class="col-4">
+        <app-panel-caption type="voiceover" stampText="DISCURSO DO AUTOR" [vermilionAccent]="true">
+          "Testes unitários não são mero capricho; são o contrato de confiança do engenheiro."
+        </app-panel-caption>
+      </div>
+
+      <div class="col-4">
+        <app-panel-caption type="technical" stampText="TELEMETRY // RXJS_INTERCEPTOR">
+          STATUS: 200 OK &bull; RETRIES: 0 &bull; DEDUPED: TRUE
+        </app-panel-caption>
+      </div>
+    </div>
+
+    <!-- Marcadores de Capítulo em Vários Tamanhos e Variantes -->
+    <div class="manga-flex manga-flex-wrap manga-gap-3 manga-items-center mb-6">
+      <span class="manga-mono" style="font-size: 0.75rem; font-weight: 800;">MARCADORES:</span>
+      <app-chapter-marker number="00" label="CAPA" size="sm"></app-chapter-marker>
+      <app-chapter-marker number="01" label="MOKUROKU" size="md" variant="screentone"></app-chapter-marker>
+      <app-chapter-marker number="02" label="OBRAS SELECIONADAS" size="md" variant="vermilion" [active]="true"></app-chapter-marker>
+      <app-chapter-marker number="03" label="O MÉTODO" size="md" variant="dark"></app-chapter-marker>
+      <app-chapter-marker number="EP" label="EPÍLOGO" size="lg"></app-chapter-marker>
+    </div>
+
+    <!-- 5. MotionReveal & Divisores Editoriais -->
+    <h3 class="manga-heading-xl mb-3">5. MOTION REVEAL (ENTRADA SUAVE COM RESPEITO A ACESSIBILIDADE)</h3>
+    <app-motion-reveal direction="up" [delayMs]="100">
+      <app-halftone-surface pattern="crosshatch" [bordered]="true" padding="md" [textSurface]="true">
+        <div class="manga-flex manga-justify-between manga-items-center">
+          <div>
+            <h4 class="manga-heading-md mb-1">Revelação Adaptativa com Suporte a prefers-reduced-motion</h4>
+            <p class="manga-body-sm" style="margin: 0;">
+              Quando o visitante ativa redução de movimento no sistema operacional, a animação é desativada instantaneamente via CSS.
+            </p>
+          </div>
+          <span class="chapter-badge chapter-badge--vermilion">A11Y READY</span>
+        </div>
+      </app-halftone-surface>
+    </app-motion-reveal>
+  </section>
+
+  <!-- RODAPÉ DA PÁGINA -->
+  <footer class="manga-panel manga-panel--dark manga-text-center">
+    <div class="manga-mono" style="font-size: 0.8rem; letter-spacing: 0.05em;">
+      ERICK GABRIEL // PORTFOLIO DESIGN SYSTEM &bull; ANGULAR 21 ZONELESS &bull; 2026
+    </div>
+  </footer>
+
+</div>

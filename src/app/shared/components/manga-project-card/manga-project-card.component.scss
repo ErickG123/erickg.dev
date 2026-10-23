@@ -1,0 +1,59 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.project-graphic-frame {
+  border: var(--border-medium);
+  position: relative;
+  overflow: hidden;
+  background-color: var(--manga-surface-muted);
+  transition: border-color var(--transition-snappy);
+
+  &--stamp {
+    height: 120px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :host:hover .project-graphic-frame {
+    border-color: var(--manga-ink);
+  }
+
+  :host:hover .comic-stamp-box {
+    transform: scale(1.03);
+  }
+}
+
+.comic-stamp-box {
+  border: 3px solid var(--manga-ink);
+  padding: 0.25rem 0.75rem;
+  background-color: var(--manga-surface);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-snappy);
+}
+
+.project-role-tag {
+  font-size: 0.72rem;
+  color: var(--manga-gray);
+  line-height: 1.4;
+}
+
+.project-problem-box {
+  border: 1px dashed var(--manga-gray);
+  background-color: var(--manga-surface-muted);
+  border-radius: var(--radius-none);
+}
+
+.problem-tag {
+  display: block;
+  font-weight: 800;
+  font-size: 0.68rem;
+  color: var(--manga-ink);
+  margin-bottom: var(--space-1);
+}
+
+a.manga-btn:focus-visible {
+  outline: 2px dashed var(--manga-vermilion);
+  outline-offset: 3px;
+}

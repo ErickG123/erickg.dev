@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" aria-label="Ilustração editorial de Otaku Courier Network">
+  <defs>
+    <!-- Retícula de Pontos Halftone -->
+    <pattern id="halftone-courier" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#111111" opacity="0.3"/>
+    </pattern>
+    <!-- Linhas Diagonais de Velocidade -->
+    <pattern id="speed-courier" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)">
+      <line x1="0" y1="0" x2="20" y2="0" stroke="#111111" stroke-width="1.2" stroke-dasharray="8 6" opacity="0.35"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo Paper White -->
+  <rect width="800" height="450" fill="#F4F0E9"/>
+
+  <!-- Painel de Fundo com Linhas de Velocidade -->
+  <rect x="40" y="30" width="720" height="390" fill="none" stroke="#111111" stroke-width="2"/>
+  <rect x="40" y="30" width="280" height="390" fill="url(#speed-courier)"/>
+  <rect x="480" y="30" width="280" height="390" fill="url(#halftone-courier)"/>
+
+  <!-- Marcas de Corte -->
+  <path d="M 20 40 L 20 20 L 40 20 M 760 20 L 780 20 L 780 40 M 20 410 L 20 430 L 40 430 M 760 430 L 780 430 L 780 410" fill="none" stroke="#111111" stroke-width="1.5"/>
+
+  <!-- O Livro Editorial Aberto / Newsletter Dispatcher (Centro) -->
+  <g transform="translate(400, 200)">
+    <!-- Lombada e Páginas Abertas em Perspectiva -->
+    <!-- Página Esquerda -->
+    <polygon points="-160,-70 0,-90 0,110 -160,90" fill="#FFFFFF" stroke="#111111" stroke-width="3"/>
+    <line x1="-140" y1="-50" x2="-20" y2="-70" stroke="#111111" stroke-width="1.5"/>
+    <line x1="-140" y1="-30" x2="-20" y2="-50" stroke="#111111" stroke-width="1.5"/>
+    <line x1="-140" y1="-10" x2="-20" y2="-30" stroke="#111111" stroke-width="1.5"/>
+    <line x1="-140" y1="10" x2="-20" y2="-10" stroke="#111111" stroke-width="1.5"/>
+    <line x1="-140" y1="30" x2="-60" y2="20" stroke="#D9363E" stroke-width="2"/>
+
+    <!-- Página Direita -->
+    <polygon points="160,-70 0,-90 0,110 160,90" fill="#F4F0E9" stroke="#111111" stroke-width="3"/>
+    <rect x="20" y="-65" width="60" height="70" fill="#111111"/>
+    <line x1="90" y1="-60" x2="140" y2="-50" stroke="#111111" stroke-width="1.5"/>
+    <line x1="90" y1="-40" x2="140" y2="-30" stroke="#111111" stroke-width="1.5"/>
+    <line x1="90" y1="-20" x2="140" y2="-10" stroke="#111111" stroke-width="1.5"/>
+    <line x1="20" y1="20" x2="140" y2="35" stroke="#111111" stroke-width="1.5"/>
+    <line x1="20" y1="40" x2="140" y2="55" stroke="#111111" stroke-width="1.5"/>
+    <line x1="20" y1="60" x2="90" y2="70" stroke="#D9363E" stroke-width="2"/>
+
+    <!-- Lombada Central -->
+    <line x1="0" y1="-95" x2="0" y2="115" stroke="#D9363E" stroke-width="3"/>
+  </g>
+
+  <!-- Torre de Transmissão / Antena de Broadcast (Nanquim) -->
+  <g transform="translate(180, 210)">
+    <!-- Treliça da Antena -->
+    <polygon points="0,-120 40,90 -40,90" fill="none" stroke="#111111" stroke-width="2.5"/>
+    <line x1="-15" y1="-50" x2="15" y2="-50" stroke="#111111" stroke-width="2"/>
+    <line x1="-25" y1="10" x2="25" y2="10" stroke="#111111" stroke-width="2"/>
+    <line x1="-35" y1="60" x2="35" y2="60" stroke="#111111" stroke-width="2"/>
+    <line x1="-40" y1="90" x2="40" y2="90" stroke="#111111" stroke-width="3"/>
+
+    <!-- Ondas de Rádio e Sinal Broadcast -->
+    <circle cx="0" cy="-120" r="8" fill="#D9363E"/>
+    <path d="M 15 -135 A 25 25 0 0 1 15 -105" fill="none" stroke="#111111" stroke-width="2"/>
+    <path d="M 28 -148 A 45 45 0 0 1 28 -92" fill="none" stroke="#111111" stroke-width="2"/>
+    <path d="M 42 -162 A 65 65 0 0 1 42 -78" fill="none" stroke="#D9363E" stroke-width="2" stroke-dasharray="4 3"/>
+  </g>
+
+  <!-- Pacotes de Dados e Cartas Digitais em Voo -->
+  <g transform="translate(560, 150) rotate(-15)">
+    <polygon points="0,0 70,0 70,45 0,45" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <polygon points="0,0 35,25 70,0" fill="none" stroke="#111111" stroke-width="2"/>
+    <circle cx="35" cy="22" r="4" fill="#D9363E"/>
+  </g>
+
+  <g transform="translate(620, 250) rotate(10)">
+    <polygon points="0,0 60,0 60,40 0,40" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <polygon points="0,0 30,20 60,0" fill="none" stroke="#111111" stroke-width="2"/>
+    <circle cx="30" cy="18" r="3.5" fill="#111111"/>
+  </g>
+
+  <!-- Hanko Stamp Autoral Vermelho: COURIER / 飛脚 -->
+  <g transform="translate(680, 50) rotate(2)">
+    <rect x="0" y="0" width="70" height="70" fill="none" stroke="#D9363E" stroke-width="2.5" rx="3"/>
+    <text x="35" y="30" font-family="'Anton', sans-serif" font-size="16" fill="#D9363E" text-anchor="middle">COURIER</text>
+    <line x1="12" y1="36" x2="58" y2="36" stroke="#D9363E" stroke-width="1.5"/>
+    <text x="35" y="55" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#D9363E" font-weight="900" text-anchor="middle">飛脚</text>
+  </g>
+
+  <!-- Metadados Técnicos Editoriais Inferiores -->
+  <text x="50" y="415" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#111111" font-weight="800">FIG 02.4 // OTAKU COURIER NETWORK</text>
+  <text x="50" y="430" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#77736F">EDITORIAL CURATION ENGINE &bull; REAL-TIME SUBSCRIBER DISPATCH</text>
+</svg>

@@ -1,0 +1,101 @@
+:host {
+  display: inline-block;
+}
+
+.chapter-marker {
+  gap: var(--space-2);
+  border: var(--border-thin);
+  border-radius: var(--radius-none);
+  user-select: none;
+  transition: background-color var(--transition-snappy), transform var(--transition-snappy);
+
+  /* Tamanhos */
+  &.size-sm {
+    padding: 0.15rem 0.4rem;
+    font-size: 0.65rem;
+  }
+  &.size-md {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  &.size-lg {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  /* Variantes */
+  &.variant-default {
+    background-color: var(--manga-surface);
+    color: var(--manga-ink);
+  }
+
+  &.variant-vermilion {
+    background-color: var(--manga-vermilion);
+    border-color: var(--manga-vermilion);
+    color: #FFFFFF;
+  }
+
+  &.variant-dark {
+    background-color: var(--manga-ink);
+    border-color: var(--manga-ink);
+    color: var(--manga-paper);
+  }
+
+  &.variant-screentone {
+    position: relative;
+    background-color: var(--manga-surface);
+    color: var(--manga-ink);
+    border-color: var(--manga-ink);
+    padding-right: 0.85rem;
+
+    .marker-num {
+      background-color: var(--manga-ink);
+      color: var(--manga-paper);
+      padding: 0.05rem 0.3rem;
+      border-radius: var(--radius-none);
+    }
+
+    .marker-label {
+      color: var(--manga-ink);
+      font-weight: 800;
+    }
+
+    /* Faixa de retícula técnica na extremidade lateral */
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 6px;
+      background-image: var(--screentone-dots-dense);
+      background-size: 4px 4px;
+      border-left: 1px solid var(--manga-ink);
+      pointer-events: none;
+    }
+  }
+
+  /* Ativo */
+  &.is-active {
+    border-color: var(--manga-vermilion);
+    box-shadow: 2px 2px 0px var(--manga-vermilion);
+  }
+}
+
+.marker-number {
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.marker-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.active-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--manga-vermilion);
+}

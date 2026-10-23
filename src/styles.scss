@@ -1,353 +1,260 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* ==========================================================================
+   MAIN STYLESHEET — MANGA EDITORIAL DESIGN SYSTEM
+   erickg.dev // Volume 01
+   ========================================================================== */
 
+@use 'styles/tokens';
+@use 'styles/typography';
+@use 'styles/components';
+@use 'styles/utilities';
+@use 'styles/animations';
+
+/* --- CSS RESET & BOX MODEL --- */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-:root {
-  --gba-bg: #050505; /* Fundo quase breu */
-  --gba-card-bg: #121212; /* Um tom acima do fundo para dar separação */
-  --gba-border-dark: #000000;
-  --gba-border-light: #2A2A2A; /* Para criar o efeito de bisel/chanfro */
-  --gba-text: #F3F4F6;
-  --gba-text-muted: #D1D5DB; /* Cinza claro para não cansar a vista */
-  --gba-red: #D10000; /* Vermelho rico e denso */
-  --gba-red-hover: #FF1A1A; /* Vermelho vibrante para interações */
-  --gba-red-active: #990000;
-  
-  --gba-hp-green: #48D0B0;
-  --gba-mp-blue: #3B82F6;
-  
-  --font-pixel: 'Press Start 2P', monospace;
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--gba-bg);
-  color: var(--gba-text-muted);
-  font-family: var(--font-pixel);
+  background-color: var(--manga-paper);
+  color: var(--manga-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body-md);
+  line-height: 1.7;
   margin: 0;
-  font-size: 0.7rem;
-  line-height: 1.8;
-  text-transform: none; /* Leitura longa em minúsculas/case normal */
+  padding: 0;
+  min-height: 100vh;
 }
 
-/* --- EFEITOS CRT & ACESSIBILIDADE --- */
-
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  /* Linhas horizontais sutis para o efeito CRT */
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.15) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-  pointer-events: none;
-  z-index: 9999;
-}
-
-/* Scrollbar Customizada (Retro Mecânico) */
-::-webkit-scrollbar {
-  width: 12px;
-}
-::-webkit-scrollbar-track {
-  background: var(--gba-bg);
-  border-left: 2px solid var(--gba-border-dark);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--gba-red);
-  border: 2px solid var(--gba-border-dark);
-  border-radius: 0px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gba-red-hover);
-}
-
-/* Seleção de Texto Customizada */
+/* --- SELEÇÃO DE TEXTO EDITORIAL --- */
 ::selection {
-  background: var(--gba-red);
-  color: var(--gba-text);
+  background-color: var(--manga-vermilion);
+  color: #FFFFFF;
 }
+
 ::-moz-selection {
-  background: var(--gba-red);
-  color: var(--gba-text);
+  background-color: var(--manga-vermilion);
+  color: #FFFFFF;
 }
 
-/* Borda de Foco de Acessibilidade */
+/* --- SCROLLBAR ESTILO NANQUIM --- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--manga-paper);
+  border-left: 1.5px solid var(--manga-border-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--manga-ink);
+  border: 1.5px solid var(--manga-paper);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--manga-vermilion);
+}
+
+/* --- SKIP LINK DE ACESSIBILIDADE (WCAG 2.4.1 BYPASS BLOCKS) --- */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  background-color: var(--manga-ink);
+  color: #FFFFFF;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid var(--manga-vermilion);
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-overlay, 9999);
+  text-decoration: none;
+  transition: top var(--transition-snappy);
+
+  &:focus {
+    top: var(--space-4);
+    outline: 2px dashed var(--manga-vermilion);
+    outline-offset: 4px;
+  }
+}
+
+/* --- FOCO VISÍVEL DE ACESSIBILIDADE DE ALTO CONTRASTE (WCAG 2.4.7 / 2.4.11) --- */
 :focus-visible {
-  outline: 2px dashed var(--gba-text);
-  outline-offset: 4px;
+  outline: 2px dashed var(--manga-vermilion);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--manga-paper);
 }
 
-/* --- CLASSES UTILITÁRIAS --- */
+.manga-panel--dark :focus-visible,
+[data-theme="dark"] :focus-visible {
+  outline: 2px dashed #FFFFFF;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--manga-vermilion);
+}
+
+/* --- COMPATIBILIDADE RETROATIVA (PRESERVAÇÃO DO LEGADO GBA) --- */
 .flex { display: flex; }
 .flex-column { flex-direction: column; }
 .flex-grow-1 { flex-grow: 1; }
 .justify-center { justify-content: center; }
 .justify-between { justify-content: space-between; }
 .align-center { align-items: center; }
-.gap-1 { gap: 0.5rem; }
-.gap-2 { gap: 1rem; }
-.gap-3 { gap: 1.5rem; }
-.gap-4 { gap: 2rem; }
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
 .w-full { width: 100%; }
 .h-full { height: 100%; }
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .text-right { text-align: right; }
 .m-0 { margin: 0; }
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mt-3 { margin-top: 1.5rem; }
-.mt-4 { margin-top: 2rem; }
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-.mb-3 { margin-bottom: 1.5rem; }
-.mb-4 { margin-bottom: 2rem; }
-.p-4 { padding: 2rem; }
-.pb-2 { padding-bottom: 1rem; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-
-/* --- GBA UI Components --- */
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.p-4 { padding: var(--space-4); }
+.pb-2 { padding-bottom: var(--space-2); }
+.container { max-width: var(--content-max-xl); margin: 0 auto; padding: 0 var(--space-4); }
 
 .gba-card {
-  background: var(--gba-card-bg);
-  color: var(--gba-text);
-  padding: 1.5rem;
-  border-radius: 4px;
-  /* Efeito tátil de relevo em pixel */
-  border: 2px solid var(--gba-border-dark);
-  box-shadow: inset 2px 2px 0px rgba(255,255,255,0.05), 
-              inset -2px -2px 0px rgba(0,0,0,0.8), 
-              4px 4px 0px rgba(0,0,0,0.5);
-              
+  background: var(--manga-surface);
+  color: var(--manga-ink);
+  padding: var(--space-6);
+  border: var(--border-medium);
+  box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .gba-btn {
-  background: var(--gba-red);
-  color: var(--gba-text);
-  font-family: var(--font-pixel);
-  font-size: 0.7rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 2px;
+  background: var(--manga-ink);
+  color: var(--manga-paper);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  padding: 0.65rem 1.25rem;
+  border: var(--border-medium);
+  box-shadow: var(--shadow-sm);
   cursor: pointer;
   text-transform: uppercase;
-  transition: all 0.1s;
   text-decoration: none;
-  
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 100%;
-  margin-top: auto;
-
-  /* Relevo de acrílico clássico */
-  border: 2px solid var(--gba-border-dark);
-  box-shadow: inset 2px 2px 0px rgba(255,255,255,0.3), 
-              inset -2px -2px 0px rgba(0,0,0,0.4), 
-              3px 3px 0px var(--gba-border-dark);
+  transition: transform var(--transition-snappy), box-shadow var(--transition-snappy);
 
   &:hover {
-    background: var(--gba-red-hover);
-    box-shadow: inset 2px 2px 0px rgba(255,255,255,0.5), 
-                inset -2px -2px 0px rgba(0,0,0,0.4), 
-                3px 3px 0px var(--gba-border-dark);
+    background: #262626;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-md);
   }
 
   &:active {
-    background: var(--gba-red-active);
-    transform: translate(3px, 3px);
-    /* Afunda perdendo a sombra externa */
-    box-shadow: inset 2px 2px 0px rgba(0,0,0,0.6);
+    transform: translate(2px, 2px);
+    box-shadow: none;
   }
 }
 
-/* Secondary Button (Cinza escuro tátil) */
 .gba-btn.gba-btn-secondary {
-  background: var(--gba-card-bg);
-  
-  &:hover {
-    background: var(--gba-border-light);
-  }
+  background: var(--manga-surface);
+  color: var(--manga-ink);
 
-  &:active {
-    background: var(--gba-bg);
+  &:hover {
+    background: var(--manga-surface-muted);
   }
 }
 
 .gba-badge {
   display: inline-block;
-  background: var(--gba-bg);
-  color: var(--gba-red-hover);
-  border: 2px dashed var(--gba-red-active);
-  padding: 0.35rem 0.5rem;
-  font-family: var(--font-pixel);
-  font-size: 0.55rem;
+  background: var(--manga-surface-muted);
+  color: var(--manga-vermilion);
+  border: 1.5px dashed var(--manga-vermilion);
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
   text-transform: uppercase;
-  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.5);
 }
 
 .gba-input {
-  /* Tipografia de sistema limpa para leitura/digitação sem cansar */
-  font-family: sans-serif;
-  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body-md);
   padding: 0.75rem 1rem;
-  /* Sem bordas arredondadas (0) para manter o visual quadrado mecânico */
   border-radius: 0;
-  background-color: var(--gba-bg);
-  color: var(--gba-text);
+  background-color: var(--manga-surface);
+  color: var(--manga-ink);
   width: 100%;
-  box-sizing: border-box;
-
-  /* Borda espessa cinza chumbo */
-  border: 3px solid var(--gba-border-dark);
-  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.8), 
-              inset -2px -2px 0px rgba(255,255,255,0.05);
+  border: var(--border-medium);
+  box-shadow: inset 1px 1px 0px rgba(17, 17, 17, 0.05);
 
   &:focus {
     outline: none;
-    /* Borda acende em vermelho no foco */
-    border-color: var(--gba-red);
-    background-color: #000;
+    border-color: var(--manga-vermilion);
+    box-shadow: 2px 2px 0px var(--manga-vermilion);
   }
 }
 
-/* Tipografia */
-h1, h2, h3, h4, h5, h6, .pixel-font {
-  font-family: var(--font-pixel);
-  text-transform: uppercase;
-  color: var(--gba-text);
-  line-height: 1.4;
-  margin: 0;
+.pixel-font {
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
 }
 
-p, .description {
-  font-size: 0.7rem;
-  line-height: 1.8;
-  color: var(--gba-text-muted);
-  text-transform: none;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
+.text-red {
+  color: var(--manga-vermilion);
 }
 
-.text-red { color: var(--gba-red-hover); }
-
-/* --- RESPONSIVIDADE MOBILE FIXES --- */
-@media (max-width: 768px) {
-  h1 { font-size: 1.5rem !important; }
-  h2 { font-size: 1.2rem !important; }
-  h3 { font-size: 1rem !important; }
-
-  /* Impede o overflow de títulos grandes vazando para fora do card */
-  .gba-card h1, .gba-card h2, .gba-card h3 {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-  
-  /* Diminui o padding interno dos cards para ganhar respiro de tela */
-  .gba-card {
-    padding: 1rem !important;
-  }
-
-  /* Força elementos lado a lado (ex: START QUEST) a se empilharem */
-  .mobile-stack {
-    flex-direction: column !important;
-    width: 100%;
-  }
-  .mobile-stack > * {
-    width: 100% !important;
-    margin-bottom: 0.75rem;
-  }
-}
-
-/* Efeito Typewriter RPG */
-.typing-cursor::after {
-  content: ' █';
-  animation: blink 1s step-start infinite;
-  color: var(--gba-text-muted);
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-/* --- Custom GBA Scrollbar --- */
-::-webkit-scrollbar {
-  width: 14px;
-  height: 14px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--gba-bg);
-  border-left: 3px solid var(--gba-border-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gba-red);
-  border: 3px solid var(--gba-border-dark);
-  border-radius: 0;
-  /* Cria uma textura tátil na barra usando box-shadow interno */
-  box-shadow: inset 2px 2px 0px rgba(255, 255, 255, 0.2), inset -2px -2px 0px rgba(0, 0, 0, 0.4);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gba-red-hover);
-}
-
-/* --- Pixel Art Cursors --- */
-body {
-  /* Cursor padrão (Seta Vermelha e Branca) */
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23E60012" stroke="%23FFFFFF" stroke-width="2" stroke-linejoin="miter" d="M2,2 L18,8 L11,11 L16,18 L12,21 L7,13 L2,18 Z" shape-rendering="crispEdges"/></svg>'), auto;
-}
-
-a, button, .gba-btn, input, textarea {
-  /* Cursor de interação (Pointer Clássico em Pixel) */
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23E60012" stroke="%23FFFFFF" stroke-width="2" d="M10,2 L10,6 L6,6 L6,12 L2,12 L2,22 L14,22 L14,16 L18,16 L18,10 L14,10 L14,2 Z" shape-rendering="crispEdges"/></svg>'), pointer !important;
-}
-
-/* --- GBA Markdown Renderer --- */
+/* RENDERIZADOR MARKDOWN */
 markdown {
   display: block;
-  color: var(--gba-text);
-  font-family: sans-serif;
-  line-height: 1.8;
-  
+  color: var(--manga-ink);
+  font-family: var(--font-body);
+  line-height: 1.7;
+
   h1, h2, h3 {
-    font-family: var(--font-pixel);
-    color: var(--gba-red);
-    margin-top: 2rem;
-    border-bottom: 2px dashed var(--gba-border-dark);
-    padding-bottom: 0.5rem;
+    font-family: var(--font-heading);
+    color: var(--manga-ink);
+    margin-top: var(--space-6);
+    border-bottom: var(--border-thin);
+    padding-bottom: var(--space-2);
   }
-  
-  /* O Loot / Code Blocks */
+
   pre {
-    background: #000;
-    border: 2px solid var(--gba-border-dark);
-    padding: 1rem;
-    overflow-x: auto;
+    background: var(--manga-surface-dark);
+    color: var(--manga-text-light);
+    border: var(--border-medium);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-sm);
   }
-  
+
   code {
-    font-family: 'Courier New', Courier, monospace;
-    color: #00FF00; /* Hacker Green para os códigos */
+    font-family: var(--font-mono);
+    color: var(--manga-vermilion);
   }
-  
+
   blockquote {
-    border-left: 4px solid var(--gba-red);
-    padding-left: 1rem;
+    border-left: 4px solid var(--manga-vermilion);
+    padding-left: var(--space-4);
     margin-left: 0;
     font-style: italic;
-    color: #a1a1aa;
+    color: var(--manga-gray);
+    background-color: var(--manga-surface-muted);
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
   }
 }

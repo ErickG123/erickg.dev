@@ -1,0 +1,15 @@
+<div
+  class="panel-caption"
+  [ngClass]="captionClasses()"
+  [attr.data-type]="type()"
+>
+  @if (stampText()) {
+    <span class="caption-stamp manga-mono" [class.stamp-accent]="vermilionAccent()">
+      {{ stampText() }}
+    </span>
+  }
+
+  <div class="caption-body">
+    <ng-content></ng-content>
+  </div>
+</div>

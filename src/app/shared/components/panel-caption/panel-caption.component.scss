@@ -1,0 +1,71 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.panel-caption {
+  position: relative;
+  padding: var(--space-3) var(--space-4);
+  box-sizing: border-box;
+
+  /* Tipo Narration: Caixa editorial padrão de mangá */
+  &.type-narration {
+    background-color: var(--manga-surface);
+    border: var(--border-medium);
+    box-shadow: var(--shadow-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-body-md);
+  }
+
+  /* Tipo Voiceover: Diálogo com borda dupla ou destaque */
+  &.type-voiceover {
+    background-color: var(--manga-surface);
+    border-left: 4px solid var(--manga-vermilion);
+    border-top: var(--border-thin);
+    border-right: var(--border-thin);
+    border-bottom: var(--border-thin);
+    font-style: italic;
+  }
+
+  /* Tipo Technical: Log de telemetria / código */
+  &.type-technical {
+    background-color: var(--manga-ink);
+    color: var(--manga-text-light);
+    border: var(--border-thin);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    box-shadow: 2px 2px 0px var(--manga-gray);
+  }
+
+  /* Tipo Footnote: Nota de rodapé discreta */
+  &.type-footnote {
+    background-color: transparent;
+    border-top: 1px dashed var(--manga-gray);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--manga-gray);
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+  }
+
+  &.accent-vermilion {
+    border-color: var(--manga-vermilion);
+  }
+}
+
+.caption-stamp {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-1);
+  color: var(--manga-gray);
+
+  &.stamp-accent {
+    color: var(--manga-vermilion);
+  }
+}
+
+.caption-body {
+  line-height: 1.6;
+}

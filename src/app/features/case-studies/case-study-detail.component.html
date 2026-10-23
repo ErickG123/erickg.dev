@@ -1,0 +1,269 @@
+@if (caseStudy(); as study) {
+  <article class="manga-container case-study-page py-6">
+
+    <!-- BARRA SUPERIOR DE NAVEGAÇÃO E RETORNO -->
+    <nav class="case-study-top-nav manga-panel p-3 mb-6 flex justify-between align-center" aria-label="Navegação do Estudo de Caso">
+      <a
+        routerLink="/"
+        fragment="projects"
+        class="manga-btn manga-btn--secondary"
+        aria-label="Retornar à seção de obras selecionadas"
+      >
+        &larr; VOLTAR PARA OBRAS SELECIONADAS
+      </a>
+
+      <div class="manga-flex manga-gap-2 manga-items-center">
+        <span class="manga-mono" style="font-weight: 800; font-size: 0.75rem;">ESTADO:</span>
+        <span class="manga-badge manga-badge--vermilion">{{ study.statusBadge }}</span>
+      </div>
+    </nav>
+
+    <!-- CABEÇALHO DO ESTUDO DE CASO -->
+    <app-chapter-header
+      [chapter]="study.caseNumber"
+      [title]="study.title"
+      [subtitle]="study.subtitle"
+      [meta]="study.category + ' &bull; ' + study.readTime"
+      [accentBadge]="true"
+    ></app-chapter-header>
+
+    <!-- METADADOS TÉCNICOS & ILUSTRAÇÃO HERO -->
+    <div class="manga-grid mb-8">
+      <!-- Coluna da Arte -->
+      <div class="col-8">
+        <app-artwork-frame
+          aspectRatio="16:9"
+          [frameLabel]="study.caseNumber + ' // BLUEPRINT'"
+          [statusBadge]="study.statusBadge"
+          statusBadgeVariant="vermilion"
+        >
+          <app-manga-image
+            [src]="study.heroIllustration"
+            [alt]="'Ilustração esquemática de ' + study.title"
+            aspectRatio="16:9"
+          ></app-manga-image>
+        </app-artwork-frame>
+      </div>
+
+      <!-- Coluna de Metadados Editoriais -->
+      <div class="col-4">
+        <app-manga-panel variant="default" class="h-full flex flex-column justify-between">
+          <div>
+            <div class="panel-frame-header mb-3">
+              <span class="manga-mono" style="font-weight: 800; font-size: 0.75rem;">FICHA TÉCNICA</span>
+              <span class="manga-mono manga-text-gray" style="font-size: 0.7rem;">{{ study.date }}</span>
+            </div>
+
+            <div class="manga-mono" style="font-size: 0.8rem; line-height: 1.8; color: var(--manga-gray); margin-bottom: var(--space-4);">
+              <div><strong>AUTORIA:</strong> {{ study.author }}</div>
+              <div><strong>CATEGORIA:</strong> {{ study.category }}</div>
+              <div><strong>TEMPO:</strong> {{ study.readTime }}</div>
+            </div>
+
+            <div class="mb-4">
+              <span class="manga-mono" style="font-size: 0.7rem; font-weight: 700; display: block; margin-bottom: var(--space-2);">
+                STACK VERIFICADA:
+              </span>
+              <div class="manga-flex manga-flex-wrap manga-gap-2">
+                @for (tech of study.techStack; track tech) {
+                  <span class="manga-badge">{{ tech }}</span>
+                }
+              </div>
+            </div>
+          </div>
+
+          @if (study.githubUrl) {
+            <div class="pt-3" style="border-top: var(--border-thin);">
+              <a
+                [href]="study.githubUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="manga-btn manga-btn--primary w-full text-center"
+              >
+                REPOSITÓRIO NO GITHUB &nearr;
+              </a>
+            </div>
+          }
+        </app-manga-panel>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         CORPO EDITORIAL: OS 9 TÓPICOS ESTRUTURADOS DO ESTUDO DE CASO
+         ========================================================================= -->
+
+    <!-- 1. CONTEXTO -->
+    <section class="case-section mb-6" aria-labelledby="heading-context">
+      <app-manga-panel variant="default">
+        <h3 id="heading-context" class="manga-heading-lg mb-2">{{ study.context.title }}</h3>
+        <p class="manga-body-lg">{{ study.context.content }}</p>
+
+        @if (study.context.bulletPoints) {
+          <ul class="manga-bullets mt-3">
+            @for (bp of study.context.bulletPoints; track bp) {
+              <li>{{ bp }}</li>
+            }
+          </ul>
+        }
+      </app-manga-panel>
+    </section>
+
+    <!-- 2. O PROBLEMA -->
+    <section class="case-section mb-6" aria-labelledby="heading-problem">
+      <app-manga-panel variant="default">
+        <h3 id="heading-problem" class="manga-heading-lg mb-2">{{ study.problem.title }}</h3>
+        <p class="manga-body-lg">{{ study.problem.content }}</p>
+
+        @if (study.problem.highlightBox; as box) {
+          <app-panel-caption type="voiceover" [stampText]="box.title" [vermilionAccent]="true">
+            <strong>{{ box.text }}</strong>
+          </app-panel-caption>
+        }
+      </app-manga-panel>
+    </section>
+
+    <!-- 3. RESTRIÇÕES & 4. ALTERNATIVAS CONSIDERADAS -->
+    <div class="manga-grid mb-6">
+      <div class="col-6">
+        <app-manga-panel variant="dashed" class="h-full">
+          <h3 class="manga-heading-lg mb-2">{{ study.constraints.title }}</h3>
+          <p class="manga-body-md">{{ study.constraints.content }}</p>
+          @if (study.constraints.bulletPoints) {
+            <ul class="manga-bullets mt-3">
+              @for (bp of study.constraints.bulletPoints; track bp) {
+                <li>{{ bp }}</li>
+              }
+            </ul>
+          }
+        </app-manga-panel>
+      </div>
+
+      <div class="col-6">
+        <app-manga-panel variant="default" class="h-full">
+          <h3 class="manga-heading-lg mb-2">{{ study.alternativesConsidered.title }}</h3>
+          <p class="manga-body-md">{{ study.alternativesConsidered.content }}</p>
+          @if (study.alternativesConsidered.bulletPoints) {
+            <ul class="manga-bullets mt-3">
+              @for (bp of study.alternativesConsidered.bulletPoints; track bp) {
+                <li>{{ bp }}</li>
+              }
+            </ul>
+          }
+        </app-manga-panel>
+      </div>
+    </div>
+
+    <!-- 5. ARQUITETURA E DECISÕES TÉCNICAS -->
+    <section class="case-section mb-6" aria-labelledby="heading-arch">
+      <app-manga-panel variant="default">
+        <h3 id="heading-arch" class="manga-heading-lg mb-2">{{ study.architectureDecisions.title }}</h3>
+        <p class="manga-body-lg">{{ study.architectureDecisions.content }}</p>
+        @if (study.architectureDecisions.bulletPoints) {
+          <ul class="manga-bullets mt-3">
+            @for (bp of study.architectureDecisions.bulletPoints; track bp) {
+              <li><strong>{{ bp.split(':')[0] }}:</strong>{{ bp.split(':')[1] || '' }}</li>
+            }
+          </ul>
+        }
+      </app-manga-panel>
+    </section>
+
+    <!-- 6. IMPLEMENTAÇÃO (CÓDIGO) -->
+    <section class="case-section mb-6" aria-labelledby="heading-impl">
+      <app-manga-panel variant="dark">
+        <div class="panel-frame-header mb-3" style="border-bottom-color: var(--manga-gray);">
+          <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem; color: #FFF;">
+            {{ study.implementation.title }}
+          </span>
+          <span class="manga-badge manga-badge--vermilion">SOURCE CODE</span>
+        </div>
+
+        <p class="manga-body-md mb-3" style="color: var(--manga-text-light);">
+          {{ study.implementation.content }}
+        </p>
+
+        @if (study.implementation.codeSnippet; as snippet) {
+          <div class="code-terminal-block p-4 mb-2">
+            <pre class="manga-mono code-block"><code>{{ snippet.code }}</code></pre>
+          </div>
+          @if (snippet.caption) {
+            <span class="manga-mono code-caption">
+              // {{ snippet.caption }}
+            </span>
+          }
+        }
+      </app-manga-panel>
+    </section>
+
+    <!-- 7. TESTES E VALIDAÇÃO -->
+    <section class="case-section mb-6" aria-labelledby="heading-tests">
+      <app-manga-panel variant="default">
+        <h3 id="heading-tests" class="manga-heading-lg mb-2">{{ study.testingAndValidation.title }}</h3>
+        <p class="manga-body-lg">{{ study.testingAndValidation.content }}</p>
+        @if (study.testingAndValidation.bulletPoints) {
+          <ul class="manga-bullets mt-3">
+            @for (bp of study.testingAndValidation.bulletPoints; track bp) {
+              <li>{{ bp }}</li>
+            }
+          </ul>
+        }
+      </app-manga-panel>
+    </section>
+
+    <!-- 8. RESULTADOS COMPROVADOS & 9. APRENDIZADOS -->
+    <div class="manga-grid mb-8">
+      <div class="col-6">
+        <app-manga-panel variant="default" class="h-full">
+          <h3 class="manga-heading-lg mb-2">{{ study.provenResults.title }}</h3>
+          <p class="manga-body-md">{{ study.provenResults.content }}</p>
+          @if (study.provenResults.bulletPoints) {
+            <ul class="manga-bullets mt-3">
+              @for (bp of study.provenResults.bulletPoints; track bp) {
+                <li style="color: var(--manga-vermilion); font-weight: 700;">
+                  <span style="color: var(--manga-ink); font-weight: 400;">{{ bp }}</span>
+                </li>
+              }
+            </ul>
+          }
+        </app-manga-panel>
+      </div>
+
+      <div class="col-6">
+        <app-manga-panel variant="dashed" class="h-full flex flex-column justify-between">
+          <div>
+            <h3 class="manga-heading-lg mb-2">{{ study.learningsAndNextSteps.title }}</h3>
+            <p class="manga-body-md">{{ study.learningsAndNextSteps.content }}</p>
+            @if (study.learningsAndNextSteps.bulletPoints) {
+              <ul class="manga-bullets mt-3">
+                @for (bp of study.learningsAndNextSteps.bulletPoints; track bp) {
+                  <li>{{ bp }}</li>
+                }
+              </ul>
+            }
+          </div>
+
+          <div class="mt-4 pt-3" style="border-top: 1px dashed var(--manga-gray);">
+            <span class="manga-mono" style="font-size: 0.7rem; color: var(--manga-gray);">
+              [Registro formalizado pelo autor &bull; Volume 01]
+            </span>
+          </div>
+        </app-manga-panel>
+      </div>
+    </div>
+
+    <app-editorial-divider variant="solid" label="FIM DO ESTUDO DE CASO"></app-editorial-divider>
+
+    <!-- NAVEGAÇÃO DE ENCERRAMENTO -->
+    <div class="case-study-bottom-nav manga-text-center py-4">
+      <a
+        routerLink="/"
+        fragment="projects"
+        class="manga-btn manga-btn--primary"
+        aria-label="Retornar à lista de obras selecionadas na home"
+      >
+        &larr; RETORNAR À SEÇÃO DE OBRAS SELECIONADAS
+      </a>
+    </div>
+
+  </article>
+}

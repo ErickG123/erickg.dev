@@ -1,21 +1,16 @@
-@if (isBooting()) {
-  <div class="gba-boot-screen">
-    <div class="boot-logo">ERICK_DEV</div>
-    <div class="boot-subtitle">Licensed by the Developer</div>
-  </div>
-}
+<a href="#main-content" class="skip-link">PULAR PARA O CONTEÚDO PRINCIPAL [TAB]</a>
 
 <app-achievement-toast></app-achievement-toast>
 
 <div class="flex flex-column" style="min-height: 100vh;">
   <app-header></app-header>
-  <main class="flex-grow-1 p-4 route-container" [@routeAnimations]="prepareRoute(outlet)">
+  <main id="main-content" tabindex="-1" class="flex-grow-1 p-4 route-container" [@routeAnimations]="prepareRoute(outlet)" aria-label="Conteúdo Principal">
     <router-outlet #outlet="outlet"></router-outlet>
   </main>
   
   <footer class="gba-card flex justify-center gap-4 mt-4" style="margin: 1rem; padding: 1rem; text-align: center;">
-    <span class="pixel-font" style="font-size: 0.6rem;">&copy; 2026 ERICK G. // LEVEL 99</span>
-    <span class="pixel-font text-red" style="font-size: 0.6rem;">MADE WITH COFFEE AND MAGIC</span>
+    <span class="manga-mono" style="font-size: 0.75rem;">&copy; {{ currentYear }} ERICK GABRIEL // TALES OF AN ENGINEER</span>
+    <span class="manga-mono manga-text-vermilion" style="font-size: 0.75rem;">RUNTIME EDITION &bull; ANGULAR 21 ZONELESS</span>
   </footer>
 </div>
 

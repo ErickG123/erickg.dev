@@ -1,0 +1,97 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.manga-image-container {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  background-color: var(--manga-surface);
+  border: var(--border-medium);
+  box-shadow: var(--shadow-sm);
+  margin: 0;
+}
+
+/* Proporções Canônicas */
+.manga-image-container[data-aspect="16:9"] { aspect-ratio: 16 / 9; }
+.manga-image-container[data-aspect="1:1"] { aspect-ratio: 1 / 1; }
+.manga-image-container[data-aspect="2:3"] { aspect-ratio: 2 / 3; }
+.manga-image-container[data-aspect="4:3"] { aspect-ratio: 4 / 3; }
+
+.manga-image-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity var(--transition-smooth), transform var(--transition-editorial);
+  will-change: opacity, transform;
+
+  &.is-loaded {
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .manga-image-container:hover .manga-image-element {
+    transform: scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .manga-image-element {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+.manga-image-skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--manga-surface-muted);
+  z-index: 1;
+}
+
+.skeleton-text {
+  background-color: var(--manga-ink);
+  color: var(--manga-paper);
+  padding: 0.25rem 0.65rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.manga-image-fallback-view {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.fallback-frame {
+  width: 100%;
+  height: 100%;
+  border: var(--border-dashed);
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.fallback-badge {
+  background-color: var(--manga-vermilion);
+  color: #FFFFFF;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.manga-image-caption {
+  padding: var(--space-2) var(--space-3);
+  font-size: 0.7rem;
+  background-color: var(--manga-surface-dark);
+  color: var(--manga-text-light);
+  border-top: var(--border-thin);
+}

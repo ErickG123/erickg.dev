@@ -1,0 +1,93 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.manga-hero-wrapper {
+  position: relative;
+  border-width: 4px;
+}
+
+.hero-text-column {
+  border-left: 4px solid var(--manga-vermilion);
+  padding-left: var(--space-4);
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    padding-left: var(--space-6);
+  }
+}
+
+.hero-tagline {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.hero-image-column {
+  margin-top: var(--space-6);
+  position: relative;
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
+}
+
+.hero-image-frame {
+  position: relative;
+  box-shadow: var(--shadow-md);
+  background-color: var(--manga-surface);
+
+  /* Mat decorativo com retícula clássica deslocada sob a arte */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -6px -6px 6px 6px;
+    background-image: var(--screentone-dots-medium);
+    background-size: 8px 8px;
+    background-color: var(--manga-paper);
+    z-index: -1;
+    border: var(--border-thin);
+    pointer-events: none;
+  }
+}
+
+/* Indicador Discreto de Rolagem */
+.hero-scroll-prompt {
+  border-top: var(--border-dashed);
+}
+
+.scroll-link {
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: color var(--transition-snappy);
+
+  &:hover {
+    color: var(--manga-vermilion) !important;
+  }
+}
+
+.scroll-arrow {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+/* Respeito à Acessibilidade de Movimento */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-arrow {
+    animation: none !important;
+  }
+}

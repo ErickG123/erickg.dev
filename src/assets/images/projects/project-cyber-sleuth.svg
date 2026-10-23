@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%" aria-label="Ilustração editorial de Cyber Sleuth Toolkit">
+  <defs>
+    <!-- Retícula de Linhas Diagonais -->
+    <pattern id="diag-sleuth" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#111111" stroke-width="1.2" opacity="0.25"/>
+    </pattern>
+    <pattern id="dots-sleuth" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#111111" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Fundo Paper White -->
+  <rect width="800" height="450" fill="#F4F0E9"/>
+
+  <!-- Painel de Fundo com Linhas de Análise Forense -->
+  <rect x="40" y="30" width="720" height="390" fill="none" stroke="#111111" stroke-width="2"/>
+  <rect x="40" y="30" width="300" height="390" fill="url(#diag-sleuth)"/>
+
+  <!-- Marcas de Corte -->
+  <path d="M 20 40 L 20 20 L 40 20 M 760 20 L 780 20 L 780 40 M 20 410 L 20 430 L 40 430 M 760 430 L 780 430 L 780 410" fill="none" stroke="#111111" stroke-width="1.5"/>
+
+  <!-- Terminal Forense Monocromático -->
+  <rect x="70" y="70" width="360" height="260" fill="#111111" stroke="#111111" stroke-width="2"/>
+  <rect x="70" y="70" width="360" height="26" fill="#222222"/>
+  <text x="85" y="87" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#F4F0E9" font-weight="700">FORENSIC_DISSECTOR // LINUX_KERNEL_MEM</text>
+  
+  <text x="85" y="120" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#F4F0E9">0x00007FFF  7F 45 4C 46 02 01 01 00  .ELF....</text>
+  <text x="85" y="140" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#F4F0E9">0x0000800F  00 00 00 00 00 00 00 00  ........</text>
+  <text x="85" y="160" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#D9363E" font-weight="700">0x0000801F  53 59 53 5F 43 41 4C 4C  [MATCHED]</text>
+  <text x="85" y="180" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#F4F0E9">0x0000802F  48 89 E5 48 83 EC 20 48  H..H...H</text>
+  <text x="85" y="200" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#77736F">0x0000803F  89 7D E8 48 8B 45 E8 8B  .}..E...</text>
+  <text x="85" y="230" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#D9363E">> sleuth --trace --evidence-dump ./pcap</text>
+  <text x="85" y="250" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#F4F0E9">[+] 1,428 forensic artifacts extracted.</text>
+  <text x="85" y="270" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#77736F">[+] SHA256 integrity hash: 8f2a...c091</text>
+  <rect x="85" y="290" width="100" height="18" fill="#D9363E"/>
+  <text x="135" y="303" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#FFFFFF" font-weight="800" text-anchor="middle">CHAIN VERIFIED</text>
+
+  <!-- Lente / Retícula Forense com Alvo Central -->
+  <g transform="translate(520, 200)">
+    <!-- Círculo Exterior da Lupa com Retícula -->
+    <circle cx="0" cy="0" r="110" fill="#F4F0E9" stroke="#111111" stroke-width="4"/>
+    <circle cx="0" cy="0" r="102" fill="url(#dots-sleuth)"/>
+    <circle cx="0" cy="0" r="75" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <circle cx="0" cy="0" r="35" fill="none" stroke="#D9363E" stroke-width="2" stroke-dasharray="4 3"/>
+
+    <!-- Retículos e Mira Ortogonal -->
+    <line x1="-125" y1="0" x2="-80" y2="0" stroke="#111111" stroke-width="2"/>
+    <line x1="80" y1="0" x2="125" y2="0" stroke="#111111" stroke-width="2"/>
+    <line x1="0" y1="-125" x2="0" y2="-80" stroke="#111111" stroke-width="2"/>
+    <line x1="0" y1="80" x2="0" y2="125" stroke="#111111" stroke-width="2"/>
+
+    <!-- Cruz Central -->
+    <line x1="-15" y1="0" x2="15" y2="0" stroke="#D9363E" stroke-width="2"/>
+    <line x1="0" y1="-15" x2="0" y2="15" stroke="#D9363E" stroke-width="2"/>
+
+    <!-- Ponto de Alvo Forense -->
+    <circle cx="0" cy="0" r="4" fill="#D9363E"/>
+
+    <!-- Cabo da Lupa em Nanquim -->
+    <polygon points="75,75 140,140 125,155 60,90" fill="#111111" stroke="#111111" stroke-width="2"/>
+  </g>
+
+  <!-- Hanko Stamp Autoral Vermelho: SLEUTH / 捜査 -->
+  <g transform="translate(680, 50) rotate(-3)">
+    <rect x="0" y="0" width="70" height="70" fill="none" stroke="#D9363E" stroke-width="2.5" rx="3"/>
+    <text x="35" y="30" font-family="'Anton', sans-serif" font-size="18" fill="#D9363E" text-anchor="middle">SLEUTH</text>
+    <line x1="12" y1="36" x2="58" y2="36" stroke="#D9363E" stroke-width="1.5"/>
+    <text x="35" y="55" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#D9363E" font-weight="900" text-anchor="middle">捜査</text>
+  </g>
+
+  <!-- Metadados Técnicos Editoriais Inferiores -->
+  <text x="50" y="415" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#111111" font-weight="800">FIG 02.2 // CYBER SLEUTH TOOLKIT</text>
+  <text x="50" y="430" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#77736F">DIGITAL FORENSIC INVESTIGATION &bull; MEMORY DISSECTION SUITE</text>
+</svg>

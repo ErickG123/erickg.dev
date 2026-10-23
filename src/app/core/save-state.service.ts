@@ -1,11 +1,8 @@
 import { Injectable, signal, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { track } from '@vercel/analytics';
-
-export interface Achievement {
-  id: string;
-  title: string;
-}
+import type { Achievement } from './models/achievement.interface';
+export type { Achievement };
 
 @Injectable({
   providedIn: 'root'

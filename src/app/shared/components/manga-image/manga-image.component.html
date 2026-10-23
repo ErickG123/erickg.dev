@@ -1,0 +1,35 @@
+<figure class="manga-image-container manga-panel" [class.has-error]="hasError()" [attr.data-aspect]="aspectRatio()">
+  @if (isLoading() && !hasError()) {
+    <div class="manga-image-skeleton screentone-dots-medium" aria-hidden="true">
+      <span class="skeleton-text manga-mono">ENTINTANDO PAINEL...</span>
+    </div>
+  }
+
+  @if (!hasError()) {
+    <img
+      [src]="src()"
+      [alt]="alt()"
+      [attr.loading]="priority() ? 'eager' : 'lazy'"
+      [attr.fetchpriority]="priority() ? 'high' : 'auto'"
+      (load)="onLoad()"
+      (error)="onError()"
+      class="manga-image-element"
+      [class.is-loaded]="!isLoading()"
+    />
+  } @else {
+    <div class="manga-image-fallback-view flex flex-column align-center justify-center p-4">
+      <div class="fallback-frame screentone-dots-light flex flex-column align-center justify-center w-full h-full">
+        <span class="manga-mono fallback-badge mb-2">[ PAINEL EM RESTAURAÇÃO ]</span>
+        <span class="manga-mono text-surface" style="font-size: 0.75rem; color: var(--manga-ink); text-align: center; padding: 0.25rem 0.6rem; border: var(--border-thin);">
+          {{ alt() || 'Ilustração editorial indisponível' }}
+        </span>
+      </div>
+    </div>
+  }
+
+  @if (caption()) {
+    <figcaption class="manga-image-caption manga-mono">
+      {{ caption() }}
+    </figcaption>
+  }
+</figure>

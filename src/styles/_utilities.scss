@@ -1,0 +1,296 @@
+/* ==========================================================================
+   UTILITIES & LAYOUT — MANGA EDITORIAL SYSTEM
+   ========================================================================== */
+
+/* --- CONTAINER EDITORIAL --- */
+.manga-container {
+  width: 100%;
+  max-width: var(--content-max-xl);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+.manga-container--narrow {
+  max-width: var(--content-max-md);
+}
+
+.manga-container--wide {
+  max-width: var(--content-max-2xl);
+}
+
+/* --- GRID ASSIMÉTRICO DE QUADRINHOS (MANGA COMIC GRID) --- */
+.manga-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  width: 100%;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* Enquadramentos Assimétricos */
+@media (min-width: 768px) {
+  .col-12 { grid-column: span 12; }
+  .col-8  { grid-column: span 8; }
+  .col-7  { grid-column: span 7; }
+  .col-6  { grid-column: span 6; }
+  .col-5  { grid-column: span 5; }
+  .col-4  { grid-column: span 4; }
+  .col-3  { grid-column: span 3; }
+}
+
+/* Sarjeta Escura de Separação (Gutter Strip) */
+.gutter-divider {
+  width: 100%;
+  height: 4px;
+  background-color: var(--manga-ink);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-8);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -4px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--manga-vermilion);
+    transition: transform var(--transition-snappy);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::after {
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.gutter-divider--dashed {
+  height: 0;
+  border-top: var(--border-dashed);
+  background-color: transparent;
+
+  &::after {
+    display: none;
+  }
+}
+
+/* --- RETÍCULAS CSS DECORATIVAS (SCREENTONES) --- */
+.screentone-dots-dense {
+  background-image: var(--screentone-dots-dense);
+  background-size: 6px 6px;
+}
+
+.screentone-dots-medium {
+  background-image: var(--screentone-dots-medium);
+  background-size: 8px 8px;
+}
+
+.screentone-dots-light {
+  background-image: var(--screentone-dots-light);
+  background-size: 10px 10px;
+}
+
+.screentone-dots-subtle {
+  background-image: var(--screentone-dots-subtle);
+  background-size: 8px 8px;
+}
+
+.screentone-lines-diagonal {
+  background-image: var(--screentone-lines);
+}
+
+.screentone-crosshatch {
+  background-image: var(--screentone-crosshatch);
+}
+
+.blueprint-grid-bg {
+  background-image: var(--grid-blueprint);
+  background-size: 20px 20px;
+}
+
+/* --- SUPERFÍCIES DE LEITURA LIMPAS (TEXT SURFACES) ---
+   Garante contraste estrito e legibilidade eliminando conflitos com retículas */
+.text-surface,
+.manga-text-surface {
+  position: relative;
+  z-index: 1;
+  background-color: var(--manga-surface);
+  color: var(--manga-ink);
+}
+
+.text-surface--paper {
+  background-color: var(--manga-paper);
+}
+
+.text-surface--muted {
+  background-color: var(--manga-surface-muted);
+}
+
+.text-surface--dark {
+  background-color: var(--manga-ink);
+  color: var(--manga-text-light);
+}
+
+/* Painel decorado com retícula isolada no plano de fundo */
+.halftone-background {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--screentone-dots-subtle);
+    background-size: 8px 8px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.85;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Cantoneira decorativa com retícula restrita aos cantos */
+.halftone-corner-accent {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 48px;
+    height: 48px;
+    background-image: var(--screentone-dots-light);
+    background-size: 6px 6px;
+    pointer-events: none;
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    z-index: 0;
+    opacity: 0.6;
+  }
+}
+
+/* Marcas de corte editorial (Crop Marks) */
+.manga-crop-marks {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    border-color: var(--manga-ink);
+    border-style: solid;
+  }
+
+  &::before {
+    top: -2px;
+    left: -2px;
+    border-width: 2px 0 0 2px;
+  }
+
+  &::after {
+    bottom: -2px;
+    right: -2px;
+    border-width: 0 2px 2px 0;
+  }
+}
+
+/* --- LINHAS DE AÇÃO E VELOCIDADE (SPEED LINES) --- */
+.speed-lines-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background: repeating-radial-gradient(
+    circle at center,
+    transparent 0,
+    transparent 20px,
+    var(--manga-ink) 21px,
+    var(--manga-ink) 23px
+  );
+  mask-image: radial-gradient(ellipse at center, transparent 30%, black 80%);
+}
+
+.speed-lines-horizontal {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 8px,
+      var(--manga-ink) 8px,
+      var(--manga-ink) 9px
+    );
+  }
+}
+
+/* --- UTILITÁRIOS FLEX & ALINHAMENTO --- */
+.manga-flex { display: flex; }
+.manga-flex-col { flex-direction: column; }
+.manga-flex-wrap { flex-wrap: wrap; }
+.manga-items-center { align-items: center; }
+.manga-items-start { align-items: flex-start; }
+.manga-items-end { align-items: flex-end; }
+.manga-justify-center { justify-content: center; }
+.manga-justify-between { justify-content: space-between; }
+.manga-justify-end { justify-content: flex-end; }
+
+.manga-gap-1 { gap: var(--space-1); }
+.manga-gap-2 { gap: var(--space-2); }
+.manga-gap-3 { gap: var(--space-3); }
+.manga-gap-4 { gap: var(--space-4); }
+.manga-gap-6 { gap: var(--space-6); }
+.manga-gap-8 { gap: var(--space-8); }
+
+.manga-w-full { width: 100%; }
+.manga-text-center { text-align: center; }
+.manga-text-right { text-align: right; }
+.manga-text-vermilion { color: var(--manga-vermilion-text, #B32027); }
+.manga-text-gray { color: var(--manga-gray); }
+
+/* --- SUPORTE A MOVIMENTO REDUZIDO (A11Y) --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .manga-panel--interactive:hover {
+    transform: none !important;
+  }
+
+  .manga-btn:hover,
+  .manga-btn:active {
+    transform: none !important;
+  }
+}

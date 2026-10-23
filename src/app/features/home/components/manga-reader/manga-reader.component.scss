@@ -1,0 +1,145 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.manga-reader-wrapper {
+  width: 100%;
+  max-width: var(--content-max-xl);
+  margin: 0 auto;
+}
+
+/* Barra de Controle Superior */
+.reader-toolbar {
+  padding: var(--space-4) var(--space-5);
+  border-width: 3.5px;
+  background-color: var(--manga-surface);
+  position: sticky;
+  top: var(--space-4);
+  z-index: var(--z-sticky);
+}
+
+.btn-mode-toggle {
+  font-size: 0.75rem;
+}
+
+/* Palco da Folha do Livro (Page Stage) */
+.reader-book-stage {
+  perspective: 1400px;
+  min-height: 580px;
+  transition: transform 0.22s var(--ease-snap), opacity 0.22s ease-out;
+  transform-origin: left center;
+
+  &.turn-forward {
+    transform: rotateY(-7deg) translateX(-10px);
+    opacity: 0.75;
+  }
+
+  &.turn-backward {
+    transform: rotateY(7deg) translateX(10px);
+    opacity: 0.75;
+  }
+}
+
+.manga-page-sheet {
+  background-color: var(--manga-paper);
+  border-width: 4px;
+  box-shadow: var(--shadow-lg);
+  min-height: 560px;
+  padding: var(--space-6);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.22s ease;
+
+  /* Sarjeta de dobra interior do mangá (spine shadow) */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 8px;
+    background: linear-gradient(to right, rgba(17, 17, 17, 0.1), transparent);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  @media (min-width: 768px) {
+    padding: var(--space-8);
+  }
+}
+
+.page-content {
+  animation: pageFadeIn 0.18s var(--ease-editorial) forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0.5;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Paginação por Miniaturas no Rodapé */
+.pagination-dot-btn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-thin);
+  background-color: var(--manga-surface);
+  color: var(--manga-ink);
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all var(--transition-snappy);
+
+  &:hover {
+    background-color: var(--manga-surface-muted);
+  }
+
+  &.is-active {
+    background-color: var(--manga-vermilion);
+    color: #FFFFFF;
+    border-color: var(--manga-ink);
+    transform: translate(-1px, -1px);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+/* Suporte a Movimento Reduzido (A11Y) */
+@media (prefers-reduced-motion: reduce) {
+  .reader-book-stage {
+    perspective: none !important;
+    transform: none !important;
+    transition: opacity 0.1s ease !important;
+
+    &.turn-forward,
+    &.turn-backward {
+      transform: none !important;
+      opacity: 0.8 !important;
+    }
+  }
+
+  .page-content {
+    animation: none !important;
+  }
+}
+
+/* Classe utilitária sr-only para anúncios de acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

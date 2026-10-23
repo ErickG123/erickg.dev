@@ -1,0 +1,19 @@
+<div
+  class="chapter-marker manga-flex manga-items-center"
+  [ngClass]="markerClasses()"
+  [attr.aria-label]="ariaLabel()"
+>
+  <span class="marker-number manga-mono">
+    #{{ number() }}
+  </span>
+
+  @if (label()) {
+    <span class="marker-label manga-mono">
+      {{ label() }}
+    </span>
+  }
+
+  @if (active()) {
+    <span class="active-dot" aria-hidden="true"></span>
+  }
+</div>

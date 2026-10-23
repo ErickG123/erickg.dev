@@ -1,0 +1,155 @@
+/* ==========================================================================
+   TYPOGRAPHY — MANGA EDITORIAL SYSTEM
+   ========================================================================== */
+
+/* --- TÍTULOS EXPRESSIVOS (ANTON) --- */
+.manga-display-2xl {
+  font-family: var(--font-display);
+  font-size: var(--text-display-2xl);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--manga-ink);
+  margin: 0;
+}
+
+.manga-display-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-display-xl);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--manga-ink);
+  margin: 0;
+}
+
+.manga-display-lg {
+  font-family: var(--font-display);
+  font-size: var(--text-display-lg);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--manga-ink);
+  margin: 0;
+}
+
+/* --- TÍTULOS SECUNDÁRIOS (INTER TIGHT) --- */
+.manga-heading-xl {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading-xl);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--manga-ink);
+  margin: 0;
+}
+
+.manga-heading-lg {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading-lg);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--manga-ink);
+  margin: 0;
+}
+
+.manga-heading-md {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading-md);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--manga-ink);
+  margin: 0;
+}
+
+/* --- CORPO DE TEXTO E LEITURA (INTER) --- */
+.manga-body-lg {
+  font-family: var(--font-body);
+  font-size: var(--text-body-lg);
+  line-height: 1.7;
+  color: var(--manga-ink);
+}
+
+.manga-body-md {
+  font-family: var(--font-body);
+  font-size: var(--text-body-md);
+  line-height: 1.7;
+  color: var(--manga-ink);
+}
+
+.manga-body-sm {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  line-height: 1.6;
+  color: var(--manga-gray);
+}
+
+/* --- METADADOS, CÓDIGO E TÉCNICO (IBM PLEX MONO) --- */
+.manga-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  letter-spacing: 0.02em;
+}
+
+.chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--manga-paper);
+  background-color: var(--manga-ink);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-none);
+  letter-spacing: 0.05em;
+}
+
+.chapter-badge--vermilion {
+  background-color: var(--manga-vermilion);
+  color: #FFFFFF;
+}
+
+.chapter-badge--outline {
+  background-color: transparent;
+  color: var(--manga-ink);
+  border: var(--border-thin);
+}
+
+/* --- APLICAÇÃO GLOBAL DE ELEMENTOS NATIVOS --- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--manga-ink);
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: var(--text-body-md);
+  line-height: 1.7;
+  color: var(--manga-ink);
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+}
+
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background-color: var(--manga-surface-muted);
+  border: 1px solid var(--manga-border-subtle);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  color: var(--manga-ink);
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-xs);
+  line-height: 1.6;
+  background-color: var(--manga-surface-dark);
+  color: var(--manga-text-light);
+  border: var(--border-medium);
+  padding: var(--space-4);
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+}

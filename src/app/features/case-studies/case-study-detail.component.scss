@@ -1,0 +1,46 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.case-study-page {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-16);
+}
+
+.case-study-top-nav {
+  margin-bottom: var(--space-6);
+}
+
+.manga-bullets {
+  padding-left: var(--space-5);
+  margin: 0;
+
+  li {
+    margin-bottom: var(--space-2);
+    line-height: 1.6;
+    font-family: var(--font-body);
+    font-size: var(--text-body-md);
+  }
+}
+
+.code-terminal-block {
+  background-color: #0A0A0A;
+  border: 1px solid var(--manga-gray);
+  border-radius: var(--radius-none);
+  overflow-x: auto;
+}
+
+.code-block {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #F4F0E9;
+}
+
+.code-caption {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--manga-gray);
+  margin-top: var(--space-2);
+}

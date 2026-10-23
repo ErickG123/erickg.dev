@@ -1,0 +1,90 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.book-cover-stage {
+  width: 100%;
+  max-width: var(--content-max-md);
+  margin: var(--space-4) auto var(--space-8) auto;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+  transform-origin: left center;
+
+  &.is-opening {
+    transform: perspective(1200px) rotateY(-25deg) translateX(-30px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.is-opened {
+    display: none;
+  }
+}
+
+.book-cover-frame {
+  position: relative;
+  border-width: 5px;
+  box-shadow: 8px 8px 0px var(--manga-ink);
+  min-height: 580px;
+  display: flex;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--manga-paper);
+}
+
+/* Lombada Tátil (Spine) */
+.book-spine {
+  width: 32px;
+  background-color: var(--manga-ink);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-right: 2px solid var(--manga-paper);
+
+  @media (min-width: 640px) {
+    display: flex;
+  }
+}
+
+.spine-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--manga-paper);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.book-cover-inner {
+  flex: 1;
+  padding: var(--space-6);
+  z-index: 2;
+}
+
+.btn-open-portfolio {
+  font-size: 0.85rem;
+  padding: 0.9rem 1.8rem;
+  box-shadow: var(--shadow-md);
+  letter-spacing: 0.08em;
+
+  .open-icon {
+    font-size: 1.1rem;
+    color: #FFFFFF;
+    font-weight: 900;
+  }
+}
+
+/* Acessibilidade de Movimento Reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .book-cover-stage {
+    transition: opacity 0.1s ease !important;
+    transform: none !important;
+
+    &.is-opening {
+      transform: none !important;
+      opacity: 0 !important;
+    }
+  }
+}

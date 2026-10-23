@@ -1,80 +1,95 @@
-.avatar-container {
+:host {
+  display: block;
+  width: 100%;
+}
+
+.manga-section {
+  scroll-margin-top: var(--space-8);
+}
+
+.cover-section {
+  position: relative;
+}
+
+.cover-hero-content {
+  border-left: 4px solid var(--manga-vermilion);
+  padding-left: var(--space-4);
+
+  @media (min-width: 768px) {
+    padding-left: var(--space-6);
+  }
+}
+
+.chapter-nav-card {
+  transition: transform var(--transition-snappy), box-shadow var(--transition-snappy), border-color var(--transition-snappy);
+  position: relative;
+  overflow: hidden;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--manga-vermilion);
+    }
+  }
+
+  &.is-active {
+    border-color: var(--manga-vermilion);
+    box-shadow: 3px 3px 0px var(--manga-vermilion);
+    background-color: var(--manga-surface);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--manga-vermilion);
+      transition: height var(--transition-snappy);
+    }
+  }
+}
+
+.section-indicator {
+  transition: color var(--transition-snappy);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-nav-card {
+    transition: none !important;
+
+    &:hover {
+      transform: none !important;
+    }
+  }
+}
+
+/* Modal Editorial de Field Note */
+.field-note-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 1000);
+  background-color: rgba(17, 17, 17, 0.75);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  width: 200px;
-  height: 250px;
-}
-
-.pixel-avatar-svg {
-  width: 160px;
-  height: 160px;
-  /* Animação de idle de JRPG (flutuando suavemente) */
-  animation: float 3s ease-in-out infinite;
-  /* Brilho neon sutil refletindo do moletom e óculos */
-  filter: drop-shadow(0px 8px 12px rgba(230, 0, 18, 0.4)); 
-}
-
-.avatar-shadow {
-  width: 100px;
-  height: 12px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  margin-top: 20px;
-  /* A sombra encolhe e cresce enquanto o avatar flutua */
-  animation: shadow-pulse 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes shadow-pulse {
-  0% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(0.8); opacity: 0.2; }
-  100% { transform: scale(1); opacity: 0.5; }
-}
-
-/* --- Tactical Layout Mode (Drag & Drop) --- */
-.drag-handle {
-  transition: color 0.2s;
-}
-
-.drag-handle:hover {
-  color: var(--gba-red) !important;
-}
-
-.drag-handle:active {
-  cursor: grabbing !important;
-}
-
-/* Efeito de Holograma durante o Drag */
-.cdk-drag-preview {
+  padding: var(--space-4);
   box-sizing: border-box;
-  border-radius: 4px;
-  background-color: rgba(18, 18, 18, 0.95); /* fundo escuro translúcido */
-  border: 2px solid var(--gba-red);
-  box-shadow: 0 0 15px var(--gba-red), inset 0 0 10px rgba(255, 0, 0, 0.2);
-  opacity: 0.8;
-  z-index: 9999;
+  animation: fadeIn var(--transition-snappy) forwards;
 }
 
-/* O slot fantasma na base do painel */
-.cdk-drag-placeholder {
-  opacity: 0.3;
-  border: 2px dashed #555 !important;
-  background: transparent !important;
+.field-note-modal {
+  max-width: 760px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-width: 4px;
+  background-color: var(--manga-surface);
+  box-shadow: 8px 8px 0px var(--manga-ink);
 }
 
-/* Animações suaves de deslocamento da Grid */
-.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.tactical-board.cdk-drop-list-dragging .tactical-block:not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

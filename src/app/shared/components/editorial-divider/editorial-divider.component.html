@@ -1,0 +1,19 @@
+<div
+  class="editorial-divider"
+  [ngClass]="dividerClasses()"
+  role="separator"
+  aria-orientation="horizontal"
+>
+  <div class="divider-line"></div>
+
+  @if (label()) {
+    <span class="divider-label manga-mono">
+      {{ label() }}
+    </span>
+    <div class="divider-line"></div>
+  }
+
+  @if (withAccentSquare()) {
+    <span class="divider-square" aria-hidden="true"></span>
+  }
+</div>

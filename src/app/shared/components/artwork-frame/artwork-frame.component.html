@@ -1,0 +1,31 @@
+<figure
+  class="artwork-frame"
+  [ngClass]="frameClasses()"
+  [attr.data-aspect]="aspectRatio()"
+>
+  <!-- Cabeçalho Técnico Opcional do Enquadramento -->
+  @if (frameLabel() || statusBadge()) {
+    <div class="frame-technical-header manga-flex manga-justify-between manga-items-center">
+      @if (frameLabel()) {
+        <span class="manga-mono frame-label">{{ frameLabel() }}</span>
+      } @else {
+        <span></span>
+      }
+
+      @if (statusBadge()) {
+        <span
+          class="manga-badge"
+          [class.manga-badge--vermilion]="statusBadgeVariant() === 'vermilion'"
+          [class.manga-badge--dark]="statusBadgeVariant() === 'dark'"
+        >
+          {{ statusBadge() }}
+        </span>
+      }
+    </div>
+  }
+
+  <!-- Conteúdo Visual Enquadrado -->
+  <div class="frame-content" [ngClass]="contentClasses()">
+    <ng-content></ng-content>
+  </div>
+</figure>
