@@ -96,6 +96,19 @@
   animation: scrollBounce 2.2s ease-in-out infinite;
 }
 
+/* Abertura em sequência, inspirada na composição de pôsteres japoneses. */
+@keyframes kanji-reveal { from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(1rem) rotate(7deg); } to { opacity: 1; clip-path: inset(0); transform: translateY(0) rotate(7deg); } }
+@keyframes poster-title-reveal { from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(.45em); } to { opacity: 1; clip-path: inset(0); transform: translateY(0); } }
+@keyframes poster-copy-reveal { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes poster-image-reveal { from { opacity: 0; clip-path: inset(0 0 100% 0 round 48% 48% 10px 10px); transform: translateY(18px); } to { opacity: 1; clip-path: inset(0 round 48% 48% 10px 10px); transform: translateY(0); } }
+.hero-kanji { animation: kanji-reveal .9s .12s var(--ease-editorial) both; }
+.hero-author { animation: poster-copy-reveal .5s .12s var(--ease-editorial) both; }
+.hero-tagline { animation: poster-title-reveal .7s .2s var(--ease-editorial) both; }
+.hero-description { animation: poster-copy-reveal .55s .34s var(--ease-editorial) both; }
+.hero-text-column > .manga-flex.mb-6 { animation: poster-copy-reveal .5s .43s var(--ease-editorial) both; }
+.hero-text-column > .manga-flex:last-child { animation: poster-copy-reveal .55s .52s var(--ease-editorial) both; }
+.hero-image-frame { animation: poster-image-reveal .9s .2s var(--ease-editorial) both; }
+
 /* --- MICROINTERAÇÕES DE ILUSTRAÇÕES EDITORIAIS --- */
 .manga-illustration-interactive {
   transition: transform var(--transition-editorial), filter var(--transition-smooth);
@@ -162,6 +175,9 @@
     transform: none !important;
     opacity: 1 !important;
   }
+
+  .hero-kanji, .hero-author, .hero-tagline, .hero-description,
+  .hero-text-column > .manga-flex, .hero-image-frame { animation: none !important; opacity: 1; clip-path: none; transform: none; }
 
   .manga-illustration-interactive {
     transform: none !important;

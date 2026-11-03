@@ -5,12 +5,23 @@ export interface AuthorProfile {
   headline: string;
   bio: string;
   journeySummary: string;
+  currentFocus: string;
+  contactIntro: string;
+  contactIntroEn: string;
   location: string;
   careerPeriod: string;
   avatarUrl?: string;
-  skills: { category: string; items: string[] }[];
+  skills: { category: string; description: string; mark: string; items: string[] }[];
   socialLinks: { name: string; url: string; iconLabel: string }[];
   pendingNotes?: string;
+}
+
+export interface CareerEntry {
+  period: string;
+  title: string;
+  company: string;
+  summary: string;
+  technologies: string[];
 }
 
 export interface HeroContent {

@@ -13,7 +13,7 @@ import { MangaProjectCardComponent } from '../../shared/components/manga-project
 import { MangaHeroComponent } from './components/manga-hero/manga-hero.component';
 import { MangaImageComponent } from '../../shared/components/manga-image/manga-image.component';
 import { ReaderStateService, ChapterSectionId } from '../../core/state/reader-state.service';
-import { AUTHOR_DATA, FEATURED_PROJECTS_DATA, HERO_DATA } from '../../core/data/portfolio.data';
+import { AUTHOR_DATA, CAREER_HISTORY, FEATURED_PROJECTS_DATA, HERO_DATA } from '../../core/data/portfolio.data';
 
 @Component({
   selector: 'app-home',
@@ -35,12 +35,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   readonly heroData = HERO_DATA;
   readonly author = AUTHOR_DATA;
   readonly projects = FEATURED_PROJECTS_DATA;
-  readonly careerHistory = [
-    { period: 'Jul 2026 – atual', title: 'Programador Pleno I', company: 'Zella Sistemas · YMS', summary: 'Atuação em desenvolvimento de software.', technologies: ['Angular', '.NET', 'TypeScript'] },
-    { period: 'Nov 2025 – Jul 2026', title: 'Desenvolvedor', company: 'Zella Sistemas · YMS', summary: 'Desenvolvimento de sistemas e funcionalidades para produtos da empresa.', technologies: ['Desenvolvimento web', 'APIs'] },
-    { period: 'Dez 2023 – Nov 2025', title: 'Desenvolvedor de Software', company: 'Compu Informática', summary: 'Desenvolvimento e manutenção de software.', technologies: ['Aplicações web', 'Integrações'] },
-    { period: 'Abr 2021 – Mai 2023', title: 'Desenvolvedor de Software Júnior', company: 'SIALOG Software Solutions', summary: 'Início da trajetória profissional em desenvolvimento de software.', technologies: ['Desenvolvimento de software'] }
-  ];
+  readonly careerHistory = CAREER_HISTORY;
   readonly articleTopics = ['Todos', 'Angular', 'DevOps', 'Arquitetura'] as const;
   readonly selectedArticleTopic = signal<string>('Todos');
   readonly articles = [
@@ -56,12 +51,40 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   currentYear = new Date().getFullYear();
 
   private observer: IntersectionObserver | null = null;
+  private projectRevealObserver: IntersectionObserver | null = null;
 
   constructor() {
   }
 
   ngAfterViewInit(): void {
     this.initScrollSpy();
+    this.initProjectReveals();
+  }
+
+  private initProjectReveals(): void {
+    if (!isPlatformBrowser(this.platformId) || typeof IntersectionObserver === 'undefined') return;
+
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const projectsSection = document.querySelector<HTMLElement>('.home-projects-section');
+    const projectCards = Array.from(projectsSection?.querySelectorAll<HTMLElement>('.project-card') ?? []);
+    if (!projectCards.length) return;
+
+    projectsSection?.classList.add('has-scroll-reveal');
+    this.projectRevealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.01, rootMargin: '0px 0px 160px 0px' });
+
+    projectCards.forEach((card, index) => {
+      card.style.setProperty('--poster-delay', `${(index % 2) * 65}ms`);
+      this.projectRevealObserver?.observe(card);
+    });
   }
 
   /* --- SCROLLSPY NO MODO EDITORIAL --- */
@@ -122,5 +145,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       this.observer.disconnect();
       this.observer = null;
     }
+    this.projectRevealObserver?.disconnect();
+    this.projectRevealObserver = null;
+    document.querySelector('.home-projects-section')?.classList.remove('has-scroll-reveal');
   }
 }

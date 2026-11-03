@@ -1,6 +1,7 @@
 import { Project } from '../models/project.interface';
 import {
   AuthorProfile,
+  CareerEntry,
   HeroContent,
   ChapterNav,
   MethodPillar,
@@ -9,6 +10,7 @@ import {
 
 export type {
   AuthorProfile,
+  CareerEntry,
   HeroContent,
   ChapterNav,
   MethodPillar,
@@ -49,21 +51,30 @@ export const AUTHOR_DATA: AuthorProfile = {
   headline: 'Desenvolvimento de software, aplicações web e ferramentas com foco em soluções úteis e bem estruturadas.',
   bio: 'Desenvolvedor Full-Stack com experiência em aplicações web, APIs e automação. Trabalho principalmente com Angular, .NET, Node.js, Python e bancos de dados SQL, participando da análise de requisitos, implementação e evolução de sistemas.',
   journeySummary: 'Minha trajetória inclui desenvolvimento de software na SIALOG Software Solutions e na Compu Informática, além de projetos freelance e atuação atual na Zella Sistemas. Também desenvolvo projetos próprios, como o YomiFlow, ferramenta desktop offline-first para estudo de japonês.',
+  currentFocus: 'Angular, .NET e arquitetura de software',
+  contactIntro: 'Para conversar sobre desenvolvimento de software, produtos ou oportunidades de colaboração, escolha um dos meus canais profissionais.',
+  contactIntroEn: 'For conversations about software development, products, or collaboration, choose one of my professional channels.',
   location: 'Brasil',
   careerPeriod: '2021 – Presente',
   avatarUrl: '/assets/images/profile/erick-gabriel.png',
   skills: [
     {
-      category: 'Front-End Core',
-      items: ['Angular 21 (Zoneless, Signals)', 'TypeScript', 'RxJS', 'SCSS / Design Systems', 'PWA']
+      category: 'Interfaces e aplicações web',
+      description: 'Construção de interfaces consistentes, acessíveis e preparadas para evoluir.',
+      mark: '01',
+      items: ['Angular', 'TypeScript', 'RxJS', 'SCSS e design systems', 'PWA']
     },
     {
-      category: 'Back-End & Infra',
-      items: ['.NET (C#)', 'Node.js', 'Python', 'PostgreSQL', 'Docker', 'REST APIs']
+      category: 'Serviços e dados',
+      description: 'Implementação de APIs e integração com persistência relacional.',
+      mark: '02',
+      items: ['.NET e C#', 'Node.js', 'Python', 'PostgreSQL', 'APIs REST']
     },
     {
-      category: 'Qualidade & Métodos',
-      items: ['Jest (TDD)', 'GitHub Actions (CI/CD)', 'Clean Architecture', 'SOLID', 'Vercel']
+      category: 'Arquitetura e entrega',
+      description: 'Organização do código e automação para manter qualidade no fluxo de entrega.',
+      mark: '03',
+      items: ['Clean Architecture', 'SOLID', 'Jest e testes', 'GitHub Actions', 'Docker e CI/CD']
     }
   ],
   socialLinks: [
@@ -73,6 +84,44 @@ export const AUTHOR_DATA: AuthorProfile = {
   ],
   pendingNotes: 'Engenharia de software com atenção a arquitetura, clareza e qualidade.'
 };
+
+export const CAREER_HISTORY: CareerEntry[] = [
+  {
+    period: 'Julho de 2026 – atual',
+    title: 'Programador Pleno I',
+    company: 'Zella Sistemas · YMS',
+    summary: 'Atuação atual em desenvolvimento e evolução de software.',
+    technologies: ['Angular', '.NET', 'TypeScript']
+  },
+  {
+    period: 'Novembro de 2025 – julho de 2026',
+    title: 'Desenvolvedor',
+    company: 'Zella Sistemas · YMS',
+    summary: 'Desenvolvimento de sistemas e funcionalidades para os produtos da empresa.',
+    technologies: ['Aplicações web', 'APIs']
+  },
+  {
+    period: 'Dezembro de 2023 – novembro de 2025',
+    title: 'Desenvolvedor de Software',
+    company: 'Compu Informática',
+    summary: 'Desenvolvimento e manutenção de funcionalidades, contribuindo para a evolução de aplicações utilizadas no dia a dia da empresa.',
+    technologies: ['Desenvolvimento web', 'APIs', 'Bancos relacionais']
+  },
+  {
+    period: 'Abril de 2021 – maio de 2023',
+    title: 'Desenvolvedor de Software Júnior',
+    company: 'SIALOG Software Solutions',
+    summary: 'Início da trajetória profissional em desenvolvimento de software, trabalhando na implementação e manutenção de aplicações.',
+    technologies: ['Desenvolvimento de software']
+  },
+  {
+    period: 'Em andamento',
+    title: 'Projetos independentes',
+    company: 'Produtos autorais',
+    summary: 'Desenvolvimento de ferramentas e produtos próprios, incluindo o YomiFlow, aplicativo desktop offline-first para estudo de japonês.',
+    technologies: ['YomiFlow', 'Angular', 'Tauri', 'Rust']
+  }
+];
 
 export const CHAPTERS_INDEX: ChapterNav[] = [
   {

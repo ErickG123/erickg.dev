@@ -1,26 +1,12 @@
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  
-  @media (min-width: 768px) {
-    /* O formulário ocupa mais espaço (2/3) e os links (1/3) */
-    grid-template-columns: 2fr 1fr;
-  }
-}
-
-.social-panel {
-  /* Impede que o painel da direita estique verticalmente acompanhando o tamanho do formulário */
-  align-self: start;
-}
-
-.social-links-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem; /* Cria o espaço entre os botões sem usar margin */
-  width: 100%;
-  
-  .manga-btn {
-    margin-top: 0; /* Remove o auto-margin do rodapé herdado globalmente */
-  }
-}
+.contact-page { max-width: 58rem; padding-block: clamp(1rem, 4vw, 3rem) 4rem; }
+.contact-heading { max-width: 42rem; margin-bottom: 2rem; }
+.section-kicker { display: block; margin-bottom: .6rem; color: var(--manga-vermilion-text); font: 600 .72rem var(--font-mono); letter-spacing: .09em; }
+.contact-heading h2 { margin: 0 0 .7rem; }
+.contact-heading p { margin: 0; color: var(--manga-gray); line-height: 1.65; }
+.contact-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.contact-link { display: flex; align-items: center; gap: .85rem; min-height: 5.5rem; padding: 1rem; border: 1px solid var(--manga-border-subtle); border-radius: 5px; background: var(--manga-surface); color: var(--manga-ink); text-decoration: none; transition: border-color .18s ease, transform .18s ease, background .18s ease; }
+.contact-link:hover, .contact-link:focus-visible { border-color: var(--manga-vermilion); background: var(--manga-surface-muted); transform: translateY(-2px); }
+.contact-link-mark { display: grid; width: 2.2rem; height: 2.2rem; flex: 0 0 auto; place-items: center; border: 1px solid var(--manga-vermilion); color: var(--manga-vermilion-text); font: 600 .67rem var(--font-mono); }
+.contact-link-name { min-width: 0; overflow-wrap: anywhere; font-weight: 650; }
+.contact-link-arrow { margin-left: auto; color: var(--manga-vermilion-text); }
+@media (max-width: 680px) { .contact-links { grid-template-columns: 1fr; } .contact-link { min-height: 4.5rem; } }

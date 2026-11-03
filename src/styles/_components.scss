@@ -305,7 +305,10 @@
   }
 }
 /* --- INTERAÇÕES DE PAPEL E NANQUIM DOS PROJETOS --- */
-.project-card { position: relative; isolation: isolate; min-width: 0; display: flex; flex-direction: column; padding: clamp(1rem,2vw,1.4rem); border: 1px solid var(--manga-border-subtle); border-radius: 6px; background: var(--manga-surface); transition: transform .22s var(--ease-editorial), box-shadow .22s ease, border-color .22s ease; }
+.project-card { position: relative; isolation: isolate; min-width: 0; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; padding: clamp(1rem,2vw,1.4rem); border: 1px solid var(--manga-border-subtle); border-radius: 6px; background: var(--manga-surface); transition: transform .22s var(--ease-editorial), box-shadow .22s ease, border-color .22s ease; }
+.home-projects-section.has-scroll-reveal .project-card { opacity: 0; clip-path: inset(0 0 6% 0 round 6px); transform: translateY(16px) scale(.99); transition: opacity .4s var(--ease-editorial), transform .4s var(--ease-editorial), clip-path .42s var(--ease-editorial), box-shadow .22s ease, border-color .22s ease; transition-delay: var(--poster-delay, 0ms); }
+.home-projects-section.has-scroll-reveal .project-card.is-revealed { opacity: 1; clip-path: inset(0 round 6px); transform: translateY(0) scale(1); }
+.home-projects-section.has-scroll-reveal .project-card:focus-within { opacity: 1; clip-path: none; transform: none; }
 .project-card::before { position: absolute; z-index: -1; inset: 0; border: 1px solid var(--manga-border-subtle); border-radius: inherit; background: var(--manga-surface-muted); content: ''; transition: transform .22s var(--ease-editorial); }
 .project-card::after { position: absolute; top: .8rem; right: .8rem; display: grid; width: 1.25rem; height: 1.25rem; place-items: center; border: 1px solid var(--manga-vermilion); border-radius: 50%; color: var(--manga-vermilion-text); content: '印'; font: 600 .65rem serif; opacity: 0; transform: scale(.7) rotate(-20deg); transition: opacity .2s ease, transform .24s var(--ease-editorial); pointer-events: none; }
 @media (hover: hover) and (pointer: fine) {
@@ -313,6 +316,27 @@
   .project-card:hover::before, .project-card:focus-within::before { transform: translate(5px, 5px) rotate(.35deg); }
   .project-card:hover::after, .project-card:focus-within::after { opacity: .9; transform: scale(1) rotate(-8deg); }
 }
+@media (hover: hover) and (pointer: fine) {
+  .home-projects-section.has-scroll-reveal .project-card.is-revealed:hover,
+  .home-projects-section.has-scroll-reveal .project-card.is-revealed:focus-within { transform: translateY(-3px); transition-delay: 0ms; }
+  .project-card:hover .project-visual--yomiflow-poster .manga-image-element,
+  .project-card:focus-within .project-visual--yomiflow-poster .manga-image-element { transform: scale(1.055); }
+  .project-card:hover .project-poster-mark,
+  .project-card:focus-within .project-poster-mark { opacity: .95; transform: rotate(0) translateY(0); }
+  .project-card:hover .project-poster-brush,
+  .project-card:focus-within .project-poster-brush { transform: scaleX(1) rotate(-9deg); }
+}
+.project-visual--yomiflow-poster { isolation: isolate; }
+.project-visual--yomiflow-poster::after { position: absolute; z-index: 1; inset: 0; background: linear-gradient(115deg, transparent 36%, rgba(12, 12, 12, .2) 100%); content: ''; opacity: .5; pointer-events: none; }
+.project-poster-mark { position: absolute; z-index: 2; right: clamp(.8rem, 3vw, 2rem); bottom: -.35em; color: color-mix(in srgb, var(--manga-vermilion-text) 72%, transparent); font: clamp(5rem, 10vw, 8rem)/1 'Yuji Syuku', serif; opacity: .72; transform: rotate(6deg) translateY(.15em); text-shadow: 0 2px 18px rgba(0,0,0,.28); transition: opacity .45s ease, transform .65s var(--ease-editorial); pointer-events: none; }
+.project-poster-credit { position: absolute; z-index: 2; top: .75rem; right: .8rem; color: #f0eee8; font: 500 .58rem var(--font-mono); letter-spacing: .13em; writing-mode: vertical-rl; text-shadow: 0 1px 8px rgba(0,0,0,.55); opacity: .82; pointer-events: none; }
+.project-poster-brush { position: absolute; z-index: 2; right: 1.1rem; bottom: 1rem; width: min(32%, 7rem); height: .3rem; background: var(--manga-vermilion); clip-path: polygon(0 24%, 100% 0, 96% 70%, 3% 100%); transform: scaleX(.18) rotate(-9deg); transform-origin: right center; transition: transform .55s var(--ease-editorial); pointer-events: none; }
+.project-visual--yomiflow-poster .manga-image-element { transition: opacity var(--transition-smooth), transform .75s var(--ease-editorial); }
+.project-poster-toggle { position: absolute; z-index: 3; bottom: .65rem; left: .7rem; display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid rgba(240,238,232,.56); border-radius: 50%; background: rgba(23,24,22,.72); color: #f0eee8; font: 500 1.25rem/1 var(--font-body); cursor: pointer; backdrop-filter: blur(6px); transition: background .2s ease, border-color .2s ease, transform .35s var(--ease-editorial); }
+.project-poster-toggle:hover, .project-poster-toggle[aria-pressed='true'] { border-color: var(--manga-vermilion); background: var(--manga-vermilion); transform: rotate(45deg); }
+.project-visual--yomiflow-poster.is-poster-active .project-poster-mark { opacity: .98; transform: rotate(0) translateY(0); }
+.project-visual--yomiflow-poster.is-poster-active .project-poster-brush { transform: scaleX(1) rotate(-9deg); }
+@media (hover: none), (pointer: coarse) { .project-poster-mark { opacity: .9; transform: rotate(0); } .project-poster-brush { transform: scaleX(.78) rotate(-9deg); } }
 .product-preview { margin-top: auto; }
 .preview-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 2.65rem; padding: .55rem 0; border: 0; border-top: 1px solid var(--manga-border-subtle); background: transparent; color: var(--manga-vermilion-text); text-align: left; font: 650 .76rem var(--font-body); cursor: pointer; }
 .preview-toggle:hover span:first-child { text-decoration: underline; text-decoration-color: color-mix(in srgb,var(--manga-vermilion) 70%,transparent); text-underline-offset: .25rem; }
@@ -326,5 +350,7 @@
 @keyframes paper-preview-in { from { opacity: 0; transform: translateY(-4px); clip-path: inset(0 0 100% 0); } to { opacity: 1; transform: translateY(0); clip-path: inset(0); } }
 @media (prefers-reduced-motion: reduce) {
   .project-card, .project-card::before, .project-card::after, .preview-panel, .preview-tab { transition: none !important; animation: none !important; }
+  .home-projects-section.has-scroll-reveal .project-card { opacity: 1 !important; clip-path: none !important; transform: none !important; }
+  .project-poster-mark, .project-poster-brush, .project-poster-toggle { transition: none !important; transform: none !important; }
   .project-card:hover, .project-card:focus-within, .project-card:hover::before, .project-card:focus-within::before { transform: none !important; }
 }

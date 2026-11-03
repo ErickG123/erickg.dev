@@ -18,21 +18,18 @@
             <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
               <span>LOCALIZAÇÃO</span><span>{{ author.location }}</span>
             </div>
-            <div class="skill-track"><span style="width: 100%;"></span></div>
           </div>
           
           <div class="vital-row mb-3">
             <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
               <span>EXPERIÊNCIA</span><span>{{ author.careerPeriod }}</span>
             </div>
-            <div class="skill-track"><span style="width: 100%;"></span></div>
           </div>
 
           <div class="vital-row mb-3">
             <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
               <span>FOCO</span><span>FULL-STACK</span>
             </div>
-            <div class="skill-track"><span style="width: 100%;"></span></div>
           </div>
         </div>
       </div>
@@ -47,56 +44,19 @@
         <h3 class="manga-heading-lg m-0 mb-3 pb-2">Competências</h3>
         
         <div class="attributes-grid mb-4">
-          
-          <div class="attr-row mb-3">
-            <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
-              <span>INT (Front-End Magic)</span><span>95%</span>
-            </div>
-            <div class="skill-track"><span style="width: 95%;"></span></div>
-            <p class="manga-mono mt-1 mb-0" style="font-size: 0.7rem; color: var(--manga-gray);">Angular, TypeScript, SCSS</p>
-          </div>
-
-          <div class="attr-row mb-3">
-            <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
-              <span>STR (Back-End Core)</span><span>85%</span>
-            </div>
-            <div class="skill-track"><span style="width: 85%;"></span></div>
-            <p class="manga-mono mt-1 mb-0" style="font-size: 0.7rem; color: var(--manga-gray);">APIs, PostgreSQL, Node.js</p>
-          </div>
-
-          <div class="attr-row mb-3">
-            <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
-              <span>AGI (UI/UX Speed)</span><span>90%</span>
-            </div>
-            <div class="skill-track"><span style="width: 90%;"></span></div>
-            <p class="manga-mono mt-1 mb-0" style="font-size: 0.7rem; color: var(--manga-gray);">CSS Grid, PrimeFlex, Responsivo</p>
-          </div>
-
-          <div class="attr-row mb-3">
-            <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
-              <span>DEF (Arch Shield)</span><span>80%</span>
-            </div>
-            <div class="skill-track"><span style="width: 80%;"></span></div>
-            <p class="manga-mono mt-1 mb-0" style="font-size: 0.7rem; color: var(--manga-gray);">Interceptors, Validações</p>
-          </div>
-
-        </div>
-
-        <h3 class="manga-heading-lg m-0 mb-3 pb-2">Destaques</h3>
-        
-        <div class="passives-list">
-          <div class="passive-item mb-3">
-            <div class="manga-mono mb-1 manga-text-vermilion" style="font-size: 0.75rem;">Layouts dinâmicos</div>
-            <p class="description m-0">Capacidade avançada de forjar dashboards e layouts configuráveis pelo usuário.</p>
-          </div>
-          <div class="passive-item mb-3">
-            <div class="manga-mono mb-1 manga-text-vermilion" style="font-size: 0.75rem;">Modelagem de dados</div>
-            <p class="description m-0">Manipulação e scripts otimizados para bancos de dados relacionais.</p>
-          </div>
-          <div class="passive-item mb-3">
-            <div class="manga-mono mb-1 manga-text-vermilion" style="font-size: 0.75rem;">Fluxos confiáveis</div>
-            <p class="description m-0">Construção segura de diagramas de fluxo em nós com restrições rigorosas de processo.</p>
-          </div>
+          @for (skillGroup of author.skills; track skillGroup.category) {
+            <article class="attr-row">
+              <div class="skill-card-topline">
+                <span class="skill-mark" aria-hidden="true">{{ skillGroup.mark }}</span>
+                <span class="skill-card-label">ÁREA DE ATUAÇÃO</span>
+              </div>
+              <h4 class="manga-heading-md">{{ skillGroup.category }}</h4>
+              <p class="skill-description">{{ skillGroup.description }}</p>
+              <ul class="skill-tags" [attr.aria-label]="'Tecnologias e práticas: ' + skillGroup.category">
+                @for (item of skillGroup.items; track item) { <li>{{ item }}</li> }
+              </ul>
+            </article>
+          }
         </div>
 
       </div>

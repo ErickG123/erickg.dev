@@ -1,54 +1,17 @@
-<section class="container fadein mb-4 mt-4">
-  <div class="flex align-center gap-2 mb-4" style="border-bottom: 2px dashed var(--gba-border-light); padding-bottom: 1rem;">
-    <h2 class="manga-heading-xl m-0">{{ 'HOME.GUILD_BOARD' | translate }}</h2>
-  </div>
+<section class="contact-page container fadein mb-4 mt-4" aria-labelledby="contact-title">
+  <header class="contact-heading">
+    <span class="section-kicker">連絡 · {{ currentLang() === 'pt' ? 'CONTATO' : 'CONTACT' }}</span>
+    <h2 id="contact-title" class="manga-heading-xl">{{ currentLang() === 'pt' ? 'Vamos conversar' : 'Let’s talk' }}</h2>
+    <p>{{ currentLang() === 'pt' ? author.contactIntro : author.contactIntroEn }}</p>
+  </header>
 
-  <div class="contact-grid">
-    
-    <!-- Formulário (Esquerda) -->
-    <section class="manga-panel form-panel">
-      <h3 class="manga-heading-lg m-0 mb-4 pb-2">{{ 'GUILD.TITLE' | translate }}</h3>
-      
-      <p class="description mb-4">
-        {{ 'GUILD.SUBTITLE' | translate }}
-      </p>
-
-      <div class="flex flex-column gap-3">
-        <div class="flex flex-column gap-1">
-          <label for="name" class="manga-mono manga-text-vermilion" style="font-size: 0.75rem;">{{ 'GUILD.PLAYER_NAME' | translate }}</label>
-          <input class="manga-input" id="name" type="text" [placeholder]="'GUILD.PLAYER_PLACEHOLDER' | translate" />
-        </div>
-        
-        <div class="flex flex-column gap-1">
-          <label for="email" class="manga-mono manga-text-vermilion" style="font-size: 0.75rem;">{{ 'GUILD.CONTACT_RUNES' | translate }}</label>
-          <input class="manga-input" id="email" type="email" [placeholder]="'GUILD.CONTACT_PLACEHOLDER' | translate" />
-        </div>
-        
-        <div class="flex flex-column gap-1">
-          <label for="message" class="manga-mono manga-text-vermilion" style="font-size: 0.75rem;">{{ 'GUILD.QUEST_DETAILS' | translate }}</label>
-          <textarea class="manga-textarea" id="message" rows="5" [placeholder]="'GUILD.QUEST_PLACEHOLDER' | translate"></textarea>
-        </div>
-        
-        <div class="mt-3 text-right">
-          <button class="manga-btn manga-btn--accent">{{ 'GUILD.TRANSMIT' | translate }}</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Redes Sociais (Direita) -->
-    <section class="manga-panel social-panel flex flex-column gap-4">
-      <h3 class="manga-heading-lg m-0 pb-2">{{ 'HOME.GUILD_BOARD' | translate }}</h3>
-      
-      <div class="social-links-container mt-2">
-        <a href="https://www.linkedin.com/in/erickgdev/" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary" style="justify-content: flex-start; padding-top: 1rem; padding-bottom: 1rem;">
-          <span class="manga-mono manga-text-vermilion" style="margin-right: 0.75rem;">IN</span> LINKEDIN ↗
-        </a>
-        
-        <a href="https://dev.to/erickg123" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary" style="justify-content: flex-start; padding-top: 1rem; padding-bottom: 1rem;">
-          <span class="manga-mono manga-text-vermilion" style="margin-right: 0.75rem;">DEV</span> DEV.TO ↗
-        </a>
-      </div>
-    </section>
-
+  <div class="contact-links">
+    @for (social of author.socialLinks; track social.name) {
+      <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <span class="contact-link-mark" aria-hidden="true">{{ social.iconLabel }}</span>
+        <span class="contact-link-name">{{ social.name }}</span>
+        <span class="contact-link-arrow" aria-hidden="true">↗</span>
+      </a>
+    }
   </div>
 </section>

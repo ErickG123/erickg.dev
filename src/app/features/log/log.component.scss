@@ -88,3 +88,18 @@
 .timeline-item:hover .timeline-dot {
   background-color: var(--manga-vermilion);
 }
+:host { display: block; min-width: 0; }
+.career-intro { max-width: 48rem; margin: 0 auto 1.5rem; }
+.section-kicker { display: block; margin-bottom: .55rem; color: var(--manga-vermilion-text); font: 600 .72rem var(--font-mono); letter-spacing: .08em; }
+.career-intro h3 { margin: 0 0 .5rem; }
+.career-intro p { margin: 0; color: var(--manga-gray); line-height: 1.6; }
+.career-timeline { max-width: 58rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 3rem); border: 1px solid var(--manga-border-subtle); border-radius: 6px; background: var(--manga-surface); }
+.career-entry { display: grid; grid-template-columns: minmax(175px, .7fr) 2fr; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--manga-border-subtle); }
+.career-entry:last-child { border-bottom: 0; }
+.career-period { color: var(--manga-gray); font: 500 .77rem/1.5 var(--font-mono); }
+.career-detail h3 { margin: 0; font: 700 1.12rem/1.35 var(--font-heading); }
+.career-company { margin-top: .25rem; color: var(--manga-vermilion-text); font-weight: 650; }
+.career-detail p { margin: .55rem 0 .8rem; color: var(--manga-gray); line-height: 1.55; }
+.career-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0; padding: 0; list-style: none; }
+.career-tags li { padding: .2rem .55rem; border: 1px solid var(--manga-border-subtle); border-radius: 999px; color: var(--manga-gray); font-size: .68rem; }
+@media (max-width: 620px) { .career-entry { grid-template-columns: 1fr; gap: .4rem; padding: 1.1rem 0; } }

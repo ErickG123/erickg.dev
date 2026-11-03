@@ -14,10 +14,15 @@
 .stats-panel .manga-body-lg, .stats-panel .manga-body-md { max-width: 100%; }
 .vital-row > .flex { gap: .65rem; flex-wrap: wrap; }
 .vital-row > .flex span:last-child { text-align: right; }
-.attributes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 1rem; }
-.attr-row { padding: .9rem; border: 1px solid var(--manga-border-subtle); border-radius: 4px; }
-.attr-row > .flex { gap: .4rem; flex-wrap: wrap; }
-.attr-row > .flex span { overflow-wrap: anywhere; }
+.attributes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
+.attr-row { position: relative; min-height: 12rem; padding: 1.1rem; border: 1px solid var(--manga-border-subtle); border-radius: 4px; background: linear-gradient(145deg, var(--manga-surface-muted), transparent 72%); }
+.skill-card-topline { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: 1.15rem; }
+.skill-mark { display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid var(--manga-vermilion); color: var(--manga-vermilion-text); font: 600 .7rem var(--font-mono); }
+.skill-card-label { color: var(--manga-gray); font: 500 .58rem var(--font-mono); letter-spacing: .08em; }
+.attr-row h4 { margin: 0 0 .45rem; font-size: 1rem; line-height: 1.35; }
+.skill-description { min-height: 2.8em; margin: 0 0 .95rem; color: var(--manga-gray); font-size: .78rem; line-height: 1.5; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0; padding: 0; list-style: none; }
+.skill-tags li { padding: .24rem .5rem; border: 1px solid var(--manga-border-subtle); border-radius: 999px; color: var(--manga-ink); font: 500 .66rem/1.35 var(--font-mono); }
 
 .hero-panel {
   padding-right: 0;
@@ -48,24 +53,4 @@
   height: 100%;
   object-fit: cover;
   object-position: center 28%;
-}
-
-.skill-track {
-  width: 100%;
-  height: 5px;
-  background: var(--manga-surface-muted);
-  margin-bottom: .8rem;
-}
-
-.skill-track span {
-  height: 100%;
-  display: block;
-  background: var(--manga-vermilion);
-}
-
-.description {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  line-height: 1.6;
-  color: var(--manga-gray);
 }

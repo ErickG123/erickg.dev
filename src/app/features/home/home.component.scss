@@ -28,6 +28,16 @@
 .career-tags { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
 .career-tags li { color: var(--manga-gray); border: 1px solid var(--manga-border-subtle); border-radius: 999px; padding: .2rem .65rem; font-size: .72rem; }
 .about-skills-grid { row-gap: 1rem; }
+.home-skill-topline { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: 1rem; }
+.home-skill-topline > span:last-child { font-size: .58rem !important; letter-spacing: .07em; }
+.home-skill-mark { display: grid; width: 1.8rem; height: 1.8rem; place-items: center; border: 1px solid var(--manga-vermilion); color: var(--manga-vermilion-text); font: 600 .68rem var(--font-mono); }
+.home-skill-title { min-height: 2.5em; margin: 0 0 .45rem; font: 700 1rem/1.3 var(--font-heading); }
+.home-skill-description { min-height: 4.5em; margin: 0 0 .9rem; color: var(--manga-gray); font-size: .76rem; line-height: 1.5; }
+.home-skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: 0; padding: 0; }
+.home-skill-tags li { border: 1px solid var(--manga-border-subtle); border-radius: 999px; padding: .22rem .5rem; font: 500 .64rem/1.35 var(--font-mono); }
+.contact-content { max-width: 54rem; margin-inline: auto; }
+.contact-content > p { max-width: 48rem; margin: 0 auto 1.2rem; text-align: center; }
+.contact-socials { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; }
 @media (max-width: 900px) { .about-skills-grid > .col-4 { grid-column: span 6; } }
 @media (max-width: 560px) { .about-skills-grid > .col-4 { grid-column: 1 / -1; } }
 @media (max-width: 640px) { .career-entry { grid-template-columns: 1fr; gap: .5rem; padding: 1.2rem 0; } }

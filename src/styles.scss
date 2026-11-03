@@ -170,7 +170,8 @@ main, main > *, .manga-grid > *, .manga-grid > * > *, .manga-panel, .manga-panel
 img, svg, video { max-width: 100%; }
 .manga-panel, .manga-body-md, .manga-body-sm { overflow-wrap: anywhere; }
 .projects-section .project-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; align-items: stretch; }
-.projects-section .project-grid-item { min-width: 0; }
+.projects-section .project-grid-item { display: flex; min-width: 0; }
+.projects-section .project-grid-item > app-manga-project-card { flex: 1 1 auto; min-width: 0; }
 .projects-section .projects-more-link { width: fit-content; max-width: 100%; margin-inline: auto; }
 .projects-section .manga-panel--dashed { align-items: center; }
 @media (max-width: 680px) {

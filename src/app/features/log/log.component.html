@@ -1,9 +1,29 @@
 <section class="container fadein mb-4 mt-4">
   <div class="flex align-center gap-2 mb-4" style="border-bottom: 1px solid var(--manga-border-subtle); padding-bottom: 1rem;">
-    <h2 class="manga-heading-xl m-0">{{ 'HEADER.LOG' | translate }} <span class="manga-text-vermilion">//</span> Diário de projeto</h2>
+    <h2 class="manga-heading-xl m-0">{{ currentLang() === 'pt' ? 'Trajetória profissional' : 'Professional journey' }}</h2>
   </div>
 
-  <div class="manga-panel">
-    <markdown [src]="'/assets/logs/history.md'"></markdown>
+  <div class="career-intro">
+    <span class="section-kicker">経験 · Experiência</span>
+    <h3 class="manga-heading-lg">{{ currentLang() === 'pt' ? 'Experiência' : 'Experience' }}</h3>
+    <p>{{ currentLang() === 'pt' ? 'Desenvolvimento de software, aplicações web, integrações e projetos próprios.' : 'Software development, web applications, integrations, and independent projects.' }}</p>
+  </div>
+
+  <div class="career-timeline">
+    @for (role of careerHistory; track role.company + role.period) {
+      <article class="career-entry">
+        <div class="career-period">{{ role.period }}</div>
+        <div class="career-detail">
+          <h3>{{ role.title }}</h3>
+          <div class="career-company">{{ role.company }}</div>
+          <p>{{ role.summary }}</p>
+          @if (role.technologies.length) {
+            <ul class="career-tags" aria-label="Tecnologias e áreas">
+              @for (tech of role.technologies; track tech) { <li>{{ tech }}</li> }
+            </ul>
+          }
+        </div>
+      </article>
+    }
   </div>
 </section>

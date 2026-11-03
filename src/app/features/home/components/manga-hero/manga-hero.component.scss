@@ -59,4 +59,6 @@
   .hero-text-column > .manga-flex:last-child { align-items: stretch; }
   .hero-text-column > .manga-flex:last-child .manga-btn { flex: 1 1 12rem; white-space: normal; text-align: center; }
 }
-@media (prefers-reduced-motion: reduce) { .manga-hero-wrapper::after { animation: none; transform: rotate(-13deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .manga-hero-wrapper::after { animation: none; transform: rotate(-13deg); }
+}

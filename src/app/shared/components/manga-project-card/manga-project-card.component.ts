@@ -17,8 +17,13 @@ export class MangaProjectCardComponent {
   currentLang = inject(GameStateService).currentLang;
   previewIsOpen = signal(false);
   selectedPreviewStep = signal(0);
+  posterActive = signal(false);
 
   togglePreview(): void {
     this.previewIsOpen.update((isOpen) => !isOpen);
+  }
+
+  togglePoster(): void {
+    this.posterActive.update((active) => !active);
   }
 }

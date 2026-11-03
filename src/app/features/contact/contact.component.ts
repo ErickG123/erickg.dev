@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
+import { Component, inject } from '@angular/core';
+import { AUTHOR_DATA } from '../../core/data/portfolio.data';
+import { GameStateService } from '../../core/state/game-state.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [TranslatePipe],
+  imports: [],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent {}
+export class ContactComponent {
+  readonly author = AUTHOR_DATA;
+  readonly currentLang = inject(GameStateService).currentLang;
+}
