@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { HomeComponent } from './home.component';
 import { By } from '@angular/platform-browser';
+import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -15,71 +15,31 @@ describe('HomeComponent', () => {
 
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    component.readerState.setReadingMode('editorial');
     fixture.detectChanges();
   });
 
-  it('deve criar a página principal da home', () => {
-    expect(component).toBeTruthy();
+  it('renders the hero, portfolio sections, and project cards', () => {
+    const root = fixture.nativeElement as HTMLElement;
+    expect(root.querySelector('h1')).not.toBeNull();
+    expect(root.querySelectorAll('section').length).toBeGreaterThanOrEqual(5);
+    expect(fixture.debugElement.queryAll(By.css('app-manga-project-card'))).toHaveLength(component.projects.length);
   });
 
-  it('deve renderizar as 7 seções semânticas na ordem estipulada', () => {
-    const el = fixture.nativeElement as HTMLElement;
-    const cover = el.querySelector('#cover');
-    const indexSec = el.querySelector('#index-section');
-    const projects = el.querySelector('#projects');
-    const method = el.querySelector('#method');
-    const notes = el.querySelector('#notes');
-    const about = el.querySelector('#about');
-    const contact = el.querySelector('#contact');
-
-    expect(cover).toBeTruthy();
-    expect(indexSec).toBeTruthy();
-    expect(projects).toBeTruthy();
-    expect(method).toBeTruthy();
-    expect(notes).toBeTruthy();
-    expect(about).toBeTruthy();
-    expect(contact).toBeTruthy();
+  it('shows the professional career entries from the shared portfolio data', () => {
+    const entries = fixture.nativeElement.querySelectorAll('.career-entry');
+    expect(entries.length).toBe(component.careerHistory.length);
   });
 
-  it('deve exibir os 4 projetos oficiais selecionados de Erick Gabriel', () => {
-    const projectCards = fixture.debugElement.queryAll(By.css('app-manga-project-card'));
-    expect(projectCards.length).toBe(4);
-  });
-
-  it('deve exibir os 3 atos do método: THINK, BREAK, REBUILD', () => {
-    const el = fixture.nativeElement as HTMLElement;
-    expect(el.textContent).toContain('THINK');
-    expect(el.textContent).toContain('BREAK');
-    expect(el.textContent).toContain('REBUILD');
-  });
-
-  it('deve exibir os links profissionais reais para GitHub e LinkedIn', () => {
-    const el = fixture.nativeElement as HTMLElement;
-    const links = Array.from(el.querySelectorAll('a')).map(a => a.href);
-    expect(links.some(l => l.includes('github.com/ErickG123'))).toBe(true);
-    expect(links.some(l => l.includes('linkedin.com/in/erickgdev'))).toBe(true);
-  });
-
-  it('deve alternar para o leitor de mangá imersivo ao clicar no botão de modo', () => {
-    const toggleBtn = fixture.debugElement.query(By.css('.btn-toggle-reader-mode'));
-    expect(toggleBtn).toBeTruthy();
-
-    toggleBtn.nativeElement.click();
+  it('filters articles when a topic is selected', () => {
+    const devOpsFilter = Array.from((fixture.nativeElement as HTMLElement).querySelectorAll('.article-filters button'))
+      .find(button => button.textContent?.trim() === 'DevOps') as HTMLButtonElement;
+    expect(devOpsFilter).toBeTruthy();
+    devOpsFilter.click();
     fixture.detectChanges();
 
-    expect(component.readerState.isMangaReaderMode()).toBe(true);
-    const mangaReader = fixture.debugElement.query(By.css('app-manga-reader'));
-    expect(mangaReader).toBeTruthy();
-  });
-
-  it('deve marcar a seção ativa no índice de capítulos ao navegar', () => {
-    component.onSectionNavigate('method');
-    fixture.detectChanges();
-
-    expect(component.readerState.activeSection()).toBe('method');
-    const activeCard = fixture.debugElement.query(By.css('.chapter-nav-card.is-active'));
-    expect(activeCard).toBeTruthy();
-    expect(activeCard.nativeElement.textContent).toContain('SEÇÃO ATIVA');
+    expect(component.selectedArticleTopic()).toBe('DevOps');
+    expect((fixture.nativeElement as HTMLElement).querySelectorAll('.article-card')).toHaveLength(
+      component.articles.filter(article => article.topic === 'DevOps').length
+    );
   });
 });

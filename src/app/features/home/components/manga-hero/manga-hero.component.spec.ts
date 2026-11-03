@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MangaHeroComponent } from './manga-hero.component';
 import { By } from '@angular/platform-browser';
+import { MangaHeroComponent } from './manga-hero.component';
 
 describe('MangaHeroComponent', () => {
   let component: MangaHeroComponent;
@@ -22,7 +22,7 @@ describe('MangaHeroComponent', () => {
 
   it('deve renderizar a tagline memorável e a descrição profissional objetiva', () => {
     const el = fixture.nativeElement as HTMLElement;
-    expect(el.querySelector('.hero-tagline')?.textContent).toContain('I BUILD. I SOLVE. I IMPROVE.');
+    expect(el.querySelector('.hero-tagline')?.textContent).toContain('TECNOLOGIA COM PROPÓSITO.');
     expect(el.querySelector('.hero-description')?.textContent).toContain(
       'Transformo problemas complexos em soluções de software claras, estruturadas e úteis.'
     );
@@ -31,8 +31,8 @@ describe('MangaHeroComponent', () => {
   it('deve renderizar a identidade do autor e o identificador de volume/capítulo', () => {
     const el = fixture.nativeElement as HTMLElement;
     expect(el.textContent).toContain('ERICK GABRIEL');
-    expect(el.textContent).toContain('VOL. 01');
-    expect(el.textContent).toContain('ACT 00');
+    expect(el.textContent).toContain('DESENVOLVEDOR FULL-STACK');
+    expect(el.textContent).toContain('BRASIL · SOFTWARE & PRODUTO');
   });
 
   it('deve conter as ações primárias (Projetos) e secundárias (Sobre o Autor)', () => {
@@ -42,18 +42,14 @@ describe('MangaHeroComponent', () => {
     expect(links).toContain('#about');
   });
 
-  it('deve incluir o indicador discreto de rolagem para o sumário', () => {
-    const scrollPrompt = fixture.debugElement.query(By.css('.hero-scroll-prompt'));
-    expect(scrollPrompt).toBeTruthy();
-    const scrollLink = scrollPrompt.query(By.css('a')).nativeElement as HTMLAnchorElement;
-    expect(scrollLink.getAttribute('href')).toBe('#index-section');
-    expect(scrollLink.textContent).toContain('ROLE PARA ACESSAR O SUMÁRIO');
+  it('does not render a scroll prompt when the current hero has no such action', () => {
+    expect((fixture.nativeElement as HTMLElement).querySelector('.hero-scroll-prompt')).toBeNull();
   });
 
   it('deve incorporar a ilustração de capa com app-manga-image', () => {
     const mangaImg = fixture.debugElement.query(By.css('app-manga-image'));
     expect(mangaImg).toBeTruthy();
-    expect(mangaImg.componentInstance.src()).toBe('/assets/images/cover/hero-manga-cover.svg');
+    expect(mangaImg.componentInstance.src()).toBe('/assets/images/profile/erick-gabriel.png');
     expect(mangaImg.componentInstance.priority()).toBe(true);
   });
 });

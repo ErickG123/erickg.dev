@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CaseStudyDetailComponent } from './case-study-detail.component';
 import { ActivatedRoute, provideRouter } from '@angular/router';
 import { of } from 'rxjs';
+import { CaseStudyDetailComponent } from './case-study-detail.component';
 
 describe('CaseStudyDetailComponent', () => {
   let component: CaseStudyDetailComponent;
@@ -14,11 +14,7 @@ describe('CaseStudyDetailComponent', () => {
         provideRouter([]),
         {
           provide: ActivatedRoute,
-          useValue: {
-            paramMap: of({
-              get: (key: string) => (key === 'id' ? '1' : null)
-            })
-          }
+          useValue: { paramMap: of({ get: (key: string) => key === 'id' ? 'schema-lens' : null }) }
         }
       ]
     }).compileComponents();
@@ -28,41 +24,28 @@ describe('CaseStudyDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('deve criar a página de estudo de caso detalhado', () => {
-    expect(component).toBeTruthy();
+  it('loads SchemaLens and renders its documented sections', () => {
+    expect(component.caseStudy()?.title).toBe('SchemaLens');
+    expect(component.sections()).toHaveLength(9);
+    expect(fixture.nativeElement.querySelectorAll('.case-study-section')).toHaveLength(9);
   });
 
-  it('deve carregar o estudo de caso 01 (The Architect\'s Forge)', () => {
-    expect(component.caseStudy()).toBeTruthy();
-    expect(component.caseStudy()?.title).toContain("The Architect's Forge");
+  it('renders the architecture map with a readable Japanese glossary', () => {
+    const nodes = fixture.nativeElement.querySelectorAll('.architecture-node');
+    expect(nodes).toHaveLength(component.architectureLayers.length);
+    expect(fixture.nativeElement.querySelector('.architecture-note-reading').textContent).toContain('gamen');
   });
 
-  it('deve renderizar os 9 tópicos estruturais do estudo de caso', () => {
-    const el = fixture.nativeElement as HTMLElement;
-    expect(el.textContent).toContain('1. Contexto');
-    expect(el.textContent).toContain('2. O Problema');
-    expect(el.textContent).toContain('3. Restrições Técnicas');
-    expect(el.textContent).toContain('4. Alternativas Consideradas');
-    expect(el.textContent).toContain('5. Arquitetura e Decisões Técnicas');
-    expect(el.textContent).toContain('6. Implementação');
-    expect(el.textContent).toContain('7. Testes e Validação');
-    expect(el.textContent).toContain('8. Resultados Comprovados');
-    expect(el.textContent).toContain('9. Aprendizados e Próximos Passos');
+  it('updates the selected architecture explanation when a layer is selected', () => {
+    const nodes = fixture.nativeElement.querySelectorAll<HTMLButtonElement>('.architecture-node');
+    nodes[1].click();
+    fixture.detectChanges();
+
+    expect(component.selectedArchitecture().id).toBe('desktop');
+    expect(nodes[1].getAttribute('aria-pressed')).toBe('true');
   });
 
-  it('deve renderizar o bloco de código da implementação', () => {
-    const el = fixture.nativeElement as HTMLElement;
-    const codeEl = el.querySelector('pre code');
-    expect(codeEl).toBeTruthy();
-    expect(codeEl?.textContent).toContain('generateCleanArchitecture');
-  });
-
-  it('deve oferecer link de retorno para as obras selecionadas', () => {
-    const el = fixture.nativeElement as HTMLElement;
-    const returnLinks = Array.from(el.querySelectorAll('a')).filter(a =>
-      a.textContent?.includes('VOLTAR PARA OBRAS SELECIONADAS') ||
-      a.textContent?.includes('RETORNAR À SEÇÃO DE OBRAS SELECIONADAS')
-    );
-    expect(returnLinks.length).toBeGreaterThan(0);
+  it('provides a route back to the projects page', () => {
+    expect(fixture.nativeElement.querySelector('.case-back-link')?.getAttribute('href')).toBe('/projects');
   });
 });

@@ -43,17 +43,16 @@ describe('MangaProjectCardComponent', () => {
     expect(linkEl.href).toBe('https://github.com/ErickG123/ng-architect-cli');
   });
 
-  it('deve exibir o papel do autor e o bloco de problema de arquitetura', () => {
+  it('exibe a descrição e as tecnologias do projeto', () => {
     const el = fixture.nativeElement as HTMLElement;
-    expect(el.querySelector('.project-role-tag')?.textContent).toContain('Criador & Engenheiro Principal');
-    expect(el.querySelector('.project-problem-box')?.textContent).toContain('Necessidade de automatizar scaffolds');
+    expect(el.querySelector('.project-description')?.textContent).toContain('CLI de arquitetura');
+    expect(el.querySelector('.project-tech')?.textContent).toContain('Angular');
   });
 
-  it('deve renderizar botão de demo quando demoUrl estiver presente', () => {
+  it('renders the demo action when a demo URL is provided', () => {
     const el = fixture.nativeElement as HTMLElement;
-    const links = Array.from(el.querySelectorAll('a'));
-    const demoLink = links.find(a => a.textContent?.includes('DEMO'));
+    const demoLink = el.querySelector('a[href="https://demo.architect-forge.dev"]') as HTMLAnchorElement;
     expect(demoLink).toBeTruthy();
-    expect(demoLink?.href).toBe('https://demo.architect-forge.dev/');
+    expect(demoLink.href).toBe('https://demo.architect-forge.dev/');
   });
 });
