@@ -5,3 +5,39 @@
   display: block;
 }
 
+.route-ink-transition {
+  position: fixed;
+  z-index: calc(var(--z-header) + 10);
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.route-ink-transition__seal {
+  position: absolute;
+  right: clamp(1.5rem, 5vw, 4rem);
+  bottom: clamp(1.5rem, 5vh, 3.5rem);
+  width: 3.6rem;
+  height: 3.6rem;
+  overflow: visible;
+  color: var(--manga-vermilion);
+  opacity: 0;
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, .22));
+  transform: rotate(-8deg) scale(1.24);
+  transform-origin: 50% 70%;
+  animation: route-hanko-imprint .9s cubic-bezier(.2, .8, .25, 1) both;
+}
+
+@keyframes route-hanko-imprint {
+  0% { opacity: 0; filter: blur(1.2px) drop-shadow(0 2px 1px rgba(0, 0, 0, .22)); transform: rotate(-8deg) scale(1.24); }
+  25% { opacity: .94; filter: blur(0) drop-shadow(0 1px 1px rgba(0, 0, 0, .18)); transform: rotate(2deg) scale(.94); }
+  39% { opacity: .82; transform: rotate(-1deg) scale(1.02); }
+  57% { opacity: .86; transform: rotate(0) scale(1); }
+  76% { opacity: .86; transform: rotate(0) scale(1); }
+  100% { opacity: 0; filter: blur(.3px) drop-shadow(0 0 0 transparent); transform: rotate(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-ink-transition { display: none !important; }
+}
+

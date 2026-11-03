@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, HostBinding, HostListener, inject, OnInit, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { trigger, transition, style, animate, query } from '@angular/animations';
 import { HeaderComponent } from './layout/header/header.component';
 import { AchievementToastComponent } from './shared/components/achievement-toast/achievement-toast.component';
@@ -19,13 +19,21 @@ export const routeAnimations = trigger('routeAnimations', [
       })
     ], { optional: true }),
     query(':enter', [
-      style({ opacity: 0, clipPath: 'inset(0 0 100% 0)' })
+      style({
+        opacity: 0,
+        clipPath: 'inset(0 0 3% 0)',
+        transform: 'translateY(8px)'
+      })
     ], { optional: true }),
     query(':leave', [
       animate('0.12s ease-out', style({ opacity: 0 }))
     ], { optional: true }),
     query(':enter', [
-      animate('0.28s cubic-bezier(0.16, 1, 0.3, 1)', style({ opacity: 1, clipPath: 'inset(0 0 0 0)' }))
+      animate('0.38s cubic-bezier(0.16, 1, 0.3, 1)', style({
+        opacity: 1,
+        clipPath: 'inset(0)',
+        transform: 'translateY(0)'
+      }))
     ], { optional: true })
   ])
 ]);
@@ -40,14 +48,27 @@ export const routeAnimations = trigger('routeAnimations', [
 })
 export class App implements OnInit, AfterViewInit {
   seo = inject(SeoService);
+  private readonly router = inject(Router);
   swUpdate = inject(SwUpdate);
   currentLang = inject(GameStateService).currentLang;
   currentYear = new Date().getFullYear();
   readingProgress = signal(0);
+  inkTransitionVisible = signal(false);
+  private transitionTimer?: ReturnType<typeof setTimeout>;
 
   @HostBinding('@.disabled')
   get animationsDisabled(): boolean {
     return typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
+  }
+
+  constructor() {
+    this.router.events.subscribe(event => {
+      if (!(event instanceof NavigationStart) || !this.router.navigated || this.animationsDisabled) return;
+
+      this.inkTransitionVisible.set(true);
+      if (this.transitionTimer) clearTimeout(this.transitionTimer);
+      this.transitionTimer = setTimeout(() => this.inkTransitionVisible.set(false), 940);
+    });
   }
 
   ngOnInit() {

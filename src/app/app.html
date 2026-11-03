@@ -6,6 +6,28 @@
 
 <app-achievement-toast></app-achievement-toast>
 
+@if (inkTransitionVisible()) {
+  <div class="route-ink-transition" aria-hidden="true">
+    <svg class="route-ink-transition__seal" viewBox="0 0 100 100" focusable="false">
+      <defs>
+        <filter id="hanko-ink-wear" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" seed="11" result="ink-grain" />
+          <feColorMatrix in="ink-grain" type="matrix" values=".2126 .7152 .0722 0 0 .2126 .7152 .0722 0 0 .2126 .7152 .0722 0 0 .2126 .7152 .0722 0 0" result="grain-alpha" />
+          <feComponentTransfer in="grain-alpha" result="uneven-ink">
+            <feFuncA type="linear" slope="2.2" intercept="-.62" />
+          </feComponentTransfer>
+          <feComposite in="SourceGraphic" in2="uneven-ink" operator="in" />
+        </filter>
+      </defs>
+      <g filter="url(#hanko-ink-wear)">
+        <path fill="currentColor" fill-rule="evenodd" d="M12 9 L90 12 L89 89 L10 91 Z M22 20 L79 22 L78 79 L21 80 Z" />
+        <path d="M15 13 L87 15 L86 86 L14 87 Z" fill="none" stroke="currentColor" stroke-width="2.4" />
+        <text x="50" y="69" fill="currentColor" text-anchor="middle" font-family="Yuji Syuku, serif" font-size="57">印</text>
+      </g>
+    </svg>
+  </div>
+}
+
 <div class="flex flex-column" style="min-height: 100vh;">
   <app-header></app-header>
   <main id="main-content" tabindex="-1" class="flex-grow-1 p-4 route-container" [@routeAnimations]="prepareRoute(outlet)" (scroll)="updateReadingProgress($event)" [attr.aria-label]="'APP.MAIN_CONTENT' | transloco">
