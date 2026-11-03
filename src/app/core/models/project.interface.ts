@@ -11,9 +11,13 @@ export interface Project {
   imageAlt?: string;
   poster?: {
     character: string;
+    furigana: { text: string; kana?: string }[];
     reading: string;
+    romaji: string;
     meaning: string;
     meaningEn: string;
+    translation: string;
+    translationEn: string;
     credit: string;
     style: 'quiet' | 'technical' | 'flow' | 'forensic' | 'resilience';
   };

@@ -12,5 +12,6 @@ import { MangaProjectCardComponent } from '../../shared/components/manga-project
 })
 export class ProjectsComponent {
   readonly projects = FEATURED_PROJECTS_DATA;
+  readonly posterGlossary = FEATURED_PROJECTS_DATA.filter(project => !!project.poster);
   readonly currentLang = inject(GameStateService).currentLang;
 }

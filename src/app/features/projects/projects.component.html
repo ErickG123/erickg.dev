@@ -8,6 +8,35 @@
     <span class="projects-count" [attr.aria-label]="currentLang() === 'pt' ? 'Quantidade de projetos' : 'Number of projects'">{{ projects.length.toString().padStart(2, '0') }} <span>{{ currentLang() === 'pt' ? 'PROJETOS' : 'PROJECTS' }}</span></span>
   </header>
 
+  <details class="projects-glossary">
+    <summary>
+      <span class="glossary-summary-title">
+        <span class="glossary-summary-japanese" lang="ja">文字の読み方</span>
+        <span>{{ currentLang() === 'pt' ? 'Leituras e traduções' : 'Readings and translations' }}</span>
+      </span>
+      <span class="glossary-summary-action">{{ currentLang() === 'pt' ? 'Consultar glossário' : 'Open glossary' }} <b aria-hidden="true"></b></span>
+    </summary>
+    <div class="glossary-content">
+      <p>{{ currentLang() === 'pt' ? 'Kana, romaji e tradução dos caracteres usados nos pôsteres dos projetos.' : 'Kana, romaji, and translations for the characters used in the project posters.' }}</p>
+      <div class="glossary-grid">
+        @for (project of posterGlossary; track project.id) {
+          @if (project.poster; as poster) {
+            <article class="glossary-entry">
+              <span class="glossary-project">{{ project.title }}</span>
+              <span class="glossary-word" lang="ja">
+                @for (part of poster.furigana; track $index) {
+                  @if (part.kana) { <ruby>{{ part.text }}<rt>{{ part.kana }}</rt></ruby> } @else { {{ part.text }} }
+                }
+              </span>
+              <span class="glossary-reading"><span>{{ currentLang() === 'pt' ? 'Leitura' : 'Reading' }}</span><span lang="ja">{{ poster.reading }}</span><i>{{ poster.romaji }}</i></span>
+              <span class="glossary-translation"><span>{{ currentLang() === 'pt' ? 'Tradução' : 'Translation' }}</span>{{ currentLang() === 'pt' ? poster.translation : poster.translationEn }}</span>
+            </article>
+          }
+        }
+      </div>
+    </div>
+  </details>
+
   <section class="projects-page-grid" [attr.aria-label]="currentLang() === 'pt' ? 'Projetos de Erick Gabriel' : 'Erick Gabriel projects'">
     @for (project of projects; track project.id) {
       <div class="projects-page-item">

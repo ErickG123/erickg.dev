@@ -31,7 +31,11 @@
     <section class="architecture-map" aria-labelledby="architecture-map-title">
       <header class="architecture-map-heading">
         <div>
-          <span class="architecture-map-kicker"><ruby>設計<rt>せっけい</rt></ruby><span>SEKKEI · SYSTEM DESIGN</span></span>
+          <span class="architecture-map-kicker">
+            <span class="architecture-map-character" lang="ja"><ruby>設<rt>せっ</rt></ruby><ruby>計<rt>けい</rt></ruby></span>
+            <span class="architecture-map-reading" lang="ja">せっけい <i>· sekkei</i></span>
+            <span class="architecture-map-translation">{{ currentLang() === 'pt' ? 'projeto · design' : 'project · design' }}</span>
+          </span>
           <h2 id="architecture-map-title">{{ currentLang() === 'pt' ? 'Um mapa da arquitetura' : 'A map of the architecture' }}</h2>
           <p>{{ currentLang() === 'pt' ? 'Selecione uma camada para ver o papel descrito nos documentos do projeto.' : 'Select a layer to see its role as described in the project documents.' }}</p>
         </div>
@@ -42,7 +46,13 @@
         @for (layer of architectureLayers; track layer.id; let index = $index) {
           <button class="architecture-node" [class.is-selected]="selectedArchitectureIndex() === index" type="button" [attr.aria-pressed]="selectedArchitectureIndex() === index" (click)="selectedArchitectureIndex.set(index)">
             <span class="architecture-node-number">0{{ index + 1 }}</span>
-            <span class="architecture-node-kanji" aria-hidden="true"><ruby>{{ layer.character }}<rt>{{ layer.reading }}</rt></ruby></span>
+            <span class="architecture-node-kanji" lang="ja">
+              @for (part of layer.furigana; track $index) {
+                @if (part.kana) { <ruby>{{ part.text }}<rt>{{ part.kana }}</rt></ruby> } @else { {{ part.text }} }
+              }
+            </span>
+            <span class="architecture-node-reading" lang="ja">{{ layer.reading }} <i>· {{ layer.romaji }}</i></span>
+            <span class="architecture-node-translation">{{ currentLang() === 'pt' ? layer.translationPt : layer.translationEn }}</span>
             <span class="architecture-node-label">{{ currentLang() === 'pt' ? layer.labelPt : layer.labelEn }}</span>
             <span class="architecture-node-tech">{{ layer.tech }}</span>
           </button>
@@ -52,7 +62,14 @@
       <div class="architecture-note" aria-live="polite" aria-atomic="true">
         <span class="architecture-note-mark" aria-hidden="true">印</span>
         <div>
-          <span class="architecture-note-label">{{ currentLang() === 'pt' ? 'CAMADA SELECIONADA' : 'SELECTED LAYER' }} · {{ selectedArchitecture().character }}</span>
+          <span class="architecture-note-label">{{ currentLang() === 'pt' ? 'CAMADA SELECIONADA' : 'SELECTED LAYER' }}</span>
+          <span class="architecture-note-term" lang="ja">
+            @for (part of selectedArchitecture().furigana; track $index) {
+              @if (part.kana) { <ruby>{{ part.text }}<rt>{{ part.kana }}</rt></ruby> } @else { {{ part.text }} }
+            }
+          </span>
+          <span class="architecture-note-reading" lang="ja">{{ selectedArchitecture().reading }} · {{ selectedArchitecture().romaji }}</span>
+          <span class="architecture-note-translation">{{ currentLang() === 'pt' ? selectedArchitecture().translationPt : selectedArchitecture().translationEn }}</span>
           <p>{{ currentLang() === 'pt' ? selectedArchitecture().detailPt : selectedArchitecture().detailEn }}</p>
         </div>
       </div>

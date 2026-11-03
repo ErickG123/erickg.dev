@@ -64,10 +64,14 @@
 
 .architecture-map { position: relative; margin-top: clamp(2.5rem, 6vw, 4.5rem); padding: clamp(1rem, 3vw, 1.7rem); overflow: hidden; border: 1px solid var(--manga-border-subtle); background: linear-gradient(135deg,color-mix(in srgb,var(--manga-vermilion) 5%,var(--manga-surface)),var(--manga-surface) 48%); animation: case-paper-in .55s .12s var(--ease-editorial) both; }
 .architecture-map-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--manga-border-subtle); }
-.architecture-map-kicker { display: flex; align-items: center; gap: .65rem; color: var(--manga-vermilion-text); }
-.architecture-map-kicker ruby { font: 1.45rem 'Yuji Syuku',serif; }
-.architecture-map-kicker rt { font: .43rem var(--font-mono); }
-.architecture-map-kicker > span, .architecture-map-index { color: var(--manga-gray); font: 500 .62rem var(--font-mono); letter-spacing: .12em; }
+.architecture-map-kicker { display: flex; align-items: baseline; flex-wrap: wrap; gap: .45rem .7rem; color: var(--manga-vermilion-text); }
+.architecture-map-character { font: 1.45rem/1.2 'Yuji Syuku',serif; }
+.architecture-map-character ruby, .architecture-node-kanji ruby, .architecture-note-term ruby { ruby-position: over; ruby-align: center; }
+.architecture-map-character rt, .architecture-node-kanji rt, .architecture-note-term rt { color: var(--manga-gray); font: 500 .35em/1 var(--font-mono); letter-spacing: 0; }
+.architecture-map-reading, .architecture-map-translation { color: var(--manga-gray); font: 500 .62rem var(--font-mono); }
+.architecture-map-reading i, .architecture-node-reading i { color: var(--manga-gray); font-style: normal; opacity: .8; }
+.architecture-map-translation { color: var(--manga-vermilion-text); text-transform: uppercase; letter-spacing: .04em; }
+.architecture-map-index { color: var(--manga-gray); font: 500 .62rem var(--font-mono); letter-spacing: .12em; }
 .architecture-map-heading h2 { margin: .45rem 0 .2rem; font: 700 clamp(1.15rem,2vw,1.55rem)/1.2 var(--font-heading); }
 .architecture-map-heading p { margin: 0; color: var(--manga-gray); font-size: .8rem; line-height: 1.5; }
 .architecture-map-index { align-self: flex-start; padding: .3rem .45rem; border: 1px solid var(--manga-border-subtle); }
@@ -77,13 +81,17 @@
 .architecture-node:hover, .architecture-node:focus-visible, .architecture-node.is-selected { border-color: var(--manga-vermilion); background: color-mix(in srgb,var(--manga-vermilion) 8%,var(--manga-surface)); box-shadow: inset 0 2px var(--manga-vermilion); }
 .architecture-node:hover { transform: translateY(-2px); }
 .architecture-node-number { color: var(--manga-gray); font: 500 .58rem var(--font-mono); letter-spacing: .1em; }
-.architecture-node-kanji { align-self: flex-end; min-height: 3.3rem; color: var(--manga-vermilion-text); font: 2.35rem/1 'Yuji Syuku',serif; }
-.architecture-node-kanji rt { font: 500 .36rem var(--font-mono); letter-spacing: .12em; }
+.architecture-node-kanji { align-self: flex-end; min-height: 2.9rem; color: var(--manga-vermilion-text); font: 2.15rem/1.1 'Yuji Syuku',serif; }
+.architecture-node-reading, .architecture-node-translation { align-self: flex-end; color: var(--manga-gray); font: 500 .55rem var(--font-mono); text-align: right; }
+.architecture-node-translation { color: var(--manga-vermilion-text); font-size: .58rem; }
 .architecture-node-label { margin-top: auto; font: 650 .76rem/1.3 var(--font-body); }
 .architecture-node-tech { margin-top: .3rem; color: var(--manga-gray); font: 500 .63rem/1.4 var(--font-mono); }
 .architecture-note { display: flex; align-items: flex-start; gap: .85rem; margin-top: .7rem; padding: .85rem 1rem; border-left: 2px solid var(--manga-vermilion); background: var(--manga-surface-muted); animation: case-paper-unfold .28s var(--ease-editorial) both; }
 .architecture-note-mark { display: grid; flex: 0 0 auto; width: 1.8rem; height: 1.8rem; place-items: center; border: 1px solid var(--manga-vermilion); color: var(--manga-vermilion-text); font: 1rem 'Yuji Syuku',serif; }
-.architecture-note-label { color: var(--manga-vermilion-text); font: 600 .6rem var(--font-mono); letter-spacing: .07em; }
+.architecture-note-label { display: block; color: var(--manga-gray); font: 600 .58rem var(--font-mono); letter-spacing: .07em; }
+.architecture-note-term { display: inline-block; margin: .2rem .45rem 0 0; color: var(--manga-vermilion-text); font: 1.2rem/1.15 'Yuji Syuku',serif; }
+.architecture-note-reading, .architecture-note-translation { display: inline-block; margin: .3rem .5rem 0 0; color: var(--manga-gray); font: 500 .62rem var(--font-mono); }
+.architecture-note-translation { color: var(--manga-vermilion-text); }
 .architecture-note p { max-width: 76ch; margin: .3rem 0 0; color: var(--manga-ink); font-size: .82rem; line-height: 1.6; }
 
 @keyframes case-paper-in { from { opacity: 0; transform: translateY(10px); clip-path: inset(0 0 8% 0); } to { opacity: 1; transform: translateY(0); clip-path: inset(0); } }
