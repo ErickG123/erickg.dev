@@ -6,7 +6,13 @@
 
   @if (project().image) {
     <div class="project-visual">
-      <app-manga-image [src]="project().image!" [alt]="'Captura de tela do projeto ' + project().title" aspectRatio="16:9"></app-manga-image>
+      <app-manga-image [src]="project().image!" [alt]="(currentLang() === 'pt' ? 'Captura de tela do projeto ' : 'Screenshot of ') + project().title" aspectRatio="16:9"></app-manga-image>
+    </div>
+  } @else {
+    <div class="project-visual project-visual--placeholder" role="img" [attr.aria-label]="currentLang() === 'pt' ? 'Imagem do projeto ainda não disponível: ' + project().title : 'Project image not available yet: ' + project().title">
+      <span class="placeholder-caption">{{ currentLang() === 'pt' ? 'CAPTURA EM PREPARAÇÃO' : 'PROJECT IMAGE IN PREPARATION' }}</span>
+      <span class="placeholder-mark" aria-hidden="true">{{ project().title.slice(0, 2).toUpperCase() }}</span>
+      <span class="placeholder-project-name" aria-hidden="true">{{ project().title }}</span>
     </div>
   }
 
@@ -16,16 +22,57 @@
     <p class="project-description">{{ project().description }}</p>
   </div>
 
-  <ul class="project-tech" aria-label="Tecnologias">
+  <ul class="project-tech" [attr.aria-label]="currentLang() === 'pt' ? 'Tecnologias' : 'Technologies'">
     @for (tech of project().techStack; track tech) { <li>{{ tech }}</li> }
   </ul>
 
+  @if (project().previewSteps; as previewSteps) {
+    @if (previewSteps.length > 0) {
+    <div class="product-preview">
+      <button
+        class="preview-toggle"
+        type="button"
+        [attr.aria-expanded]="previewIsOpen()"
+        [attr.aria-controls]="'preview-' + project().id"
+        (click)="togglePreview()"
+      >
+        <span>{{ currentLang() === 'pt' ? (previewIsOpen() ? 'Fechar prévia' : 'Explorar experiência') : (previewIsOpen() ? 'Close preview' : 'Explore the experience') }}</span>
+        <span class="preview-toggle-icon" aria-hidden="true">{{ previewIsOpen() ? '−' : '+' }}</span>
+      </button>
+      @if (previewIsOpen()) {
+        <div class="preview-panel" [id]="'preview-' + project().id">
+          <span class="preview-eyebrow">{{ currentLang() === 'pt' ? 'VISÃO DO PRODUTO · PRÉVIA INTERATIVA' : 'PRODUCT OVERVIEW · INTERACTIVE PREVIEW' }}</span>
+          <div class="preview-tabs" role="group" [attr.aria-label]="'Fluxos do ' + project().title">
+            @for (step of previewSteps; track step.id; let index = $index) {
+              <button
+                class="preview-tab"
+                type="button"
+                [attr.aria-pressed]="selectedPreviewStep() === index"
+                [class.is-active]="selectedPreviewStep() === index"
+                (click)="selectedPreviewStep.set(index)"
+              >{{ currentLang() === 'pt' ? step.label : (step.labelEn || step.label) }}</button>
+            }
+          </div>
+          @for (step of previewSteps; track step.id; let index = $index) {
+            @if (selectedPreviewStep() === index) {
+              <p
+                class="preview-description"
+                aria-live="polite"
+              >{{ currentLang() === 'pt' ? step.description : (step.descriptionEn || step.description) }}</p>
+            }
+          }
+        </div>
+      }
+    </div>
+    }
+  }
+
   <div class="project-actions">
     @if (project().url || project().repositoryUrl) {
-      <a [href]="project().url || project().repositoryUrl" target="_blank" rel="noopener noreferrer" class="project-link project-link-primary" [attr.aria-label]="'Abrir repositório de ' + project().title">Código ↗</a>
+      <a [href]="project().url || project().repositoryUrl" target="_blank" rel="noopener noreferrer" class="project-link project-link-primary" [attr.aria-label]="(currentLang() === 'pt' ? 'Abrir repositório de ' : 'Open repository for ') + project().title">{{ currentLang() === 'pt' ? 'Código' : 'Code' }} ↗</a>
     }
     @if (project().demoUrl) {
-      <a [href]="project().demoUrl" target="_blank" rel="noopener noreferrer" class="project-link" [attr.aria-label]="'Abrir demonstração de ' + project().title">Ver projeto ↗</a>
+      <a [href]="project().demoUrl" target="_blank" rel="noopener noreferrer" class="project-link" [attr.aria-label]="(currentLang() === 'pt' ? 'Abrir demonstração de ' : 'Open demo for ') + project().title">{{ currentLang() === 'pt' ? 'Ver projeto' : 'View project' }} ↗</a>
     }
     @if (project().caseStudyUrl) {
       <a [routerLink]="project().caseStudyUrl" class="project-link">Estudo de caso →</a>

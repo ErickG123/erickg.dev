@@ -23,8 +23,6 @@
 .hero-location { color: var(--manga-gray); font: 500 .72rem var(--font-mono); letter-spacing: .03em; }
 .hero-author { color: var(--manga-vermilion-text); font: 650 .78rem var(--font-mono); letter-spacing: .035em; }
 .hero-author span { padding-inline: .25rem; color: var(--manga-gray); }
-.availability { color: var(--manga-gray); display: flex; gap: .5rem; align-items: center; font-size: .78rem; }
-.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #6f9a76; }
 .hero-text-column { border: 0; padding: 2rem 1rem 2rem 0; position: relative; z-index: 1; }
 .hero-tagline { max-width: 11ch; font: 750 clamp(3.2rem, 6vw, 6rem)/.98 var(--font-heading); letter-spacing: -.055em; word-break: normal; text-wrap: balance; }
 .hero-description { max-width: 38rem; color: var(--manga-gray); }

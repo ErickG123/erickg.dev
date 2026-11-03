@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AudioService } from '../../core/audio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { GameStateService } from '../../core/state/game-state.service';
 import { ThemeService } from '../../core/theme.service';
@@ -13,12 +12,13 @@ import { ThemeService } from '../../core/theme.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  audioService = inject(AudioService);
   translate = inject(TranslateService);
   gameState = inject(GameStateService);
   themeService = inject(ThemeService);
+  private elementRef = inject(ElementRef<HTMLElement>);
   
   currentLang = this.gameState.currentLang;
+  personalNoteOpen = signal(false);
 
   constructor() {
     let language = 'pt';
@@ -35,4 +35,21 @@ export class HeaderComponent {
   }
 
   toggleTheme() { this.themeService.toggleTheme(); }
+
+  togglePersonalNote() {
+    this.personalNoteOpen.update((isOpen) => !isOpen);
+  }
+
+  @HostListener('document:keydown.escape')
+  closePersonalNote() {
+    this.personalNoteOpen.set(false);
+  }
+
+  @HostListener('document:click', ['$event'])
+  closePersonalNoteOnOutsideClick(event: MouseEvent) {
+    const target = event.target;
+    if (target instanceof Node && !this.elementRef.nativeElement.contains(target)) {
+      this.personalNoteOpen.set(false);
+    }
+  }
 }

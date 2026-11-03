@@ -140,7 +140,7 @@
           </div>
 
           <!-- Nota Provisória Explicita de Mídia -->
-          <div class="mt-4 p-2 text-surface text-surface--muted" style="border: 1px dashed var(--manga-gray); text-align: center;">
+          <div class="mt-4 p-3 text-surface text-surface--muted" style="border: 1px dashed var(--manga-gray); text-align: center;">
             <span class="manga-mono" style="font-size: 0.72rem; color: var(--manga-ink); font-weight: 600;">
               {{ author.pendingNotes }}
             </span>
@@ -163,10 +163,10 @@
             <div class="gutter-divider--dashed my-4"></div>
 
             <h3 class="manga-heading-lg mb-3">MATRIZ DE COMPETÊNCIAS</h3>
-            <div class="manga-grid">
+            <div class="manga-grid about-skills-grid">
               @for (skillGroup of author.skills; track skillGroup.category) {
                 <div class="col-4">
-                  <div class="manga-panel manga-panel--dashed p-3 h-full">
+                  <div class="manga-panel manga-panel--dashed p-4 h-full">
                     <span class="manga-mono manga-text-vermilion" style="font-weight: 800; font-size: 0.75rem; display: block; margin-bottom: var(--space-2);">
                       // {{ skillGroup.category }}
                     </span>

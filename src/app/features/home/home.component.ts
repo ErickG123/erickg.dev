@@ -36,7 +36,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   readonly author = AUTHOR_DATA;
   readonly projects = FEATURED_PROJECTS_DATA;
   readonly careerHistory = [
-    { period: 'Jul 2026 – atual', title: 'Programador Junior II', company: 'Zella Sistemas · YMS', summary: 'Atuação em desenvolvimento de software.', technologies: ['Angular', '.NET', 'TypeScript'] },
+    { period: 'Jul 2026 – atual', title: 'Programador Pleno I', company: 'Zella Sistemas · YMS', summary: 'Atuação em desenvolvimento de software.', technologies: ['Angular', '.NET', 'TypeScript'] },
     { period: 'Nov 2025 – Jul 2026', title: 'Desenvolvedor', company: 'Zella Sistemas · YMS', summary: 'Desenvolvimento de sistemas e funcionalidades para produtos da empresa.', technologies: ['Desenvolvimento web', 'APIs'] },
     { period: 'Dez 2023 – Nov 2025', title: 'Desenvolvedor de Software', company: 'Compu Informática', summary: 'Desenvolvimento e manutenção de software.', technologies: ['Aplicações web', 'Integrações'] },
     { period: 'Abr 2021 – Mai 2023', title: 'Desenvolvedor de Software Júnior', company: 'SIALOG Software Solutions', summary: 'Início da trajetória profissional em desenvolvimento de software.', technologies: ['Desenvolvimento de software'] }
@@ -96,6 +96,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
       const visibleEntries = entries.filter(e => e.isIntersecting);
       if (visibleEntries.length > 0) {
+        visibleEntries.forEach((entry) => entry.target.classList.add('is-in-view'));
         visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
         const target = visibleEntries[0].target as HTMLElement;
         if (target && target.id) {

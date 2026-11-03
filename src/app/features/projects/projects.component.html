@@ -1,88 +1,25 @@
-<section class="container fadein mb-4 mt-4">
-  <div class="flex align-center gap-2 mb-4" style="border-bottom: 2px dashed var(--gba-border-light); padding-bottom: 1rem;">
-    <h2 class="manga-heading-xl m-0">{{ 'BAG.TITLE' | translate }}</h2>
-  </div>
-
-  @if (projectService.isLoading()) {
-    <div class="flex justify-center align-center" style="height: 15rem;">
-      <span class="manga-mono manga-text-gray">Carregando projetos…</span>
+<section class="projects-page" aria-labelledby="projects-page-title">
+  <header class="projects-page-heading">
+    <div class="projects-heading-copy">
+      <span class="projects-kicker">作品 · {{ currentLang() === 'pt' ? 'PORTFÓLIO' : 'SELECTED WORK' }}</span>
+      <h1 id="projects-page-title">{{ currentLang() === 'pt' ? 'Projetos selecionados' : 'Selected projects' }}</h1>
+      <p>{{ currentLang() === 'pt' ? 'Produtos, ferramentas e experimentos que transformam problemas reais em software útil.' : 'Products, tools, and experiments that turn real problems into useful software.' }}</p>
     </div>
-  } @else {
-    <div class="inventory-grid">
-      
-      <!-- Coluna Esquerda: Lista de Itens -->
-      <div class="manga-panel item-list-panel">
-        <ul class="inventory-list">
-          @for (project of projectService.projects(); track project.id) {
-            <li 
-              class="inventory-item manga-mono"
-              [class.active]="selectedProject()?.id === project.id"
-              (click)="onSelectProject(project)"
-            >
-              <span class="selector" [style.visibility]="selectedProject()?.id === project.id ? 'visible' : 'hidden'">></span>
-              {{ project.title | uppercase }}
-            </li>
-          }
-        </ul>
-      </div>
+    <span class="projects-count" [attr.aria-label]="currentLang() === 'pt' ? 'Quantidade de projetos' : 'Number of projects'">{{ projects.length.toString().padStart(2, '0') }} <span>{{ currentLang() === 'pt' ? 'PROJETOS' : 'PROJECTS' }}</span></span>
+  </header>
 
-      <!-- Coluna Direita: Detalhes do Item -->
-      <div class="manga-panel item-details-panel flex flex-column">
-        @if (selectedProject(); as project) {
-          <div class="item-icon-box mb-3 flex justify-center align-center">
-            <!-- Simulação de Ícone de Item (ex. Disco/Cartucho/Ferramenta) -->
-            <div class="pixel-sprite">作品</div>
-          </div>
-          
-          <h3 class="manga-heading-lg manga-text-vermilion m-0 mb-3 text-center">
-            {{ project.title | uppercase }}
-          </h3>
-          
-          <div class="description-box flex-grow-1">
-            @if (activeDemo() === 'sleuth') {
-              <div class="node-graph-demo flex flex-column align-center justify-center p-3">
-                <div class="node-header manga-text-vermilion manga-mono mb-3" style="font-size: 0.7rem;">Rastreamento de rede</div>
-                <div class="node-canvas flex align-center justify-center w-full my-3">
-                  <div class="node source manga-mono">Origem</div>
-                  <div class="flow-line"></div>
-                  <div class="node process manga-mono">Inspeção</div>
-                  <div class="flow-line blocked"></div>
-                  <div class="node loop-error manga-mono manga-text-vermilion">Restrito</div>
-                </div>
-                <button class="manga-btn manga-btn--secondary mt-3" (click)="activeDemo.set(null)">Fechar demonstração</button>
-              </div>
-            } @else if (activeDemo() === 'forge') {
-              <div class="cli-terminal-demo flex flex-column">
-                <div class="terminal-header flex justify-between align-center px-2 py-1">
-                  <span>Demonstração de arquitetura</span>
-                <button class="close-btn" (click)="activeDemo.set(null)">{{ 'BAG.CLOSE' | translate }}</button>
-              </div>
-              <div class="terminal-body flex-grow-1">
-                <p class="prompt m-0 mb-2"><span class="path">Projeto /</span> <span class="typing-cmd">gerar layout dinâmico</span></p>
-                <div class="cli-output">
-                  <p class="log success m-0">Estrutura do painel inicializada.</p>
-                  <p class="log m-0">Preparando grids configuráveis…</p>
-                  <p class="log m-0">Aplicando visualização em tela cheia…</p>
-                  <p class="log success m-0">Arquitetura pronta.</p>
-                </div>
-                <p class="prompt m-0 mt-2"><span class="path">Pronto</span></p>
-              </div>
-            </div>
-          } @else {
-            <p class="description m-0">
-              {{ project.description }}
-            </p>
-          }
-        </div>
-        
-        @if (!activeDemo()) {
-          <div class="item-actions mt-4">
-            <button class="manga-btn manga-btn--accent w-full" (click)="onEquipProject(project)">{{ 'BAG.EQUIP' | translate }}</button>
-          </div>
-        }
-        }
+  <section class="projects-page-grid" [attr.aria-label]="currentLang() === 'pt' ? 'Projetos de Erick Gabriel' : 'Erick Gabriel projects'">
+    @for (project of projects; track project.id; let index = $index) {
+      <div class="projects-page-item" [class.projects-page-item--featured]="index === 0">
+        <app-manga-project-card [project]="project"></app-manga-project-card>
       </div>
+    }
+  </section>
 
-    </div>
-  }
+  <footer class="projects-page-footer">
+    <p>{{ currentLang() === 'pt' ? 'Mais projetos e contribuições estão disponíveis no GitHub.' : 'More projects and contributions are available on GitHub.' }}</p>
+    <a href="https://github.com/ErickG123?tab=repositories" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary">
+      {{ currentLang() === 'pt' ? 'Explorar repositórios' : 'Explore repositories' }} <span aria-hidden="true">↗</span>
+    </a>
+  </footer>
 </section>

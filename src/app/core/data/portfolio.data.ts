@@ -147,6 +147,11 @@ export const FEATURED_PROJECTS_DATA: Project[] = [
     demoUrl: 'https://yomiflow-landing.vercel.app/',
     image: '/assets/images/projects/project-yomiflow.jpg',
     highlight: 'Leitura, áudio e revisão japonesa com suporte offline',
+    previewSteps: [
+      { id: 'reading', label: 'Leitura', labelEn: 'Reading', description: 'Leia mangás em um espaço dedicado ao estudo de japonês por imersão.', descriptionEn: 'Read manga in a workspace dedicated to immersive Japanese study.' },
+      { id: 'listening', label: 'Áudio', labelEn: 'Listening', description: 'Estude com áudio e vídeo dentro do mesmo espaço de imersão.', descriptionEn: 'Study with audio and video in the same immersion workspace.' },
+      { id: 'review', label: 'Revisão', labelEn: 'Review', description: 'Reúna anotações no caderno linguístico e retome os estudos com revisão espaçada.', descriptionEn: 'Collect notes in the language notebook and revisit them with spaced review.' }
+    ],
     year: 2026,
     featured: true,
     layoutSpan: 'col-12'

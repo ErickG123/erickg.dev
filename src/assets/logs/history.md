@@ -2,7 +2,7 @@
 
 Minha experiência passa por desenvolvimento de software, aplicações web, integrações e evolução de sistemas. Abaixo estão alguns pontos da minha trajetória e das tecnologias com que trabalho.
 
-## Zella Sistemas — Programador Junior II
+## Zella Sistemas — Programador Pleno I
 
 **Julho de 2026 – atual**
 

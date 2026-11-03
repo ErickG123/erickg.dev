@@ -16,4 +16,13 @@ export interface Project {
   year?: number;
   featured?: boolean;
   layoutSpan?: 'col-6' | 'col-7' | 'col-5' | 'col-12';
+  previewSteps?: ProjectPreviewStep[];
+}
+
+export interface ProjectPreviewStep {
+  id: string;
+  label: string;
+  labelEn?: string;
+  description: string;
+  descriptionEn?: string;
 }

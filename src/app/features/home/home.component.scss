@@ -5,7 +5,7 @@
 
 .manga-section {
   scroll-margin-top: var(--space-8);
-  margin-bottom: clamp(3.5rem, 8vw, 7rem) !important;
+  margin-bottom: clamp(2.8rem, 5vw, 4.75rem) !important;
 }
 
 .cover-section {
@@ -14,7 +14,10 @@
 
 .career-heading { max-width: 44rem; margin-bottom: 2rem; }
 .section-kicker { display: block; color: var(--manga-vermilion-text); font: 600 .75rem var(--font-mono); letter-spacing: .08em; margin-bottom: .6rem; }
-.career-heading h2 { font-size: clamp(2rem, 4vw, 3.3rem); letter-spacing: -.04em; }
+.career-heading h2 { position: relative; width: fit-content; max-width: 100%; font-size: clamp(2rem, 4vw, 3.3rem); letter-spacing: -.04em; }
+.career-heading h2::after { position: absolute; right: 0; bottom: -.18rem; left: 0; height: 2px; background: var(--manga-vermilion); content: ''; transform: scaleX(0); transform-origin: left center; opacity: .82; }
+.manga-section.is-in-view .career-heading h2::after { animation: ink-heading-draw .55s var(--ease-editorial) both; }
+@keyframes ink-heading-draw { to { transform: scaleX(1); } }
 .career-heading p { color: var(--manga-gray); margin: .6rem 0 0; }
 .career-list { border-top: 1px solid var(--manga-border-subtle); }
 .career-entry { display: grid; grid-template-columns: minmax(150px, .65fr) 2fr; gap: 2rem; padding: 1.7rem 0; border-bottom: 1px solid var(--manga-border-subtle); }
@@ -24,5 +27,9 @@
 .career-detail p { color: var(--manga-gray); margin: .65rem 0; }
 .career-tags { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
 .career-tags li { color: var(--manga-gray); border: 1px solid var(--manga-border-subtle); border-radius: 999px; padding: .2rem .65rem; font-size: .72rem; }
+.about-skills-grid { row-gap: 1rem; }
+@media (max-width: 900px) { .about-skills-grid > .col-4 { grid-column: span 6; } }
+@media (max-width: 560px) { .about-skills-grid > .col-4 { grid-column: 1 / -1; } }
 @media (max-width: 640px) { .career-entry { grid-template-columns: 1fr; gap: .5rem; padding: 1.2rem 0; } }
+@media (prefers-reduced-motion: reduce) { .career-heading h2::after { animation: none !important; transform: scaleX(1); } }
 

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, HostBinding, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { trigger, transition, style, animate, query } from '@angular/animations';
 import { HeaderComponent } from './layout/header/header.component';
@@ -17,13 +17,13 @@ export const routeAnimations = trigger('routeAnimations', [
       })
     ], { optional: true }),
     query(':enter', [
-      style({ opacity: 0 })
+      style({ opacity: 0, clipPath: 'inset(0 0 100% 0)' })
     ], { optional: true }),
     query(':leave', [
-      animate('0.15s steps(2)', style({ opacity: 0 }))
+      animate('0.12s ease-out', style({ opacity: 0 }))
     ], { optional: true }),
     query(':enter', [
-      animate('0.15s steps(2)', style({ opacity: 1 }))
+      animate('0.28s cubic-bezier(0.16, 1, 0.3, 1)', style({ opacity: 1, clipPath: 'inset(0 0 0 0)' }))
     ], { optional: true })
   ])
 ]);
@@ -40,6 +40,11 @@ export class App implements OnInit {
   seo = inject(SeoService);
   swUpdate = inject(SwUpdate);
   currentYear = new Date().getFullYear();
+
+  @HostBinding('@.disabled')
+  get animationsDisabled(): boolean {
+    return typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
+  }
 
   ngOnInit() {
     this.seo.setSocialMediaTags(

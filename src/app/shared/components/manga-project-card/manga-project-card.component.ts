@@ -1,8 +1,9 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import type { Project } from '../../../core/models/project.interface';
 import { MangaImageComponent } from '../manga-image/manga-image.component';
+import { GameStateService } from '../../../core/state/game-state.service';
 
 @Component({
   selector: 'app-manga-project-card',
@@ -13,4 +14,11 @@ import { MangaImageComponent } from '../manga-image/manga-image.component';
 })
 export class MangaProjectCardComponent {
   project = input.required<Project>();
+  currentLang = inject(GameStateService).currentLang;
+  previewIsOpen = signal(false);
+  selectedPreviewStep = signal(0);
+
+  togglePreview(): void {
+    this.previewIsOpen.update((isOpen) => !isOpen);
+  }
 }

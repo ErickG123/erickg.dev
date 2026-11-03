@@ -2,3 +2,17 @@
   display: block;
   width: 100%;
 }
+
+.gutter-divider.ink-draw-in {
+  transform-origin: left center;
+  animation: ink-draw .6s var(--ease-editorial) both;
+}
+
+@keyframes ink-draw {
+  from { transform: scaleX(.02); opacity: .45; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gutter-divider.ink-draw-in { animation: none; }
+}

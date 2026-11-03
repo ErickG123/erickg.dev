@@ -12,11 +12,17 @@
   backdrop-filter: blur(16px);
 }
 
+.brand-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  flex: 0 0 auto;
+}
+
 .header-title {
   display: grid;
-  grid-template-columns: 2.4rem auto;
-  align-items: center;
-  column-gap: .7rem;
+  gap: .12rem;
   color: var(--manga-ink);
   font: 800 .9rem var(--font-heading);
   letter-spacing: .08em;
@@ -24,7 +30,7 @@
 }
 
 .brand-mark {
-  grid-row: span 2;
+  flex: 0 0 auto;
   display: grid;
   place-items: center;
   width: 2.25rem;
@@ -33,12 +39,63 @@
   background: var(--manga-vermilion);
   color: #fff;
   font: 1.2rem serif;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: transform .24s var(--ease-editorial), box-shadow .24s ease;
+}
+
+.brand-mark:hover, .brand-mark[aria-expanded="true"] { transform: rotate(-8deg) scale(1.06); box-shadow: 0 0 0 4px color-mix(in srgb, var(--manga-vermilion) 18%, transparent); }
+
+.personal-note {
+  position: absolute;
+  z-index: calc(var(--z-header) + 2);
+  top: calc(100% + 1rem);
+  left: 0;
+  width: min(23rem, calc(100vw - 2rem));
+  padding: 1rem 1.2rem 1rem;
+  border: 1px solid var(--manga-border-subtle);
+  border-left: 3px solid var(--manga-vermilion);
+  background: var(--manga-surface);
+  color: var(--manga-ink);
+  box-shadow: 0 14px 34px rgba(20, 20, 18, .16);
+  transform-origin: top left;
+  animation: paper-note-in .28s var(--ease-editorial) both;
+}
+
+.personal-note::before {
+  position: absolute;
+  top: -.4rem;
+  left: 1rem;
+  width: .7rem;
+  height: .7rem;
+  content: '';
+  transform: rotate(45deg);
+  border-top: 1px solid var(--manga-border-subtle);
+  border-left: 1px solid var(--manga-border-subtle);
+  background: var(--manga-surface);
+}
+
+.personal-note p { margin: 0 1.2rem .55rem 0; color: var(--manga-gray); font-size: .84rem; line-height: 1.6; }
+.personal-note > span { color: var(--manga-vermilion-text); font: 600 .72rem var(--font-mono); }
+.note-close { position: absolute; top: .35rem; right: .4rem; width: 2rem; height: 2rem; border: 0; background: transparent; color: var(--manga-gray); font-size: 1.25rem; cursor: pointer; }
+
+@keyframes paper-note-in {
+  from { opacity: 0; transform: translateY(-5px) rotate(-1deg) scale(.98); clip-path: inset(0 0 100% 0); }
+  to { opacity: 1; transform: translateY(0) rotate(0) scale(1); clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark, .personal-note { animation: none !important; transition: none !important; }
+  .brand-mark:hover, .brand-mark[aria-expanded="true"] { transform: none; }
 }
 
 .header-title small { color: var(--manga-gray); font: 600 .55rem var(--font-mono); letter-spacing: .13em; }
 .header-nav { display: flex; align-items: center; justify-content: flex-end; gap: clamp(.25rem, 1.5vw, 1.1rem); flex-wrap: wrap; }
-.nav-link { color: var(--manga-gray); text-decoration: none; font-size: .82rem; font-weight: 600; padding: .55rem .35rem; }
-.nav-link:hover { color: var(--manga-vermilion); }
+.nav-link { position: relative; color: var(--manga-gray); text-decoration: none; font-size: .82rem; font-weight: 600; padding: .55rem .35rem; }
+.nav-link::after { position: absolute; right: .35rem; bottom: .32rem; left: .35rem; height: 1px; background: var(--manga-vermilion); content: ''; transform: scaleX(0); transform-origin: left center; transition: transform .24s var(--ease-editorial); }
+.nav-link:hover, .nav-link:focus-visible { color: var(--manga-vermilion-text); }
+.nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
 .nav-contact { color: var(--manga-ink); }
 .header-nav button { border: 0; background: transparent; color: var(--manga-gray); box-shadow: none; padding: .5rem; cursor: pointer; font: 600 .75rem var(--font-body); }
 .header-nav button:hover { color: var(--manga-vermilion); }
@@ -47,4 +104,7 @@
   .site-header { position: relative; flex-direction: column; gap: .6rem; padding: .8rem 1rem; }
   .header-nav { justify-content: center; gap: .15rem .45rem; }
   .nav-link { font-size: .76rem; }
+  .personal-note { top: calc(100% + .7rem); left: 50%; transform-origin: top center; translate: -50% 0; }
 }
+
+@media (prefers-reduced-motion: reduce) { .nav-link::after { transition: none; } }
