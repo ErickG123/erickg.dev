@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { inject } from '@angular/core';
 import { CAREER_HISTORY } from '../../core/data/portfolio.data';
 import { GameStateService } from '../../core/state/game-state.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-log',
   standalone: true,
-  imports: [],
+  imports: [TranslocoPipe],
   templateUrl: './log.component.html',
   styleUrls: ['./log.component.scss']
 })

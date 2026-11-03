@@ -1,25 +1,25 @@
 <section class="container fadein mb-4 mt-4">
   <div class="flex align-center gap-2 mb-4" style="border-bottom: 1px solid var(--manga-border-subtle); padding-bottom: 1rem;">
-    <h2 class="manga-heading-xl m-0">{{ currentLang() === 'pt' ? 'Trajetória profissional' : 'Professional journey' }}</h2>
+    <h2 class="manga-heading-xl m-0">{{ 'CAREER.TITLE' | transloco }}</h2>
   </div>
 
   <div class="career-intro">
-    <span class="section-kicker">経験 · Experiência</span>
-    <h3 class="manga-heading-lg">{{ currentLang() === 'pt' ? 'Experiência' : 'Experience' }}</h3>
-    <p>{{ currentLang() === 'pt' ? 'Desenvolvimento de software, aplicações web, integrações e projetos próprios.' : 'Software development, web applications, integrations, and independent projects.' }}</p>
+    <span class="section-kicker">経験 · {{ 'CAREER.KICKER' | transloco }}</span>
+    <h3 class="manga-heading-lg">{{ 'CAREER.SUBTITLE' | transloco }}</h3>
+    <p>{{ 'CAREER.DESCRIPTION' | transloco }}</p>
   </div>
 
   <div class="career-timeline">
     @for (role of careerHistory; track role.company + role.period) {
       <article class="career-entry">
-        <div class="career-period">{{ role.period }}</div>
+        <div class="career-period">{{ currentLang() === 'pt' ? role.period : (role.periodEn || role.period) }}</div>
         <div class="career-detail">
-          <h3>{{ role.title }}</h3>
-          <div class="career-company">{{ role.company }}</div>
-          <p>{{ role.summary }}</p>
+          <h3>{{ currentLang() === 'pt' ? role.title : (role.titleEn || role.title) }}</h3>
+          <div class="career-company">{{ currentLang() === 'pt' ? role.company : (role.companyEn || role.company) }}</div>
+          <p>{{ currentLang() === 'pt' ? role.summary : (role.summaryEn || role.summary) }}</p>
           @if (role.technologies.length) {
-            <ul class="career-tags" aria-label="Tecnologias e áreas">
-              @for (tech of role.technologies; track tech) { <li>{{ tech }}</li> }
+            <ul class="career-tags" [attr.aria-label]="'CAREER.TECHNOLOGIES' | transloco">
+              @for (tech of role.technologies; track tech; let index = $index) { <li>{{ currentLang() === 'pt' ? tech : (role.technologiesEn?.[index] || tech) }}</li> }
             </ul>
           }
         </div>

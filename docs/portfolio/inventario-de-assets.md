@@ -22,7 +22,7 @@
 | `src/assets/images/projects/project-network-guardian.svg` | Vetor SVG | ~4.5 kB | Autoral / Erick Gabriel | MIT / Autoral | **Aprovado para Produção** | `manga-project-card` (Projeto 3) |
 | `src/assets/images/projects/project-otaku-courier.svg` | Vetor SVG | ~4.6 kB | Autoral / Erick Gabriel | MIT / Autoral | **Aprovado para Produção** | `manga-project-card` (Projeto 4) |
 | `src/assets/bgm.mp3` | Áudio MP3 | 3.38 MB | Trilha chiptune retro (desconhecida) | *Pendente de Verificação* | **Pendente de Resolução** (Não liberar comercialmente sem comprovação de autoria/licença) | `audio.service.ts` (BGM opcional) |
-| `src/assets/i18n/*.json` | Dados JSON | 2.2 kB | Conteúdo traduzido por Erick Gabriel | MIT / Autoral | **Aprovado para Produção** | `@ngx-translate` (EN/PT) |
+| `src/assets/i18n/*.json` | Dados JSON | — | Conteúdo traduzido por Erick Gabriel | MIT / Autoral | **Aprovado para Produção** | `@jsverse/transloco` (EN/PT) |
 | `src/assets/logs/history.md` | Markdown | 1.0 kB | Conteúdo biográfico de Erick Gabriel | MIT / Autoral | **Aprovado para Produção** | `ngx-markdown` em `LogComponent` |
 | Google Fonts (Anton, Inter, Inter Tight, IBM Plex Mono) | Web Fonts | N/A (CDN) | Google Fonts / Designers Oficiais | SIL Open Font License 1.1 | **Aprovado para Produção** | `index.html`, `styles.scss` |
 

@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { AUTHOR_DATA } from '../../core/data/portfolio.data';
 import { GameStateService } from '../../core/state/game-state.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [],
+  imports: [TranslocoPipe],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })

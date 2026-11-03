@@ -1,19 +1,19 @@
 import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { GameStateService } from '../../core/state/game-state.service';
 import { ThemeService } from '../../core/theme.service';
 import { AmbientAudioService } from '../../core/ambient-audio.service';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TranslocoPipe],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  translate = inject(TranslateService);
+  transloco = inject(TranslocoService);
   gameState = inject(GameStateService);
   themeService = inject(ThemeService);
   ambientAudio = inject(AmbientAudioService);
@@ -25,15 +25,14 @@ export class HeaderComponent {
   constructor() {
     let language = 'pt';
     try { language = localStorage.getItem('portfolio-language') === 'en' ? 'en' : 'pt'; } catch { /* Use Portuguese by default. */ }
+    this.transloco.setActiveLang(language);
     this.gameState.setLanguage(language);
-    this.translate.setFallbackLang('pt');
-    this.translate.use(language);
   }
 
   toggleLanguage() {
     const nextLang = this.currentLang() === 'en' ? 'pt' : 'en';
-    this.translate.use(nextLang);
     this.gameState.setLanguage(nextLang);
+    this.transloco.setActiveLang(nextLang);
   }
 
   toggleTheme() { this.themeService.toggleTheme(); }

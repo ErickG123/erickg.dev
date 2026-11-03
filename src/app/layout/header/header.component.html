@@ -6,9 +6,9 @@
       (click)="togglePersonalNote()"
       [attr.aria-expanded]="personalNoteOpen()"
       aria-controls="personal-note"
-      [attr.aria-label]="currentLang() === 'pt' ? (personalNoteOpen() ? 'Fechar mensagem pessoal' : 'Abrir mensagem pessoal no selo') : (personalNoteOpen() ? 'Close personal note' : 'Open personal note from the seal')"
+      [attr.aria-label]="(personalNoteOpen() ? 'ACTIONS.CLOSE_PERSONAL_NOTE' : 'ACTIONS.OPEN_PERSONAL_NOTE') | transloco"
     >印</button>
-    <a class="header-title" routerLink="/" (click)="personalNoteOpen.set(false)" aria-label="Erick Gabriel - Página Inicial">
+    <a class="header-title" routerLink="/" (click)="personalNoteOpen.set(false)" [attr.aria-label]="'NAV.BRAND_HOME' | transloco">
       <span>ERICK GABRIEL</span>
       <small>SOFTWARE ENGINEER</small>
     </a>
@@ -24,21 +24,21 @@
       </aside>
     }
   </div>
-  <nav class="header-nav" aria-label="Navegação principal">
-    <button class="gba-btn" (click)="toggleLanguage()" [attr.aria-label]="currentLang() === 'pt' ? 'Switch to English' : 'Mudar para português'" type="button">
+  <nav class="header-nav" [attr.aria-label]="'NAV.ARIA' | transloco">
+    <button class="gba-btn" (click)="toggleLanguage()" [attr.aria-label]="(currentLang() === 'pt' ? 'ACTIONS.SWITCH_TO_ENGLISH' : 'ACTIONS.SWITCH_TO_PORTUGUESE') | transloco" type="button">
       {{ currentLang() === 'pt' ? 'EN' : 'PT' }}
     </button>
-    <button class="sound-toggle" [class.is-playing]="ambientAudio.isPlaying()" (click)="ambientAudio.toggle()" [attr.aria-pressed]="ambientAudio.isPlaying()" [attr.aria-label]="currentLang() === 'pt' ? (ambientAudio.isPlaying() ? 'Desativar som ambiente original' : 'Ativar som ambiente original') : (ambientAudio.isPlaying() ? 'Turn off original ambient sound' : 'Turn on original ambient sound')" type="button">
+    <button class="sound-toggle" [class.is-playing]="ambientAudio.isPlaying()" (click)="ambientAudio.toggle()" [attr.aria-pressed]="ambientAudio.isPlaying()" [attr.aria-label]="(ambientAudio.isPlaying() ? 'ACTIONS.SOUND_OFF' : 'ACTIONS.SOUND_ON') | transloco" type="button">
       <span class="sound-toggle-icon" aria-hidden="true">{{ ambientAudio.isPlaying() ? '◖' : '♫' }}</span>
       <span class="sound-toggle-label">{{ currentLang() === 'pt' ? (ambientAudio.isPlaying() ? 'Som ativo' : 'Som') : (ambientAudio.isPlaying() ? 'Sound on' : 'Sound') }}</span>
     </button>
-    <button class="gba-btn" (click)="toggleTheme()" type="button" [attr.aria-label]="themeService.isDarkMode() ? 'Ativar tema claro' : 'Ativar tema escuro'">
+    <button class="gba-btn" (click)="toggleTheme()" type="button" [attr.aria-label]="(themeService.isDarkMode() ? 'ACTIONS.SWITCH_TO_LIGHT_THEME' : 'ACTIONS.SWITCH_TO_DARK_THEME') | transloco">
       {{ themeService.isDarkMode() ? '☼' : '☾' }}
     </button>
-    <a routerLink="/" class="nav-link">Início</a>
-    <a routerLink="/about" class="nav-link">Sobre</a>
-    <a routerLink="/projects" class="nav-link">Projetos</a>
-    <a routerLink="/log" class="nav-link">Diário</a>
-    <a routerLink="/contact" class="nav-link nav-contact">Contato ↗</a>
+    <a routerLink="/" class="nav-link">{{ 'NAV.HOME' | transloco }}</a>
+    <a routerLink="/about" class="nav-link">{{ 'NAV.ABOUT' | transloco }}</a>
+    <a routerLink="/projects" class="nav-link">{{ 'NAV.PROJECTS' | transloco }}</a>
+    <a routerLink="/log" class="nav-link">{{ 'NAV.JOURNAL' | transloco }}</a>
+    <a routerLink="/contact" class="nav-link nav-contact">{{ 'NAV.CONTACT' | transloco }} ↗</a>
   </nav>
 </header>

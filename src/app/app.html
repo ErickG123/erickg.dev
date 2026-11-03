@@ -1,6 +1,6 @@
-<a href="#main-content" class="skip-link">PULAR PARA O CONTEÚDO PRINCIPAL [TAB]</a>
+<a href="#main-content" class="skip-link">{{ 'APP.SKIP_TO_CONTENT' | transloco }} [TAB]</a>
 
-<div class="ink-reading-progress" role="progressbar" [attr.aria-label]="currentLang() === 'pt' ? 'Progresso da leitura' : 'Reading progress'" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="readingProgress()">
+<div class="ink-reading-progress" role="progressbar" [attr.aria-label]="'APP.READING_PROGRESS' | transloco" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="readingProgress()">
   <span [style.transform]="'scaleX(' + readingProgress() / 100 + ')'" aria-hidden="true"></span>
 </div>
 
@@ -8,13 +8,13 @@
 
 <div class="flex flex-column" style="min-height: 100vh;">
   <app-header></app-header>
-  <main id="main-content" tabindex="-1" class="flex-grow-1 p-4 route-container" [@routeAnimations]="prepareRoute(outlet)" (scroll)="updateReadingProgress($event)" aria-label="Conteúdo Principal">
+  <main id="main-content" tabindex="-1" class="flex-grow-1 p-4 route-container" [@routeAnimations]="prepareRoute(outlet)" (scroll)="updateReadingProgress($event)" [attr.aria-label]="'APP.MAIN_CONTENT' | transloco">
     <router-outlet #outlet="outlet"></router-outlet>
   </main>
   
   <footer class="manga-panel flex justify-center gap-4 mt-4" style="margin: 1rem; padding: 1rem; text-align: center;">
     <span class="manga-mono" style="font-size: 0.75rem;">&copy; {{ currentYear }} ERICK GABRIEL · SOFTWARE ENGINEER</span>
-    <span class="manga-mono manga-text-vermilion" style="font-size: 0.75rem;">設計 · CONSTRUÇÃO · APRENDIZADO</span>
+    <span class="manga-mono manga-text-vermilion" style="font-size: 0.75rem;">{{ 'APP.FOOTER_TAGLINE' | transloco }}</span>
   </footer>
 </div>
 

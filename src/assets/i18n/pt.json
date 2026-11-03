@@ -1,32 +1,111 @@
 {
-  "HEADER": {
-    "START": "INÍCIO",
-    "STATUS": "STATUS",
-    "BAG": "MOCHILA",
-    "LOG": "TRAJETÓRIA",
-    "GUILD": "CONTATO"
+  "APP": {
+    "SKIP_TO_CONTENT": "PULAR PARA O CONTEÚDO PRINCIPAL",
+    "READING_PROGRESS": "Progresso da leitura",
+    "MAIN_CONTENT": "Conteúdo principal",
+    "FOOTER_TAGLINE": "設計 · CONSTRUÇÃO · APRENDIZADO"
+  },
+  "NAV": {
+    "ARIA": "Navegação principal",
+    "BRAND_HOME": "Erick Gabriel - Página inicial",
+    "HOME": "Início",
+    "ABOUT": "Sobre",
+    "PROJECTS": "Projetos",
+    "JOURNAL": "Diário",
+    "CONTACT": "Contato"
+  },
+  "ACTIONS": {
+    "SWITCH_TO_ENGLISH": "Mudar para inglês",
+    "SWITCH_TO_PORTUGUESE": "Mudar para português",
+    "SOUND_ON": "Ativar som ambiente original",
+    "SOUND_OFF": "Desativar som ambiente original",
+    "OPEN_PERSONAL_NOTE": "Abrir mensagem pessoal no selo",
+    "CLOSE_PERSONAL_NOTE": "Fechar mensagem pessoal",
+    "SWITCH_TO_LIGHT_THEME": "Ativar tema claro",
+    "SWITCH_TO_DARK_THEME": "Ativar tema escuro"
   },
   "HOME": {
-    "LEVEL_UP": "LEVEL_UP",
-    "DESCRIPTION": "Um desenvolvedor Full-Stack invocou habilidades de engenharia para forjar interfaces de alta performance.",
-    "START_QUEST": "START QUEST",
-    "GUILD_BOARD": "GUILD BOARD"
+    "COVER_LABEL": "Capa e apresentação do portfólio",
+    "PROJECTS_CHAPTER": "PROJETOS / 01",
+    "PROJECTS_TITLE": "PROJETOS SELECIONADOS",
+    "PROJECTS_SUBTITLE": "Produtos, ferramentas e experiências criados para resolver problemas reais.",
+    "PROJECTS_META": "REPOSITÓRIOS OFICIAIS VERIFICADOS",
+    "MORE_PROJECTS_TITLE": "PROJETOS & CONTRIBUIÇÕES ADICIONAIS",
+    "MORE_PROJECTS_COPY": "Explore outros códigos, templates arquiteturais e experimentos públicos no perfil oficial de Erick Gabriel.",
+    "MORE_PROJECTS_LINK": "EXPLORAR REPOSITÓRIOS NO GITHUB",
+    "CAREER_KICKER": "Experiência",
+    "CAREER_TITLE": "Trajetória profissional",
+    "CAREER_SUBTITLE": "Uma visão geral da minha experiência em desenvolvimento de software.",
+    "TECHNOLOGIES": "Tecnologias",
+    "NOTES_KICKER": "Leituras",
+    "NOTES_TITLE": "Artigos & ideias",
+    "NOTES_SUBTITLE": "Escrevo sobre engenharia de software, Angular e o que aprendo construindo produtos.",
+    "ARTICLE_FILTER": "Filtrar artigos por assunto",
+    "ALL_TOPICS": "Todos",
+    "MINUTES_READ": "min de leitura",
+    "READ_ARTICLE": "Ler artigo",
+    "ALL_ARTICLES": "Todos os artigos no DEV.to",
+    "ABOUT_CHAPTER": "SOBRE / 02",
+    "ABOUT_TITLE": "SOBRE MIM",
+    "ABOUT_SUBTITLE": "Trajetória profissional, perfil e competências técnicas",
+    "LOCATION": "LOCALIZAÇÃO",
+    "CAREER_PERIOD": "PERÍODO ATIVO",
+    "CURRENT_FOCUS": "FOCO ATUAL",
+    "BACKGROUND_TITLE": "TRAJETÓRIA & FILOSOFIA",
+    "SKILLS_TITLE": "MATRIZ DE COMPETÊNCIAS",
+    "EXPERTISE": "ÁREA DE ATUAÇÃO",
+    "CONTACT_CHAPTER": "CONTATO / 03",
+    "CONTACT_TITLE": "VAMOS CONVERSAR"
   },
-  "GUILD": {
-    "TITLE": "> GUILD_MESSAGE_BOARD",
-    "SUBTITLE": "Deixe um pergaminho no mural para discutir novas quests e alianças de desenvolvimento. Transmissões são criptografadas via magia de rede.",
-    "PLAYER_NAME": "PLAYER_NAME",
-    "PLAYER_PLACEHOLDER": "Seu nome ou gamertag...",
-    "CONTACT_RUNES": "CONTACT_RUNES",
-    "CONTACT_PLACEHOLDER": "Onde a coruja deve entregar a resposta...",
-    "QUEST_DETAILS": "QUEST_DETAILS",
-    "QUEST_PLACEHOLDER": "Descreva os requisitos da missão, tech stack e desafios...",
-    "TRANSMIT": "> TRANSMIT_MESSAGE"
+  "PROJECTS": {
+    "KICKER": "PORTFÓLIO",
+    "TITLE": "Projetos selecionados",
+    "SUBTITLE": "Produtos, ferramentas e experimentos que transformam problemas reais em software útil.",
+    "GLOSSARY_TITLE": "Leituras e traduções",
+    "GLOSSARY_ACTION": "Consultar glossário",
+    "GLOSSARY_DESCRIPTION": "Kana, romaji e tradução dos caracteres usados nos pôsteres dos projetos.",
+    "READING": "Leitura",
+    "TRANSLATION": "Tradução",
+    "LIST_LABEL": "Projetos de Erick Gabriel",
+    "FOOTER_COPY": "Mais projetos e contribuições estão disponíveis no GitHub.",
+    "FOOTER_LINK": "Explorar repositórios"
   },
-  "BAG": {
-    "TITLE": "BAG // KEY_ITEMS",
-    "EMPTY_SLOT": "Selecione um item para ver seus atributos.",
-    "EQUIP": "> EQUIP / USE",
-    "CLOSE": "[ X ] CLOSE"
+  "CAREER": {
+    "TITLE": "Trajetória profissional",
+    "KICKER": "Experiência",
+    "SUBTITLE": "Experiência",
+    "DESCRIPTION": "Desenvolvimento de software, aplicações web, integrações e projetos próprios.",
+    "TECHNOLOGIES": "Tecnologias e áreas"
+  },
+  "CONTACT": {
+    "KICKER": "CONTATO",
+    "TITLE": "Vamos conversar"
+  },
+  "CASE": {
+    "NAV_LABEL": "Navegação do estudo de caso",
+    "BACK": "Voltar aos projetos",
+    "TECHNOLOGIES": "Tecnologias",
+    "CODE": "Código no GitHub",
+    "DOCUMENTATION": "Documentação",
+    "IMAGE_ALT": "Diagrama da arquitetura do projeto",
+    "MAP_TITLE": "Um mapa da arquitetura",
+    "MAP_DESCRIPTION": "Selecione uma camada para ver o papel descrito nos documentos do projeto.",
+    "MAP_LABEL": "Camadas da arquitetura do SchemaLens",
+    "SELECTED_LAYER": "CAMADA SELECIONADA",
+    "READING_TITLE": "LEITURA DO PROJETO",
+    "READING_DESCRIPTION": "Abra os tópicos para conhecer o contexto, as decisões e o que a documentação descreve.",
+    "SOURCES_TITLE": "FONTES E PRÓXIMOS ESTUDOS",
+    "SOURCES_DESCRIPTION": "O estudo resume decisões registradas no repositório. Consulte os documentos originais para ver o contexto completo."
+  },
+  "NOT_FOUND": {
+    "LABEL": "Página não encontrada",
+    "CHAPTER": "EXTRA",
+    "TITLE": "CAPÍTULO NÃO ENCONTRADO",
+    "SUBTITLE": "Erro 404 · Manuscrito ausente",
+    "DESCRIPTION": "A página solicitada se perdeu entre os rascunhos em nanquim ou foi reordenada no índice editorial.",
+    "HOME_ARIA": "Retornar à capa do portfólio",
+    "HOME": "RETORNAR À CAPA",
+    "PROJECTS_ARIA": "Navegar para os projetos selecionados",
+    "PROJECTS": "VER PROJETOS"
   }
 }

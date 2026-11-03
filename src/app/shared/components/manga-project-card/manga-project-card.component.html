@@ -1,12 +1,12 @@
 <article class="project-card" [attr.aria-labelledby]="'prj-title-' + project().id">
   <div class="project-card-topline">
-    <span class="project-number">{{ project().year }} <span aria-hidden="true">/</span> {{ project().status }}</span>
-    @if (project().featured) { <span class="featured-label">Destaque</span> }
+    <span class="project-number">{{ project().year }} <span aria-hidden="true">/</span> {{ currentLang() === 'pt' ? project().status : (project().statusEn || project().status) }}</span>
+    @if (project().featured) { <span class="featured-label">{{ currentLang() === 'pt' ? 'Destaque' : 'Featured' }}</span> }
   </div>
 
   @if (project().image) {
     <div class="project-visual" [class.project-visual--poster]="!!project().poster" [class.project-visual--quiet]="project().poster?.style === 'quiet'" [class.project-visual--technical]="project().poster?.style === 'technical'" [class.project-visual--flow]="project().poster?.style === 'flow'" [class.project-visual--forensic]="project().poster?.style === 'forensic'" [class.project-visual--resilience]="project().poster?.style === 'resilience'" [class.is-poster-active]="posterActive()">
-      <app-manga-image [src]="project().image!" [alt]="project().imageAlt || ((currentLang() === 'pt' ? 'Captura de tela do projeto ' : 'Screenshot of ') + project().title)" aspectRatio="16:9"></app-manga-image>
+      <app-manga-image [src]="project().image!" [alt]="currentLang() === 'pt' ? (project().imageAlt || ('Captura de tela do projeto ' + project().title)) : (project().imageAltEn || ('Screenshot of ' + project().title))" aspectRatio="16:9"></app-manga-image>
       @if (project().poster; as poster) {
         <span class="project-poster-mark" role="img" [attr.aria-label]="poster.character + ', ' + poster.reading + ', ' + (currentLang() === 'pt' ? poster.translation : poster.translationEn)">
           <span class="project-poster-word" lang="ja">
@@ -38,8 +38,8 @@
 
   <div class="project-content">
     <h3 [id]="'prj-title-' + project().id">{{ project().title }}</h3>
-    @if (project().highlight) { <p class="project-highlight">{{ project().highlight }}</p> }
-    <p class="project-description">{{ project().description }}</p>
+    @if (project().highlight) { <p class="project-highlight">{{ currentLang() === 'pt' ? project().highlight : (project().highlightEn || project().highlight) }}</p> }
+    <p class="project-description">{{ currentLang() === 'pt' ? project().description : (project().descriptionEn || project().description) }}</p>
   </div>
 
   <ul class="project-tech" [attr.aria-label]="currentLang() === 'pt' ? 'Tecnologias' : 'Technologies'">

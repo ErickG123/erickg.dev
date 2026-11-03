@@ -4,11 +4,12 @@ import { CASE_STUDIES_DATA } from '../../core/data/case-studies.data';
 import { CaseStudy, CaseStudySection } from '../../core/models/case-study.interface';
 import { SeoService } from '../../core/seo.service';
 import { GameStateService } from '../../core/state/game-state.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-case-study-detail',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TranslocoPipe],
   templateUrl: './case-study-detail.component.html',
   styleUrls: ['./case-study-detail.component.scss']
 })

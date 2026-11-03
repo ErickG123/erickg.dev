@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroContent, HERO_DATA } from '../../../../core/data/portfolio.data';
 import { MangaImageComponent } from '../../../../shared/components/manga-image/manga-image.component';
+import { GameStateService } from '../../../../core/state/game-state.service';
 
 @Component({
   selector: 'app-manga-hero',
@@ -12,4 +13,5 @@ import { MangaImageComponent } from '../../../../shared/components/manga-image/m
 })
 export class MangaHeroComponent {
   hero = input<HeroContent>(HERO_DATA);
+  readonly currentLang = inject(GameStateService).currentLang;
 }

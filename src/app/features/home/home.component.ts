@@ -14,12 +14,15 @@ import { MangaHeroComponent } from './components/manga-hero/manga-hero.component
 import { MangaImageComponent } from '../../shared/components/manga-image/manga-image.component';
 import { ReaderStateService, ChapterSectionId } from '../../core/state/reader-state.service';
 import { AUTHOR_DATA, CAREER_HISTORY, FEATURED_PROJECTS_DATA, HERO_DATA } from '../../core/data/portfolio.data';
+import { GameStateService } from '../../core/state/game-state.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule,
+    TranslocoPipe,
     ChapterHeadingComponent,
     MangaProjectCardComponent,
     MangaHeroComponent,
@@ -31,22 +34,23 @@ import { AUTHOR_DATA, CAREER_HISTORY, FEATURED_PROJECTS_DATA, HERO_DATA } from '
 export class HomeComponent implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   readerState = inject(ReaderStateService);
+  readonly currentLang = inject(GameStateService).currentLang;
 
   readonly heroData = HERO_DATA;
   readonly author = AUTHOR_DATA;
   readonly projects = FEATURED_PROJECTS_DATA;
   readonly careerHistory = CAREER_HISTORY;
-  readonly articleTopics = ['Todos', 'Angular', 'DevOps', 'Arquitetura'] as const;
-  readonly selectedArticleTopic = signal<string>('Todos');
+  readonly articleTopics = ['all', 'Angular', 'DevOps', 'Architecture'] as const;
+  readonly selectedArticleTopic = signal<string>('all');
   readonly articles = [
-    { title: 'I Built the Ultimate HTTP Interceptor for Angular: 6 Resilience Patterns and RxJS in Practice', url: 'https://dev.to/erickg123/i-built-the-ultimate-http-interceptor-for-angular-6-resilience-patterns-and-rxjs-in-practice-1d33', description: 'Padrões de resiliência HTTP com Angular e RxJS para aplicações complexas.', date: '17 ago 2026', minutes: 3, topic: 'Angular', tags: ['Angular', 'RxJS', 'Arquitetura'] },
-    { title: 'Do Zero ao Deploy: Seu Primeiro Pipeline de CI/CD Full-Stack com GitHub Actions (Parte 1)', url: 'https://dev.to/erickg123/do-zero-ao-deploy-seu-primeiro-pipeline-de-cicd-full-stack-com-github-actions-parte-1-3eg6', description: 'Construção de um pipeline de integração e entrega para uma aplicação Angular + .NET.', date: '29 jul 2026', minutes: 5, topic: 'DevOps', tags: ['GitHub Actions', 'Angular', '.NET'] },
-    { title: 'Além da Teoria: Implementando WCAG no Angular Moderno (v21+)', url: 'https://dev.to/erickg123/alem-da-teoria-implementando-wcag-no-angular-moderno-v21-4d0', description: 'Acessibilidade aplicada a componentes, navegação e interfaces Angular.', date: '21 jul 2026', minutes: 4, topic: 'Angular', tags: ['WCAG', 'Angular', 'Acessibilidade'] },
-    { title: 'Migrando um YMS de 5 anos: UX Corporativa, Dark Mode e Grids Dinâmicos (Parte 9)', url: 'https://dev.to/erickg123/migrando-um-yms-de-5-anos-do-angular-16-ao-21-parte-9-ux-corporativa-dark-mode-grids-2bj7', description: 'O encerramento da série sobre modernização de um sistema corporativo Angular.', date: '04 jun 2026', minutes: 3, topic: 'Angular', tags: ['Angular', 'UX', 'Dark mode'] },
-    { title: 'Clean Architecture: A nova estrutura de pastas por domínios (Parte 7)', url: 'https://dev.to/erickg123/migrando-um-yms-de-5-anos-do-angular-16-ao-21-parte-7-clean-architecture-a-nova-estrutura-de-17dh', description: 'Organização de uma aplicação Angular por domínios durante uma migração gradual.', date: '04 jun 2026', minutes: 2, topic: 'Arquitetura', tags: ['Angular', 'Clean Architecture'] },
-    { title: 'Turbinando o Pipeline: Caches, Matrix Builds e Branch Protection (Parte 4)', url: 'https://dev.to/erickg123/turbinando-o-pipeline-caches-matrix-builds-e-branch-protection-parte-4-21p3', description: 'Ajustes para acelerar pipelines e proteger branches em projetos colaborativos.', date: '03 ago 2026', minutes: 4, topic: 'DevOps', tags: ['GitHub Actions', 'CI/CD'] }
+    { title: 'I Built the Ultimate HTTP Interceptor for Angular: 6 Resilience Patterns and RxJS in Practice', url: 'https://dev.to/erickg123/i-built-the-ultimate-http-interceptor-for-angular-6-resilience-patterns-and-rxjs-in-practice-1d33', description: 'Padrões de resiliência HTTP com Angular e RxJS para aplicações complexas.', descriptionEn: 'HTTP resilience patterns with Angular and RxJS for complex applications.', date: '17 ago 2026', dateEn: 'Aug 17, 2026', minutes: 3, topic: 'Angular', tags: ['Angular', 'RxJS', 'Architecture'] },
+    { title: 'Do Zero ao Deploy: Seu Primeiro Pipeline de CI/CD Full-Stack com GitHub Actions (Parte 1)', url: 'https://dev.to/erickg123/do-zero-ao-deploy-seu-primeiro-pipeline-de-cicd-full-stack-com-github-actions-parte-1-3eg6', description: 'Construção de um pipeline de integração e entrega para uma aplicação Angular + .NET.', descriptionEn: 'Building an integration and delivery pipeline for an Angular + .NET application.', date: '29 jul 2026', dateEn: 'Jul 29, 2026', minutes: 5, topic: 'DevOps', tags: ['GitHub Actions', 'Angular', '.NET'] },
+    { title: 'Além da Teoria: Implementando WCAG no Angular Moderno (v21+)', url: 'https://dev.to/erickg123/alem-da-teoria-implementando-wcag-no-angular-moderno-v21-4d0', description: 'Acessibilidade aplicada a componentes, navegação e interfaces Angular.', descriptionEn: 'Applying accessibility to Angular components, navigation, and interfaces.', date: '21 jul 2026', dateEn: 'Jul 21, 2026', minutes: 4, topic: 'Angular', tags: ['WCAG', 'Angular', 'Accessibility'] },
+    { title: 'Migrando um YMS de 5 anos: UX Corporativa, Dark Mode e Grids Dinâmicos (Parte 9)', url: 'https://dev.to/erickg123/migrando-um-yms-de-5-anos-do-angular-16-ao-21-parte-9-ux-corporativa-dark-mode-grids-2bj7', description: 'O encerramento da série sobre modernização de um sistema corporativo Angular.', descriptionEn: 'The final article in a series about modernizing an enterprise Angular system.', date: '04 jun 2026', dateEn: 'Jun 4, 2026', minutes: 3, topic: 'Angular', tags: ['Angular', 'UX', 'Dark mode'] },
+    { title: 'Clean Architecture: A nova estrutura de pastas por domínios (Parte 7)', url: 'https://dev.to/erickg123/migrando-um-yms-de-5-anos-do-angular-16-ao-21-parte-7-clean-architecture-a-nova-estrutura-de-17dh', description: 'Organização de uma aplicação Angular por domínios durante uma migração gradual.', descriptionEn: 'Organizing an Angular application by domain during a gradual migration.', date: '04 jun 2026', dateEn: 'Jun 4, 2026', minutes: 2, topic: 'Architecture', tags: ['Angular', 'Clean Architecture'] },
+    { title: 'Turbinando o Pipeline: Caches, Matrix Builds e Branch Protection (Parte 4)', url: 'https://dev.to/erickg123/turbinando-o-pipeline-caches-matrix-builds-e-branch-protection-parte-4-21p3', description: 'Ajustes para acelerar pipelines e proteger branches em projetos colaborativos.', descriptionEn: 'Improvements to speed up pipelines and protect branches in collaborative projects.', date: '03 ago 2026', dateEn: 'Aug 3, 2026', minutes: 4, topic: 'DevOps', tags: ['GitHub Actions', 'CI/CD'] }
   ];
-  readonly visibleArticles = computed(() => this.selectedArticleTopic() === 'Todos' ? this.articles : this.articles.filter(article => article.topic === this.selectedArticleTopic()));
+  readonly visibleArticles = computed(() => this.selectedArticleTopic() === 'all' ? this.articles : this.articles.filter(article => article.topic === this.selectedArticleTopic()));
 
   currentYear = new Date().getFullYear();
 

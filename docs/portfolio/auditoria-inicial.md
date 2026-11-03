@@ -21,8 +21,7 @@
 | `@angular/animations` | `^21.2.20` | Transições de rota animadas (`routeAnimations`) no `app.ts` *(Obs: marcado como deprecated no Angular 21)* |
 | `@angular/cdk` | `^21.2.14` | Drag-and-drop de blocos táticos no Hero da Home (`DragDropModule`) |
 | `@angular/service-worker` | `^21.0.0` | PWA com cache offline e notificação de novos releases via `SwUpdate` |
-| `@ngx-translate/core` | `^18.0.0` | Internacionalização dinâmica (i18n) com suporte a Português e Inglês |
-| `@ngx-translate/http-loader` | `^18.0.0` | Carregamento assíncrono dos arquivos de tradução em JSON |
+| `@jsverse/transloco` | `^8.4.0` | Internacionalização dinâmica com carregamento de JSON, fallback e troca de idioma em tempo de execução |
 | `@vercel/analytics` | `^2.0.1` | Telemetria de visualizações, cliques e eventos customizados |
 | `ngx-markdown` | `^22.0.0` | Renderizador dinâmico de documentação/histórico em Markdown (`history.md`) |
 | `marked` | `^18.0.9` | Parser de Markdown subjacente ao `ngx-markdown` |
@@ -198,7 +197,7 @@ A auditoria identificou informações biográficas, canais de contato e projetos
 ## 6. Funcionalidades Reutilizáveis
 
 Os seguintes módulos e utilitários de engenharia estão maduros e devem ser preservados ou reaproveitados na transição estética:
-1. **Sistema de i18n (`@ngx-translate/core`):** Suporte nativo a múltiplos idiomas com fallback para inglês e alternância instantânea sem reload via Signal.
+1. **Sistema de i18n (`@jsverse/transloco`):** Suporte a português e inglês com fallback para português, carregamento dos catálogos JSON e alternância sem recarregar a página.
 2. **Gerenciamento de Estado Reativo (`GameStateService`):** Sinais de estado centralizados (`isAudioPlaying`, `isCorporateMode`, `currentLang`, `unlockedAchievements`).
 3. **Sistema de Conquistas Gamificado (`SaveStateService` + `AchievementToastComponent`):** Registro de conquistas no `localStorage` com exibição de toast animado e som de feedback.
 4. **Telemetria de Eventos (`@vercel/analytics`):** Rastreamento de abertura de demos, reprodução de áudio e desbloqueio de conquistas.
@@ -220,8 +219,8 @@ Antes de iniciar qualquer refatoração visual, foram detectados os seguintes pr
    - `ProjectCardComponent` importa `project.model.ts` e tenta renderizar `<a [href]="project().link">`, porém o array de dados em `ProjectService` fornece `url`. Como consequência, o botão `> VISUALIZAR` nos cards da Home gera links `href="undefined"`.
 2. **Resquícios de PrimeNG em `ThemeService`:**
    - O arquivo `src/app/core/theme.service.ts` tenta alternar folhas de estilo buscando um elemento `#app-theme` e referenciando arquivos como `aura-dark-indigo.css`. Esse elemento não existe no `index.html` e PrimeNG não está instalado nas dependências, gerando código morto/inoperante.
-3. **Incompatibilidade de Peer Dependencies no Angular 21:**
-   - As bibliotecas `ngx-markdown` e `@ngx-translate` declaram peer dependencies que entram em conflito com as versões estritas do Angular 21, exigindo obrigatoriamente a flag `--legacy-peer-deps` no `npm ci`. Caso um desenvolvedor rode `npm install` sem a flag, o processo falha.
+3. **Compatibilidade das dependências:**
+   - A implementação atual usa Angular 21 com `@jsverse/transloco` 8.4.0. Reavalie a compatibilidade ao atualizar bibliotecas de terceiros.
 4. **Ausência de Linters no Repositório:**
    - Não há ESLint nem `@angular-eslint` configurado. Regras de qualidade de código, boas práticas de acessibilidade nos templates e checagens estáticas dependem exclusivamente do compilador do TypeScript.
 5. **Divergências de Formatação do Prettier:**

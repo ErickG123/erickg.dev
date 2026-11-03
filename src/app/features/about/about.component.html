@@ -1,7 +1,7 @@
 <section class="container fadein mb-4 mt-4">
   <div class="manga-panel">
     <div class="flex align-center gap-2 mb-4" style="border-bottom: 2px dashed var(--gba-border-light); padding-bottom: 1rem;">
-      <h2 class="manga-heading-xl m-0">Sobre mim</h2>
+      <h2 class="manga-heading-xl m-0">{{ currentLang() === 'pt' ? 'Sobre mim' : 'About me' }}</h2>
     </div>
 
     <div class="status-grid">
@@ -11,24 +11,24 @@
         <div class="avatar-frame mb-4"><img src="/assets/images/profile/erick-gabriel.png" alt="Retrato de Erick Gabriel" /></div>
         
         <h3 class="manga-heading-lg m-0 mb-1">ERICK GABRIEL</h3>
-        <p class="manga-mono m-0 mb-4" style="color: var(--manga-gray); font-size: 0.72rem;">{{ author.role }}</p>
+        <p class="manga-mono m-0 mb-4" style="color: var(--manga-gray); font-size: 0.72rem;">{{ currentLang() === 'pt' ? author.role : (author.roleEn || author.role) }}</p>
         
         <div class="vital-stats">
           <div class="vital-row mb-3">
             <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
-              <span>LOCALIZAÇÃO</span><span>{{ author.location }}</span>
+              <span>{{ currentLang() === 'pt' ? 'LOCALIZAÇÃO' : 'LOCATION' }}</span><span>{{ author.location }}</span>
             </div>
           </div>
           
           <div class="vital-row mb-3">
             <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
-              <span>EXPERIÊNCIA</span><span>{{ author.careerPeriod }}</span>
+              <span>{{ currentLang() === 'pt' ? 'EXPERIÊNCIA' : 'EXPERIENCE' }}</span><span>{{ currentLang() === 'pt' ? author.careerPeriod : (author.careerPeriodEn || author.careerPeriod) }}</span>
             </div>
           </div>
 
           <div class="vital-row mb-3">
             <div class="flex justify-between manga-mono mb-1" style="font-size: 0.7rem;">
-              <span>FOCO</span><span>FULL-STACK</span>
+              <span>{{ currentLang() === 'pt' ? 'FOCO' : 'FOCUS' }}</span><span>FULL-STACK</span>
             </div>
           </div>
         </div>
@@ -37,23 +37,23 @@
       <!-- Panel Right: Attributes & Passives -->
       <div class="stats-panel">
         
-        <h3 class="manga-heading-lg m-0 mb-3 pb-2">Trajetória</h3>
-        <p class="manga-body-lg">{{ author.headline }}</p>
-        <p class="manga-body-md">{{ author.bio }}</p>
-        <p class="manga-body-md">{{ author.journeySummary }}</p>
-        <h3 class="manga-heading-lg m-0 mb-3 pb-2">Competências</h3>
+        <h3 class="manga-heading-lg m-0 mb-3 pb-2">{{ currentLang() === 'pt' ? 'Trajetória' : 'Background' }}</h3>
+        <p class="manga-body-lg">{{ currentLang() === 'pt' ? author.headline : (author.headlineEn || author.headline) }}</p>
+        <p class="manga-body-md">{{ currentLang() === 'pt' ? author.bio : (author.bioEn || author.bio) }}</p>
+        <p class="manga-body-md">{{ currentLang() === 'pt' ? author.journeySummary : (author.journeySummaryEn || author.journeySummary) }}</p>
+        <h3 class="manga-heading-lg m-0 mb-3 pb-2">{{ currentLang() === 'pt' ? 'Competências' : 'Skills' }}</h3>
         
         <div class="attributes-grid mb-4">
           @for (skillGroup of author.skills; track skillGroup.category) {
             <article class="attr-row">
               <div class="skill-card-topline">
                 <span class="skill-mark" aria-hidden="true">{{ skillGroup.mark }}</span>
-                <span class="skill-card-label">ÁREA DE ATUAÇÃO</span>
+                <span class="skill-card-label">{{ currentLang() === 'pt' ? 'ÁREA DE ATUAÇÃO' : 'AREA OF EXPERTISE' }}</span>
               </div>
-              <h4 class="manga-heading-md">{{ skillGroup.category }}</h4>
-              <p class="skill-description">{{ skillGroup.description }}</p>
-              <ul class="skill-tags" [attr.aria-label]="'Tecnologias e práticas: ' + skillGroup.category">
-                @for (item of skillGroup.items; track item) { <li>{{ item }}</li> }
+              <h4 class="manga-heading-md">{{ currentLang() === 'pt' ? skillGroup.category : (skillGroup.categoryEn || skillGroup.category) }}</h4>
+              <p class="skill-description">{{ currentLang() === 'pt' ? skillGroup.description : (skillGroup.descriptionEn || skillGroup.description) }}</p>
+              <ul class="skill-tags" [attr.aria-label]="(currentLang() === 'pt' ? 'Tecnologias e práticas: ' : 'Technologies and practices: ') + (currentLang() === 'pt' ? skillGroup.category : (skillGroup.categoryEn || skillGroup.category))">
+                @for (item of skillGroup.items; track item; let index = $index) { <li>{{ currentLang() === 'pt' ? item : (skillGroup.itemsEn?.[index] || item) }}</li> }
               </ul>
             </article>
           }

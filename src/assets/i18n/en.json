@@ -1,32 +1,111 @@
 {
-  "HEADER": {
-    "START": "START",
-    "STATUS": "STATUS",
-    "BAG": "BAG",
-    "LOG": "CAREER",
-    "GUILD": "GUILD"
+  "APP": {
+    "SKIP_TO_CONTENT": "SKIP TO MAIN CONTENT",
+    "READING_PROGRESS": "Reading progress",
+    "MAIN_CONTENT": "Main content",
+    "FOOTER_TAGLINE": "設計 · BUILDING · LEARNING"
+  },
+  "NAV": {
+    "ARIA": "Main navigation",
+    "BRAND_HOME": "Erick Gabriel - Home",
+    "HOME": "Home",
+    "ABOUT": "About",
+    "PROJECTS": "Projects",
+    "JOURNAL": "Journal",
+    "CONTACT": "Contact"
+  },
+  "ACTIONS": {
+    "SWITCH_TO_ENGLISH": "Switch to English",
+    "SWITCH_TO_PORTUGUESE": "Switch to Portuguese",
+    "SOUND_ON": "Turn on original ambient sound",
+    "SOUND_OFF": "Turn off original ambient sound",
+    "OPEN_PERSONAL_NOTE": "Open personal note from the seal",
+    "CLOSE_PERSONAL_NOTE": "Close personal note",
+    "SWITCH_TO_LIGHT_THEME": "Switch to light theme",
+    "SWITCH_TO_DARK_THEME": "Switch to dark theme"
   },
   "HOME": {
-    "LEVEL_UP": "LEVEL_UP",
-    "DESCRIPTION": "A Full-Stack developer summoned engineering skills to forge high-performance interfaces.",
-    "START_QUEST": "START QUEST",
-    "GUILD_BOARD": "GUILD BOARD"
+    "COVER_LABEL": "Portfolio cover and introduction",
+    "PROJECTS_CHAPTER": "PROJECTS / 01",
+    "PROJECTS_TITLE": "SELECTED PROJECTS",
+    "PROJECTS_SUBTITLE": "Products, tools, and experiments built to solve real problems.",
+    "PROJECTS_META": "OFFICIAL REPOSITORIES VERIFIED",
+    "MORE_PROJECTS_TITLE": "MORE PROJECTS & CONTRIBUTIONS",
+    "MORE_PROJECTS_COPY": "Explore more code, architecture templates, and public experiments on Erick Gabriel’s GitHub profile.",
+    "MORE_PROJECTS_LINK": "EXPLORE GITHUB REPOSITORIES",
+    "CAREER_KICKER": "Experience",
+    "CAREER_TITLE": "Professional journey",
+    "CAREER_SUBTITLE": "An overview of my experience in software development.",
+    "TECHNOLOGIES": "Technologies",
+    "NOTES_KICKER": "Reading",
+    "NOTES_TITLE": "Articles & ideas",
+    "NOTES_SUBTITLE": "I write about software engineering, Angular, and what I learn while building products.",
+    "ARTICLE_FILTER": "Filter articles by topic",
+    "ALL_TOPICS": "All",
+    "MINUTES_READ": "min read",
+    "READ_ARTICLE": "Read article",
+    "ALL_ARTICLES": "All articles on DEV.to",
+    "ABOUT_CHAPTER": "ABOUT / 02",
+    "ABOUT_TITLE": "ABOUT ME",
+    "ABOUT_SUBTITLE": "Professional background, profile, and technical skills",
+    "LOCATION": "LOCATION",
+    "CAREER_PERIOD": "CAREER PERIOD",
+    "CURRENT_FOCUS": "CURRENT FOCUS",
+    "BACKGROUND_TITLE": "BACKGROUND & APPROACH",
+    "SKILLS_TITLE": "SKILLS OVERVIEW",
+    "EXPERTISE": "AREA OF EXPERTISE",
+    "CONTACT_CHAPTER": "CONTACT / 03",
+    "CONTACT_TITLE": "LET’S TALK"
   },
-  "GUILD": {
-    "TITLE": "> GUILD_MESSAGE_BOARD",
-    "SUBTITLE": "Leave a scroll on the board to discuss new quests and development alliances. Transmissions are encrypted via network magic.",
-    "PLAYER_NAME": "PLAYER_NAME",
-    "PLAYER_PLACEHOLDER": "Your name or gamertag...",
-    "CONTACT_RUNES": "CONTACT_RUNES",
-    "CONTACT_PLACEHOLDER": "Where the owl should deliver the reply...",
-    "QUEST_DETAILS": "QUEST_DETAILS",
-    "QUEST_PLACEHOLDER": "Describe the quest requirements, tech stack and challenges...",
-    "TRANSMIT": "> TRANSMIT_MESSAGE"
+  "PROJECTS": {
+    "KICKER": "PORTFOLIO",
+    "TITLE": "Selected projects",
+    "SUBTITLE": "Products, tools, and experiments that turn real problems into useful software.",
+    "GLOSSARY_TITLE": "Readings and translations",
+    "GLOSSARY_ACTION": "Open glossary",
+    "GLOSSARY_DESCRIPTION": "Kana, romaji, and translations for the characters used in the project posters.",
+    "READING": "Reading",
+    "TRANSLATION": "Translation",
+    "LIST_LABEL": "Erick Gabriel’s projects",
+    "FOOTER_COPY": "More projects and contributions are available on GitHub.",
+    "FOOTER_LINK": "Explore repositories"
   },
-  "BAG": {
-    "TITLE": "BAG // KEY_ITEMS",
-    "EMPTY_SLOT": "Select an item to view its attributes.",
-    "EQUIP": "> EQUIP / USE",
-    "CLOSE": "[ X ] CLOSE"
+  "CAREER": {
+    "TITLE": "Professional journey",
+    "KICKER": "Experience",
+    "SUBTITLE": "Experience",
+    "DESCRIPTION": "Software development, web applications, integrations, and independent projects.",
+    "TECHNOLOGIES": "Technologies and areas"
+  },
+  "CONTACT": {
+    "KICKER": "CONTACT",
+    "TITLE": "Let’s talk"
+  },
+  "CASE": {
+    "NAV_LABEL": "Case study navigation",
+    "BACK": "Back to projects",
+    "TECHNOLOGIES": "Technologies",
+    "CODE": "Code on GitHub",
+    "DOCUMENTATION": "Documentation",
+    "IMAGE_ALT": "Architecture diagram for",
+    "MAP_TITLE": "A map of the architecture",
+    "MAP_DESCRIPTION": "Select a layer to see its role as described in the project documents.",
+    "MAP_LABEL": "SchemaLens architecture layers",
+    "SELECTED_LAYER": "SELECTED LAYER",
+    "READING_TITLE": "PROJECT OVERVIEW",
+    "READING_DESCRIPTION": "Open a topic to explore the context, decisions, and details recorded in the documentation.",
+    "SOURCES_TITLE": "SOURCES AND FURTHER READING",
+    "SOURCES_DESCRIPTION": "This case study summarizes decisions recorded in the repository. Consult the original documents for the full context."
+  },
+  "NOT_FOUND": {
+    "LABEL": "Page not found",
+    "CHAPTER": "EXTRA",
+    "TITLE": "CHAPTER NOT FOUND",
+    "SUBTITLE": "Error 404 · Missing manuscript",
+    "DESCRIPTION": "The requested page was lost among the ink drafts or moved in the editorial index.",
+    "HOME_ARIA": "Return to the portfolio home page",
+    "HOME": "RETURN HOME",
+    "PROJECTS_ARIA": "Browse selected projects",
+    "PROJECTS": "VIEW PROJECTS"
   }
 }

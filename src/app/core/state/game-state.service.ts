@@ -1,8 +1,10 @@
-import { Injectable, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Injectable, inject, signal } from '@angular/core';
 import { Achievement } from '../models/achievement.interface';
 
 @Injectable({ providedIn: 'root' })
 export class GameStateService {
+  private readonly document = inject(DOCUMENT);
 
   readonly isAudioPlaying = signal<boolean>(false);
   readonly isCorporateMode = signal<boolean>(false);
@@ -14,6 +16,7 @@ export class GameStateService {
   setLanguage(lang: string) {
     const normalized = lang === 'en' ? 'en' : 'pt';
     this.currentLang.set(normalized);
+    this.document.documentElement.lang = normalized === 'pt' ? 'pt-BR' : 'en';
     try { globalThis.localStorage?.setItem('portfolio-language', normalized); } catch { /* Storage is optional. */ }
   }
   

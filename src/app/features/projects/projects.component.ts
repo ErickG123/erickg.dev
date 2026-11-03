@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { GameStateService } from '../../core/state/game-state.service';
 import { FEATURED_PROJECTS_DATA } from '../../core/data/portfolio.data';
 import { MangaProjectCardComponent } from '../../shared/components/manga-project-card/manga-project-card.component';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [MangaProjectCardComponent],
+  imports: [MangaProjectCardComponent, TranslocoPipe],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })

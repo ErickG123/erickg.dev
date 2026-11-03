@@ -1,7 +1,7 @@
 <section class="contact-page container fadein mb-4 mt-4" aria-labelledby="contact-title">
   <header class="contact-heading">
-    <span class="section-kicker">連絡 · {{ currentLang() === 'pt' ? 'CONTATO' : 'CONTACT' }}</span>
-    <h2 id="contact-title" class="manga-heading-xl">{{ currentLang() === 'pt' ? 'Vamos conversar' : 'Let’s talk' }}</h2>
+    <span class="section-kicker">連絡 · {{ 'CONTACT.KICKER' | transloco }}</span>
+    <h2 id="contact-title" class="manga-heading-xl">{{ 'CONTACT.TITLE' | transloco }}</h2>
     <p>{{ currentLang() === 'pt' ? author.contactIntro : author.contactIntroEn }}</p>
   </header>
 

@@ -136,4 +136,4 @@ No Mural de Transmissão ([`home.component.html`](file:///C:/Users/erick.alves/D
 ## 9. Limitações Remanescentes e Recomendações
 
 1. **Modo Imersivo em Telas Estreitas:** O leitor de páginas 3D funciona em dispositivos móveis, mas a rolagem contínua padrão continua sendo a experiência mais recomendada para leitores de tela em smartphones. A interface mantém a rolagem contínua como modo padrão.
-2. **Traduções Dinâmicas:** O cabeçalho inclui suporte a internacionalização via `ngx-translate`. Quando novas línguas forem adicionadas aos arquivos JSON, deve-se revisar a pontuação de pronúncia em leitores de tela.
+2. **Traduções Dinâmicas:** O cabeçalho e as páginas principais usam Transloco para português e inglês. Ao adicionar idiomas, revise as traduções dos textos e os rótulos acessíveis, além de manter atualizado o atributo `lang` do documento.

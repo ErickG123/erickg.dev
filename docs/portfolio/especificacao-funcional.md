@@ -60,7 +60,7 @@ flowchart TD
         ReaderState["ReaderStateService (Modo, Capítulo, Zoom)"]
         SaveState["SaveStateService (Preferências & Conquistas)"]
         ProjectService["ProjectService (Mock / Dados Tipados)"]
-        Translation["TranslateService (i18n EN / PT)"]
+        Translation["TranslocoService (i18n EN / PT)"]
         Analytics["Vercel Analytics & Telemetria"]
     end
 

@@ -5,12 +5,14 @@ import { SeoService } from '../../core/seo.service';
 import { MangaPanelComponent } from '../../shared/components/manga-panel/manga-panel.component';
 import { ChapterHeaderComponent } from '../../shared/components/chapter-header/chapter-header.component';
 import { EditorialDividerComponent } from '../../shared/components/editorial-divider/editorial-divider.component';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
   imports: [
     CommonModule,
+    TranslocoPipe,
     RouterLink,
     MangaPanelComponent,
     ChapterHeaderComponent,

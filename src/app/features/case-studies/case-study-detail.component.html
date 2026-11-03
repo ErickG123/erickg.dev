@@ -1,30 +1,30 @@
 @if (caseStudy(); as study) {
   <article class="case-study-page" aria-labelledby="case-study-title">
-    <nav class="case-study-top-nav" aria-label="Navegação do estudo de caso">
-      <a routerLink="/projects" class="case-back-link"><span aria-hidden="true">←</span> {{ 'Voltar aos projetos' }}</a>
-      <span class="case-status"><i aria-hidden="true"></i>{{ study.statusBadge }}</span>
+    <nav class="case-study-top-nav" [attr.aria-label]="'CASE.NAV_LABEL' | transloco">
+      <a routerLink="/projects" class="case-back-link"><span aria-hidden="true">←</span> {{ 'CASE.BACK' | transloco }}</a>
+      <span class="case-status"><i aria-hidden="true"></i>{{ currentLang() === 'pt' ? study.statusBadge : (study.statusBadgeEn || study.statusBadge) }}</span>
     </nav>
 
     <header class="case-study-hero">
       <div class="case-study-intro">
-        <span class="case-kicker">{{ study.caseNumber }} <b aria-hidden="true">·</b> {{ study.category }}</span>
+        <span class="case-kicker">{{ currentLang() === 'pt' ? study.caseNumber : 'CASE STUDY / 01' }} <b aria-hidden="true">·</b> {{ currentLang() === 'pt' ? study.category : (study.categoryEn || study.category) }}</span>
         <h1 id="case-study-title">{{ study.title }}</h1>
-        <p class="case-subtitle">{{ study.subtitle }}</p>
-        <p class="case-context">{{ study.context.content }}</p>
-        <div class="case-tech-list" aria-label="Tecnologias">
+        <p class="case-subtitle">{{ currentLang() === 'pt' ? study.subtitle : (study.subtitleEn || study.subtitle) }}</p>
+        <p class="case-context">{{ currentLang() === 'pt' ? study.context.content : (study.context.contentEn || study.context.content) }}</p>
+        <div class="case-tech-list" [attr.aria-label]="'CASE.TECHNOLOGIES' | transloco">
           @for (tech of study.techStack; track tech) { <span>{{ tech }}</span> }
         </div>
         <div class="case-source-links">
           @if (study.githubUrl) {
-            <a class="case-source-link case-source-link--primary" [href]="study.githubUrl" target="_blank" rel="noopener noreferrer">Código no GitHub <span aria-hidden="true">↗</span></a>
+            <a class="case-source-link case-source-link--primary" [href]="study.githubUrl" target="_blank" rel="noopener noreferrer">{{ 'CASE.CODE' | transloco }} <span aria-hidden="true">↗</span></a>
           }
           @if (study.documentationUrl) {
-            <a class="case-source-link" [href]="study.documentationUrl" target="_blank" rel="noopener noreferrer">Documentação <span aria-hidden="true">↗</span></a>
+            <a class="case-source-link" [href]="study.documentationUrl" target="_blank" rel="noopener noreferrer">{{ 'CASE.DOCUMENTATION' | transloco }} <span aria-hidden="true">↗</span></a>
           }
         </div>
       </div>
       <div class="case-study-artwork">
-        <img [src]="study.heroIllustration" [alt]="'Diagrama da arquitetura do projeto ' + study.title" />
+        <img [src]="study.heroIllustration" [alt]="('CASE.IMAGE_ALT' | transloco) + ' ' + study.title" />
       </div>
     </header>
 
@@ -36,13 +36,13 @@
             <span class="architecture-map-reading" lang="ja">せっけい <i>· sekkei</i></span>
             <span class="architecture-map-translation">{{ currentLang() === 'pt' ? 'projeto · design' : 'project · design' }}</span>
           </span>
-          <h2 id="architecture-map-title">{{ currentLang() === 'pt' ? 'Um mapa da arquitetura' : 'A map of the architecture' }}</h2>
-          <p>{{ currentLang() === 'pt' ? 'Selecione uma camada para ver o papel descrito nos documentos do projeto.' : 'Select a layer to see its role as described in the project documents.' }}</p>
+          <h2 id="architecture-map-title">{{ 'CASE.MAP_TITLE' | transloco }}</h2>
+          <p>{{ 'CASE.MAP_DESCRIPTION' | transloco }}</p>
         </div>
         <span class="architecture-map-index" aria-hidden="true">SL / 01</span>
       </header>
 
-      <div class="architecture-flow" role="group" [attr.aria-label]="currentLang() === 'pt' ? 'Camadas da arquitetura do SchemaLens' : 'SchemaLens architecture layers'">
+      <div class="architecture-flow" role="group" [attr.aria-label]="'CASE.MAP_LABEL' | transloco">
         @for (layer of architectureLayers; track layer.id; let index = $index) {
           <button class="architecture-node" [class.is-selected]="selectedArchitectureIndex() === index" type="button" [attr.aria-pressed]="selectedArchitectureIndex() === index" (click)="selectedArchitectureIndex.set(index)">
             <span class="architecture-node-number">0{{ index + 1 }}</span>
@@ -62,7 +62,7 @@
       <div class="architecture-note" aria-live="polite" aria-atomic="true">
         <span class="architecture-note-mark" aria-hidden="true">印</span>
         <div>
-          <span class="architecture-note-label">{{ currentLang() === 'pt' ? 'CAMADA SELECIONADA' : 'SELECTED LAYER' }}</span>
+            <span class="architecture-note-label">{{ 'CASE.SELECTED_LAYER' | transloco }}</span>
           <span class="architecture-note-term" lang="ja">
             @for (part of selectedArchitecture().furigana; track $index) {
               @if (part.kana) { <ruby>{{ part.text }}<rt>{{ part.kana }}</rt></ruby> } @else { {{ part.text }} }
@@ -77,12 +77,12 @@
 
     <section class="case-study-reading" aria-label="Explorar o estudo de caso">
       <div class="case-reading-heading">
-        <span class="case-kicker">LEITURA DO PROJETO</span>
-        <p>Abra os tópicos para conhecer o contexto, as decisões e o que a documentação descreve.</p>
+        <span class="case-kicker">{{ 'CASE.READING_TITLE' | transloco }}</span>
+        <p>{{ 'CASE.READING_DESCRIPTION' | transloco }}</p>
       </div>
       <nav class="case-study-index" aria-label="Tópicos do estudo">
         @for (section of sections(); track section.title; let index = $index) {
-          <button type="button" [attr.aria-controls]="'case-section-' + index" (click)="openSection(index)"><span>{{ (index + 1).toString().padStart(2, '0') }}</span>{{ section.title }}</button>
+          <button type="button" [attr.aria-controls]="'case-section-' + index" (click)="openSection(index)"><span>{{ (index + 1).toString().padStart(2, '0') }}</span>{{ currentLang() === 'pt' ? section.title : (section.titleEn || section.title) }}</button>
         }
       </nav>
 
@@ -91,26 +91,26 @@
           <details class="case-study-section" [id]="'case-section-' + index" [open]="index === 0">
             <summary>
               <span class="case-section-number">{{ (index + 1).toString().padStart(2, '0') }}</span>
-              <span class="case-section-title">{{ section.title }}</span>
+              <span class="case-section-title">{{ currentLang() === 'pt' ? section.title : (section.titleEn || section.title) }}</span>
               <span class="case-section-toggle" aria-hidden="true"></span>
             </summary>
             <div class="case-section-body">
-              <p>{{ section.content }}</p>
-              @if (section.bulletPoints?.length) {
+              <p>{{ currentLang() === 'pt' ? section.content : (section.contentEn || section.content) }}</p>
+              @if ((currentLang() === 'pt' ? section.bulletPoints : (section.bulletPointsEn || section.bulletPoints))?.length) {
                 <ul>
-                  @for (point of section.bulletPoints; track point) { <li>{{ point }}</li> }
+                  @for (point of (currentLang() === 'pt' ? section.bulletPoints : (section.bulletPointsEn || section.bulletPoints)); track point) { <li>{{ point }}</li> }
                 </ul>
               }
               @if (section.highlightBox; as highlight) {
                 <aside class="case-highlight">
-                  <span>{{ highlight.title }}</span>
-                  <p>{{ highlight.text }}</p>
+                  <span>{{ currentLang() === 'pt' ? highlight.title : (highlight.titleEn || highlight.title) }}</span>
+                  <p>{{ currentLang() === 'pt' ? highlight.text : (highlight.textEn || highlight.text) }}</p>
                 </aside>
               }
               @if (section.codeSnippet; as snippet) {
                 <figure class="case-code">
                   <pre><code>{{ snippet.code }}</code></pre>
-                  @if (snippet.caption) { <figcaption>{{ snippet.caption }}</figcaption> }
+                  @if (snippet.caption) { <figcaption>{{ currentLang() === 'pt' ? snippet.caption : (snippet.captionEn || snippet.caption) }}</figcaption> }
                 </figure>
               }
             </div>
@@ -120,9 +120,9 @@
     </section>
 
     <footer class="case-study-footer">
-      <span class="case-kicker">FONTES E PRÓXIMOS ESTUDOS</span>
-      <p>O estudo resume decisões registradas no repositório. Consulte os documentos originais para ver o contexto completo.</p>
-      <a routerLink="/projects" class="case-back-link"><span aria-hidden="true">←</span> Voltar aos projetos</a>
+      <span class="case-kicker">{{ 'CASE.SOURCES_TITLE' | transloco }}</span>
+      <p>{{ 'CASE.SOURCES_DESCRIPTION' | transloco }}</p>
+      <a routerLink="/projects" class="case-back-link"><span aria-hidden="true">←</span> {{ 'CASE.BACK' | transloco }}</a>
     </footer>
   </article>
 }

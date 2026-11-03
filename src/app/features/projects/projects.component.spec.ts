@@ -3,10 +3,10 @@ import { ProjectsComponent } from './projects.component';
 import { ProjectService } from './services/project.service';
 import { signal, Pipe, PipeTransform } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-@Pipe({ name: 'translate', standalone: true })
-class MockTranslatePipe implements PipeTransform {
+@Pipe({ name: 'transloco', standalone: true })
+class MockTranslocoPipe implements PipeTransform {
   transform(value: string): string { return value; }
 }
 
@@ -31,12 +31,12 @@ describe('ProjectsComponent', () => {
       imports: [ProjectsComponent],
       providers: [
         { provide: ProjectService, useValue: mockProjectService },
-        { provide: TranslateService, useValue: { get: () => ({ subscribe: () => {} }) } }
+        { provide: TranslocoService, useValue: { getActiveLang: () => 'pt', setActiveLang: jest.fn() } }
       ]
     })
     .overrideComponent(ProjectsComponent, {
-      remove: { imports: [TranslatePipe] },
-      add: { imports: [MockTranslatePipe] }
+      remove: { imports: [TranslocoPipe] },
+      add: { imports: [MockTranslocoPipe] }
     })
     .compileComponents();
 

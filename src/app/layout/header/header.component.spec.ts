@@ -4,10 +4,10 @@ import { AudioService } from '../../core/audio.service';
 import { signal, Pipe, PipeTransform } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { By } from '@angular/platform-browser';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
-@Pipe({ name: 'translate', standalone: true })
-class MockTranslatePipe implements PipeTransform {
+@Pipe({ name: 'transloco', standalone: true })
+class MockTranslocoPipe implements PipeTransform {
   transform(value: string): string { return value; }
 }
 
@@ -29,16 +29,15 @@ describe('HeaderComponent', () => {
       providers: [
         provideRouter([]),
         { provide: AudioService, useValue: mockAudioService },
-        { provide: TranslateService, useValue: { 
-          get: () => ({ subscribe: () => {} }),
-          setFallbackLang: jest.fn(),
-          use: jest.fn()
+        { provide: TranslocoService, useValue: {
+          setActiveLang: jest.fn(),
+          getActiveLang: () => 'pt'
         } }
       ]
     })
     .overrideComponent(HeaderComponent, {
-      remove: { imports: [TranslatePipe] },
-      add: { imports: [MockTranslatePipe] }
+      remove: { imports: [TranslocoPipe] },
+      add: { imports: [MockTranslocoPipe] }
     })
     .compileComponents();
 

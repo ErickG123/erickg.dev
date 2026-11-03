@@ -1,9 +1,9 @@
 <section class="projects-page" aria-labelledby="projects-page-title">
   <header class="projects-page-heading">
     <div class="projects-heading-copy">
-      <span class="projects-kicker">作品 · {{ currentLang() === 'pt' ? 'PORTFÓLIO' : 'SELECTED WORK' }}</span>
-      <h1 id="projects-page-title">{{ currentLang() === 'pt' ? 'Projetos selecionados' : 'Selected projects' }}</h1>
-      <p>{{ currentLang() === 'pt' ? 'Produtos, ferramentas e experimentos que transformam problemas reais em software útil.' : 'Products, tools, and experiments that turn real problems into useful software.' }}</p>
+      <span class="projects-kicker">作品 · {{ 'PROJECTS.KICKER' | transloco }}</span>
+      <h1 id="projects-page-title">{{ 'PROJECTS.TITLE' | transloco }}</h1>
+      <p>{{ 'PROJECTS.SUBTITLE' | transloco }}</p>
     </div>
     <span class="projects-count" [attr.aria-label]="currentLang() === 'pt' ? 'Quantidade de projetos' : 'Number of projects'">{{ projects.length.toString().padStart(2, '0') }} <span>{{ currentLang() === 'pt' ? 'PROJETOS' : 'PROJECTS' }}</span></span>
   </header>
@@ -12,12 +12,12 @@
     <summary>
       <span class="glossary-summary-title">
         <span class="glossary-summary-japanese" lang="ja">文字の読み方</span>
-        <span>{{ currentLang() === 'pt' ? 'Leituras e traduções' : 'Readings and translations' }}</span>
+        <span>{{ 'PROJECTS.GLOSSARY_TITLE' | transloco }}</span>
       </span>
-      <span class="glossary-summary-action">{{ currentLang() === 'pt' ? 'Consultar glossário' : 'Open glossary' }} <b aria-hidden="true"></b></span>
+      <span class="glossary-summary-action">{{ 'PROJECTS.GLOSSARY_ACTION' | transloco }} <b aria-hidden="true"></b></span>
     </summary>
     <div class="glossary-content">
-      <p>{{ currentLang() === 'pt' ? 'Kana, romaji e tradução dos caracteres usados nos pôsteres dos projetos.' : 'Kana, romaji, and translations for the characters used in the project posters.' }}</p>
+      <p>{{ 'PROJECTS.GLOSSARY_DESCRIPTION' | transloco }}</p>
       <div class="glossary-grid">
         @for (project of posterGlossary; track project.id) {
           @if (project.poster; as poster) {
@@ -28,8 +28,8 @@
                   @if (part.kana) { <ruby>{{ part.text }}<rt>{{ part.kana }}</rt></ruby> } @else { {{ part.text }} }
                 }
               </span>
-              <span class="glossary-reading"><span>{{ currentLang() === 'pt' ? 'Leitura' : 'Reading' }}</span><span lang="ja">{{ poster.reading }}</span><i>{{ poster.romaji }}</i></span>
-              <span class="glossary-translation"><span>{{ currentLang() === 'pt' ? 'Tradução' : 'Translation' }}</span>{{ currentLang() === 'pt' ? poster.translation : poster.translationEn }}</span>
+              <span class="glossary-reading"><span>{{ 'PROJECTS.READING' | transloco }}</span><span lang="ja">{{ poster.reading }}</span><i>{{ poster.romaji }}</i></span>
+              <span class="glossary-translation"><span>{{ 'PROJECTS.TRANSLATION' | transloco }}</span>{{ currentLang() === 'pt' ? poster.translation : poster.translationEn }}</span>
             </article>
           }
         }
@@ -37,7 +37,7 @@
     </div>
   </details>
 
-  <section class="projects-page-grid" [attr.aria-label]="currentLang() === 'pt' ? 'Projetos de Erick Gabriel' : 'Erick Gabriel projects'">
+  <section class="projects-page-grid" [attr.aria-label]="'PROJECTS.LIST_LABEL' | transloco">
     @for (project of projects; track project.id) {
       <div class="projects-page-item">
         <app-manga-project-card [project]="project"></app-manga-project-card>
@@ -46,9 +46,9 @@
   </section>
 
   <footer class="projects-page-footer">
-    <p>{{ currentLang() === 'pt' ? 'Mais projetos e contribuições estão disponíveis no GitHub.' : 'More projects and contributions are available on GitHub.' }}</p>
+    <p>{{ 'PROJECTS.FOOTER_COPY' | transloco }}</p>
     <a href="https://github.com/ErickG123?tab=repositories" target="_blank" rel="noopener noreferrer" class="manga-btn manga-btn--secondary">
-      {{ currentLang() === 'pt' ? 'Explorar repositórios' : 'Explore repositories' }} <span aria-hidden="true">↗</span>
+      {{ 'PROJECTS.FOOTER_LINK' | transloco }} <span aria-hidden="true">↗</span>
     </a>
   </footer>
 </section>

@@ -18,7 +18,7 @@ Bem-vindo ao código-fonte do meu portfólio interativo. Mais do que uma simples
 Este projeto foi construído para demonstrar domínio em arquitetura escalável, testes e experiência do usuário (UX):
 
 *   **PWA (Progressive Web App):** Instalável em dispositivos móveis, rodando em tela cheia (Standalone) para simular um emulador nativo.
-*   **Acessibilidade e i18n:** Suporte a múltiplos idiomas (`ngx-translate`) e modo "Corporate Glasses" para recrutadores, alternando o tema e melhorando a acessibilidade (a11y).
+*   **Acessibilidade e i18n:** Suporte a português e inglês com Transloco, alternância de idioma sem recarregar a página e atualização do idioma do documento para tecnologias assistivas.
 *   **Testes Automatizados (Jest):** Lógicas de negócio e componentes protegidos por suítes de testes unitários com Jest.
 *   **CI/CD Pipeline:** Esteira de Continuous Integration via GitHub Actions garantindo que nenhum código quebrado seja mesclado na `main`.
 *   **Telemetria Avançada:** Eventos customizados rastreados via Vercel Analytics.

@@ -1,18 +1,18 @@
 <div class="manga-container" style="padding-top: var(--space-4); padding-bottom: var(--space-16);">
 
   <!-- Introdução e retrato -->
-  <section id="cover" class="manga-section cover-section mb-8" aria-label="Capa e Hero do Portfólio">
+  <section id="cover" class="manga-section cover-section mb-8" [attr.aria-label]="'HOME.COVER_LABEL' | transloco">
     <app-manga-hero [hero]="heroData"></app-manga-hero>
   </section>
 
   <!-- Projetos em destaque -->
   <section id="projects" class="manga-section projects-section home-projects-section mb-8" aria-labelledby="projects-title">
     <app-chapter-heading
-      chapter="PROJETOS / 01"
-      title="PROJETOS SELECIONADOS"
-      subtitle="Produtos, ferramentas e experiências criados para resolver problemas reais."
+      [chapter]="'HOME.PROJECTS_CHAPTER' | transloco"
+      [title]="'HOME.PROJECTS_TITLE' | transloco"
+      [subtitle]="'HOME.PROJECTS_SUBTITLE' | transloco"
       [accentBadge]="true"
-      meta="REPOSITÓRIOS OFICIAIS VERIFICADOS"
+      [meta]="'HOME.PROJECTS_META' | transloco"
     ></app-chapter-heading>
 
     <div class="project-grid mb-6">
@@ -25,9 +25,9 @@
 
     <!-- CTA do GitHub -->
     <div class="manga-panel manga-panel--dashed manga-text-center p-6">
-      <h3 class="manga-heading-md mb-2">PROJETOS & CONTRIBUIÇÕES ADICIONAIS</h3>
+      <h3 class="manga-heading-md mb-2">{{ 'HOME.MORE_PROJECTS_TITLE' | transloco }}</h3>
       <p class="manga-body-md" style="max-width: 650px; margin: 0 auto var(--space-4) auto;">
-        Explore outros códigos, templates arquiteturais e experimentos públicos no perfil oficial de Erick Gabriel.
+        {{ 'HOME.MORE_PROJECTS_COPY' | transloco }}
       </p>
       <a
         href="https://github.com/ErickG123?tab=repositories"
@@ -35,7 +35,7 @@
         rel="noopener noreferrer"
         class="manga-btn manga-btn--primary projects-more-link"
       >
-        EXPLORAR REPOSITÓRIOS NO GITHUB &nearr;
+        {{ 'HOME.MORE_PROJECTS_LINK' | transloco }} &nearr;
       </a>
     </div>
   </section>
@@ -43,22 +43,22 @@
   <!-- Trajetória profissional -->
   <section id="method" class="manga-section career-section mb-8" aria-labelledby="career-title">
     <header class="career-heading">
-      <span class="section-kicker">経験 · Experiência</span>
-      <h2 id="career-title" class="manga-heading-xl">Trajetória profissional</h2>
-      <p>Uma visão geral da minha experiência em desenvolvimento de software.</p>
+      <span class="section-kicker">経験 · {{ 'HOME.CAREER_KICKER' | transloco }}</span>
+      <h2 id="career-title" class="manga-heading-xl">{{ 'HOME.CAREER_TITLE' | transloco }}</h2>
+      <p>{{ 'HOME.CAREER_SUBTITLE' | transloco }}</p>
     </header>
 
     <div class="career-list">
       @for (role of careerHistory; track role.company + role.period) {
         <article class="career-entry">
-          <div class="career-period">{{ role.period }}</div>
+        <div class="career-period">{{ currentLang() === 'pt' ? role.period : (role.periodEn || role.period) }}</div>
           <div class="career-detail">
-            <h3>{{ role.title }}</h3>
-            <div class="career-company">{{ role.company }}</div>
-            <p>{{ role.summary }}</p>
+          <h3>{{ currentLang() === 'pt' ? role.title : (role.titleEn || role.title) }}</h3>
+            <div class="career-company">{{ currentLang() === 'pt' ? role.company : (role.companyEn || role.company) }}</div>
+          <p>{{ currentLang() === 'pt' ? role.summary : (role.summaryEn || role.summary) }}</p>
             @if (role.technologies.length) {
-              <ul class="career-tags" aria-label="Tecnologias">
-                @for (tech of role.technologies; track tech) { <li>{{ tech }}</li> }
+              <ul class="career-tags" [attr.aria-label]="'HOME.TECHNOLOGIES' | transloco">
+                @for (tech of role.technologies; track tech; let index = $index) { <li>{{ currentLang() === 'pt' ? tech : (role.technologiesEn?.[index] || tech) }}</li> }
               </ul>
             }
           </div>
@@ -70,39 +70,39 @@
   <!-- Caderno de campo -->
   <section id="notes" class="manga-section notes-section mb-8" aria-labelledby="notes-title">
     <header class="career-heading articles-heading">
-      <span class="section-kicker">読みもの · Leituras</span>
-      <h2 id="notes-title" class="manga-heading-xl">Artigos & ideias</h2>
-      <p>Escrevo sobre engenharia de software, Angular e o que aprendo construindo produtos.</p>
+      <span class="section-kicker">読みもの · {{ 'HOME.NOTES_KICKER' | transloco }}</span>
+      <h2 id="notes-title" class="manga-heading-xl">{{ 'HOME.NOTES_TITLE' | transloco }}</h2>
+      <p>{{ 'HOME.NOTES_SUBTITLE' | transloco }}</p>
     </header>
 
-    <div class="article-filters" role="group" aria-label="Filtrar artigos por assunto">
+    <div class="article-filters" role="group" [attr.aria-label]="'HOME.ARTICLE_FILTER' | transloco">
       @for (topic of articleTopics; track topic) {
-        <button type="button" [class.is-selected]="selectedArticleTopic() === topic" (click)="selectedArticleTopic.set(topic)">{{ topic }}</button>
+        <button type="button" [class.is-selected]="selectedArticleTopic() === topic" (click)="selectedArticleTopic.set(topic)">{{ topic === 'all' ? ('HOME.ALL_TOPICS' | transloco) : topic }}</button>
       }
     </div>
 
     <div class="article-grid">
       @for (article of visibleArticles(); track article.url; let index = $index) {
-        <a class="article-card" [class.article-card--featured]="index === 0 && selectedArticleTopic() === 'Todos'" [href]="article.url" target="_blank" rel="noopener noreferrer">
-          <div class="article-card-meta"><span>{{ article.topic }}</span><time>{{ article.date }}</time></div>
+        <a class="article-card" [class.article-card--featured]="index === 0 && selectedArticleTopic() === 'all'" [href]="article.url" target="_blank" rel="noopener noreferrer">
+          <div class="article-card-meta"><span>{{ article.topic === 'Architecture' && currentLang() === 'pt' ? 'Arquitetura' : article.topic }}</span><time>{{ currentLang() === 'pt' ? article.date : article.dateEn }}</time></div>
           <h3>{{ article.title }}</h3>
-          <p>{{ article.description }}</p>
-          <div class="article-card-footer"><span>{{ article.minutes }} min de leitura</span><span class="article-open">Ler artigo <b aria-hidden="true">↗</b></span></div>
+          <p>{{ currentLang() === 'pt' ? article.description : article.descriptionEn }}</p>
+          <div class="article-card-footer"><span>{{ article.minutes }} {{ 'HOME.MINUTES_READ' | transloco }}</span><span class="article-open">{{ 'HOME.READ_ARTICLE' | transloco }} <b aria-hidden="true">↗</b></span></div>
           <span class="article-index" aria-hidden="true">{{ (index + 1).toString().padStart(2, '0') }}</span>
         </a>
       }
     </div>
 
-    <a class="all-articles-link" href="https://dev.to/erickg123" target="_blank" rel="noopener noreferrer">Todos os artigos no DEV.to <span aria-hidden="true">↗</span></a>
+    <a class="all-articles-link" href="https://dev.to/erickg123" target="_blank" rel="noopener noreferrer">{{ 'HOME.ALL_ARTICLES' | transloco }} <span aria-hidden="true">↗</span></a>
 
   </section>
 
   <!-- Sobre o autor -->
   <section id="about" class="manga-section about-section mb-8" aria-labelledby="about-title">
     <app-chapter-heading
-      chapter="SOBRE / 02"
-      title="SOBRE MIM"
-      subtitle="Trajetória profissional, perfil e competências técnicas"
+      [chapter]="'HOME.ABOUT_CHAPTER' | transloco"
+      [title]="'HOME.ABOUT_TITLE' | transloco"
+      [subtitle]="'HOME.ABOUT_SUBTITLE' | transloco"
     ></app-chapter-heading>
 
     <div class="manga-grid">
@@ -114,7 +114,7 @@
               @if (author.avatarUrl) {
                 <app-manga-image
                   [src]="author.avatarUrl"
-                  alt="Retrato editorial autoral de Erick Gabriel"
+                  [alt]="currentLang() === 'pt' ? 'Retrato editorial autoral de Erick Gabriel' : 'Editorial portrait of Erick Gabriel'"
                   aspectRatio="1:1"
                 ></app-manga-image>
               } @else {
@@ -129,20 +129,20 @@
 
             <h3 class="manga-heading-xl mb-1">{{ author.name }}</h3>
             <div class="manga-mono manga-text-vermilion mb-3" style="font-weight: 800; font-size: 0.8rem;">
-              {{ author.role }}
+              {{ currentLang() === 'pt' ? author.role : (author.roleEn || author.role) }}
             </div>
 
             <div class="manga-mono" style="font-size: 0.8rem; line-height: 1.8; color: var(--manga-gray);">
-              <div><strong>LOCALIZAÇÃO:</strong> {{ author.location }}</div>
-              <div><strong>PERÍODO ATIVO:</strong> {{ author.careerPeriod }}</div>
-              <div><strong>FOCO ATUAL:</strong> {{ author.currentFocus }}</div>
+              <div><strong>{{ 'HOME.LOCATION' | transloco }}:</strong> {{ author.location }}</div>
+              <div><strong>{{ 'HOME.CAREER_PERIOD' | transloco }}:</strong> {{ currentLang() === 'pt' ? author.careerPeriod : (author.careerPeriodEn || author.careerPeriod) }}</div>
+              <div><strong>{{ 'HOME.CURRENT_FOCUS' | transloco }}:</strong> {{ currentLang() === 'pt' ? author.currentFocus : (author.currentFocusEn || author.currentFocus) }}</div>
             </div>
           </div>
 
           <!-- Nota Provisória Explicita de Mídia -->
           <div class="mt-4 p-3 text-surface text-surface--muted" style="border: 1px dashed var(--manga-gray); text-align: center;">
             <span class="manga-mono" style="font-size: 0.72rem; color: var(--manga-ink); font-weight: 600;">
-              {{ author.pendingNotes }}
+              {{ currentLang() === 'pt' ? author.pendingNotes : (author.pendingNotesEn || author.pendingNotes) }}
             </span>
           </div>
         </div>
@@ -152,31 +152,31 @@
       <div class="col-8">
         <div class="manga-panel h-full flex flex-column justify-between">
           <div>
-            <h3 class="manga-heading-xl mb-3">TRAJETÓRIA & FILOSOFIA</h3>
-            <p class="manga-body-md" style="color: var(--manga-vermilion-text);">{{ author.headline }}</p>
+            <h3 class="manga-heading-xl mb-3">{{ 'HOME.BACKGROUND_TITLE' | transloco }}</h3>
+            <p class="manga-body-md" style="color: var(--manga-vermilion-text);">{{ currentLang() === 'pt' ? author.headline : (author.headlineEn || author.headline) }}</p>
             <p class="manga-body-lg">
-              {{ author.bio }}
+              {{ currentLang() === 'pt' ? author.bio : (author.bioEn || author.bio) }}
             </p>
             <p class="manga-body-md" style="color: var(--manga-gray);">
-              {{ author.journeySummary }}
+              {{ currentLang() === 'pt' ? author.journeySummary : (author.journeySummaryEn || author.journeySummary) }}
             </p>
 
             <div class="gutter-divider--dashed my-4"></div>
 
-            <h3 class="manga-heading-lg mb-3">MATRIZ DE COMPETÊNCIAS</h3>
+            <h3 class="manga-heading-lg mb-3">{{ 'HOME.SKILLS_TITLE' | transloco }}</h3>
             <div class="manga-grid about-skills-grid">
               @for (skillGroup of author.skills; track skillGroup.category) {
                 <div class="col-4">
                   <div class="manga-panel manga-panel--dashed p-4 h-full">
                     <div class="home-skill-topline">
                       <span class="home-skill-mark" aria-hidden="true">{{ skillGroup.mark }}</span>
-                      <span class="manga-mono manga-text-vermilion">ÁREA DE ATUAÇÃO</span>
+                      <span class="manga-mono manga-text-vermilion">{{ 'HOME.EXPERTISE' | transloco }}</span>
                     </div>
-                    <h4 class="home-skill-title">{{ skillGroup.category }}</h4>
-                    <p class="home-skill-description">{{ skillGroup.description }}</p>
+                    <h4 class="home-skill-title">{{ currentLang() === 'pt' ? skillGroup.category : (skillGroup.categoryEn || skillGroup.category) }}</h4>
+                    <p class="home-skill-description">{{ currentLang() === 'pt' ? skillGroup.description : (skillGroup.descriptionEn || skillGroup.description) }}</p>
                     <ul class="home-skill-tags" [attr.aria-label]="'Tecnologias e práticas: ' + skillGroup.category">
-                      @for (item of skillGroup.items; track item) {
-                        <li>{{ item }}</li>
+                      @for (item of skillGroup.items; track item; let index = $index) {
+                        <li>{{ currentLang() === 'pt' ? item : (skillGroup.itemsEn?.[index] || item) }}</li>
                       }
                     </ul>
                   </div>
@@ -201,9 +201,9 @@
   <!-- Contato -->
   <footer id="contact" class="manga-section contact-section" aria-labelledby="contact-title">
     <app-chapter-heading
-      chapter="CONTATO / 03"
-      title="VAMOS CONVERSAR"
-      [subtitle]="author.contactIntro"
+        [chapter]="'HOME.CONTACT_CHAPTER' | transloco"
+        [title]="'HOME.CONTACT_TITLE' | transloco"
+        [subtitle]="currentLang() === 'pt' ? author.contactIntro : author.contactIntroEn"
       [accentBadge]="true"
     ></app-chapter-heading>
 

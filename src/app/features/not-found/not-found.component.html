@@ -1,26 +1,26 @@
-<div class="not-found-container" role="region" aria-label="Página não encontrada">
+<div class="not-found-container" role="region" [attr.aria-label]="'NOT_FOUND.LABEL' | transloco">
   <app-manga-panel variant="default" padding="lg" class="not-found-panel halftone-corner-accent">
     <app-chapter-header
-      chapter="EXTRA"
-      title="CAPÍTULO NÃO ENCONTRADO"
-      subtitle="Erro 404 &bull; Manuscrito Ausente"
+      [chapter]="'NOT_FOUND.CHAPTER' | transloco"
+      [title]="'NOT_FOUND.TITLE' | transloco"
+      [subtitle]="'NOT_FOUND.SUBTITLE' | transloco"
       align="center">
     </app-chapter-header>
 
     <div class="not-found-content">
       <div class="glitch-number" aria-hidden="true">404</div>
       <p class="not-found-lead">
-        A página solicitada se perdeu entre os rascunhos em nanquim ou foi reordenada no índice editorial.
+        {{ 'NOT_FOUND.DESCRIPTION' | transloco }}
       </p>
 
       <app-editorial-divider variant="solid" spacing="lg"></app-editorial-divider>
 
       <div class="actions-group">
-        <a routerLink="/" class="manga-btn manga-btn-primary" aria-label="Retornar à capa do portfólio">
-          <span class="btn-prefix" aria-hidden="true">&laquo;</span> RETORNAR À CAPA
+        <a routerLink="/" class="manga-btn manga-btn-primary" [attr.aria-label]="'NOT_FOUND.HOME_ARIA' | transloco">
+          <span class="btn-prefix" aria-hidden="true">&laquo;</span> {{ 'NOT_FOUND.HOME' | transloco }}
         </a>
-        <a routerLink="/projects" class="manga-btn manga-btn-secondary" aria-label="Navegar para os projetos selecionados">
-          VER PROJETOS <span class="btn-suffix" aria-hidden="true">&raquo;</span>
+        <a routerLink="/projects" class="manga-btn manga-btn-secondary" [attr.aria-label]="'NOT_FOUND.PROJECTS_ARIA' | transloco">
+          {{ 'NOT_FOUND.PROJECTS' | transloco }} <span class="btn-suffix" aria-hidden="true">&raquo;</span>
         </a>
       </div>
     </div>

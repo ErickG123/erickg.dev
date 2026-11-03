@@ -5,10 +5,10 @@
   <div class="hero-meta mb-4">
     <div class="manga-flex manga-gap-2 manga-items-center manga-flex-wrap">
       <span class="hero-kicker">
-        {{ hero().volumeId }}
+        {{ currentLang() === 'pt' ? hero().volumeId : (hero().volumeIdEn || hero().volumeId) }}
       </span>
       <span class="hero-location">
-        {{ hero().chapterId }}
+        {{ currentLang() === 'pt' ? hero().chapterId : (hero().chapterIdEn || hero().chapterId) }}
       </span>
     </div>
 
@@ -25,12 +25,12 @@
 
       <!-- Título Principal Curto e Memorável -->
       <h1 class="manga-display-2xl hero-tagline" style="margin-bottom: var(--space-3); line-height: 1.02;">
-        {{ hero().tagline }}
+        {{ currentLang() === 'pt' ? hero().tagline : (hero().taglineEn || hero().tagline) }}
       </h1>
 
       <!-- Descrição Profissional Objetiva -->
       <p class="manga-body-lg hero-description" style="max-width: 620px; margin-bottom: var(--space-4); font-weight: 500;">
-        {{ hero().description }}
+        {{ currentLang() === 'pt' ? hero().description : (hero().descriptionEn || hero().description) }}
       </p>
 
       <!-- Metadados de Arquitetura -->
@@ -44,10 +44,10 @@
       <!-- Ações de Navegação -->
       <div class="manga-flex manga-flex-wrap manga-gap-3">
         <a [href]="hero().primaryCtaLink" class="manga-btn manga-btn--accent">
-          {{ hero().primaryCtaText }} <span class="action-arrow-hover">&rarr;</span>
+          {{ currentLang() === 'pt' ? hero().primaryCtaText : (hero().primaryCtaTextEn || hero().primaryCtaText) }} <span class="action-arrow-hover">&rarr;</span>
         </a>
         <a [href]="hero().secondaryCtaLink" class="manga-btn manga-btn--secondary">
-          {{ hero().secondaryCtaText }} <span class="action-arrow-hover">&rarr;</span>
+          {{ currentLang() === 'pt' ? hero().secondaryCtaText : (hero().secondaryCtaTextEn || hero().secondaryCtaText) }} <span class="action-arrow-hover">&rarr;</span>
         </a>
       </div>
     </div>
@@ -57,7 +57,7 @@
       <div class="hero-image-frame">
         <app-manga-image
           [src]="hero().illustration.src"
-          [alt]="hero().illustration.alt"
+          [alt]="currentLang() === 'pt' ? hero().illustration.alt : (hero().illustration.altEn || hero().illustration.alt)"
           [caption]="hero().illustration.caption"
           aspectRatio="1:1"
           [priority]="true"

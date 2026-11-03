@@ -6,6 +6,7 @@ import { AchievementToastComponent } from './shared/components/achievement-toast
 import { SeoService } from './core/seo.service';
 import { SwUpdate } from '@angular/service-worker';
 import { GameStateService } from './core/state/game-state.service';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 export const routeAnimations = trigger('routeAnimations', [
   transition('* <=> *', [
@@ -32,7 +33,7 @@ export const routeAnimations = trigger('routeAnimations', [
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, AchievementToastComponent],
+  imports: [RouterOutlet, HeaderComponent, AchievementToastComponent, TranslocoPipe],
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
   animations: [routeAnimations]

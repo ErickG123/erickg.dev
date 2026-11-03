@@ -6,13 +6,13 @@ import { By } from '@angular/platform-browser';
 import { App } from '../app';
 import { HeaderComponent } from '../layout/header/header.component';
 import { AudioService } from './audio.service';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { Pipe, PipeTransform, signal } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { of } from 'rxjs';
 
-@Pipe({ name: 'translate', standalone: true })
-class MockTranslatePipe implements PipeTransform {
+@Pipe({ name: 'transloco', standalone: true })
+class MockTranslocoPipe implements PipeTransform {
   transform(value: string): string { return value; }
 }
 
@@ -34,20 +34,18 @@ describe('Systematic Accessibility & Keyboard Navigation (WCAG 2.1 AA)', () => {
           { provide: AudioService, useValue: mockAudioService },
           { provide: SwUpdate, useValue: { isEnabled: false, versionUpdates: of() } },
           {
-            provide: TranslateService,
+            provide: TranslocoService,
             useValue: {
-              get: () => of(''),
-              instant: (k: string) => k,
-              translate: (k: string) => k,
-              setFallbackLang: jest.fn(),
-              use: jest.fn()
+              getActiveLang: () => 'pt',
+              setActiveLang: jest.fn(),
+              translate: (k: string) => k
             }
           }
         ]
       })
       .overrideComponent(HeaderComponent, {
-        remove: { imports: [TranslatePipe] },
-        add: { imports: [MockTranslatePipe] }
+        remove: { imports: [TranslocoPipe] },
+        add: { imports: [MockTranslocoPipe] }
       })
       .compileComponents();
 
