@@ -1,6 +1,6 @@
 import { Injectable, signal, computed, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import type { ReadingMode, ChapterSectionId, SectionPageMapping } from '../models/reader.interface';
+import type { ReadingMode, ChapterSectionId, SectionPageMapping } from '../models/reader.model';
 
 export type { ReadingMode, ChapterSectionId, SectionPageMapping };
 

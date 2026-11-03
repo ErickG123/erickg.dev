@@ -1,7 +1,7 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CASE_STUDIES_DATA } from '../../core/data/case-studies.data';
-import { CaseStudy, CaseStudySection } from '../../core/models/case-study.interface';
+import { CaseStudy, CaseStudySection } from '../../core/models/case-study.model';
 import { SeoService } from '../../core/seo.service';
 import { GameStateService } from '../../core/state/game-state.service';
 import { TranslocoPipe } from '@jsverse/transloco';

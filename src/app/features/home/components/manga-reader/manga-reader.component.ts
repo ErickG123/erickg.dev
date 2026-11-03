@@ -18,7 +18,7 @@ import {
 } from '../../../../core/data/portfolio.data';
 import { ChapterHeadingComponent } from '../../../../shared/components/chapter-heading/chapter-heading.component';
 import { MangaProjectCardComponent } from '../../../../shared/components/manga-project-card/manga-project-card.component';
-import type { ReaderPage } from '../../../../core/models/reader.interface';
+import type { ReaderPage } from '../../../../core/models/reader.model';
 
 export type { ReaderPage };
 

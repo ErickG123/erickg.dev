@@ -1,0 +1,47 @@
+:host { display: block; }
+.reading-notes-page { position: relative; width: min(100%, 74rem); min-height: min(74vh, 58rem); margin: 0 auto; padding: clamp(1.25rem, 4vw, 3.5rem); overflow: clip; border: 1px solid var(--manga-border-subtle); border-radius: 10px; background: radial-gradient(ellipse at 82% 18%, color-mix(in srgb, var(--manga-vermilion) 8%, transparent), transparent 28rem), var(--manga-surface); }
+.reading-back-link { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.5rem; color: var(--manga-gray); font: 600 .76rem var(--font-mono); text-decoration: none; }
+.reading-back-link:hover, .reading-back-link:focus-visible { color: var(--manga-vermilion-text); }
+.reading-intro { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: clamp(2.25rem, 7vw, 5rem) 0 clamp(1.75rem, 5vw, 3.5rem); border-bottom: 1px solid var(--manga-border-subtle); }
+.reading-title-block { max-width: 48rem; }
+.reading-kicker { display: block; margin-bottom: .9rem; color: var(--manga-vermilion-text); font: 650 .68rem var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
+.reading-kicker > span { padding-right: .4rem; font: 1.2rem 'Yuji Syuku', serif; }
+.reading-intro h1 { max-width: 12ch; margin: 0; color: var(--manga-ink); font: 760 clamp(2.7rem, 7vw, 5.5rem)/.98 var(--font-heading); letter-spacing: -.055em; text-wrap: balance; }
+.reading-intro p { max-width: 42rem; margin: 1rem 0 0; color: var(--manga-gray); font-size: clamp(.95rem, 1.5vw, 1.08rem); line-height: 1.7; }
+.reading-seal { display: grid; width: clamp(4.5rem, 11vw, 7.5rem); aspect-ratio: 1; flex: 0 0 auto; place-items: center; border: 1px solid color-mix(in srgb, var(--manga-vermilion) 60%, var(--manga-border-subtle)); color: var(--manga-vermilion-text); font: clamp(2.8rem, 6vw, 4.2rem) 'Yuji Syuku', serif; transform: rotate(5deg); }
+.reading-instruction { display: flex; align-items: center; gap: .85rem; padding: 1.1rem 0; color: var(--manga-gray); }
+.reading-instruction-mark { display: grid; width: 2rem; height: 2rem; flex: 0 0 auto; place-items: center; border: 1px solid var(--manga-vermilion); border-radius: 50%; color: var(--manga-vermilion-text); font-size: 1.15rem; line-height: 1; text-align: center; }
+.reading-instruction p { margin: 0; font-size: .84rem; line-height: 1.5; }
+.reading-instruction-hint { margin-left: auto; color: var(--manga-gray); font: 500 .64rem/1.4 var(--font-mono); text-align: right; }
+.reading-words { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; padding: 1.2rem 0 2.2rem; }
+.reading-word { position: relative; display: flex; min-width: 0; min-height: clamp(13.5rem, 27vw, 20rem); flex-direction: column; align-items: flex-start; justify-content: space-between; padding: clamp(1rem, 2.4vw, 1.7rem); overflow: hidden; border: 1px solid var(--manga-border-subtle); border-radius: 4px; background: color-mix(in srgb, var(--manga-surface) 84%, var(--manga-paper)); color: var(--manga-ink); text-align: left; cursor: crosshair; transition: border-color .24s ease, background .24s ease, transform .35s var(--ease-editorial), box-shadow .3s ease; }
+.reading-word::before { position: absolute; right: -4rem; bottom: -5rem; width: 11rem; aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--manga-vermilion) 16%, transparent); border-radius: 50%; content: ''; transition: transform .5s var(--ease-editorial); }
+.reading-word:hover, .reading-word:focus-visible, .reading-word.is-active { z-index: 1; border-color: var(--manga-vermilion); background: color-mix(in srgb, var(--manga-vermilion) 5%, var(--manga-surface)); box-shadow: 0 14px 36px rgba(0, 0, 0, .13); transform: translateY(-3px); }
+.reading-word:focus-visible { outline: 2px solid var(--manga-vermilion); outline-offset: 3px; }
+.reading-word:hover::before, .reading-word:focus-visible::before, .reading-word.is-active::before { transform: scale(1.18); }
+.reading-word-index { position: relative; z-index: 1; color: var(--manga-gray); font: 500 .64rem var(--font-mono); }
+.reading-word-kanji { position: relative; z-index: 1; align-self: center; color: var(--manga-ink); font: clamp(3.2rem, 7.7vw, 6rem)/1.2 'Yuji Syuku', serif; letter-spacing: .07em; transition: color .24s ease, transform .35s var(--ease-editorial); }
+.reading-word:hover .reading-word-kanji, .reading-word:focus-visible .reading-word-kanji, .reading-word.is-active .reading-word-kanji { color: var(--manga-vermilion-text); transform: scale(1.07) rotate(-2deg); }
+.reading-word-label { position: relative; z-index: 1; max-width: 12rem; color: var(--manga-gray); font: 600 .61rem/1.55 var(--font-mono); letter-spacing: .04em; }
+.reading-word-corner { position: absolute; right: 1rem; bottom: 1rem; display: grid; width: 1.65rem; height: 1.65rem; place-items: center; border: 1px solid var(--manga-border-subtle); border-radius: 50%; color: var(--manga-vermilion-text); font-size: .9rem; line-height: 1; opacity: .85; transition: transform .25s ease; }
+.reading-word:hover .reading-word-corner, .reading-word:focus-visible .reading-word-corner, .reading-word.is-active .reading-word-corner { transform: rotate(45deg); }
+.reading-footer { display: flex; align-items: center; justify-content: center; gap: .9rem; margin-top: .2rem; }
+.reading-footer p { margin: 0; color: var(--manga-gray); font: 500 .68rem var(--font-mono); text-align: center; }
+.reading-footer-line { width: clamp(1rem, 8vw, 5rem); height: 1px; background: var(--manga-border-subtle); }
+.reading-lens { position: fixed; z-index: calc(var(--z-header) + 5); display: flex; width: min(22rem, calc(100vw - 24px), calc(100vh - 24px)); aspect-ratio: 1; flex-direction: column; align-items: center; justify-content: center; padding: 1.7rem 1.5rem 1.45rem; overflow: hidden; border: 1px solid color-mix(in srgb, var(--manga-vermilion) 60%, var(--manga-border-subtle)); border-radius: 50%; background: color-mix(in srgb, var(--manga-surface) 96%, transparent); color: var(--manga-ink); box-shadow: 0 16px 52px rgba(0, 0, 0, .4), inset 0 0 0 7px color-mix(in srgb, var(--manga-vermilion) 4%, transparent); pointer-events: none; animation: lens-appear .2s var(--ease-editorial) both; backdrop-filter: blur(12px); }
+.reading-lens.is-pinned { border-color: var(--manga-vermilion); box-shadow: 0 16px 52px rgba(0, 0, 0, .42), inset 0 0 0 7px color-mix(in srgb, var(--manga-vermilion) 9%, transparent); }
+.lens-ring { position: absolute; inset: .45rem; border: 1px solid color-mix(in srgb, var(--manga-vermilion) 25%, transparent); border-radius: 50%; }
+.lens-ring--inner { inset: .8rem; border-color: color-mix(in srgb, var(--manga-border-subtle) 65%, transparent); }
+.lens-eyebrow, .lens-detail-label, .lens-note-label { position: relative; z-index: 1; color: var(--manga-vermilion-text); font: 650 .55rem/1.35 var(--font-mono); letter-spacing: .1em; text-align: center; }
+.lens-word { position: relative; z-index: 1; align-self: center; margin: .1rem 0 .15rem; color: var(--manga-ink); font: 3rem/1.25 'Yuji Syuku', serif; }
+.lens-word rt { color: var(--manga-vermilion-text); font: 500 .59rem var(--font-body); letter-spacing: .05em; }
+.lens-romaji { position: relative; z-index: 1; align-self: center; color: var(--manga-gray); font: 500 .66rem var(--font-mono); letter-spacing: .08em; }
+.lens-divider { position: relative; z-index: 1; width: 100%; height: 1px; margin: .55rem 0; background: var(--manga-border-subtle); }
+.lens-translation { position: relative; z-index: 1; max-width: 14rem; margin-top: .18rem; font-size: .96rem; line-height: 1.35; text-align: center; text-wrap: pretty; }
+.lens-note-label { margin-top: .4rem; font-size: .5rem; }
+.lens-note { position: relative; z-index: 1; width: min(100%, 14rem); margin: .25rem 0 0; color: var(--manga-gray); font-size: .72rem; line-height: 1.48; text-align: center; text-wrap: pretty; overflow-wrap: anywhere; }
+.lens-close-hint { position: relative; z-index: 1; align-self: center; width: 100%; margin-top: .35rem; color: var(--manga-gray); font: 500 .5rem/1.35 var(--font-mono); letter-spacing: .035em; text-align: center; }
+@keyframes lens-appear { from { opacity: 0; transform: scale(.86); } to { opacity: 1; transform: scale(1); } }
+@media (max-width: 760px) { .reading-words { grid-template-columns: repeat(2, minmax(0, 1fr)); } .reading-word { min-height: 14rem; } .reading-word-kanji { font-size: clamp(3.5rem, 14vw, 5rem); } .reading-instruction { align-items: flex-start; flex-wrap: wrap; } .reading-instruction-hint { width: 100%; margin-left: 2.85rem; text-align: left; } }
+@media (max-width: 430px) { .reading-notes-page { padding: 1.1rem; } .reading-seal { width: 3.6rem; } .reading-word { min-height: 12.5rem; padding: .9rem; } .reading-word-kanji { font-size: 3.15rem; } .reading-lens { width: min(18rem, calc(100vw - 24px), calc(100vh - 24px)); padding: 1.35rem 1.1rem 1.2rem; } .lens-word { font-size: 2.6rem; } .lens-translation { max-width: 11.5rem; font-size: .9rem; } .lens-note { width: min(100%, 11.5rem); font-size: .66rem; line-height: 1.45; } .lens-close-hint { font-size: .43rem; } }
+@media (prefers-reduced-motion: reduce) { .reading-word, .reading-word::before, .reading-word-kanji, .reading-word-corner { transition: none !important; } .reading-word:hover, .reading-word:focus-visible, .reading-word.is-active { transform: none; } .reading-lens { animation: none; } }

@@ -50,6 +50,11 @@
           {{ currentLang() === 'pt' ? hero().secondaryCtaText : (hero().secondaryCtaTextEn || hero().secondaryCtaText) }} <span class="action-arrow-hover">&rarr;</span>
         </a>
       </div>
+      <a routerLink="/reading-notes" class="manga-btn manga-btn--secondary hero-reading-link">
+        <span class="hero-reading-mark" lang="ja">技</span>
+        <span>{{ 'READING_STUDIO.ENTRY_LINK' | transloco }}</span>
+        <span aria-hidden="true">↗</span>
+      </a>
     </div>
 
     <!-- Retrato do autor -->

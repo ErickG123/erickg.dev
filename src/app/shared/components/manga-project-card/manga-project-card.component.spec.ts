@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MangaProjectCardComponent } from './manga-project-card.component';
-import { Project } from '../../../core/models/project.interface';
+import { Project } from '../../../core/models/project.model';
 
 describe('MangaProjectCardComponent', () => {
   let component: MangaProjectCardComponent;

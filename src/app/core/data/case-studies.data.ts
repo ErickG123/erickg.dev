@@ -1,4 +1,4 @@
-import { CaseStudy } from '../models/case-study.interface';
+import { CaseStudy } from '../models/case-study.model';
 
 export const CASE_STUDIES_DATA: CaseStudy[] = [
   {

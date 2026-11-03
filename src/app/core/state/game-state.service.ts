@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Injectable, inject, signal } from '@angular/core';
-import { Achievement } from '../models/achievement.interface';
+import { Achievement } from '../models/achievement.model';
 
 @Injectable({ providedIn: 'root' })
 export class GameStateService {

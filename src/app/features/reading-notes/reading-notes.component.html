@@ -1,0 +1,77 @@
+<section class="reading-notes-page" aria-labelledby="reading-title">
+  <a class="reading-back-link" routerLink="/">← {{ 'READING_STUDIO.BACK_HOME' | transloco }}</a>
+
+  <header class="reading-intro">
+    <div class="reading-title-block">
+      <span class="reading-kicker"><span lang="ja">余白</span> · {{ 'READING_STUDIO.KICKER' | transloco }}</span>
+      <h1 id="reading-title">{{ 'READING_STUDIO.TITLE' | transloco }}</h1>
+      <p>{{ 'READING_STUDIO.INTRO' | transloco }}</p>
+    </div>
+    <span class="reading-seal" aria-hidden="true">読</span>
+  </header>
+
+  <div class="reading-instruction" id="reading-instructions">
+    <span class="reading-instruction-mark" aria-hidden="true">◎</span>
+    <p>{{ 'READING_STUDIO.INSTRUCTION' | transloco }}</p>
+    <span class="reading-instruction-hint">{{ 'READING_STUDIO.LENS_HINT' | transloco }}</span>
+  </div>
+
+  <div class="reading-words" role="group" [attr.aria-label]="'READING_STUDIO.KICKER' | transloco">
+    @for (entry of entries; track entry.id; let index = $index) {
+      <button
+        class="reading-word"
+        type="button"
+        [class.is-active]="activeEntry()?.id === entry.id"
+        [class.is-pinned]="isPinned() && activeEntry()?.id === entry.id"
+        [attr.aria-expanded]="activeEntry()?.id === entry.id"
+        [attr.aria-describedby]="'reading-instructions'"
+        [attr.aria-label]="entry.kanji + ', ' + entry.furigana + ', ' + entry.romaji"
+        (focus)="onFocus(entry, $event)"
+        (blur)="onBlur(entry)"
+        (click)="togglePinned(entry, $event)"
+      >
+        <span class="reading-word-index">0{{ index + 1 }}</span>
+        <span
+          class="reading-word-kanji"
+          lang="ja"
+          (pointerenter)="onPointerEnter(entry, $event)"
+          (pointermove)="onPointerMove($event)"
+          (pointerleave)="onPointerLeave(entry)"
+        >{{ entry.kanji }}</span>
+        <span class="reading-word-label">{{ entry.labelKey | transloco }}</span>
+        <span class="reading-word-corner" aria-hidden="true">+</span>
+      </button>
+    }
+  </div>
+
+  <footer class="reading-footer">
+    <span class="reading-footer-line" aria-hidden="true"></span>
+    <p>{{ 'READING_STUDIO.CLOSING' | transloco }}</p>
+    <span class="reading-footer-line" aria-hidden="true"></span>
+  </footer>
+
+  @if (activeEntry(); as entry) {
+    <aside
+      id="reading-lens"
+      class="reading-lens"
+      [class.is-pinned]="isPinned()"
+      [style.left.px]="lensPosition().x"
+      [style.top.px]="lensPosition().y"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <span class="lens-ring lens-ring--outer" aria-hidden="true"></span>
+      <span class="lens-ring lens-ring--inner" aria-hidden="true"></span>
+      <span class="lens-eyebrow">{{ 'READING_STUDIO.READING_LABEL' | transloco }}</span>
+      <span class="lens-word" lang="ja"><ruby><rb>{{ entry.kanji }}</rb><rt>{{ entry.furigana }}</rt></ruby></span>
+      <span class="lens-romaji" lang="ja">{{ entry.romaji }}</span>
+      <span class="lens-divider" aria-hidden="true"></span>
+      <span class="lens-detail-label">{{ 'READING_STUDIO.TRANSLATION_LABEL' | transloco }}</span>
+      <strong class="lens-translation">{{ currentLang() === 'pt' ? entry.translationPt : entry.translationEn }}</strong>
+      <span class="lens-note-label">{{ 'READING_STUDIO.NOTE_LABEL' | transloco }}</span>
+      <p class="lens-note">{{ entry.noteKey | transloco }}</p>
+      <span class="lens-close-hint">{{ 'READING_STUDIO.CLOSE_HINT' | transloco }}</span>
+    </aside>
+  }
+</section>

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
-  <title id="title">SchemaLens — arquitetura do sistema</title>
+  <title id="title">SchemaLens | arquitetura do sistema</title>
   <desc id="desc">Diagrama editorial que conecta interface Angular, runtime Tauri, módulos Rust e dois bancos SQL Server.</desc>
   <defs>
     <pattern id="grain" width="24" height="24" patternUnits="userSpaceOnUse">

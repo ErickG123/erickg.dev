@@ -3,7 +3,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import { SeoService } from './seo.service';
 import { environment } from '../../environments/environment';
-import { CaseStudy } from './models/case-study.interface';
+import { CaseStudy } from './models/case-study.model';
 
 describe('SeoService', () => {
   let service: SeoService;
@@ -99,7 +99,7 @@ describe('SeoService', () => {
     service.setCaseStudyTags(mockCaseStudy as CaseStudy);
 
     expect(setTagsSpy).toHaveBeenCalledWith(
-      "The Architect's Forge // Estudo de Caso — Erick Gabriel",
+      "The Architect's Forge | Estudo de Caso | Erick Gabriel",
       expect.stringContaining('Durante o desenvolvimento'),
       '/assets/images/projects/project-architect-forge.svg',
       '/case-studies/1',
@@ -114,7 +114,7 @@ describe('SeoService', () => {
     service.setNotFoundTags();
 
     expect(setTagsSpy).toHaveBeenCalledWith(
-      'Capítulo Não Encontrado // 404 — Erick Gabriel',
+      'Capítulo Não Encontrado | 404 | Erick Gabriel',
       expect.stringContaining('não foi encontrado'),
       environment.ogImage,
       '/404',

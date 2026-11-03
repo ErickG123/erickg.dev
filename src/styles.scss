@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MAIN STYLESHEET — MANGA EDITORIAL DESIGN SYSTEM
+   MAIN STYLESHEET | MANGA EDITORIAL DESIGN SYSTEM
    erickg.dev // Volume 01
    ========================================================================== */
 
@@ -12,6 +12,7 @@
 @use 'styles/header-audio';
 @use 'styles/reader-progress';
 @use 'styles/project-glossary';
+@use 'styles/reading-notes';
 
 /* --- CSS RESET & BOX MODEL --- */
 *, *::before, *::after {

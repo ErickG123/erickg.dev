@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Project } from '../../../core/models/project.interface';
+import { Project } from '../../../core/models/project.model';
 import { FEATURED_PROJECTS_DATA } from '../../../core/data/portfolio.data';
 
 @Injectable({ providedIn: 'root' })

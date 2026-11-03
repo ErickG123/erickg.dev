@@ -5,7 +5,7 @@ import type {
   FrameBorderStyle,
   FrameScreentone,
   FrameBadgeVariant
-} from '../../models/manga-components.interface';
+} from '../../models/manga-components.model';
 
 export type { AspectRatioType, FrameBorderStyle, FrameScreentone, FrameBadgeVariant };
 

@@ -11,6 +11,7 @@
     "HOME": "Home",
     "ABOUT": "About",
     "PROJECTS": "Projects",
+    "READING_NOTE": "Reading notes",
     "JOURNAL": "Journal",
     "CONTACT": "Contact"
   },
@@ -23,6 +24,29 @@
     "CLOSE_PERSONAL_NOTE": "Close personal note",
     "SWITCH_TO_LIGHT_THEME": "Switch to light theme",
     "SWITCH_TO_DARK_THEME": "Switch to dark theme"
+  },
+  "READING_STUDIO": {
+    "ENTRY_LINK": "Explore the reading notebook",
+    "KICKER": "READING NOTEBOOK · 読みのノート",
+    "TITLE": "One word at a time.",
+    "INTRO": "A small space for Japanese words that stay with me while I study and build software.",
+    "INSTRUCTION": "Hover, use Tab, or tap a word to bring the lens closer.",
+    "LENS_HINT": "The lens reveals its reading, pronunciation, and meaning.",
+    "READING_LABEL": "FURIGANA",
+    "ROMAJI_LABEL": "READING",
+    "TRANSLATION_LABEL": "MEANING",
+    "NOTE_LABEL": "STUDY NOTE",
+    "WORD_TECH": "TOOLS AND CRAFT",
+    "WORD_IMPROVEMENT": "CONTINUOUS PRACTICE",
+    "WORD_CURIOSITY": "THE WILL TO DISCOVER",
+    "WORD_LEARNING": "LEARNING LITTLE BY LITTLE",
+    "TECH_NOTE": "Technology is the medium. Understanding the problem and choosing a useful solution remain the core of the work.",
+    "IMPROVEMENT_NOTE": "Improvement rarely happens all at once. Observing, adjusting, and trying again are part of building software.",
+    "CURIOSITY_NOTE": "Curiosity leads me to open the docs, test a hypothesis, and explore subjects beyond code.",
+    "LEARNING_NOTE": "Studying Japanese reminds me that familiarity comes from small, repeated encounters with a language.",
+    "CLOSING": "A small page, made to be explored without rushing.",
+    "BACK_HOME": "Back to the home page",
+    "CLOSE_HINT": "ESC · CLICK OR TAP TO CLOSE"
   },
   "HOME": {
     "COVER_LABEL": "Portfolio cover and introduction",

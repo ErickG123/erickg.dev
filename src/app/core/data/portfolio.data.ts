@@ -1,4 +1,4 @@
-import { Project } from '../models/project.interface';
+import { Project } from '../models/project.model';
 import {
   AuthorProfile,
   CareerEntry,
@@ -6,7 +6,7 @@ import {
   ChapterNav,
   MethodPillar,
   FieldNote
-} from '../models/portfolio.interface';
+} from '../models/portfolio.model';
 
 export type {
   AuthorProfile,
@@ -67,8 +67,8 @@ export const AUTHOR_DATA: AuthorProfile = {
   contactIntro: 'Para conversar sobre desenvolvimento de software, produtos ou oportunidades de colaboração, escolha um dos meus canais profissionais.',
   contactIntroEn: 'For conversations about software development, products, or collaboration, choose one of my professional channels.',
   location: 'Brasil',
-  careerPeriod: '2021 – Presente',
-  careerPeriodEn: '2021 – Present',
+  careerPeriod: '2021 até o presente',
+  careerPeriodEn: '2021 to present',
   avatarUrl: '/assets/images/profile/erick-gabriel.png',
   skills: [
     {
@@ -110,8 +110,8 @@ export const AUTHOR_DATA: AuthorProfile = {
 
 export const CAREER_HISTORY: CareerEntry[] = [
   {
-    period: 'Julho de 2026 – atual',
-    periodEn: 'July 2026 – present',
+    period: 'Julho de 2026 até o presente',
+    periodEn: 'July 2026 to present',
     title: 'Programador Pleno I',
     titleEn: 'Mid-Level Programmer I',
     company: 'Zella Sistemas · YMS',
@@ -120,8 +120,8 @@ export const CAREER_HISTORY: CareerEntry[] = [
     technologies: ['Angular', '.NET', 'TypeScript']
   },
   {
-    period: 'Novembro de 2025 – julho de 2026',
-    periodEn: 'November 2025 – July 2026',
+    period: 'Novembro de 2025 a julho de 2026',
+    periodEn: 'November 2025 to July 2026',
     title: 'Desenvolvedor',
     titleEn: 'Software Developer',
     company: 'Zella Sistemas · YMS',
@@ -130,8 +130,8 @@ export const CAREER_HISTORY: CareerEntry[] = [
     technologies: ['Aplicações web', 'APIs']
   },
   {
-    period: 'Dezembro de 2023 – novembro de 2025',
-    periodEn: 'December 2023 – November 2025',
+    period: 'Dezembro de 2023 a novembro de 2025',
+    periodEn: 'December 2023 to November 2025',
     title: 'Desenvolvedor de Software',
     titleEn: 'Software Developer',
     company: 'Compu Informática',
@@ -140,8 +140,8 @@ export const CAREER_HISTORY: CareerEntry[] = [
     technologies: ['Desenvolvimento web', 'APIs', 'Bancos relacionais']
   },
   {
-    period: 'Abril de 2021 – maio de 2023',
-    periodEn: 'April 2021 – May 2023',
+    period: 'Abril de 2021 a maio de 2023',
+    periodEn: 'April 2021 to May 2023',
     title: 'Desenvolvedor de Software Júnior',
     titleEn: 'Junior Software Developer',
     company: 'SIALOG Software Solutions',
@@ -170,7 +170,7 @@ export const CHAPTERS_INDEX: ChapterNav[] = [
     anchor: '#cover',
     title: 'Capa & Frontispício',
     subtitle: 'Abertura do Volume 01 e introdução da jornada',
-    pagesCount: 'P. 01–03'
+    pagesCount: 'P. 01 a 03'
   },
   {
     num: '01',
@@ -178,7 +178,7 @@ export const CHAPTERS_INDEX: ChapterNav[] = [
     anchor: '#index-section',
     title: 'Mokuroku (Sumário)',
     subtitle: 'Mapeamento estrutural de todo o volume',
-    pagesCount: 'P. 04–05'
+    pagesCount: 'P. 04 a 05'
   },
   {
     num: '02',
@@ -186,7 +186,7 @@ export const CHAPTERS_INDEX: ChapterNav[] = [
     anchor: '#projects',
     title: 'Obras Selecionadas',
     subtitle: 'Quatro projetos autorais de engenharia de software',
-    pagesCount: 'P. 06–15'
+    pagesCount: 'P. 06 a 15'
   },
   {
     num: '03',
@@ -194,7 +194,7 @@ export const CHAPTERS_INDEX: ChapterNav[] = [
     anchor: '#method',
     title: 'O Método: Think, Break, Rebuild',
     subtitle: 'A esteira de pensamento, testes e refatoração',
-    pagesCount: 'P. 16–22'
+    pagesCount: 'P. 16 a 22'
   },
   {
     num: '04',
@@ -202,7 +202,7 @@ export const CHAPTERS_INDEX: ChapterNav[] = [
     anchor: '#notes',
     title: 'Field Notes & Ensaios',
     subtitle: 'Caderno de campo com aprendizados e arquitetura',
-    pagesCount: 'P. 23–28'
+    pagesCount: 'P. 23 a 28'
   },
   {
     num: '05',
@@ -210,7 +210,7 @@ export const CHAPTERS_INDEX: ChapterNav[] = [
     anchor: '#about',
     title: 'Ficha do Engenheiro',
     subtitle: 'Trajetória, atributos técnicos e histórico profissional',
-    pagesCount: 'P. 29–34'
+    pagesCount: 'P. 29 a 34'
   },
   {
     num: 'EP',
@@ -230,8 +230,8 @@ export const FEATURED_PROJECTS_DATA: Project[] = [
     descriptionEn: 'An offline-first desktop space for immersive Japanese study, combining manga, video and audio, a language notebook, and spaced repetition.',
     problem: 'Ferramentas de estudo costumam separar leitura, escuta, anotações e revisão. YomiFlow reúne esses fluxos e mantém os dados de estudo no dispositivo.',
     problemEn: 'Study tools often separate reading, listening, notes, and review. YomiFlow brings these workflows together and keeps study data on the device.',
-    role: 'Criador & Engenheiro principal — aplicação desktop com Angular, Tauri e núcleo local em Rust.',
-    roleEn: 'Creator and lead engineer — desktop application built with Angular, Tauri, and a local Rust core.',
+    role: 'Criador e engenheiro principal, aplicação desktop com Angular, Tauri e núcleo local em Rust.',
+    roleEn: 'Creator and lead engineer, desktop application built with Angular, Tauri, and a local Rust core.',
     techStack: ['Angular 22', 'TypeScript', 'Tauri 2', 'Rust', 'SQLite', 'FSRS'],
     status: 'Em desenvolvimento ativo',
     statusEn: 'Actively developed',

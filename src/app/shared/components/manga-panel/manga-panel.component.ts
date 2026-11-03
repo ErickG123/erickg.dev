@@ -1,6 +1,6 @@
 import { Component, input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import type { PanelVariant, PanelPadding, PanelTag } from '../../models/manga-components.interface';
+import type { PanelVariant, PanelPadding, PanelTag } from '../../models/manga-components.model';
 
 export type { PanelVariant, PanelPadding, PanelTag };
 

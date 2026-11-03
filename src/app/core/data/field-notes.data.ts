@@ -1,4 +1,4 @@
-import { FieldNoteDetail } from '../models/field-note.interface';
+import { FieldNoteDetail } from '../models/field-note.model';
 
 export const FIELD_NOTES_DETAILS: FieldNoteDetail[] = [
   {

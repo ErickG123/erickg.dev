@@ -11,6 +11,7 @@
     "HOME": "Início",
     "ABOUT": "Sobre",
     "PROJECTS": "Projetos",
+    "READING_NOTE": "Caderno",
     "JOURNAL": "Diário",
     "CONTACT": "Contato"
   },
@@ -23,6 +24,29 @@
     "CLOSE_PERSONAL_NOTE": "Fechar mensagem pessoal",
     "SWITCH_TO_LIGHT_THEME": "Ativar tema claro",
     "SWITCH_TO_DARK_THEME": "Ativar tema escuro"
+  },
+  "READING_STUDIO": {
+    "ENTRY_LINK": "Explorar o caderno de leitura",
+    "KICKER": "CADERNO DE LEITURA · 読みのノート",
+    "TITLE": "Uma palavra por vez.",
+    "INTRO": "Um pequeno espaço para as palavras japonesas que me acompanham enquanto estudo e construo software.",
+    "INSTRUCTION": "Passe o cursor, use Tab ou toque em uma palavra para aproximar a lente.",
+    "LENS_HINT": "A lente revela leitura, pronúncia e sentido.",
+    "READING_LABEL": "FURIGANA",
+    "ROMAJI_LABEL": "LEITURA",
+    "TRANSLATION_LABEL": "SENTIDO",
+    "NOTE_LABEL": "NOTA DE ESTUDO",
+    "WORD_TECH": "FERRAMENTAS E OFÍCIO",
+    "WORD_IMPROVEMENT": "PRÁTICA CONTÍNUA",
+    "WORD_CURIOSITY": "VONTADE DE DESCOBRIR",
+    "WORD_LEARNING": "APRENDER AOS POUCOS",
+    "TECH_NOTE": "Tecnologia é o meio. Entender o problema e escolher uma solução útil continuam sendo o trabalho central.",
+    "IMPROVEMENT_NOTE": "Melhorar raramente acontece de uma vez. Observar, ajustar e tentar de novo também faz parte de construir software.",
+    "CURIOSITY_NOTE": "Curiosidade me leva a abrir a documentação, testar uma hipótese e explorar assuntos além do código.",
+    "LEARNING_NOTE": "Estudar japonês me lembra que familiaridade vem de pequenos encontros repetidos com uma língua.",
+    "CLOSING": "Uma página pequena, feita para ser explorada sem pressa.",
+    "BACK_HOME": "Voltar ao início",
+    "CLOSE_HINT": "ESC · TOQUE OU CLIQUE PARA FECHAR"
   },
   "HOME": {
     "COVER_LABEL": "Capa e apresentação do portfólio",

@@ -23,7 +23,7 @@
   <text x="45" y="44" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#F4F0E9" font-weight="700">ENGINEERING_PIPELINE // CONTINUOUS_CYCLE</text>
 
   <!-- ==========================================
-       FASE 1: ACT I — THINK
+       FASE 1: ACT I · THINK
        ========================================== -->
   <g transform="translate(60, 90)">
     <!-- Card Base -->
@@ -53,7 +53,7 @@
   </g>
 
   <!-- ==========================================
-       FASE 2: ACT II — BREAK (DESTAQUE VERMELHO)
+       FASE 2: ACT II · BREAK (DESTAQUE VERMELHO)
        ========================================== -->
   <g transform="translate(300, 80)">
     <!-- Card com Destaque Dramático -->
@@ -85,7 +85,7 @@
   </g>
 
   <!-- ==========================================
-       FASE 3: ACT III — REBUILD
+       FASE 3: ACT III · REBUILD
        ========================================== -->
   <g transform="translate(540, 90)">
     <!-- Card Base -->

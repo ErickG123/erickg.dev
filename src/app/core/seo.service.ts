@@ -2,16 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '../../environments/environment';
-import { CaseStudy } from './models/case-study.interface';
-
-export interface SeoMetadata {
-  title: string;
-  description: string;
-  image?: string;
-  url?: string;
-  type?: 'website' | 'article' | 'profile';
-  noIndex?: boolean;
-}
+import { CaseStudy } from './models/case-study.model';
 
 @Injectable({
   providedIn: 'root'
@@ -70,7 +61,7 @@ export class SeoService {
    * Configura metadados para um Estudo de Caso específico.
    */
   setCaseStudyTags(study: CaseStudy): void {
-    const pageTitle = `${study.title} // Estudo de Caso — Erick Gabriel`;
+    const pageTitle = `${study.title} | Estudo de Caso | Erick Gabriel`;
     const snippet = study.context?.content || study.subtitle || environment.defaultDescription;
     const cleanSnippet = snippet.length > 160 ? `${snippet.substring(0, 157)}...` : snippet;
     const pageUrl = `/case-studies/${study.id}`;
@@ -91,7 +82,7 @@ export class SeoService {
    */
   setNotFoundTags(): void {
     this.setSocialMediaTags(
-      'Capítulo Não Encontrado // 404 — Erick Gabriel',
+      'Capítulo Não Encontrado | 404 | Erick Gabriel',
       'A página ou capítulo solicitado não foi encontrado no manuscrito editorial.',
       environment.ogImage,
       '/404',

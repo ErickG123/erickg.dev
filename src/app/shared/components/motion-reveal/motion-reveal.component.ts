@@ -9,7 +9,7 @@ import {
   ElementRef
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import type { MotionDirection } from '../../models/manga-components.interface';
+import type { MotionDirection } from '../../models/manga-components.model';
 
 export type { MotionDirection };
 

@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/projects/projects.component').then(m => m.ProjectsComponent)
   },
   {
+    path: 'reading-notes',
+    loadComponent: () => import('./features/reading-notes/reading-notes.component').then(m => m.ReadingNotesComponent)
+  },
+  {
     path: 'case-studies/:id',
     loadComponent: () => import('./features/case-studies/case-study-detail.component').then(m => m.CaseStudyDetailComponent)
   },

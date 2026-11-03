@@ -1,7 +1,7 @@
 import { Component, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import type { Project } from '../../../core/models/project.interface';
+import type { Project } from '../../../core/models/project.model';
 import { MangaImageComponent } from '../manga-image/manga-image.component';
 import { GameStateService } from '../../../core/state/game-state.service';
 
