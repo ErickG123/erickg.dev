@@ -2,11 +2,22 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  min-width: 0;
   
   @media (min-width: 768px) {
     grid-template-columns: 1fr 2fr;
   }
 }
+
+.status-grid > *, .stats-panel, .hero-panel, .attributes-grid, .attr-row { min-width: 0; }
+.stats-panel { overflow-wrap: anywhere; }
+.stats-panel .manga-body-lg, .stats-panel .manga-body-md { max-width: 100%; }
+.vital-row > .flex { gap: .65rem; flex-wrap: wrap; }
+.vital-row > .flex span:last-child { text-align: right; }
+.attributes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 1rem; }
+.attr-row { padding: .9rem; border: 1px solid var(--manga-border-subtle); border-radius: 4px; }
+.attr-row > .flex { gap: .4rem; flex-wrap: wrap; }
+.attr-row > .flex span { overflow-wrap: anywhere; }
 
 .hero-panel {
   padding-right: 0;
@@ -18,57 +29,43 @@
   }
 }
 
+@media (max-width: 560px) {
+  .attributes-grid { grid-template-columns: 1fr; }
+  .hero-panel { border: 0; padding: 0; }
+  .avatar-frame { height: min(70vw, 20rem); max-width: 22rem; }
+}
+
 .avatar-frame {
-  height: 12rem;
-  background: var(--gba-bg);
-  /* Borda dupla / Relevo afundado clássico para o retrato do herói */
-  border: 2px solid var(--gba-border-dark);
-  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.8), inset -2px -2px 0px rgba(255,255,255,0.05);
-  border-radius: 4px;
+  height: 16rem;
+  background: var(--manga-surface-muted);
+  border: 1px solid var(--manga-border-subtle);
+  overflow: hidden;
+  border-radius: 48% 48% 8px 8px;
 }
 
-/* Base RPG Bar (HP/MP/EXP) */
-.rpg-bar-container {
+.avatar-frame img {
   width: 100%;
-  height: 16px;
-  background: var(--gba-bg);
-  border: 2px solid var(--gba-border-dark);
-  /* Efeito de concavidade no trilho da barra */
-  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.8);
-  padding: 2px;
-  box-sizing: border-box;
-}
-
-.rpg-bar-fill {
   height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
 }
 
-.fill-hp { background: var(--gba-hp-green); }
-.fill-mp { background: var(--gba-mp-blue); }
-.fill-exp { background: var(--gba-text); }
-
-/* Barras de Atributo em Blocos (Pixels Separados) */
-.block-bar {
-  padding: 0; /* Remove o padding para que os tijolos colem na borda */
+.skill-track {
+  width: 100%;
+  height: 5px;
+  background: var(--manga-surface-muted);
+  margin-bottom: .8rem;
 }
 
-.block-fill {
-  background: repeating-linear-gradient(
-    90deg, 
-    var(--gba-red) 0, 
-    var(--gba-red) 8px, 
-    transparent 8px, 
-    transparent 10px
-  );
+.skill-track span {
+  height: 100%;
+  display: block;
+  background: var(--manga-vermilion);
 }
 
-/* Tratamento Tipográfico de Legibilidade para as Passivas */
 .description {
-  /* O usuário pediu uma fonte de texto limpa para textos longos aqui.
-     Como o Inter foi removido globalmente, usamos o fallback nativo limpo do sistema 
-     para garantir leitura sem esforço nas descrições técnicas. */
-  font-family: sans-serif;
+  font-family: var(--font-body);
   font-size: 0.8rem;
   line-height: 1.6;
-  color: var(--gba-text-muted);
+  color: var(--manga-gray);
 }

@@ -1,57 +1,50 @@
-.gba-header {
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 1.5rem 1rem;
-  gap: 1.5rem; /* Cria um respiro exato entre o título e a barra de botões */
-  border-bottom: 4px solid var(--gba-red);
-  background-color: var(--gba-bg);
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: .85rem clamp(1rem, 6vw, 6rem);
+  border-bottom: 1px solid var(--manga-border-subtle);
+  background: color-mix(in srgb, var(--manga-paper) 92%, transparent);
+  backdrop-filter: blur(16px);
 }
 
 .header-title {
-  color: var(--gba-red);
-  font-family: var(--font-pixel);
-  margin: 0; /* Remove a margem do navegador que causa o empuxo para a direita */
-  text-align: center;
-  font-size: 1.5rem;
-  text-shadow: 2px 2px 0px var(--gba-border-dark); /* Dá um peso de 8-bits ao título */
-}
-
-.header-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2.4rem auto;
   align-items: center;
-  justify-content: center;
-  gap: 1rem; /* Adiciona espaçamento uniforme entre cada botão */
-  flex-wrap: wrap;
-  width: 100%;
+  column-gap: .7rem;
+  color: var(--manga-ink);
+  font: 800 .9rem var(--font-heading);
+  letter-spacing: .08em;
+  text-decoration: none;
 }
 
-.gba-btn {
-  /* Garante que o texto dentro de todos os botões fique centralizado */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%; /* Mantém a altura igual para todos */
-  
-  /* Mantendo as propriedades que antes eram inline para proteger do css global */
-  font-size: 0.6rem;
-  padding: 0.5rem;
-  width: auto;
-  margin-top: 0;
-  white-space: nowrap;
+.brand-mark {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--manga-vermilion);
+  color: #fff;
+  font: 1.2rem serif;
 }
 
-.bgm-btn {
-  background: var(--gba-bg); /* Fica escuro quando desligado */
-  color: var(--gba-text);
-  border-color: var(--gba-border-dark);
-  box-shadow: none;
-}
+.header-title small { color: var(--manga-gray); font: 600 .55rem var(--font-mono); letter-spacing: .13em; }
+.header-nav { display: flex; align-items: center; justify-content: flex-end; gap: clamp(.25rem, 1.5vw, 1.1rem); flex-wrap: wrap; }
+.nav-link { color: var(--manga-gray); text-decoration: none; font-size: .82rem; font-weight: 600; padding: .55rem .35rem; }
+.nav-link:hover { color: var(--manga-vermilion); }
+.nav-contact { color: var(--manga-ink); }
+.header-nav button { border: 0; background: transparent; color: var(--manga-gray); box-shadow: none; padding: .5rem; cursor: pointer; font: 600 .75rem var(--font-body); }
+.header-nav button:hover { color: var(--manga-vermilion); }
 
-.bgm-btn.active {
-  background: var(--gba-red); /* Fica vermelho e brilhante quando tocando */
-  color: #ffffff;
-  border-color: var(--gba-border-light);
-  box-shadow: inset 2px 2px 0px rgba(255,255,255,0.3), 0 0 8px var(--gba-red);
+@media (max-width: 720px) {
+  .site-header { position: relative; flex-direction: column; gap: .6rem; padding: .8rem 1rem; }
+  .header-nav { justify-content: center; gap: .15rem .45rem; }
+  .nav-link { font-size: .76rem; }
 }

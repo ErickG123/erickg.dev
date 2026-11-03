@@ -1,4 +1,4 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Achievement } from '../models/achievement.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -11,7 +11,11 @@ export class GameStateService {
 
   setAudioState(state: boolean) { this.isAudioPlaying.set(state); }
   toggleCorporateMode() { this.isCorporateMode.update(v => !v); }
-  setLanguage(lang: string) { this.currentLang.set(lang); }
+  setLanguage(lang: string) {
+    const normalized = lang === 'en' ? 'en' : 'pt';
+    this.currentLang.set(normalized);
+    try { globalThis.localStorage?.setItem('portfolio-language', normalized); } catch { /* Storage is optional. */ }
+  }
   
   addAchievement(achievement: Achievement) {
     if (!this.unlockedAchievements().find(a => a.id === achievement.id)) {

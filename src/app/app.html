@@ -8,26 +8,9 @@
     <router-outlet #outlet="outlet"></router-outlet>
   </main>
   
-  <footer class="gba-card flex justify-center gap-4 mt-4" style="margin: 1rem; padding: 1rem; text-align: center;">
+  <footer class="manga-panel flex justify-center gap-4 mt-4" style="margin: 1rem; padding: 1rem; text-align: center;">
     <span class="manga-mono" style="font-size: 0.75rem;">&copy; {{ currentYear }} ERICK GABRIEL // TALES OF AN ENGINEER</span>
-    <span class="manga-mono manga-text-vermilion" style="font-size: 0.75rem;">RUNTIME EDITION &bull; ANGULAR 21 ZONELESS</span>
+    <span class="manga-mono manga-text-vermilion" style="font-size: 0.75rem;">FEITO COM CUIDADO · ERICK GABRIEL</span>
   </footer>
 </div>
 
-@if (konamiService.isUnlocked()) {
-  <div class="terminal-overlay flex justify-center align-center">
-    <div class="terminal-window p-4 flex flex-column">
-      <p class="terminal-text glitch-text mb-1">> SYSTEM OVERRIDE ACCEPTED.</p>
-      <p class="terminal-text mb-1">> ACCESSING RELATIONAL DATABASE BACKEND...</p>
-      <p class="terminal-text mb-3">> BUSINESS INTELLIGENCE API INTEGRATION <span style="color: #fff;">[UNLOCKED]</span>.</p>
-      
-      <p class="terminal-text mt-3 mb-4" style="color: var(--gba-text-muted);">
-        Parabéns. Você acessou os arquivos confidenciais do Arquiteto.
-      </p>
-      
-      <div class="text-right">
-        <button (click)="konamiService.closeTerminal()" class="terminal-btn pixel-font">> CLOSE_TERMINAL</button>
-      </div>
-    </div>
-  </div>
-}

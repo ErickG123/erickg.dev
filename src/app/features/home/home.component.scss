@@ -5,91 +5,24 @@
 
 .manga-section {
   scroll-margin-top: var(--space-8);
+  margin-bottom: clamp(3.5rem, 8vw, 7rem) !important;
 }
 
 .cover-section {
   position: relative;
 }
 
-.cover-hero-content {
-  border-left: 4px solid var(--manga-vermilion);
-  padding-left: var(--space-4);
+.career-heading { max-width: 44rem; margin-bottom: 2rem; }
+.section-kicker { display: block; color: var(--manga-vermilion-text); font: 600 .75rem var(--font-mono); letter-spacing: .08em; margin-bottom: .6rem; }
+.career-heading h2 { font-size: clamp(2rem, 4vw, 3.3rem); letter-spacing: -.04em; }
+.career-heading p { color: var(--manga-gray); margin: .6rem 0 0; }
+.career-list { border-top: 1px solid var(--manga-border-subtle); }
+.career-entry { display: grid; grid-template-columns: minmax(150px, .65fr) 2fr; gap: 2rem; padding: 1.7rem 0; border-bottom: 1px solid var(--manga-border-subtle); }
+.career-period { color: var(--manga-gray); font: 500 .8rem var(--font-mono); }
+.career-detail h3 { margin: 0; font: 700 1.2rem var(--font-heading); }
+.career-company { color: var(--manga-vermilion-text); font-weight: 600; margin-top: .2rem; }
+.career-detail p { color: var(--manga-gray); margin: .65rem 0; }
+.career-tags { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
+.career-tags li { color: var(--manga-gray); border: 1px solid var(--manga-border-subtle); border-radius: 999px; padding: .2rem .65rem; font-size: .72rem; }
+@media (max-width: 640px) { .career-entry { grid-template-columns: 1fr; gap: .5rem; padding: 1.2rem 0; } }
 
-  @media (min-width: 768px) {
-    padding-left: var(--space-6);
-  }
-}
-
-.chapter-nav-card {
-  transition: transform var(--transition-snappy), box-shadow var(--transition-snappy), border-color var(--transition-snappy);
-  position: relative;
-  overflow: hidden;
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--manga-vermilion);
-    }
-  }
-
-  &.is-active {
-    border-color: var(--manga-vermilion);
-    box-shadow: 3px 3px 0px var(--manga-vermilion);
-    background-color: var(--manga-surface);
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background-color: var(--manga-vermilion);
-      transition: height var(--transition-snappy);
-    }
-  }
-}
-
-.section-indicator {
-  transition: color var(--transition-snappy);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chapter-nav-card {
-    transition: none !important;
-
-    &:hover {
-      transform: none !important;
-    }
-  }
-}
-
-/* Modal Editorial de Field Note */
-.field-note-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-modal, 1000);
-  background-color: rgba(17, 17, 17, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-4);
-  box-sizing: border-box;
-  animation: fadeIn var(--transition-snappy) forwards;
-}
-
-.field-note-modal {
-  max-width: 760px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-width: 4px;
-  background-color: var(--manga-surface);
-  box-shadow: 8px 8px 0px var(--manga-ink);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}

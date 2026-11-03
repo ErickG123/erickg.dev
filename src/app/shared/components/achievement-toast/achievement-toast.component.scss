@@ -8,9 +8,10 @@
 }
 
 .toast-container {
-  background-color: var(--gba-bg);
-  border: 2px solid var(--gba-red);
-  box-shadow: 0 0 15px rgba(230, 0, 18, 0.4), inset 2px 2px 0px rgba(255, 255, 255, 0.1);
+  background-color: var(--manga-surface);
+  border: 1px solid var(--manga-border-subtle);
+  border-top: 2px solid var(--manga-vermilion);
+  box-shadow: 0 12px 36px rgba(17, 17, 17, .12);
   padding: 1rem 1.5rem;
   width: 320px;
   display: flex;
@@ -22,16 +23,17 @@
 
 .toast-title {
   color: var(--gba-red);
-  font-family: var(--font-pixel);
-  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
   margin-bottom: 0.5rem;
 }
 
 .toast-achievement {
-  color: var(--gba-text);
-  font-family: var(--font-pixel);
-  font-size: 0.9rem;
-  text-shadow: 1px 1px 0px var(--gba-border-dark);
+  color: var(--manga-ink);
+  font-family: var(--font-heading);
+  font-size: 1rem;
 }
 
 @keyframes slideInRight {

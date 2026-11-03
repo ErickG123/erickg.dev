@@ -1,59 +1,19 @@
-:host {
-  display: block;
-  height: 100%;
-}
-
-.project-graphic-frame {
-  border: var(--border-medium);
-  position: relative;
-  overflow: hidden;
-  background-color: var(--manga-surface-muted);
-  transition: border-color var(--transition-snappy);
-
-  &--stamp {
-    height: 120px;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  :host:hover .project-graphic-frame {
-    border-color: var(--manga-ink);
-  }
-
-  :host:hover .comic-stamp-box {
-    transform: scale(1.03);
-  }
-}
-
-.comic-stamp-box {
-  border: 3px solid var(--manga-ink);
-  padding: 0.25rem 0.75rem;
-  background-color: var(--manga-surface);
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-snappy);
-}
-
-.project-role-tag {
-  font-size: 0.72rem;
-  color: var(--manga-gray);
-  line-height: 1.4;
-}
-
-.project-problem-box {
-  border: 1px dashed var(--manga-gray);
-  background-color: var(--manga-surface-muted);
-  border-radius: var(--radius-none);
-}
-
-.problem-tag {
-  display: block;
-  font-weight: 800;
-  font-size: 0.68rem;
-  color: var(--manga-ink);
-  margin-bottom: var(--space-1);
-}
-
-a.manga-btn:focus-visible {
-  outline: 2px dashed var(--manga-vermilion);
-  outline-offset: 3px;
-}
+:host { display: block; min-width: 0; height: 100%; }
+.project-card { height: 100%; min-width: 0; display: flex; flex-direction: column; padding: clamp(1rem,2vw,1.4rem); border: 1px solid var(--manga-border-subtle); border-radius: 6px; background: var(--manga-surface); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+:host(:hover) .project-card { transform: translateY(-3px); border-color: color-mix(in srgb,var(--manga-vermilion) 55%,var(--manga-border-subtle)); box-shadow: var(--shadow-md); }
+.project-card-topline { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding-bottom: .75rem; border-bottom: 1px solid var(--manga-border-subtle); color: var(--manga-gray); font: 500 .7rem var(--font-mono); }
+.project-number span { color: var(--manga-vermilion); padding: 0 .25rem; }
+.featured-label { color: var(--manga-vermilion-text); }
+.project-visual { height: clamp(145px,19vw,220px); margin: 1rem 0; overflow: hidden; border-radius: 4px; background: var(--manga-surface-muted); }
+.project-visual ::ng-deep .manga-image-container { width: 100%; height: 100%; border: 0; border-radius: 0; box-shadow: none; aspect-ratio: auto; }
+.project-visual ::ng-deep .manga-image-element { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.project-content { min-width: 0; }
+.project-content h3 { margin: .15rem 0 .4rem; font: 700 clamp(1.1rem,1.7vw,1.45rem)/1.2 var(--font-heading); letter-spacing: -.025em; overflow-wrap: anywhere; }
+.project-highlight { margin: 0 0 .45rem; color: var(--manga-vermilion-text); font-size: .78rem; font-weight: 650; }
+.project-description { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; min-height: 4.3em; margin: 0; color: var(--manga-gray); font-size: .88rem; line-height: 1.55; }
+.project-tech { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0; padding: 0; list-style: none; }
+.project-tech li { padding: .22rem .55rem; border: 1px solid var(--manga-border-subtle); border-radius: 999px; color: var(--manga-gray); font-size: .68rem; line-height: 1.4; }
+.project-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: auto; padding-top: .85rem; border-top: 1px solid var(--manga-border-subtle); }
+.project-link { display: inline-flex; align-items: center; justify-content: center; min-height: 2.45rem; padding: .45rem .8rem; border: 1px solid var(--manga-border-subtle); border-radius: 4px; color: var(--manga-ink); font-size: .75rem; font-weight: 650; text-decoration: none; transition: background .18s,color .18s,border-color .18s; }
+.project-link:hover, .project-link-primary { border-color: var(--manga-ink); background: var(--manga-ink); color: var(--manga-surface); }
+@media (max-width: 520px) { .project-visual { height: 180px; } .project-description { min-height: 0; } .project-link { flex: 1 1 auto; } }

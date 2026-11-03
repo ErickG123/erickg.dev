@@ -1,37 +1,33 @@
-# > QUEST: FULL-STACK DEVELOPER (2024-PRESENTE)
+# Trajetória profissional
 
-Desenvolvimento de interfaces robustas com Angular, integração com back-ends resilientes e arquitetura de componentes escaláveis.
+Minha experiência passa por desenvolvimento de software, aplicações web, integrações e evolução de sistemas. Abaixo estão alguns pontos da minha trajetória e das tecnologias com que trabalho.
 
-### [ LOOT ACQUIRED ]
-* Angular 21 (Zoneless, Signals)
-* RxJS / TypeScript Avançado
-* PWA (Progressive Web Apps)
-* SCSS & CSS Variables
+## Zella Sistemas — Programador Junior II
 
-### [ BOSS DEFEATED ]
-> "Otimização de rotas com lazy loading pesadas e refatoração de estado global usando Signals em oposição ao obsoleto NgRx, reduzindo o bundle inicial em 45%."
+**Julho de 2026 – atual**
 
----
+Atuação atual em desenvolvimento de software.
 
-# > QUEST: FRONT-END JUNIOR (2022-2024)
+## Zella Sistemas — Desenvolvedor
 
-Criação de páginas institucionais dinâmicas, landing pages convertidas para e-commerce e manutenção de legados em React e Angular.
+**Novembro de 2025 – julho de 2026**
 
-### [ LOOT ACQUIRED ]
-* JavaScript / ES6+
-* HTML5 / CSS3 Semântico
-* REST APIs
-* Git / GitHub Flow
+Experiência em desenvolvimento de sistemas e funcionalidades para produtos da empresa.
 
-### [ BOSS DEFEATED ]
-> "Sobrevivi à minha primeira subida para a Produção na sexta-feira à tarde. Um clássico."
+## Compu Informática — Desenvolvedor de Software
 
----
+**Dezembro de 2023 – novembro de 2025**
 
-## // TERMINAL
-```typescript
-function hackTheMainframe() {
-  console.log("Acesso concedido. Bem-vindo, Administrador.");
-  return true;
-}
-```
+Desenvolvimento de funcionalidades e manutenção de sistemas, contribuindo para a evolução de aplicações utilizadas no dia a dia da empresa.
+
+**Tecnologias:** desenvolvimento web, APIs e bancos de dados relacionais.
+
+## SIALOG Software Solutions — Desenvolvedor de Software Júnior
+
+**Abril de 2021 – maio de 2023**
+
+Início da trajetória profissional em desenvolvimento de software, trabalhando na implementação e manutenção de aplicações.
+
+## Projetos independentes
+
+Também desenvolvo ferramentas e produtos próprios. O principal projeto atual é o [YomiFlow](https://github.com/ErickG123/yomiflow), um aplicativo desktop offline-first para estudo de japonês.

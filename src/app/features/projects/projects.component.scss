@@ -49,23 +49,20 @@
 
 .item-details-panel {
   height: 100%;
-  border: 4px solid var(--gba-border-dark); /* Borda mais pesada para o painel de status do item */
+  border: 1px solid var(--manga-border-subtle);
 }
 
 .item-icon-box {
   height: 120px;
   width: 100%;
-  background: var(--gba-bg);
-  /* Efeito tátil reverso (afundado) */
-  border: 2px solid var(--gba-border-dark);
-  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.8), inset -2px -2px 0px rgba(255,255,255,0.05);
+  background: var(--manga-surface-muted);
+  border: 1px solid var(--manga-border-subtle);
 }
 
 .pixel-sprite {
-  font-family: var(--font-pixel);
-  font-size: 3rem;
-  color: var(--gba-text-muted);
-  animation: floatSprite 2s infinite ease-in-out;
+  font-family: serif;
+  font-size: 2.25rem;
+  color: var(--manga-vermilion);
 }
 
 @keyframes floatSprite {
@@ -74,15 +71,15 @@
 }
 
 .description-box {
-  border-top: 2px dashed var(--gba-border-dark);
+  border-top: 1px solid var(--manga-border-subtle);
   padding-top: 1rem;
 }
 
 /* --- Node Graph Demo (Cyber Sleuth) --- */
 .node-graph-demo {
-  background-color: #030303;
-  border: 2px dashed var(--gba-red);
-  border-radius: 4px;
+  background-color: var(--manga-surface-muted);
+  border: 1px solid var(--manga-border-subtle);
+  border-radius: 0;
   overflow: hidden;
   height: 100%;
 }
@@ -97,10 +94,10 @@
 }
 
 .node {
-  background-color: #000;
-  color: var(--gba-text);
+  background-color: var(--manga-surface);
+  color: var(--manga-ink);
   padding: 0.2rem 0.5rem;
-  border: 1px solid var(--gba-text);
+  border: 1px solid var(--manga-border-subtle);
   font-size: 0.6rem;
   text-align: center;
   box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
@@ -152,9 +149,9 @@
 
 /* --- CLI Terminal Demo (The Architect's Forge) --- */
 .cli-terminal-demo {
-  background-color: #0c0c0c;
-  border: 2px solid #555;
-  border-radius: 2px;
+  background-color: var(--manga-surface-muted);
+  border: 1px solid var(--manga-border-subtle);
+  border-radius: 0;
   height: 100%;
   font-family: 'Courier New', Courier, monospace;
   width: 100%;
@@ -163,28 +160,29 @@
 }
 
 .terminal-header {
-  background-color: #333;
-  color: #fff;
-  font-size: 0.6rem;
-  font-family: var(--font-pixel);
+  background-color: var(--manga-ink);
+  color: var(--manga-paper);
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  padding: .4rem .6rem;
 }
 
 .terminal-header .close-btn {
   background: transparent;
-  color: #fff;
+  color: var(--manga-paper);
   border: none;
   cursor: pointer;
-  font-size: 0.6rem;
-  font-family: var(--font-pixel);
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
 }
 
 .terminal-header .close-btn:hover {
-  color: var(--gba-red-hover);
+  color: var(--manga-vermilion);
 }
 
 .terminal-body {
   padding: 1rem;
-  color: #00FF00;
+  color: var(--manga-ink);
   font-size: 0.7rem;
   line-height: 1.4;
   overflow: hidden;
@@ -193,7 +191,7 @@
 }
 
 .path {
-  color: #a0a0ff;
+  color: var(--manga-vermilion);
 }
 
 /* Animação do comando sendo digitado */
@@ -222,10 +220,10 @@
 .log:nth-child(4) { animation-delay: 3.5s; }
 
 .log.success {
-  color: #00FF00;
+  color: #286645;
 }
 .log:not(.success) {
-  color: #ccc;
+  color: var(--manga-gray);
 }
 
 @keyframes log-appear {

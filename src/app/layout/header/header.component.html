@@ -1,27 +1,19 @@
-<header class="gba-header" role="banner">
-  <a class="header-title" routerLink="/" style="cursor: pointer; text-decoration: none;" aria-label="Erick Gabriel - Página Inicial">ERICK_DEV.EXE</a>
+<header class="site-header" role="banner">
+  <a class="header-title" routerLink="/" style="cursor: pointer; text-decoration: none;" aria-label="Erick Gabriel - Página Inicial"><span class="brand-mark">江</span><span>ERICK GABRIEL</span><small>SOFTWARE ENGINEER</small></a>
   <nav class="header-nav" aria-label="Navegação principal">
-    <button 
-      class="gba-btn bgm-btn" 
-      [class.active]="audioService.isBgmPlaying()" 
-      (click)="audioService.toggleBgm()"
-      aria-label="Toggle Background Music"
-      tabindex="0"
-    >
-      {{ audioService.isBgmPlaying() ? '[ ■ BGM_OFF ]' : '[ ▶ BGM_ON ]' }}
+    <button class="gba-btn bgm-btn" [class.active]="audioService.isBgmPlaying()" (click)="audioService.toggleBgm()" [attr.aria-label]="audioService.isBgmPlaying() ? 'Desativar música' : 'Ativar música'" tabindex="0">
+      {{ audioService.isBgmPlaying() ? 'Pausar música' : 'Ouvir trilha' }}
     </button>
-    <button 
-      class="gba-btn" 
-      (click)="toggleLanguage()" 
-      aria-label="Toggle Language"
-      tabindex="0"
-    >
-      [ {{ currentLang() | uppercase }} ]
+    <button class="gba-btn" (click)="toggleLanguage()" [attr.aria-label]="currentLang() === 'pt' ? 'Switch to English' : 'Mudar para português'" type="button">
+      {{ currentLang() === 'pt' ? 'EN' : 'PT' }}
     </button>
-    <a routerLink="/" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.START' | translate }}</a>
-    <a routerLink="/about" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.STATUS' | translate }}</a>
-    <a routerLink="/projects" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.BAG' | translate }}</a>
-    <a routerLink="/log" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.LOG' | translate }}</a>
-    <a routerLink="/contact" class="gba-btn gba-btn-secondary" tabindex="0">{{ 'HEADER.GUILD' | translate }}</a>
+    <button class="gba-btn" (click)="toggleTheme()" type="button" [attr.aria-label]="themeService.isDarkMode() ? 'Ativar tema claro' : 'Ativar tema escuro'">
+      {{ themeService.isDarkMode() ? '☼' : '☾' }}
+    </button>
+    <a routerLink="/" class="nav-link">Início</a>
+    <a routerLink="/about" class="nav-link">Sobre</a>
+    <a routerLink="/projects" class="nav-link">Projetos</a>
+    <a routerLink="/log" class="nav-link">Diário</a>
+    <a routerLink="/contact" class="nav-link nav-contact">Contato ↗</a>
   </nav>
 </header>

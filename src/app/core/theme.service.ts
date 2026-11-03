@@ -5,28 +5,26 @@ import { DOCUMENT } from '@angular/common';
   providedIn: 'root'
 })
 export class ThemeService {
-  readonly isDarkMode = signal<boolean>(true);
+  readonly isDarkMode = signal<boolean>(false);
 
   constructor(@Inject(DOCUMENT) private document: Document) {
+    try {
+      this.isDarkMode.set(this.document.defaultView?.localStorage.getItem('portfolio-theme') === 'dark');
+    } catch { /* Storage may be unavailable in private browsing. */ }
     this.applyTheme();
   }
 
   toggleTheme(): void {
     this.isDarkMode.update(dark => !dark);
+    try {
+      this.document.defaultView?.localStorage.setItem('portfolio-theme', this.isDarkMode() ? 'dark' : 'light');
+    } catch { /* Keep the current session theme if storage is unavailable. */ }
     this.applyTheme();
   }
 
   private applyTheme(): void {
-    const themeLink = this.document.getElementById('app-theme') as HTMLLinkElement;
-    
-    if (themeLink) {
-      themeLink.href = this.isDarkMode() ? 'aura-dark-indigo.css' : 'aura-light-indigo.css';
-    }
-    
-    if (this.isDarkMode()) {
-      this.document.documentElement.classList.add('dark');
-    } else {
-      this.document.documentElement.classList.remove('dark');
-    }
+    const theme = this.isDarkMode() ? 'dark' : 'light';
+    this.document.documentElement.dataset['theme'] = theme;
+    this.document.documentElement.style.colorScheme = theme;
   }
 }

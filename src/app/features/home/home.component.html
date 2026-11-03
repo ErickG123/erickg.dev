@@ -1,114 +1,23 @@
 <div class="manga-container" style="padding-top: var(--space-4); padding-bottom: var(--space-16);">
 
-  <!-- EXPERIÊNCIA INICIAL: CAPA EDITORIAL INTERATIVA (VOLUME 01) -->
-  <app-book-cover></app-book-cover>
-
-  <!-- BARRA DE SELEÇÃO DE MODO DE LEITURA (DUALIDADE INTEGRADA) -->
-  <aside class="reading-mode-selector manga-panel p-3 mb-6 flex justify-between align-center flex-wrap gap-2" aria-label="Seletor de Modo de Leitura">
-    <div class="manga-flex manga-gap-3 manga-items-center manga-flex-wrap">
-      <span class="manga-mono" style="font-weight: 800; font-size: 0.75rem;">
-        MODO DE LEITURA:
-      </span>
-      <span class="manga-badge manga-badge--vermilion">
-        {{ readerState.isMangaReaderMode() ? 'LEITOR DE PÁGINAS IMERSIVO' : 'EDITORIAL CONTÍNUO (ROLAGEM)' }}
-      </span>
-      <span class="manga-mono manga-text-gray section-indicator" style="font-size: 0.75rem;">
-        | SEÇÃO ATIVA: <strong class="manga-text-ink">{{ readerState.currentMapping().chapterNumber }} &bull; {{ readerState.currentMapping().title }}</strong>
-      </span>
-    </div>
-
-    <button
-      type="button"
-      class="manga-btn manga-btn--secondary btn-toggle-reader-mode"
-      style="padding: 0.45rem 0.85rem; font-size: 0.72rem;"
-      (click)="readerState.toggleReaderMode()"
-    >
-      {{ readerState.isMangaReaderMode() ? 'ATIVAR ROLAGEM CONTÍNUA 📜' : 'ATIVAR LEITOR DE MANGÁ 📖' }}
-    </button>
-  </aside>
-
-  @if (readerState.isMangaReaderMode()) {
-    <!-- MODO IMERSIVO DE PÁGINAS DE MANGÁ -->
-    <app-manga-reader></app-manga-reader>
-  } @else {
-    <!-- MODO EDITORIAL CONVENCIONAL COM ROLAGEM -->
-    <!-- =========================================================================
-         SEÇÃO 1: CAPA E INTRODUÇÃO (FRONTISPIECE / HERO)
-         ========================================================================= -->
+  <!-- Introdução e retrato -->
   <section id="cover" class="manga-section cover-section mb-8" aria-label="Capa e Hero do Portfólio">
     <app-manga-hero [hero]="heroData"></app-manga-hero>
   </section>
 
-  <!-- =========================================================================
-       SEÇÃO 2: ÍNDICE DE CAPÍTULOS (MOKUROKU)
-       ========================================================================= -->
-  <nav id="index-section" class="manga-section index-section mb-8" aria-labelledby="index-title">
-    <app-chapter-heading
-      chapter="MOKUROKU // 01"
-      title="ÍNDICE DE CAPÍTULOS"
-      subtitle="Mapa editorial de progressão e narrativa deste volume"
-      meta="7 SEÇÕES &bull; LEITURA COMPLETA"
-    ></app-chapter-heading>
-
-    <div class="manga-grid">
-      @for (chap of chapters; track chap.id) {
-        <div class="col-4">
-          <a
-            [href]="chap.anchor"
-            (click)="onSectionNavigate(chap.id)"
-            class="chapter-nav-card manga-panel manga-panel--interactive h-full flex flex-column justify-between"
-            [class.is-active]="readerState.activeSection() === chap.id"
-            style="text-decoration: none; color: inherit;"
-          >
-            <div>
-              <div class="manga-flex manga-justify-between manga-items-center mb-2">
-                <span class="manga-mono manga-text-vermilion" style="font-weight: 900; font-size: 1.1rem;">
-                  #{{ chap.num }}
-                </span>
-                <div class="manga-flex manga-gap-2 manga-items-center">
-                  @if (readerState.activeSection() === chap.id) {
-                    <span class="chapter-badge chapter-badge--vermilion" style="font-size: 0.6rem; padding: 0.1rem 0.35rem;">
-                      SEÇÃO ATIVA
-                    </span>
-                  }
-                  <span class="manga-mono manga-text-gray" style="font-size: 0.7rem;">
-                    {{ chap.pagesCount }}
-                  </span>
-                </div>
-              </div>
-              <h3 class="manga-heading-md mb-1">
-                {{ chap.title }}
-              </h3>
-              <p class="manga-body-sm" style="margin-bottom: 0;">
-                {{ chap.subtitle }}
-              </p>
-            </div>
-            <div class="manga-text-right mt-3">
-              <span class="manga-mono manga-text-vermilion" style="font-weight: 700; font-size: 0.75rem;">
-                ACESSAR <span class="action-arrow-hover">&rarr;</span>
-              </span>
-            </div>
-          </a>
-        </div>
-      }
-    </div>
-  </nav>
-
-  <!-- =========================================================================
-       SEÇÃO 3: PROJETOS SELECIONADOS (FEATURED PROJECTS)
-       ========================================================================= -->
+  <!-- Projetos em destaque -->
   <section id="projects" class="manga-section projects-section mb-8" aria-labelledby="projects-title">
     <app-chapter-heading
       chapter="CHAPTER 02"
       title="OBRAS SELECIONADAS"
-      subtitle="Quatro projetos autorais de engenharia forjados para resolver problemas reais de arquitetura e resiliência"
+      subtitle="Produtos, ferramentas e experiências criados para resolver problemas reais."
       [accentBadge]="true"
       meta="REPOSITÓRIOS OFICIAIS VERIFICADOS"
     ></app-chapter-heading>
 
-    <div class="manga-grid mb-6">
+    <div class="project-grid mb-6">
       @for (project of projects; track project.id) {
-        <div [class]="project.layoutSpan || 'col-6'">
+        <div class="project-grid-item">
           <app-manga-project-card [project]="project"></app-manga-project-card>
         </div>
       }
@@ -124,219 +33,71 @@
         href="https://github.com/ErickG123?tab=repositories"
         target="_blank"
         rel="noopener noreferrer"
-        class="manga-btn manga-btn--primary"
+        class="manga-btn manga-btn--primary projects-more-link"
       >
         EXPLORAR REPOSITÓRIOS NO GITHUB &nearr;
       </a>
     </div>
   </section>
 
-  <!-- =========================================================================
-       SEÇÃO 4: MÉTODO DE TRABALHO: THINK, BREAK, REBUILD
-       ========================================================================= -->
-  <section id="method" class="manga-section method-section mb-8" aria-labelledby="method-title">
-    <app-chapter-heading
-      chapter="CHAPTER 03"
-      title="O MÉTODO: THINK, BREAK, REBUILD"
-      subtitle="A esteira contínua de pensamento arquitetural, validação sob estresse e entrega de alta performance"
-    ></app-chapter-heading>
+  <!-- Trajetória profissional -->
+  <section id="method" class="manga-section career-section mb-8" aria-labelledby="career-title">
+    <header class="career-heading">
+      <span class="section-kicker">経験 · Experiência</span>
+      <h2 id="career-title" class="manga-heading-xl">Trajetória profissional</h2>
+      <p>Uma visão geral da minha experiência em desenvolvimento de software.</p>
+    </header>
 
-    <div class="manga-grid">
-      @for (pillar of methodPillars; track pillar.step) {
-        <div class="col-4">
-          <article class="manga-panel h-full flex flex-column justify-between" [class.manga-panel--accent]="pillar.title === 'BREAK'">
-            <div>
-              <div class="panel-frame-header mb-2">
-                <span class="chapter-badge" [class.chapter-badge--vermilion]="pillar.title === 'BREAK'">
-                  {{ pillar.step }}
-                </span>
-                <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem;">
-                  FASE DE CICLO
-                </span>
-              </div>
-
-              <h3 class="manga-display-lg mb-1" [class.manga-text-vermilion]="pillar.title === 'BREAK'">
-                {{ pillar.title }}
-              </h3>
-              
-              <h4 class="manga-heading-md manga-text-gray mb-3" style="font-size: 0.95rem;">
-                {{ pillar.subtitle }}
-              </h4>
-
-              <p class="manga-body-md">
-                {{ pillar.description }}
-              </p>
-            </div>
-
-            <div class="pillar-principles mt-4 pt-3" style="border-top: var(--border-thin);">
-              <span class="manga-mono" style="font-weight: 700; font-size: 0.7rem; color: var(--manga-gray); display: block; margin-bottom: var(--space-2);">
-                DIRETRIZES FUNDAMENTAIS:
-              </span>
-              <ul style="padding-left: var(--space-4); margin: 0; font-size: 0.85rem; line-height: 1.6;">
-                @for (p of pillar.principles; track p) {
-                  <li style="margin-bottom: var(--space-1); font-family: var(--font-body);">
-                    {{ p }}
-                  </li>
-                }
+    <div class="career-list">
+      @for (role of careerHistory; track role.company + role.period) {
+        <article class="career-entry">
+          <div class="career-period">{{ role.period }}</div>
+          <div class="career-detail">
+            <h3>{{ role.title }}</h3>
+            <div class="career-company">{{ role.company }}</div>
+            <p>{{ role.summary }}</p>
+            @if (role.technologies.length) {
+              <ul class="career-tags" aria-label="Tecnologias">
+                @for (tech of role.technologies; track tech) { <li>{{ tech }}</li> }
               </ul>
-            </div>
-          </article>
-        </div>
+            }
+          </div>
+        </article>
       }
-    </div>
-
-    <!-- DIAGRAMA VISUAL DO CICLO CONTÍNUO DE ENGENHARIA -->
-    <div class="mt-6">
-      <app-manga-image
-        src="/assets/images/case-studies/method-think-break-rebuild.svg"
-        alt="Diagrama editorial do método Think, Break, Rebuild em nanquim"
-        aspectRatio="16:9"
-        caption="FIG 03.1 • CICLO CONTÍNUO DE ENGENHARIA: MODELAGEM DE DOMÍNIO, ESTRESSE CONTROLADO E ENTREGA DE ALTA PERFORMANCE"
-      ></app-manga-image>
     </div>
   </section>
 
-  <!-- =========================================================================
-       SEÇÃO 5: FIELD NOTES (CADERNO DE CAMPO)
-       ========================================================================= -->
+  <!-- Caderno de campo -->
   <section id="notes" class="manga-section notes-section mb-8" aria-labelledby="notes-title">
-    <app-chapter-heading
-      chapter="CHAPTER 04"
-      title="FIELD NOTES & APRENDIZADOS"
-      subtitle="Ensaios técnicos, decisões de design de software e lições aprendidas em produção"
-    ></app-chapter-heading>
+    <header class="career-heading articles-heading">
+      <span class="section-kicker">読みもの · Leituras</span>
+      <h2 id="notes-title" class="manga-heading-xl">Artigos & ideias</h2>
+      <p>Escrevo sobre engenharia de software, Angular e o que aprendo construindo produtos.</p>
+    </header>
 
-    <div class="manga-grid mb-4">
-      @for (note of fieldNotes; track note.id) {
-        <div class="col-4">
-          <article
-            class="manga-panel manga-panel--interactive h-full flex flex-column justify-between"
-            (click)="openFieldNote(note.id)"
-            (keydown.enter)="openFieldNote(note.id)"
-            tabindex="0"
-            role="button"
-            [attr.aria-label]="'Abrir nota de campo completa: ' + note.title"
-            style="cursor: pointer;"
-          >
-            <div>
-              <div class="manga-flex manga-justify-between manga-items-center mb-2">
-                <span class="manga-badge manga-badge--screentone">
-                  {{ note.category }}
-                </span>
-                <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">
-                  {{ note.date }}
-                </span>
-              </div>
-
-              <h3 class="manga-heading-lg mb-2">
-                {{ note.title }}
-              </h3>
-
-              <p class="manga-body-md" style="margin-bottom: var(--space-4);">
-                {{ note.synopsis }}
-              </p>
-            </div>
-
-            <div class="manga-flex manga-justify-between manga-items-center pt-3" style="border-top: var(--border-thin);">
-              <span class="manga-mono manga-text-gray" style="font-size: 0.7rem;">
-                {{ note.readTime }}
-              </span>
-              <span class="manga-mono manga-text-vermilion" style="font-weight: 700; font-size: 0.75rem;">
-                {{ note.linkText }} <span class="action-arrow-hover">&rarr;</span>
-              </span>
-            </div>
-          </article>
-        </div>
+    <div class="article-filters" role="group" aria-label="Filtrar artigos por assunto">
+      @for (topic of articleTopics; track topic) {
+        <button type="button" [class.is-selected]="selectedArticleTopic() === topic" (click)="selectedArticleTopic.set(topic)">{{ topic }}</button>
       }
     </div>
 
-    <!-- MODAL / PAINEL EXPANSÍVEL DE FIELD NOTE COMPLETA -->
-    @if (activeFieldNote(); as activeNote) {
-      <div
-        class="field-note-modal-backdrop"
-        (click)="closeFieldNote()"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="active-note-title"
-        aria-describedby="active-note-synopsis"
-      >
-        <div class="field-note-modal manga-panel manga-panel--hero" (click)="$event.stopPropagation()">
-          
-          <!-- Barra Superior do Leitor de Notas -->
-          <div class="panel-frame-header mb-4">
-            <div class="manga-flex manga-gap-2 manga-items-center">
-              <span class="chapter-badge chapter-badge--vermilion">{{ activeNote.noteNumber }}</span>
-              <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem;">CADERNO DE CAMPO // DISPATCH</span>
-            </div>
-            <button type="button" class="manga-btn manga-btn--secondary" (click)="closeFieldNote()" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" aria-label="Fechar nota de campo [ESC]">
-              FECHAR [ &times; ]
-            </button>
-          </div>
-
-          <div class="manga-flex manga-justify-between manga-items-center mb-2">
-            <span class="manga-badge manga-badge--screentone">{{ activeNote.category }}</span>
-            <span class="manga-mono manga-text-gray" style="font-size: 0.75rem;">{{ activeNote.date }} &bull; {{ activeNote.readTime }}</span>
-          </div>
-
-          <h3 id="active-note-title" class="manga-heading-xl mb-3">{{ activeNote.title }}</h3>
-          
-          <div class="p-3 mb-4 text-surface text-surface--muted halftone-corner-accent" style="border-left: 4px solid var(--manga-vermilion); border-top: var(--border-thin); border-right: var(--border-thin); border-bottom: var(--border-thin);">
-            <p id="active-note-synopsis" class="manga-body-md" style="margin: 0; font-weight: 500; position: relative; z-index: 1;">{{ activeNote.synopsis }}</p>
-          </div>
-
-          <h4 class="manga-heading-md mb-2">CONTEXTO DO EXPERIMENTO</h4>
-          <p class="manga-body-md mb-4">{{ activeNote.context }}</p>
-
-          <h4 class="manga-heading-md mb-2">ANÁLISE DE ENGENHARIA</h4>
-          <p class="manga-body-md mb-4">{{ activeNote.analysis }}</p>
-
-          <h4 class="manga-heading-md mb-2">TRADEOFFS & LIÇÕES</h4>
-          <ul style="padding-left: var(--space-4); margin-bottom: var(--space-4);">
-            @for (t of activeNote.tradeoffs; track t) {
-              <li class="manga-body-sm" style="margin-bottom: var(--space-1); font-family: var(--font-body);">{{ t }}</li>
-            }
-          </ul>
-
-          @if (activeNote.codeSnippet; as snippet) {
-            <div class="p-3 mb-2" style="background-color: var(--manga-ink); border: var(--border-thin);">
-              <pre class="manga-mono" style="color: #FFF; font-size: 0.8rem; margin: 0; overflow-x: auto;"><code>{{ snippet.code }}</code></pre>
-            </div>
-            @if (snippet.caption) {
-              <span class="manga-mono manga-text-gray" style="font-size: 0.7rem; display: block; margin-bottom: var(--space-4);">
-                // {{ snippet.caption }}
-              </span>
-            }
-          }
-
-          <div class="mt-4 pt-3" style="border-top: var(--border-thin);">
-            <h4 class="manga-heading-sm mb-1">CONCLUSÃO DO AUTOR</h4>
-            <p class="manga-body-sm mb-3">{{ activeNote.conclusion }}</p>
-            @if (activeNote.editorNote) {
-              <span class="manga-mono manga-text-gray" style="font-size: 0.7rem;">{{ activeNote.editorNote }}</span>
-            }
-          </div>
-
-          <div class="manga-text-right mt-4">
-            <button type="button" class="manga-btn manga-btn--primary" (click)="closeFieldNote()">
-              CONCLUIR LEITURA &rarr;
-            </button>
-          </div>
-
-        </div>
-      </div>
-    }
-
-    <!-- Aviso de Conteúdo Dinâmico / Provisório -->
-    <div class="manga-panel manga-panel--dashed manga-text-center p-4">
-      <span class="manga-mono manga-text-gray" style="font-size: 0.8rem;">
-        [Novos ensaios técnicos de engenharia e notas de campo serão anexados periodicamente a este volume]
-      </span>
+    <div class="article-grid">
+      @for (article of visibleArticles(); track article.url; let index = $index) {
+        <a class="article-card" [class.article-card--featured]="index === 0 && selectedArticleTopic() === 'Todos'" [href]="article.url" target="_blank" rel="noopener noreferrer">
+          <div class="article-card-meta"><span>{{ article.topic }}</span><time>{{ article.date }}</time></div>
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.description }}</p>
+          <div class="article-card-footer"><span>{{ article.minutes }} min de leitura</span><span class="article-open">Ler artigo <b aria-hidden="true">↗</b></span></div>
+          <span class="article-index" aria-hidden="true">{{ (index + 1).toString().padStart(2, '0') }}</span>
+        </a>
+      }
     </div>
+
+    <a class="all-articles-link" href="https://dev.to/erickg123" target="_blank" rel="noopener noreferrer">Todos os artigos no DEV.to <span aria-hidden="true">↗</span></a>
+
   </section>
 
-  <!-- =========================================================================
-       SEÇÃO 6: SOBRE O AUTOR (FICHA DO ENGENHEIRO)
-       ========================================================================= -->
+  <!-- Sobre o autor -->
   <section id="about" class="manga-section about-section mb-8" aria-labelledby="about-title">
     <app-chapter-heading
       chapter="CHAPTER 05"
@@ -435,9 +196,7 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       SEÇÃO 7: ENCERRAMENTO E CONTATO (MURAL DE TRANSMISSÃO & COLOFÃO)
-       ========================================================================= -->
+  <!-- Contato -->
   <footer id="contact" class="manga-section contact-section" aria-labelledby="contact-title">
     <app-chapter-heading
       chapter="EPÍLOGO"
@@ -535,6 +294,4 @@
 
     </div>
   </footer>
-  }
-
 </div>

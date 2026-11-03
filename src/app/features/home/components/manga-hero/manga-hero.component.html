@@ -1,20 +1,17 @@
-<header class="manga-hero-wrapper manga-panel manga-panel--hero halftone-corner-accent animate-hero-entrance" role="banner">
+<header class="manga-hero-wrapper manga-panel manga-panel--hero animate-hero-entrance" role="banner">
   
   <!-- CABEÇALHO DO FRONTISPÍCIO: METADADOS EDITORIAIS -->
-  <div class="panel-frame-header mb-4">
+  <div class="hero-meta mb-4">
     <div class="manga-flex manga-gap-2 manga-items-center manga-flex-wrap">
-      <span class="chapter-badge chapter-badge--vermilion">
+      <span class="hero-kicker">
         {{ hero().volumeId }}
       </span>
-      <span class="manga-mono" style="font-weight: 800; font-size: 0.8rem; letter-spacing: 0.05em;">
+      <span class="hero-location">
         {{ hero().chapterId }}
       </span>
     </div>
 
-    <!-- Carimbo Hanko Autoral -->
-    <div class="hanko-stamp animate-hanko-stamp">
-      <span>ERICK</span>
-      <span class="hanko-sub">江里克</span>
+    <div class="availability"><span class="status-dot"></span> Aberto a oportunidades
     </div>
   </div>
 
@@ -23,12 +20,12 @@
     
     <!-- COLUNA DA ESQUERDA: IDENTIDADE TIPOGRÁFICA E TEXTOS -->
     <div class="col-7 hero-text-column">
-      <div class="manga-mono manga-text-vermilion mb-2" style="font-weight: 800; font-size: 0.85rem; letter-spacing: 0.05em;">
-        AUTOR // {{ hero().authorName }} &bull; {{ hero().authorRole }}
+      <div class="hero-author mb-2">
+        {{ hero().authorName }} <span>·</span> {{ hero().authorRole }}
       </div>
 
       <!-- Título Principal Curto e Memorável -->
-      <h1 class="manga-display-2xl hero-tagline" style="margin-bottom: var(--space-3); line-height: 0.95;">
+      <h1 class="manga-display-2xl hero-tagline" style="margin-bottom: var(--space-3); line-height: 1.02;">
         {{ hero().tagline }}
       </h1>
 
@@ -56,14 +53,14 @@
       </div>
     </div>
 
-    <!-- COLUNA DA DIREITA: ILUSTRAÇÃO EDITORIAL EM PRETO E BRANCO -->
+    <!-- Retrato do autor -->
     <div class="col-5 hero-image-column">
-      <div class="hero-image-frame manga-illustration-interactive">
+      <div class="hero-image-frame">
         <app-manga-image
           [src]="hero().illustration.src"
           [alt]="hero().illustration.alt"
           [caption]="hero().illustration.caption"
-          aspectRatio="4:3"
+          aspectRatio="1:1"
           [priority]="true"
         ></app-manga-image>
       </div>
@@ -72,12 +69,4 @@
   </div>
 
   <!-- INDICAÇÃO DISCRETA DE CONTEÚDO ABAIXO (SCROLL PROMPT) -->
-  <div class="hero-scroll-prompt manga-flex manga-justify-center manga-items-center mt-6 pt-4">
-    <a href="#index-section" class="scroll-link manga-mono manga-text-gray" aria-label="Rolar para o índice de capítulos">
-      <span class="scroll-arrow">&darr;</span>
-      {{ hero().scrollHintText }}
-      <span class="scroll-arrow">&darr;</span>
-    </a>
-  </div>
-
 </header>

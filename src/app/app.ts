@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { trigger, transition, style, animate, query } from '@angular/animations';
 import { HeaderComponent } from './layout/header/header.component';
-import { KonamiService } from './core/konami.service';
 import { AchievementToastComponent } from './shared/components/achievement-toast/achievement-toast.component';
 import { SeoService } from './core/seo.service';
 import { SwUpdate } from '@angular/service-worker';
@@ -38,7 +37,6 @@ export const routeAnimations = trigger('routeAnimations', [
   animations: [routeAnimations]
 })
 export class App implements OnInit {
-  konamiService = inject(KonamiService);
   seo = inject(SeoService);
   swUpdate = inject(SwUpdate);
   currentYear = new Date().getFullYear();

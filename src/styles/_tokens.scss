@@ -5,20 +5,20 @@
 
 :root {
   /* --- PALETA PRINCIPAL --- */
-  --manga-ink: #111111;            /* Ink Black puro (nanquim denso) */
-  --manga-paper: #F4F0E9;          /* Paper White (papel de mangá aquecido) */
-  --manga-vermilion: #D9363E;      /* Vermilion Red (tinta vermelha / hanko) */
-  --manga-vermilion-text: #B32027; /* Vermilion escuro para contraste AA em texto corrido */
-  --manga-gray: #595552;           /* Ink Gray editorial calibrado para WCAG AA (> 6.3:1) */
+  --manga-ink: #202522;
+  --manga-paper: #f4f3ee;
+  --manga-vermilion: #bd5b4d;
+  --manga-vermilion-text: #984338;
+  --manga-gray: #646c66;
 
   /* --- CORES SEMÂNTICAS E DE SUPERFÍCIE --- */
-  --manga-surface: #FFFFFF;        /* Superfície elevada / puro contraste */
-  --manga-surface-muted: #EAE5DC;  /* Superfície afundada / sarjetas cinzas */
-  --manga-surface-dark: #1A1A1A;   /* Inversão para painéis noturnos/códigos */
-  --manga-text-light: #F4F0E9;     /* Texto sobre fundo nanquim escuro */
+  --manga-surface: #fbfaf6;
+  --manga-surface-muted: #e9ebe5;
+  --manga-surface-dark: #202522;
+  --manga-text-light: #f4f3ee;
   
   --manga-border-dark: #111111;    /* Borda principal de quadrinho */
-  --manga-border-subtle: #D8D2C7;  /* Separadores secundários */
+  --manga-border-subtle: #d6d9d1;
   --manga-border-red: #D9363E;     /* Borda com destaque de ação */
 
   /* --- FEEDBACK E STATUS --- */
@@ -78,9 +78,9 @@
 
   /* --- SOMBRAS SÓLIDAS DE QUADRINHO (HARD OFFSET) --- */
   --shadow-flat: none;
-  --shadow-sm: 2px 2px 0px var(--manga-ink);
-  --shadow-md: 4px 4px 0px var(--manga-ink);
-  --shadow-lg: 6px 6px 0px var(--manga-ink);
+  --shadow-sm: 0 3px 12px rgba(27, 37, 32, .06);
+  --shadow-md: 0 10px 30px rgba(27, 37, 32, .075);
+  --shadow-lg: 0 18px 44px rgba(27, 37, 32, .12);
   --shadow-red: 4px 4px 0px var(--manga-vermilion);
   --shadow-white: 4px 4px 0px #FFFFFF;
 
@@ -141,4 +141,26 @@
   --gba-red-hover: #b82229;
   --gba-red-active: #94171d;
   --font-pixel: 'IBM Plex Mono', monospace;
+}
+
+html[data-theme='dark'] {
+  --manga-ink: #f2eee5;
+  --manga-paper: #171815;
+  --manga-vermilion: #e47668;
+  --manga-vermilion-text: #f09b8e;
+  --manga-gray: #b7b2a8;
+  --manga-surface: #22231f;
+  --manga-surface-muted: #2d2e29;
+  --manga-surface-dark: #10110f;
+  --manga-text-light: #f2eee5;
+  --manga-border-dark: #e6e0d5;
+  --manga-border-subtle: #41423b;
+  --manga-border-red: #e47668;
+  --gba-bg: var(--manga-paper);
+  --gba-card-bg: var(--manga-surface);
+  --gba-border-dark: var(--manga-ink);
+  --gba-border-light: var(--manga-border-subtle);
+  --gba-text: var(--manga-ink);
+  --gba-text-muted: var(--manga-gray);
+  --gba-red: var(--manga-vermilion);
 }
