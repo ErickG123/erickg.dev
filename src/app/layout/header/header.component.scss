@@ -30,22 +30,24 @@
 }
 
 .brand-mark {
+  position: relative;
   flex: 0 0 auto;
   display: grid;
   place-items: center;
   width: 2.45rem;
   height: 2.45rem;
-  border-radius: 4px;
+  border-radius: 2px;
   background: var(--manga-vermilion);
   color: #fff;
   font: 1.5rem 'Yuji Syuku', serif;
   border: 0;
   padding: 0;
   cursor: pointer;
-  transition: transform .24s var(--ease-editorial), box-shadow .24s ease;
+  transition: transform .24s var(--ease-editorial), box-shadow .24s ease, background .24s ease;
 }
 
 .brand-mark:hover, .brand-mark[aria-expanded="true"] { transform: rotate(-4deg) scale(1.04); box-shadow: 0 0 0 4px color-mix(in srgb, var(--manga-vermilion) 18%, transparent); }
+.brand-mark:active { transform: rotate(-3deg) scale(.94); }
 
 .personal-note {
   position: absolute;

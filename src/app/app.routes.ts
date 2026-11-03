@@ -19,7 +19,7 @@ export const routes: Routes = [
   },
   {
     path: 'case-studies',
-    redirectTo: 'case-studies/1',
+    redirectTo: 'case-studies/schema-lens',
     pathMatch: 'full'
   },
   {

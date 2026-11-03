@@ -207,6 +207,29 @@ export const FEATURED_PROJECTS_DATA: Project[] = [
   },
   {
     id: '2',
+    title: 'SchemaLens',
+    description: 'Ferramenta desktop para inspecionar e comparar estruturas de bancos Microsoft SQL Server, analisar diferenças e gerar scripts de ajuste.',
+    problem: 'Diferenças entre ambientes podem passar despercebidas. O SchemaLens reúne comparação, análise de impacto e histórico em uma interface local.',
+    role: 'Criador e engenheiro principal.',
+    techStack: ['Angular', 'Tauri 2', 'Rust', 'SQL Server', 'SQLite'],
+    status: 'Repositório público',
+    url: 'https://github.com/ErickG123/schema-lens',
+    repositoryUrl: 'https://github.com/ErickG123/schema-lens',
+    image: '/assets/images/projects/schema-lens-architecture.svg',
+    imageAlt: 'Diagrama da arquitetura SchemaLens com Angular, Tauri, Rust e SQL Server.',
+    highlight: 'Comparação de esquemas e análise de risco',
+    year: 2026,
+    featured: true,
+    layoutSpan: 'col-6',
+    caseStudyUrl: '/case-studies/schema-lens',
+    previewSteps: [
+      { id: 'architecture', label: 'Arquitetura', labelEn: 'Architecture', description: 'Interface em Angular, runtime desktop em Tauri e módulos de domínio e infraestrutura em Rust.', descriptionEn: 'Angular interface, Tauri desktop runtime, and domain and infrastructure modules in Rust.' },
+      { id: 'connection', label: 'Conexões', labelEn: 'Connections', description: 'A documentação registra a escolha do driver Tiberius e compara a alternativa ODBC.', descriptionEn: 'The documentation records the Tiberius driver choice and compares the ODBC alternative.' },
+      { id: 'security', label: 'Segurança', labelEn: 'Security', description: 'O projeto documenta armazenamento de credenciais no Windows Credential Manager, sanitização de logs e permissões mínimas.', descriptionEn: 'The project documents Windows Credential Manager storage, sanitized logs, and least privilege.' }
+    ]
+  },
+  {
+    id: '3',
     title: 'FlowBI',
     description: 'Plataforma de Business Intelligence com dashboards dinâmicos e automação de regras de processos em fluxos baseados em nós.',
     role: 'Desenvolvimento full-stack da plataforma.',
@@ -220,7 +243,7 @@ export const FEATURED_PROJECTS_DATA: Project[] = [
     layoutSpan: 'col-6'
   },
   {
-    id: '3',
+    id: '4',
     title: 'ForensicLab',
     description: 'Aplicação web de documentação interativa para um toolkit modular de análise forense digital.',
     role: 'Desenvolvimento da experiência web e da documentação do projeto.',
@@ -235,7 +258,7 @@ export const FEATURED_PROJECTS_DATA: Project[] = [
     layoutSpan: 'col-6'
   },
   {
-    id: '4',
+    id: '5',
     title: 'Angular Smart Interceptor',
     description: 'Biblioteca HTTP para Angular que organiza retentativas, tratamento de falhas de rede, deduplicação e renovação de tokens com RxJS.',
     role: 'Criador e mantenedor open source.',

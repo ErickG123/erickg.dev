@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">SchemaLens — arquitetura do sistema</title>
+  <desc id="desc">Diagrama editorial que conecta interface Angular, runtime Tauri, módulos Rust e dois bancos SQL Server.</desc>
+  <defs>
+    <pattern id="grain" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r=".8" fill="#f0eee8" opacity=".12"/>
+    </pattern>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#242520"/>
+      <stop offset="1" stop-color="#171816"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10" fill="none" stroke="#d87968" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="675" fill="url(#wash)"/>
+  <rect width="1200" height="675" fill="url(#grain)"/>
+  <path d="M0 122H1200M0 553H1200" stroke="#f0eee8" stroke-opacity=".16"/>
+  <path d="M70 126H280" stroke="#d87968" stroke-width="5"/>
+  <text x="70" y="81" fill="#d87968" font-family="monospace" font-size="18" letter-spacing="4">ESTUDO DE CASO / FERRAMENTAS DE DADOS</text>
+  <text x="70" y="218" fill="#f0eee8" font-family="Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="-4">SchemaLens</text>
+  <text x="1075" y="214" fill="#d87968" font-family="serif" font-size="94" text-anchor="middle" opacity=".85">図</text>
+  <text x="73" y="258" fill="#aaa99f" font-family="monospace" font-size="16" letter-spacing="2">INSPECIONAR · COMPARAR · ENTENDER IMPACTO</text>
+
+  <g font-family="monospace" text-anchor="middle">
+    <rect x="74" y="350" width="225" height="112" rx="3" fill="#22231f" stroke="#74746b"/>
+    <text x="186" y="396" fill="#d87968" font-size="15" letter-spacing="2">INTERFACE</text>
+    <text x="186" y="431" fill="#f0eee8" font-size="27" font-family="Arial, sans-serif" font-weight="700">Angular</text>
+
+    <rect x="355" y="350" width="225" height="112" rx="3" fill="#22231f" stroke="#74746b"/>
+    <text x="468" y="396" fill="#d87968" font-size="15" letter-spacing="2">DESKTOP</text>
+    <text x="468" y="431" fill="#f0eee8" font-size="27" font-family="Arial, sans-serif" font-weight="700">Tauri 2</text>
+
+    <rect x="636" y="350" width="225" height="112" rx="3" fill="#22231f" stroke="#74746b"/>
+    <text x="749" y="396" fill="#d87968" font-size="15" letter-spacing="2">BACKEND</text>
+    <text x="749" y="431" fill="#f0eee8" font-size="27" font-family="Arial, sans-serif" font-weight="700">Rust</text>
+
+    <rect x="933" y="316" width="190" height="66" rx="3" fill="#22231f" stroke="#74746b"/>
+    <text x="1028" y="357" fill="#f0eee8" font-size="19">SQL Server A</text>
+    <rect x="933" y="431" width="190" height="66" rx="3" fill="#22231f" stroke="#74746b"/>
+    <text x="1028" y="472" fill="#f0eee8" font-size="19">SQL Server B</text>
+  </g>
+  <g fill="none" stroke="#d87968" stroke-width="2" opacity=".88" marker-end="url(#arrow)">
+    <path d="M299 406H345"/>
+    <path d="M580 406H626"/>
+    <path d="M861 391H899Q915 391 915 374V350H922"/>
+    <path d="M861 421H899Q915 421 915 438V464H922"/>
+  </g>
+  <text x="70" y="612" fill="#aaa99f" font-family="monospace" font-size="14" letter-spacing="2">ARQUITETURA DOCUMENTADA NO REPOSITÓRIO</text>
+  <text x="1127" y="612" fill="#d87968" font-family="monospace" font-size="14" text-anchor="end">01 / 05</text>
+</svg>

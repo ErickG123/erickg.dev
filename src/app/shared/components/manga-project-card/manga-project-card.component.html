@@ -6,7 +6,7 @@
 
   @if (project().image) {
     <div class="project-visual" [class.project-visual--yomiflow-poster]="project().id === '1'" [class.is-poster-active]="posterActive()">
-      <app-manga-image [src]="project().image!" [alt]="(currentLang() === 'pt' ? 'Captura de tela do projeto ' : 'Screenshot of ') + project().title" aspectRatio="16:9"></app-manga-image>
+      <app-manga-image [src]="project().image!" [alt]="project().imageAlt || ((currentLang() === 'pt' ? 'Captura de tela do projeto ' : 'Screenshot of ') + project().title)" aspectRatio="16:9"></app-manga-image>
       @if (project().id === '1') {
         <span class="project-poster-mark" aria-hidden="true">読</span>
         <span class="project-poster-credit" aria-hidden="true">YOMI / IMMERSION STUDY</span>
@@ -87,7 +87,7 @@
       <a [href]="project().demoUrl" target="_blank" rel="noopener noreferrer" class="project-link" [attr.aria-label]="(currentLang() === 'pt' ? 'Abrir demonstração de ' : 'Open demo for ') + project().title">{{ currentLang() === 'pt' ? 'Ver projeto' : 'View project' }} ↗</a>
     }
     @if (project().caseStudyUrl) {
-      <a [routerLink]="project().caseStudyUrl" class="project-link">Estudo de caso →</a>
+      <a [routerLink]="project().caseStudyUrl" class="project-link">{{ currentLang() === 'pt' ? 'Estudo de caso' : 'Case study' }} →</a>
     }
   </div>
 </article>

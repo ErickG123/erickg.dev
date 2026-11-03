@@ -28,6 +28,7 @@ export interface CaseStudy {
   heroIllustration: string;
   githubUrl?: string;
   demoUrl?: string;
+  documentationUrl?: string;
   statusBadge: string;
   techStack: string[];
 

@@ -6,8 +6,8 @@
       (click)="togglePersonalNote()"
       [attr.aria-expanded]="personalNoteOpen()"
       aria-controls="personal-note"
-      [attr.aria-label]="currentLang() === 'pt' ? 'Abrir mensagem pessoal' : 'Open personal note'"
-    >技</button>
+      [attr.aria-label]="currentLang() === 'pt' ? (personalNoteOpen() ? 'Fechar mensagem pessoal' : 'Abrir mensagem pessoal no selo') : (personalNoteOpen() ? 'Close personal note' : 'Open personal note from the seal')"
+    >印</button>
     <a class="header-title" routerLink="/" (click)="personalNoteOpen.set(false)" aria-label="Erick Gabriel - Página Inicial">
       <span>ERICK GABRIEL</span>
       <small>SOFTWARE ENGINEER</small>

@@ -9,8 +9,8 @@
   </header>
 
   <section class="projects-page-grid" [attr.aria-label]="currentLang() === 'pt' ? 'Projetos de Erick Gabriel' : 'Erick Gabriel projects'">
-    @for (project of projects; track project.id; let index = $index) {
-      <div class="projects-page-item" [class.projects-page-item--featured]="index === 0">
+    @for (project of projects; track project.id) {
+      <div class="projects-page-item">
         <app-manga-project-card [project]="project"></app-manga-project-card>
       </div>
     }

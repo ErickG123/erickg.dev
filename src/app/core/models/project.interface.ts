@@ -8,6 +8,7 @@ export interface Project {
   status: string;
   demoType?: 'sleuth' | 'forge' | 'link';
   image?: string;
+  imageAlt?: string;
   url?: string;
   repositoryUrl?: string;
   demoUrl?: string;
