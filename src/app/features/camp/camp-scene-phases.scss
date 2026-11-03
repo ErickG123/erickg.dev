@@ -1,0 +1,23 @@
+.camp-scene__sky, .camp-moon, .camp-mountain { transition: background .8s ease, filter .8s ease, opacity .8s ease, transform .8s ease; }
+.camp-scene--dawn .camp-scene__sky { background: linear-gradient(180deg, #555868 0%, #ac8582 54%, #d0a184 100%); }
+.camp-scene--dawn .camp-moon { top: 31%; right: 24%; width: clamp(2rem, 4.8vw, 3.6rem); background: #f2c99d; box-shadow: 0 0 42px 14px #f2c99d30; }
+.camp-scene--dawn .camp-star { opacity: .24; }
+.camp-scene--dawn .camp-mountain--back { background: #69646a; }
+.camp-scene--dawn .camp-mountain--front { background: #3d4844; }
+.camp-scene--dawn .camp-lake { background: linear-gradient(180deg, #566565, #394e50); }
+.camp-scene--day .camp-scene__sky { background: linear-gradient(180deg, #769da7 0%, #b9b3a0 58%, #d2a783 100%); }
+.camp-scene--day .camp-moon { top: 13%; right: 18%; width: clamp(2.4rem, 5vw, 3.8rem); background: #f4dc9d; box-shadow: 0 0 46px 16px #f4dc9d32; }
+.camp-scene--day .camp-star { opacity: 0; }
+.camp-scene--day .camp-mountain--back { background: #697975; }
+.camp-scene--day .camp-mountain--front { background: #44584f; }
+.camp-scene--day .camp-lake { background: linear-gradient(180deg, #568082, #315b60); }
+.camp-scene--sunset .camp-scene__sky { background: linear-gradient(180deg, #45475d 0%, #a46f74 52%, #e2a06e 100%); }
+.camp-scene--sunset .camp-moon { top: 37%; right: 28%; width: clamp(2.7rem, 5.5vw, 4rem); background: #ffd39b; box-shadow: 0 0 48px 18px #ffbc8036; }
+.camp-scene--sunset .camp-star { opacity: .42; }
+.camp-scene--sunset .camp-mountain--back { background: #665a60; }
+.camp-scene--sunset .camp-mountain--front { background: #373f3d; }
+.camp-scene--sunset .camp-lake { background: linear-gradient(180deg, #594f51, #39484b); }
+.camp-scene--night .camp-scene__sky { background: linear-gradient(180deg, #18212c 0%, #29333a 56%, #51504a 100%); }
+.camp-scene--night .camp-moon { top: 13%; right: 17%; }
+.camp-scene--night .camp-star { opacity: .75; }
+@media (prefers-reduced-motion: reduce) { .camp-scene__sky, .camp-moon, .camp-mountain { transition: none; } }

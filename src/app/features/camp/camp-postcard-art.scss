@@ -1,0 +1,21 @@
+.camp-postcard-preview { position: relative; display: flex; min-width: 0; aspect-ratio: 1.85 / 1; overflow: hidden; align-items: end; border: 1px solid #f1e8d066; background: #202a30; isolation: isolate; box-shadow: inset 0 0 0 5px #171a1880; }
+.camp-postcard-preview__landscape { position: absolute; z-index: -1; inset: 0; overflow: hidden; background: linear-gradient(180deg, #18212c 0%, #51504a 100%); transition: filter .8s ease; }
+.camp-postcard-preview__sun { position: absolute; top: 14%; right: 15%; width: clamp(1.8rem, 4.4vw, 3.4rem); aspect-ratio: 1; border-radius: 50%; background: #e8d9b7; box-shadow: 0 0 36px 12px #e8d9b72b; }
+.camp-postcard-preview__mountain { position: absolute; right: -4%; bottom: 15%; left: -4%; height: 56%; clip-path: polygon(0 78%, 17% 37%, 27% 64%, 46% 10%, 64% 63%, 76% 30%, 100% 75%, 100% 100%, 0 100%); }
+.camp-postcard-preview__mountain--back { background: #303b3c; transform: translateY(-9%); }
+.camp-postcard-preview__mountain--front { bottom: 7%; height: 42%; background: #232d2b; clip-path: polygon(0 68%, 15% 45%, 32% 72%, 50% 26%, 70% 73%, 86% 42%, 100% 65%, 100% 100%, 0 100%); }
+.camp-postcard-preview__lake { position: absolute; right: 0; bottom: 0; left: 0; height: 24%; background: linear-gradient(180deg, #33494a, #202f31); }
+.camp-postcard-preview__lake::after { position: absolute; top: 22%; left: 42%; width: 26%; height: 1px; background: #ead7ad8c; box-shadow: 22px 10px 0 #ead7ad4d, -35px 23px 0 #ead7ad64, 54px 35px 0 #ead7ad36, -72px 48px 0 #ead7ad36; content: ''; }
+.camp-postcard-preview__tent { position: absolute; z-index: 2; right: 24%; bottom: 12%; width: 15%; height: 31%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #b86250; filter: drop-shadow(0 8px 8px #0d121188); }
+.camp-postcard-preview__tent::before { position: absolute; inset: 4px; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #d09a70; content: ''; }
+.camp-postcard-preview__tent i { position: absolute; z-index: 1; bottom: 0; left: 40%; width: 25%; height: 48%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #342b27; }
+.camp-postcard-preview__seal { position: absolute; top: .8rem; right: .8rem; display: grid; width: clamp(2rem, 4vw, 2.8rem); aspect-ratio: 1; place-items: center; border: 1px solid #ed9b8eaa; color: #ed9b8e; font: 1.35rem 'Yuji Syuku', serif; transform: rotate(4deg); }
+.camp-postcard-preview__meta { position: absolute; z-index: 6; right: 20%; bottom: 0; left: 0; display: grid; gap: .22rem; max-width: 82%; padding: clamp(.8rem, 2.3vw, 1.45rem) clamp(1rem, 2.8vw, 1.8rem); color: #f1eee8; background: linear-gradient(90deg, #111817d9 0%, #111817a6 74%, transparent 100%); text-shadow: 0 2px 10px #101312a8; }
+.camp-postcard-preview__meta > span:first-child { color: #f0b6a4; font: 600 clamp(.52rem, .9vw, .65rem) var(--font-mono); letter-spacing: .11em; }
+.camp-postcard-preview__meta strong { max-width: 100%; font: 750 clamp(1.05rem, 1.75vw, 1.55rem)/1.2 var(--font-heading); overflow-wrap: anywhere; }
+.camp-postcard-preview__meta > span:nth-child(3) { color: #e0ddd4; font: 500 clamp(.55rem, 1vw, .68rem) var(--font-mono); }
+.camp-postcard-preview__meta > div { display: flex; align-items: baseline; gap: .6rem; margin-top: .25rem; }
+.camp-postcard-preview__meta b { font: 700 clamp(1.8rem, 4vw, 3.2rem)/1 var(--font-heading); letter-spacing: -.06em; }
+.camp-postcard-preview__meta > div span { color: #f1d7c9; font-size: clamp(.62rem, 1.1vw, .78rem); }
+@media (max-width: 760px) { .camp-postcard-preview { aspect-ratio: 1.72 / 1; } }
+@media (max-width: 480px) { .camp-postcard-preview { min-height: 220px; aspect-ratio: auto; }.camp-postcard-preview__meta { right: 5%; max-width: 95%; }.camp-postcard-preview__edition { top: 1rem; left: 1rem; }.camp-postcard-preview > small { right: 1rem; font-size: .43rem; } }

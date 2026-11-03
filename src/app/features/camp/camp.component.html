@@ -7,7 +7,10 @@
 
   <section class="camp-scene" [class.camp-scene--rain]="weatherVisual() === 'rain'"
     [class.camp-scene--snow]="weatherVisual() === 'snow'" [class.camp-scene--cloudy]="weatherVisual() === 'cloudy'"
-    [class.camp-scene--storm]="weatherVisual() === 'storm'" role="img" [attr.aria-label]="'CAMP.SCENE_LABEL' | transloco">
+    [class.camp-scene--storm]="weatherVisual() === 'storm'"
+    [class.camp-scene--dawn]="timeOfDay() === 'dawn'" [class.camp-scene--day]="timeOfDay() === 'day'"
+    [class.camp-scene--sunset]="timeOfDay() === 'sunset'" [class.camp-scene--night]="timeOfDay() === 'night'"
+    role="img" [attr.aria-label]="'CAMP.SCENE_LABEL' | transloco">
     <div class="camp-scene__sky" aria-hidden="true">
       <span class="camp-star camp-star--one"></span><span class="camp-star camp-star--two"></span>
       <span class="camp-star camp-star--three"></span><span class="camp-star camp-star--four"></span>
@@ -34,7 +37,62 @@
         <span>@if (weatherLoading()) { {{ 'CAMP.WEATHER_LOADING' | transloco }} } @else if (weather(); as current) { {{ current.temperature }} °C · {{ weatherConditionKey() | transloco }} }</span>
       </div>
     </div>
-    <span class="camp-scene__kanji" aria-hidden="true">夜</span>
+    <span class="camp-scene__kanji" aria-hidden="true">{{ timeOfDay() === 'dawn' ? '暁' : timeOfDay() === 'day' ? '昼' : timeOfDay() === 'sunset' ? '夕' : '夜' }}</span>
+  </section>
+
+  <section class="camp-postcard camp-panel" aria-labelledby="camp-postcard-title">
+    <div class="camp-postcard__copy">
+      <span class="camp-kicker">{{ 'CAMP.POSTCARD_KICKER' | transloco }} · 旅の記録</span>
+      <h2 id="camp-postcard-title">{{ 'CAMP.POSTCARD_TITLE' | transloco }}</h2>
+      <p>{{ 'CAMP.POSTCARD_DESCRIPTION' | transloco }}</p>
+      <div class="camp-postcard__actions">
+        <button type="button" class="camp-postcard__button camp-postcard__button--primary"
+          (click)="downloadPostcard()" [disabled]="!weather() || weatherLoading()">
+          <span aria-hidden="true">↓</span>{{ 'CAMP.POSTCARD_SAVE' | transloco }}
+        </button>
+        <button type="button" class="camp-postcard__button" (click)="sharePostcard()"
+          [disabled]="!weather() || weatherLoading()">
+          <span aria-hidden="true">↗</span>{{ 'CAMP.POSTCARD_SHARE' | transloco }}
+        </button>
+      </div>
+      @if (postcardFeedbackKey(); as feedback) {
+        <p class="camp-postcard__feedback" role="status">{{ feedback | transloco }}</p>
+      }
+    </div>
+    @if (weather(); as current) {
+      <article class="camp-postcard-preview" [class.camp-postcard-preview--dawn]="timeOfDay() === 'dawn'"
+        [class.camp-postcard-preview--day]="timeOfDay() === 'day'" [class.camp-postcard-preview--sunset]="timeOfDay() === 'sunset'"
+        [class.camp-postcard-preview--night]="timeOfDay() === 'night'" [class.camp-postcard-preview--rain]="weatherVisual() === 'rain'"
+        [class.camp-postcard-preview--snow]="weatherVisual() === 'snow'" [class.camp-postcard-preview--cloudy]="weatherVisual() === 'cloudy'"
+        [class.camp-postcard-preview--storm]="weatherVisual() === 'storm'">
+        <div class="camp-postcard-preview__landscape" aria-hidden="true">
+          <span class="camp-postcard-preview__stars camp-postcard-preview__stars--one"></span>
+          <span class="camp-postcard-preview__stars camp-postcard-preview__stars--two"></span>
+          <span class="camp-postcard-preview__stars camp-postcard-preview__stars--three"></span>
+          <span class="camp-postcard-preview__stars camp-postcard-preview__stars--four"></span>
+          <span class="camp-postcard-preview__sun"></span>
+          <span class="camp-postcard-preview__mountain camp-postcard-preview__mountain--back"></span>
+          <span class="camp-postcard-preview__mountain camp-postcard-preview__mountain--front"></span>
+          <span class="camp-postcard-preview__lake"></span>
+          <span class="camp-postcard-preview__pine camp-postcard-preview__pine--one"></span>
+          <span class="camp-postcard-preview__pine camp-postcard-preview__pine--two"></span>
+          <span class="camp-postcard-preview__pine camp-postcard-preview__pine--three"></span>
+          <span class="camp-postcard-preview__tent"><i></i></span>
+          <span class="camp-postcard-preview__fire"><i></i><b></b></span>
+          <span class="camp-postcard-preview__weather" aria-hidden="true"></span>
+          <span class="camp-postcard-preview__grain"></span>
+        </div>
+        <span class="camp-postcard-preview__seal" aria-hidden="true">旅</span>
+        <span class="camp-postcard-preview__edition" aria-hidden="true">旅の記録 · {{ localTime() }}</span>
+        <div class="camp-postcard-preview__meta">
+          <span>{{ 'CAMP.POSTCARD_KICKER' | transloco }}</span>
+          <strong>{{ displayLocation() }}</strong>
+          <span>{{ localTime() }} · {{ 'CAMP.LOCAL_TIME' | transloco }}</span>
+          <div><b>{{ current.temperature }}°</b><span>{{ weatherConditionKey() | transloco }}</span></div>
+        </div>
+        <small><span>ERICKG.DEV</span><span>FIELD NOTE · {{ timeOfDay() | uppercase }}</span></small>
+      </article>
+    }
   </section>
 
   <section class="camp-weather camp-panel" aria-labelledby="camp-weather-title">
@@ -87,6 +145,7 @@
             <span class="camp-track__mark" aria-hidden="true">{{ selectedTrack().id === track.id ? '●' : '○' }}</span>
           </button>
         }
+        <p class="camp-track-note">{{ selectedTrack().noteKey | transloco }}</p>
       </div>
       <div class="camp-embed">
         <span class="camp-embed__label"><i aria-hidden="true"></i>{{ 'CAMP.SPOTIFY_LABEL' | transloco }}</span>

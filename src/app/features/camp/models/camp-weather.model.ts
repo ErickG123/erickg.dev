@@ -22,3 +22,4 @@ export interface ReverseGeocodeResponse {
 }
 
 export type CampWeatherSource = 'barra-bonita' | 'local';
+export type CampDayPhase = 'dawn' | 'day' | 'sunset' | 'night';
