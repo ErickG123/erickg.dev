@@ -24,8 +24,7 @@ html {
 
 body {
   background-color: var(--manga-paper);
-  background-image: radial-gradient(color-mix(in srgb, var(--manga-ink) 5%, transparent) .55px, transparent .55px);
-  background-size: 5px 5px;
+  background-image: radial-gradient(ellipse at 82% 8%, color-mix(in srgb, var(--manga-vermilion) 6%, transparent), transparent 34rem);
   color: var(--manga-ink);
   font-family: var(--font-body);
   font-size: var(--text-body-md);
@@ -56,12 +55,12 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 
 ::-webkit-scrollbar-track {
   background-color: var(--manga-paper);
-  border-left: 1.5px solid var(--manga-border-subtle);
+  border-left: 1px solid var(--manga-border-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--manga-ink);
-  border: 1.5px solid var(--manga-paper);
+  border: 2px solid var(--manga-paper);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -137,14 +136,15 @@ html, body { transition: background-color .25s ease, color .25s ease; }
 .pb-2 { padding-bottom: var(--space-2); }
 .container { width: 100%; max-width: var(--content-max-xl); margin: 0 auto; padding: 0 var(--space-4); }
 
-main.route-container { padding: 1rem clamp(1rem, 4vw, 3rem) 3rem !important; }
+main.route-container { padding: 1.5rem clamp(1rem, 4vw, 3rem) 4rem !important; }
 
 .manga-container { max-width: 1320px; margin-inline: auto; padding-top: 1rem !important; }
 
 .manga-panel {
   border-width: 1px !important;
-  box-shadow: 0 10px 30px rgba(31, 27, 22, .055) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .12) !important;
   background-color: color-mix(in srgb, var(--manga-surface) 94%, transparent);
+  border-radius: 10px;
 }
 
 .manga-panel--dark { background: var(--manga-surface-dark) !important; }
@@ -156,8 +156,10 @@ footer.manga-panel {
   color: var(--manga-gray);
 }
 
+html[data-theme='light'] .manga-panel { box-shadow: 0 10px 30px rgba(31, 27, 22, .055) !important; }
+
 @media (max-width: 640px) {
-  main.route-container { padding: .5rem .85rem 2rem !important; }
+  main.route-container { padding: .75rem .85rem 2.5rem !important; }
   .manga-container { padding-inline: .25rem; }
   .manga-panel { padding: 1.1rem !important; }
   .manga-grid { gap: 1rem; }

@@ -49,7 +49,7 @@ export class App implements OnInit {
   ngOnInit() {
     this.seo.setSocialMediaTags(
       'ERICK GABRIEL // Software Engineer Portfolio',
-      'Portfólio editorial em formato de mangá digital sobre engenharia de software, arquitetura de sistemas e interfaces reativas de alto desempenho.',
+      'Portfólio de Erick Gabriel, desenvolvedor full-stack. Projetos, trajetória profissional e engenharia de software com identidade visual inspirada em pôsteres japoneses minimalistas.',
       '/assets/images/social/og-image.svg',
       'https://erickg.dev'
     );

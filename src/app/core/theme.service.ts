@@ -5,11 +5,12 @@ import { DOCUMENT } from '@angular/common';
   providedIn: 'root'
 })
 export class ThemeService {
-  readonly isDarkMode = signal<boolean>(false);
+  readonly isDarkMode = signal<boolean>(true);
 
   constructor(@Inject(DOCUMENT) private document: Document) {
     try {
-      this.isDarkMode.set(this.document.defaultView?.localStorage.getItem('portfolio-theme') === 'dark');
+      const savedTheme = this.document.defaultView?.localStorage.getItem('portfolio-theme');
+      this.isDarkMode.set(savedTheme == null || savedTheme === 'dark');
     } catch { /* Storage may be unavailable in private browsing. */ }
     this.applyTheme();
   }

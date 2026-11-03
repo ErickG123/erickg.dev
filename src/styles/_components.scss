@@ -21,17 +21,17 @@
 }
 
 .manga-panel--dark {
-  background-color: var(--manga-ink);
-  color: var(--manga-text-light);
-  border-color: var(--manga-ink);
-  box-shadow: 4px 4px 0px var(--manga-gray);
+  background-color: var(--manga-surface-dark);
+  color: var(--manga-ink);
+  border-color: var(--manga-border-subtle);
+  box-shadow: var(--shadow-sm);
 
   p {
-    color: var(--manga-text-light);
+    color: var(--manga-gray);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: #FFFFFF;
+    color: var(--manga-ink);
   }
 }
 
@@ -119,10 +119,10 @@
 .manga-btn--accent {
   background-color: var(--manga-vermilion);
   color: #FFFFFF;
-  border-color: var(--manga-ink);
+  border-color: var(--manga-vermilion);
 
   &:hover:not(:disabled) {
-    background-color: #e02f37;
+    background-color: color-mix(in srgb, var(--manga-vermilion) 88%, var(--manga-ink));
     box-shadow: var(--shadow-md);
   }
 }

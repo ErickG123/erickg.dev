@@ -5,27 +5,27 @@
 
 :root {
   /* --- PALETA PRINCIPAL --- */
-  --manga-ink: #202522;
-  --manga-paper: #f4f3ee;
-  --manga-vermilion: #bd5b4d;
-  --manga-vermilion-text: #984338;
-  --manga-gray: #646c66;
+  --manga-ink: #f0eee8;
+  --manga-paper: #171816;
+  --manga-vermilion: #d97868;
+  --manga-vermilion-text: #ed9b8e;
+  --manga-gray: #aaa9a2;
 
   /* --- CORES SEMÂNTICAS E DE SUPERFÍCIE --- */
-  --manga-surface: #fbfaf6;
-  --manga-surface-muted: #e9ebe5;
-  --manga-surface-dark: #202522;
-  --manga-text-light: #f4f3ee;
+  --manga-surface: #20211e;
+  --manga-surface-muted: #292a26;
+  --manga-surface-dark: #111210;
+  --manga-text-light: #f0eee8;
   
-  --manga-border-dark: #111111;    /* Borda principal de quadrinho */
-  --manga-border-subtle: #d6d9d1;
-  --manga-border-red: #D9363E;     /* Borda com destaque de ação */
+  --manga-border-dark: #41423d;
+  --manga-border-subtle: #393a35;
+  --manga-border-red: #d97868;
 
   /* --- FEEDBACK E STATUS --- */
-  --manga-success: #1E824C;        /* Verde selo de aprovação */
-  --manga-warning: #D35400;        /* Âmbar de alerta editorial */
-  --manga-error: #D9363E;          /* Vermilion de erro */
-  --manga-info: #2980B9;           /* Azul de anotação de margem */
+  --manga-success: #75a982;
+  --manga-warning: #d9a66d;
+  --manga-error: #d97868;
+  --manga-info: #86a9bd;
 
   /* --- TIPOGRAFIA --- */
   --font-display: 'Anton', Impact, 'Arial Black', sans-serif;
@@ -66,10 +66,10 @@
   --content-max-2xl: 1440px;
 
   /* --- BORDAS E SARJETAS --- */
-  --border-thick: 4px solid var(--manga-ink);
-  --border-medium: 2.5px solid var(--manga-ink);
-  --border-thin: 1.5px solid var(--manga-ink);
-  --border-dashed: 2px dashed var(--manga-ink);
+  --border-thick: 2px solid var(--manga-border-dark);
+  --border-medium: 1px solid var(--manga-border-subtle);
+  --border-thin: 1px solid var(--manga-border-subtle);
+  --border-dashed: 1px dashed var(--manga-border-dark);
   --border-subtle: 1px solid var(--manga-border-subtle);
 
   --radius-none: 0px;
@@ -78,11 +78,11 @@
 
   /* --- SOMBRAS SÓLIDAS DE QUADRINHO (HARD OFFSET) --- */
   --shadow-flat: none;
-  --shadow-sm: 0 3px 12px rgba(27, 37, 32, .06);
-  --shadow-md: 0 10px 30px rgba(27, 37, 32, .075);
-  --shadow-lg: 0 18px 44px rgba(27, 37, 32, .12);
-  --shadow-red: 4px 4px 0px var(--manga-vermilion);
-  --shadow-white: 4px 4px 0px #FFFFFF;
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, .16);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, .22);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, .28);
+  --shadow-red: 0 8px 24px color-mix(in srgb, var(--manga-vermilion) 18%, transparent);
+  --shadow-white: 0 8px 24px rgba(0, 0, 0, .2);
 
   /* --- CAMADAS (Z-INDEX) --- */
   --z-base: 1;
@@ -143,19 +143,19 @@
   --font-pixel: 'IBM Plex Mono', monospace;
 }
 
-html[data-theme='dark'] {
-  --manga-ink: #f2eee5;
-  --manga-paper: #171815;
-  --manga-vermilion: #e47668;
-  --manga-vermilion-text: #f09b8e;
-  --manga-gray: #b7b2a8;
-  --manga-surface: #22231f;
-  --manga-surface-muted: #2d2e29;
-  --manga-surface-dark: #10110f;
-  --manga-text-light: #f2eee5;
-  --manga-border-dark: #e6e0d5;
-  --manga-border-subtle: #41423b;
-  --manga-border-red: #e47668;
+html[data-theme='light'] {
+  --manga-ink: #20211e;
+  --manga-paper: #f4f1e9;
+  --manga-vermilion: #b95d4e;
+  --manga-vermilion-text: #914337;
+  --manga-gray: #666761;
+  --manga-surface: #fbf9f3;
+  --manga-surface-muted: #ebe8df;
+  --manga-surface-dark: #e4e0d7;
+  --manga-text-light: #20211e;
+  --manga-border-dark: #bcbab2;
+  --manga-border-subtle: #d9d6ce;
+  --manga-border-red: #b95d4e;
   --gba-bg: var(--manga-paper);
   --gba-card-bg: var(--manga-surface);
   --gba-border-dark: var(--manga-ink);

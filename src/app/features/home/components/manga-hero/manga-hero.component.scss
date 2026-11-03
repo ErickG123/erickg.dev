@@ -3,22 +3,33 @@
   position: relative;
   display: grid;
   align-content: center;
-  min-height: 520px;
+  min-height: 540px;
   padding: clamp(1.35rem, 5vw, 4.5rem);
   border: 1px solid var(--manga-border-subtle);
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--manga-surface);
   overflow: hidden;
+  isolation: isolate;
 }
 .manga-hero-wrapper::after {
-  content: '和';
+  content: '';
   position: absolute;
-  right: 4%; bottom: -18%;
-  color: color-mix(in srgb, var(--manga-vermilion) 7%, transparent);
-  font: clamp(14rem, 35vw, 34rem)/1 serif;
+  z-index: 0;
+  right: 6%; top: 46%;
+  width: clamp(11rem, 28vw, 22rem);
+  height: .75rem;
+  border-radius: 70% 25% 60% 35%;
+  background: var(--manga-vermilion);
+  clip-path: polygon(0 29%, 97% 0, 100% 54%, 5% 100%);
+  opacity: .65;
+  transform: rotate(-13deg) scaleX(.15);
+  transform-origin: left center;
+  animation: brush-mark-in .9s .18s var(--ease-editorial) forwards;
   pointer-events: none;
 }
-.hero-meta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--manga-border-subtle); padding-bottom: 1rem; }
+.hero-kanji { position: absolute; z-index: 0; right: 7%; top: 10%; color: color-mix(in srgb, var(--manga-vermilion) 11%, transparent); font: clamp(12rem, 25vw, 23rem)/.9 'Yuji Syuku', serif; transform: rotate(7deg); pointer-events: none; user-select: none; }
+@keyframes brush-mark-in { to { transform: rotate(-13deg) scaleX(1); } }
+.hero-meta { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--manga-border-subtle); padding-bottom: 1rem; }
 .hero-kicker { color: var(--manga-vermilion-text); font: 700 .72rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
 .hero-location { color: var(--manga-gray); font: 500 .72rem var(--font-mono); letter-spacing: .03em; }
 .hero-author { color: var(--manga-vermilion-text); font: 650 .78rem var(--font-mono); letter-spacing: .035em; }
@@ -32,7 +43,7 @@
 .hero-text-column .manga-btn { min-height: 2.9rem; padding-inline: 1.2rem; }
 .hero-text-column > .manga-flex:last-child { margin-top: .3rem; }
 .hero-image-column { position: relative; z-index: 1; margin-top: 0; }
-.hero-image-frame { width: min(100%, 340px); margin-inline: auto; border-radius: 46% 46% 8px 8px; overflow: hidden; background: var(--manga-surface-muted); box-shadow: 0 18px 55px rgba(25, 34, 28, .13); }
+.hero-image-frame { width: min(100%, 340px); margin-inline: auto; border-radius: 48% 48% 10px 10px; overflow: hidden; background: var(--manga-surface-muted); box-shadow: 0 18px 55px rgba(0, 0, 0, .26); }
 .hero-image-frame ::ng-deep .manga-image-container { border: 0; border-radius: inherit; box-shadow: none; }
 .hero-image-frame ::ng-deep .manga-image-element { object-position: center 25%; }
 @media (max-width: 767px) {
@@ -43,6 +54,9 @@
   .hero-tagline { max-width: 10ch; }
   .hero-image-column { margin-top: 0; }
   .hero-image-frame { width: min(76vw, 290px); }
+  .hero-kanji { right: 1%; top: 22%; font-size: clamp(10rem, 42vw, 16rem); }
+  .manga-hero-wrapper::after { right: 2%; top: 52%; width: 9rem; }
   .hero-text-column > .manga-flex:last-child { align-items: stretch; }
   .hero-text-column > .manga-flex:last-child .manga-btn { flex: 1 1 12rem; white-space: normal; text-align: center; }
 }
+@media (prefers-reduced-motion: reduce) { .manga-hero-wrapper::after { animation: none; transform: rotate(-13deg); } }

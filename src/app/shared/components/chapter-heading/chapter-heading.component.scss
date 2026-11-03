@@ -8,6 +8,9 @@
   animation: ink-draw .6s var(--ease-editorial) both;
 }
 
+.chapter-header .gutter-divider { position: relative; height: 1px; background: var(--manga-border-subtle); }
+.chapter-header .gutter-divider::after { position: absolute; inset: -1px auto auto 0; width: clamp(2.5rem, 7vw, 5rem); height: 3px; content: ''; background: var(--manga-vermilion); clip-path: polygon(0 35%, 100% 0, 96% 68%, 3% 100%); }
+
 @keyframes ink-draw {
   from { transform: scaleX(.02); opacity: .45; }
   to { transform: scaleX(1); opacity: 1; }
