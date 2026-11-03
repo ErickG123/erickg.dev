@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CASE_STUDIES_DATA } from '../../core/data/case-studies.data';
 import { CaseStudy, CaseStudySection } from '../../core/models/case-study.model';
 import { SeoService } from '../../core/seo.service';
-import { GameStateService } from '../../core/state/game-state.service';
+import { LanguageService } from '../../core/language.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
@@ -16,7 +16,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 export class CaseStudyDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private seo = inject(SeoService);
-  currentLang = inject(GameStateService).currentLang;
+  currentLang = inject(LanguageService).currentLang;
 
   readonly architectureLayers = [
     {

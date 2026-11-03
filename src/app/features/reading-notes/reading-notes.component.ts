@@ -2,7 +2,7 @@ import { Component, HostListener, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { SeoService } from '../../core/seo.service';
-import { GameStateService } from '../../core/state/game-state.service';
+import { LanguageService } from '../../core/language.service';
 import type { ReadingEntry } from './models/reading-entry.model';
 
 @Component({
@@ -13,7 +13,7 @@ import type { ReadingEntry } from './models/reading-entry.model';
 })
 export class ReadingNotesComponent {
   private readonly seo = inject(SeoService);
-  readonly currentLang = inject(GameStateService).currentLang;
+  readonly currentLang = inject(LanguageService).currentLang;
 
   readonly entries: ReadingEntry[] = [
     {

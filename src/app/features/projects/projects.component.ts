@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { GameStateService } from '../../core/state/game-state.service';
+import { LanguageService } from '../../core/language.service';
 import { FEATURED_PROJECTS_DATA } from '../../core/data/portfolio.data';
 import { MangaProjectCardComponent } from '../../shared/components/manga-project-card/manga-project-card.component';
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -14,5 +14,5 @@ import { TranslocoPipe } from '@jsverse/transloco';
 export class ProjectsComponent {
   readonly projects = FEATURED_PROJECTS_DATA;
   readonly posterGlossary = FEATURED_PROJECTS_DATA.filter(project => !!project.poster);
-  readonly currentLang = inject(GameStateService).currentLang;
+  readonly currentLang = inject(LanguageService).currentLang;
 }

@@ -1,0 +1,31 @@
+:host { display: block; width: 100%; }
+.camp-page { width: min(100%, 1100px); margin: 0 auto; padding: clamp(.5rem, 2vw, 1.5rem) 0 clamp(3rem, 8vw, 6rem); color: var(--manga-ink); }
+.camp-intro { max-width: 48rem; margin: 0 auto clamp(2rem, 5vw, 3.5rem); text-align: center; }
+.camp-kicker { display: block; color: var(--manga-vermilion-text); font: 600 .7rem/1.5 var(--font-mono); letter-spacing: .12em; }
+.camp-intro h1 { margin: .65rem 0 .8rem; font: 800 clamp(2.3rem, 6vw, 4.6rem)/.98 var(--font-heading); letter-spacing: -.055em; }
+.camp-intro > p, .camp-section-heading > p, .camp-keyboard__copy > p { max-width: 43rem; margin: 0 auto; color: var(--manga-gray); font-size: clamp(.92rem, 1.7vw, 1.05rem); line-height: 1.75; }
+.camp-panel { padding: clamp(1.1rem, 3.5vw, 2.2rem); border: 1px solid var(--manga-border-subtle); background: var(--manga-surface); }
+.camp-section-heading { max-width: 46rem; margin-bottom: 1.5rem; }
+.camp-section-heading h2, .camp-keyboard__copy h2 { margin: .45rem 0 .55rem; font: 750 clamp(1.45rem, 3vw, 2rem)/1.15 var(--font-heading); letter-spacing: -.035em; }
+.camp-section-heading > p, .camp-keyboard__copy > p { margin-left: 0; font-size: .9rem; }
+.camp-music { margin-bottom: 1rem; }
+.camp-music__layout { display: grid; grid-template-columns: minmax(210px, .7fr) minmax(0, 1.3fr); gap: clamp(1rem, 3vw, 2rem); align-items: start; }
+.camp-track-picker { display: grid; gap: .6rem; }
+.camp-track { display: grid; grid-template-columns: 2rem 1fr auto; align-items: center; gap: .7rem; min-height: 3.5rem; padding: .75rem .85rem; border: 1px solid var(--manga-border-subtle); background: transparent; color: var(--manga-ink); text-align: left; cursor: pointer; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+.camp-track:hover { border-color: var(--manga-vermilion); transform: translateX(2px); }
+.camp-track.is-selected { border-color: var(--manga-vermilion); background: color-mix(in srgb, var(--manga-vermilion) 8%, var(--manga-surface)); }
+.camp-track__number { color: var(--manga-vermilion-text); font: 600 .72rem var(--font-mono); }
+.camp-track__title { font-weight: 650; font-size: .84rem; }
+.camp-track__mark { color: var(--manga-vermilion-text); font-size: .7rem; }
+.camp-embed { min-width: 0; }
+.camp-embed__label { display: flex; align-items: center; gap: .5rem; margin-bottom: .6rem; color: var(--manga-gray); font: 600 .65rem var(--font-mono); letter-spacing: .06em; }
+.camp-embed__label i { width: .45rem; height: .45rem; border-radius: 50%; background: #1ed760; }
+.camp-embed iframe { display: block; max-width: 100%; border: 0; border-radius: 8px; background: var(--manga-surface-muted); }
+.camp-spotify-link { display: inline-block; margin-top: .65rem; color: var(--manga-vermilion-text); font: 600 .72rem var(--font-mono); text-decoration: none; }
+.camp-spotify-link:hover { text-decoration: underline; }
+.camp-footnote { display: flex; justify-content: center; align-items: center; gap: .7rem; margin: 1.5rem auto 0; color: var(--manga-gray); text-align: center; }
+.camp-footnote span { color: var(--manga-vermilion-text); font: 1.25rem 'Yuji Syuku', serif; }
+.camp-footnote p { margin: 0; font-size: .76rem; }
+@media (max-width: 760px) { .camp-music__layout { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .camp-embed iframe { height: 352px; } }
+@media (prefers-reduced-motion: reduce) { .camp-track { transition: none; } }

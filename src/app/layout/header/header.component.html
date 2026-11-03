@@ -28,10 +28,6 @@
     <button class="gba-btn" (click)="toggleLanguage()" [attr.aria-label]="(currentLang() === 'pt' ? 'ACTIONS.SWITCH_TO_ENGLISH' : 'ACTIONS.SWITCH_TO_PORTUGUESE') | transloco" type="button">
       {{ currentLang() === 'pt' ? 'EN' : 'PT' }}
     </button>
-    <button class="sound-toggle" [class.is-playing]="ambientAudio.isPlaying()" (click)="ambientAudio.toggle()" [attr.aria-pressed]="ambientAudio.isPlaying()" [attr.aria-label]="(ambientAudio.isPlaying() ? 'ACTIONS.SOUND_OFF' : 'ACTIONS.SOUND_ON') | transloco" type="button">
-      <span class="sound-toggle-icon" aria-hidden="true">{{ ambientAudio.isPlaying() ? '◖' : '♫' }}</span>
-      <span class="sound-toggle-label">{{ currentLang() === 'pt' ? (ambientAudio.isPlaying() ? 'Som ativo' : 'Som') : (ambientAudio.isPlaying() ? 'Sound on' : 'Sound') }}</span>
-    </button>
     <button class="gba-btn" (click)="toggleTheme()" type="button" [attr.aria-label]="(themeService.isDarkMode() ? 'ACTIONS.SWITCH_TO_LIGHT_THEME' : 'ACTIONS.SWITCH_TO_DARK_THEME') | transloco">
       {{ themeService.isDarkMode() ? '☼' : '☾' }}
     </button>
@@ -39,6 +35,7 @@
     <a routerLink="/about" class="nav-link">{{ 'NAV.ABOUT' | transloco }}</a>
     <a routerLink="/projects" class="nav-link">{{ 'NAV.PROJECTS' | transloco }}</a>
     <a routerLink="/reading-notes" class="nav-link">{{ 'NAV.READING_NOTE' | transloco }}</a>
+    <a routerLink="/camp" class="nav-link">{{ 'NAV.CAMP' | transloco }}</a>
     <a routerLink="/log" class="nav-link">{{ 'NAV.JOURNAL' | transloco }}</a>
     <a routerLink="/contact" class="nav-link nav-contact">{{ 'NAV.CONTACT' | transloco }} ↗</a>
   </nav>

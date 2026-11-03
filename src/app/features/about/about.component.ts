@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AUTHOR_DATA } from '../../core/data/portfolio.data';
 import { inject } from '@angular/core';
-import { GameStateService } from '../../core/state/game-state.service';
+import { LanguageService } from '../../core/language.service';
 
 @Component({
   selector: 'app-about',
@@ -11,5 +11,5 @@ import { GameStateService } from '../../core/state/game-state.service';
 })
 export class AboutComponent {
   readonly author = AUTHOR_DATA;
-  readonly currentLang = inject(GameStateService).currentLang;
+  readonly currentLang = inject(LanguageService).currentLang;
 }

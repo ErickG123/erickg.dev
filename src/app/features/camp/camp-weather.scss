@@ -1,0 +1,18 @@
+.camp-weather { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; margin: -2.5rem 0 clamp(2rem, 5vw, 3.5rem); }
+.camp-weather__summary { display: flex; align-items: center; gap: 1rem; min-width: 0; }
+.camp-weather__icon { display: grid; flex: 0 0 auto; place-items: center; width: 3.3rem; height: 3.3rem; border: 1px solid var(--manga-vermilion); border-radius: 50%; color: var(--manga-vermilion-text); font-size: 1.65rem; }
+.camp-weather__details { min-width: 0; }
+.camp-weather__eyebrow { color: var(--manga-vermilion-text); font: 600 .62rem var(--font-mono); letter-spacing: .1em; }
+.camp-weather__details h2 { margin: .18rem 0; font: 700 1.08rem var(--font-heading); }
+.camp-weather__details p { margin: 0; color: var(--manga-gray); font-size: .78rem; }
+.camp-weather__localtime { display: block; margin-top: .25rem; color: var(--manga-gray); font: 500 .62rem var(--font-mono); }
+.camp-weather__temperature { flex: 0 0 auto; color: var(--manga-ink); font: 700 clamp(2rem, 4vw, 2.8rem)/1 var(--font-heading); letter-spacing: -.06em; }
+.camp-weather__temperature span { margin-left: .12rem; color: var(--manga-gray); font-size: .55em; vertical-align: top; }
+.camp-weather__action { display: grid; justify-items: end; gap: .5rem; }
+.camp-location-button { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem .85rem; border: 1px solid var(--manga-border-subtle); background: transparent; color: var(--manga-ink); font: 600 .7rem var(--font-mono); cursor: pointer; }
+.camp-location-button:hover:not(:disabled) { border-color: var(--manga-vermilion); color: var(--manga-vermilion-text); }
+.camp-location-button:disabled { cursor: wait; opacity: .6; }
+.camp-weather__action small { max-width: 23rem; color: var(--manga-gray); font-size: .62rem; line-height: 1.5; text-align: right; }
+.camp-weather__action small a { color: var(--manga-vermilion-text); }
+.camp-weather__message { max-width: 24rem; margin: 0; color: var(--manga-vermilion-text); font-size: .7rem; text-align: right; }
+@media (max-width: 620px) { .camp-weather { align-items: flex-start; flex-direction: column; margin-top: -1.5rem; }.camp-weather__action { justify-items: start; }.camp-weather__action small, .camp-weather__message { text-align: left; } }

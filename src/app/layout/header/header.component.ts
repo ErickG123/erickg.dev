@@ -1,8 +1,7 @@
 import { Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { GameStateService } from '../../core/state/game-state.service';
+import { LanguageService } from '../../core/language.service';
 import { ThemeService } from '../../core/theme.service';
-import { AmbientAudioService } from '../../core/ambient-audio.service';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 
 @Component({
@@ -14,24 +13,23 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 })
 export class HeaderComponent {
   transloco = inject(TranslocoService);
-  gameState = inject(GameStateService);
+  languageService = inject(LanguageService);
   themeService = inject(ThemeService);
-  ambientAudio = inject(AmbientAudioService);
   private elementRef = inject(ElementRef<HTMLElement>);
   
-  currentLang = this.gameState.currentLang;
+  currentLang = this.languageService.currentLang;
   personalNoteOpen = signal(false);
 
   constructor() {
     let language = 'pt';
     try { language = localStorage.getItem('portfolio-language') === 'en' ? 'en' : 'pt'; } catch { /* Use Portuguese by default. */ }
     this.transloco.setActiveLang(language);
-    this.gameState.setLanguage(language);
+    this.languageService.setLanguage(language);
   }
 
   toggleLanguage() {
     const nextLang = this.currentLang() === 'en' ? 'pt' : 'en';
-    this.gameState.setLanguage(nextLang);
+    this.languageService.setLanguage(nextLang);
     this.transloco.setActiveLang(nextLang);
   }
 

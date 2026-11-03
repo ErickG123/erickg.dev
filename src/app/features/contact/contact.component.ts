@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AUTHOR_DATA } from '../../core/data/portfolio.data';
-import { GameStateService } from '../../core/state/game-state.service';
+import { LanguageService } from '../../core/language.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
@@ -12,5 +12,5 @@ import { TranslocoPipe } from '@jsverse/transloco';
 })
 export class ContactComponent {
   readonly author = AUTHOR_DATA;
-  readonly currentLang = inject(GameStateService).currentLang;
+  readonly currentLang = inject(LanguageService).currentLang;
 }

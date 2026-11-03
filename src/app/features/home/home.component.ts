@@ -14,7 +14,7 @@ import { MangaHeroComponent } from './components/manga-hero/manga-hero.component
 import { MangaImageComponent } from '../../shared/components/manga-image/manga-image.component';
 import { ReaderStateService, ChapterSectionId } from '../../core/state/reader-state.service';
 import { AUTHOR_DATA, CAREER_HISTORY, FEATURED_PROJECTS_DATA, HERO_DATA } from '../../core/data/portfolio.data';
-import { GameStateService } from '../../core/state/game-state.service';
+import { LanguageService } from '../../core/language.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
@@ -34,7 +34,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 export class HomeComponent implements AfterViewInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   readerState = inject(ReaderStateService);
-  readonly currentLang = inject(GameStateService).currentLang;
+  readonly currentLang = inject(LanguageService).currentLang;
 
   readonly heroData = HERO_DATA;
   readonly author = AUTHOR_DATA;

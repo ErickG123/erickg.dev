@@ -5,7 +5,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { AchievementToastComponent } from './shared/components/achievement-toast/achievement-toast.component';
 import { SeoService } from './core/seo.service';
 import { SwUpdate } from '@angular/service-worker';
-import { GameStateService } from './core/state/game-state.service';
+import { LanguageService } from './core/language.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 export const routeAnimations = trigger('routeAnimations', [
@@ -50,7 +50,7 @@ export class App implements OnInit, AfterViewInit {
   seo = inject(SeoService);
   private readonly router = inject(Router);
   swUpdate = inject(SwUpdate);
-  currentLang = inject(GameStateService).currentLang;
+  currentLang = inject(LanguageService).currentLang;
   currentYear = new Date().getFullYear();
   readingProgress = signal(0);
   inkTransitionVisible = signal(false);

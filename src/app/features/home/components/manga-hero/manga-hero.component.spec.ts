@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
 import { MangaHeroComponent } from './manga-hero.component';
 
 describe('MangaHeroComponent', () => {
@@ -8,7 +9,8 @@ describe('MangaHeroComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MangaHeroComponent]
+      imports: [MangaHeroComponent],
+      providers: [provideRouter([])]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MangaHeroComponent);

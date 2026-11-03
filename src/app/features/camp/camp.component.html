@@ -1,0 +1,127 @@
+<div class="camp-page">
+  <header class="camp-intro">
+    <span class="camp-kicker">{{ 'CAMP.KICKER' | transloco }}</span>
+    <h1>{{ 'CAMP.TITLE' | transloco }}</h1>
+    <p>{{ 'CAMP.INTRO' | transloco }}</p>
+  </header>
+
+  <section class="camp-scene" [class.camp-scene--rain]="weatherVisual() === 'rain'"
+    [class.camp-scene--snow]="weatherVisual() === 'snow'" [class.camp-scene--cloudy]="weatherVisual() === 'cloudy'"
+    [class.camp-scene--storm]="weatherVisual() === 'storm'" role="img" [attr.aria-label]="'CAMP.SCENE_LABEL' | transloco">
+    <div class="camp-scene__sky" aria-hidden="true">
+      <span class="camp-star camp-star--one"></span><span class="camp-star camp-star--two"></span>
+      <span class="camp-star camp-star--three"></span><span class="camp-star camp-star--four"></span>
+      <span class="camp-star camp-star--five"></span><span class="camp-star camp-star--six"></span>
+      <span class="camp-moon"></span>
+      <span class="camp-mountain camp-mountain--back"></span>
+      <span class="camp-mountain camp-mountain--front"></span>
+      <span class="camp-lake"></span>
+      <span class="camp-pine camp-pine--one"></span><span class="camp-pine camp-pine--two"></span>
+      <span class="camp-pine camp-pine--three"></span>
+      <span class="camp-tent"><i></i></span>
+      <span class="camp-fire"><i></i><b></b></span>
+      <span class="camp-rain" aria-hidden="true"></span>
+      <span class="camp-scene__grain"></span>
+    </div>
+    <div class="camp-scene__caption">
+      <span>{{ 'CAMP.LOCAL_TIME' | transloco }} · {{ localTime() }}</span>
+      <div>
+        @if (weatherSource() === 'local' && localityLabel()) {
+          <strong>{{ localityLabel() }}</strong>
+        } @else {
+          <strong>{{ (weatherSource() === 'local' ? 'CAMP.WEATHER_NEARBY' : 'CAMP.WEATHER_BARRA_BONITA') | transloco }}</strong>
+        }
+        <span>@if (weatherLoading()) { {{ 'CAMP.WEATHER_LOADING' | transloco }} } @else if (weather(); as current) { {{ current.temperature }} °C · {{ weatherConditionKey() | transloco }} }</span>
+      </div>
+    </div>
+    <span class="camp-scene__kanji" aria-hidden="true">夜</span>
+  </section>
+
+  <section class="camp-weather camp-panel" aria-labelledby="camp-weather-title">
+    <div class="camp-weather__summary">
+      <span class="camp-weather__icon" aria-hidden="true">{{ weatherIcon() }}</span>
+      <div class="camp-weather__details">
+        <span class="camp-weather__eyebrow">{{ 'CAMP.WEATHER_NOW' | transloco }}</span>
+        @if (weatherSource() === 'local' && localityLabel()) {
+          <h2 id="camp-weather-title">{{ localityLabel() }}</h2>
+        } @else {
+          <h2 id="camp-weather-title">{{ (weatherSource() === 'local' ? 'CAMP.WEATHER_NEARBY' : 'CAMP.WEATHER_BARRA_BONITA') | transloco }}</h2>
+        }
+        @if (weatherLoading()) {
+          <p>{{ 'CAMP.WEATHER_LOADING' | transloco }}</p>
+        } @else if (weather(); as current) {
+          <p>{{ weatherConditionKey() | transloco }} · {{ 'CAMP.WEATHER_FEELS_LIKE' | transloco }} {{ current.feelsLike }} °C</p>
+          <span class="camp-weather__localtime">{{ 'CAMP.LOCAL_TIME' | transloco }} · {{ localTime() }}</span>
+        } @else {
+          <p>{{ 'CAMP.WEATHER_UNAVAILABLE' | transloco }}</p>
+        }
+      </div>
+      @if (weather(); as current) { <strong class="camp-weather__temperature">{{ current.temperature }}<span>°C</span></strong> }
+    </div>
+    <div class="camp-weather__action">
+      <button class="camp-location-button" type="button" (click)="useCurrentLocation()" [disabled]="weatherLoading()">
+        <span aria-hidden="true">⌖</span>{{ 'CAMP.USE_LOCATION' | transloco }}
+      </button>
+      @if (weatherErrorKey(); as errorKey) { <p class="camp-weather__message" role="status">{{ errorKey | transloco }}</p> }
+      <small>{{ 'CAMP.WEATHER_PRIVACY' | transloco }}
+        <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> ·
+        <a href="https://www.bigdatacloud.com/" target="_blank" rel="noopener noreferrer">BigDataCloud</a>
+      </small>
+    </div>
+  </section>
+
+  <section class="camp-music camp-panel" aria-labelledby="camp-music-title">
+    <div class="camp-section-heading">
+      <span class="camp-kicker">{{ 'CAMP.MUSIC_KICKER' | transloco }} · 音楽</span>
+      <h2 id="camp-music-title">{{ 'CAMP.MUSIC_TITLE' | transloco }}</h2>
+      <p>{{ 'CAMP.MUSIC_DESCRIPTION' | transloco }}</p>
+    </div>
+
+    <div class="camp-music__layout">
+      <div class="camp-track-picker" role="group" [attr.aria-label]="'CAMP.MUSIC_TITLE' | transloco">
+        @for (track of tracks; track track.id; let index = $index) {
+          <button class="camp-track" type="button" [class.is-selected]="selectedTrack().id === track.id"
+            [attr.aria-pressed]="selectedTrack().id === track.id" (click)="selectTrack(track)">
+            <span class="camp-track__number">0{{ index + 1 }}</span>
+            <span class="camp-track__title">{{ track.titleKey | transloco }}</span>
+            <span class="camp-track__mark" aria-hidden="true">{{ selectedTrack().id === track.id ? '●' : '○' }}</span>
+          </button>
+        }
+      </div>
+      <div class="camp-embed">
+        <span class="camp-embed__label"><i aria-hidden="true"></i>{{ 'CAMP.SPOTIFY_LABEL' | transloco }}</span>
+        <iframe [src]="safeEmbedUrl()" width="100%" height="352" frameborder="0" allowfullscreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"
+          [title]="selectedTrack().titleKey | transloco"></iframe>
+        <a class="camp-spotify-link" [href]="selectedTrack().spotifyUrl" target="_blank" rel="noopener noreferrer">
+          {{ 'CAMP.OPEN_SPOTIFY' | transloco }} ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="camp-keyboard camp-panel" aria-labelledby="camp-keyboard-title">
+    <div class="camp-keyboard__copy">
+      <span class="camp-kicker">{{ 'CAMP.KEYBOARD_KICKER' | transloco }} · 鍵盤</span>
+      <h2 id="camp-keyboard-title">{{ 'CAMP.KEYBOARD_TITLE' | transloco }}</h2>
+      <p>{{ 'CAMP.KEYBOARD_DESCRIPTION' | transloco }}</p>
+      <p class="camp-keyboard__instruction">{{ 'CAMP.KEYBOARD_INSTRUCTION' | transloco }}</p>
+      <button class="camp-sequence-button" type="button" (click)="toggleSequence()">
+        <span aria-hidden="true">{{ isPlayingSequence() ? '■' : '▶' }}</span>
+        {{ (isPlayingSequence() ? 'CAMP.STOP_MELODY' : 'CAMP.PLAY_MELODY') | transloco }}
+      </button>
+    </div>
+    <div class="camp-keyboard__instrument" role="group" [attr.aria-label]="'CAMP.NOTE_NAMES' | transloco">
+      @for (note of ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C']; track $index; let index = $index) {
+        <button type="button" class="camp-key" [class.is-active]="activeKey() === ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k'][index]"
+          [class.is-octave]="index === 7" (pointerdown)="playKey(index)"
+          [attr.aria-label]="('CAMP.NOTE_NAMES' | transloco).split(', ')[index]">
+          <span class="camp-key__note">{{ note }}</span>
+          <span class="camp-key__shortkey">{{ ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K'][index] }}</span>
+        </button>
+      }
+    </div>
+  </section>
+
+  <footer class="camp-footnote"><span aria-hidden="true">焚き火</span><p>{{ 'CAMP.FOOTNOTE' | transloco }}</p></footer>
+</div>

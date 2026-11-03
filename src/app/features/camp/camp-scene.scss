@@ -1,0 +1,19 @@
+.camp-scene { position: relative; min-height: clamp(270px, 42vw, 455px); overflow: hidden; margin-bottom: clamp(2rem, 5vw, 3.5rem); border: 1px solid var(--manga-border-subtle); background: #171e25; isolation: isolate; }
+.camp-scene__sky { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(180deg, #18212c 0%, #29333a 56%, #51504a 100%); }
+.camp-moon { position: absolute; top: 13%; right: 17%; width: clamp(2.6rem, 6vw, 4.4rem); aspect-ratio: 1; border-radius: 50%; background: #e8d9b7; box-shadow: 0 0 45px 12px #e8d9b72c, 0 0 100px 36px #e8d9b710; }
+.camp-star { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #eadfc4; opacity: .75; animation: star-glow 4s ease-in-out infinite alternate; }
+.camp-star--one { top: 18%; left: 13%; }.camp-star--two { top: 33%; left: 24%; animation-delay: 1s; }.camp-star--three { top: 14%; left: 48%; animation-delay: 2s; }.camp-star--four { top: 25%; right: 39%; animation-delay: 1.5s; }.camp-star--five { top: 43%; right: 12%; animation-delay: .5s; }.camp-star--six { top: 9%; right: 32%; animation-delay: 2.4s; }
+.camp-mountain { position: absolute; right: -5%; bottom: 16%; left: -5%; height: 53%; clip-path: polygon(0 78%, 17% 37%, 27% 64%, 46% 10%, 64% 63%, 76% 30%, 100% 75%, 100% 100%, 0 100%); }
+.camp-mountain--back { background: #303b3c; transform: scale(1.08) translateY(-7%); opacity: .8; }.camp-mountain--front { bottom: 8%; height: 43%; background: #232d2b; clip-path: polygon(0 68%, 15% 45%, 32% 72%, 50% 26%, 70% 73%, 86% 42%, 100% 65%, 100% 100%, 0 100%); }
+.camp-lake { position: absolute; right: 0; bottom: 0; left: 0; height: 27%; background: linear-gradient(180deg, #313f40 0%, #263537 100%); }
+.camp-lake::after { position: absolute; top: 25%; left: 45%; width: 32%; height: 1px; background: #dfcba475; box-shadow: 22px 15px 0 #dfcba43a, -55px 36px 0 #dfcba44c, 76px 50px 0 #dfcba42b; content: ''; }
+.camp-pine { position: absolute; bottom: 9%; width: 0; height: 0; border-right: clamp(2.5rem, 5vw, 4.3rem) solid transparent; border-bottom: clamp(7rem, 14vw, 11rem) solid #192321; border-left: clamp(2.5rem, 5vw, 4.3rem) solid transparent; filter: drop-shadow(0 0 1px #121815); }
+.camp-pine::after { position: absolute; top: clamp(3rem, 6vw, 5rem); left: clamp(-.55rem, -1vw, -.35rem); width: clamp(1rem, 2vw, 1.6rem); height: clamp(3.5rem, 8vw, 6rem); background: #231f1b; content: ''; }
+.camp-pine--one { left: 4%; transform: scale(.82); transform-origin: bottom; }.camp-pine--two { right: 6%; transform: scale(.95); transform-origin: bottom; }.camp-pine--three { right: 20%; transform: scale(.55); transform-origin: bottom; opacity: .8; }
+.camp-tent { position: absolute; z-index: 1; bottom: 12%; left: 35%; width: clamp(115px, 23vw, 205px); height: clamp(82px, 15vw, 132px); clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #b86250; filter: drop-shadow(0 13px 12px #0d1211a8); }
+.camp-tent::before { position: absolute; inset: 5px; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #d09a70; content: ''; }
+.camp-tent i { position: absolute; z-index: 1; bottom: 0; left: 42%; width: 26%; height: 52%; clip-path: polygon(50% 0, 100% 100%, 0 100%); background: #342b27; }
+.camp-fire { position: absolute; z-index: 2; bottom: 11%; left: 63%; width: 2rem; height: 3.7rem; }
+.camp-fire i { position: absolute; bottom: .4rem; left: .45rem; width: 1.2rem; height: 2rem; border-radius: 70% 20% 65% 45%; background: #ed9b60; box-shadow: 0 0 25px 8px #eb84554f; transform: rotate(8deg); animation: fire-dance .8s ease-in-out infinite alternate; }
+.camp-fire b { position: absolute; right: 0; bottom: 0; left: 0; height: 5px; background: #514038; transform: rotate(-8deg); box-shadow: 0 7px 0 #423630; }
+.camp-scene__grain { position: absolute; inset: 0; background-image: radial-gradient(#ece0ca30 .7px, transparent .8px); background-size: 4px 4px; mix-blend-mode: soft-light; opacity: .18; pointer-events: none; }

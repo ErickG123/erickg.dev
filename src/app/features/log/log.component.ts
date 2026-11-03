@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
 import { CAREER_HISTORY } from '../../core/data/portfolio.data';
-import { GameStateService } from '../../core/state/game-state.service';
+import { LanguageService } from '../../core/language.service';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
@@ -13,5 +13,5 @@ import { TranslocoPipe } from '@jsverse/transloco';
 })
 export class LogComponent {
   readonly careerHistory = CAREER_HISTORY;
-  readonly currentLang = inject(GameStateService).currentLang;
+  readonly currentLang = inject(LanguageService).currentLang;
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import type { Project } from '../../../core/models/project.model';
 import { MangaImageComponent } from '../manga-image/manga-image.component';
-import { GameStateService } from '../../../core/state/game-state.service';
+import { LanguageService } from '../../../core/language.service';
 
 @Component({
   selector: 'app-manga-project-card',
@@ -14,7 +14,7 @@ import { GameStateService } from '../../../core/state/game-state.service';
 })
 export class MangaProjectCardComponent {
   project = input.required<Project>();
-  currentLang = inject(GameStateService).currentLang;
+  currentLang = inject(LanguageService).currentLang;
   previewIsOpen = signal(false);
   selectedPreviewStep = signal(0);
   posterActive = signal(false);
