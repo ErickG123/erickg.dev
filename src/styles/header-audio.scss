@@ -1,0 +1,7 @@
+.header-nav .sound-toggle { display: inline-flex; align-items: center; gap: .35rem; min-height: 2rem; padding: .45rem .6rem; border: 1px solid var(--manga-border-subtle); border-radius: 2px; color: var(--manga-gray); }
+.header-nav .sound-toggle.is-playing { border-color: var(--manga-vermilion); color: var(--manga-vermilion-text); }
+.sound-toggle-icon { font-size: .95rem; line-height: 1; }
+.sound-toggle-label { font: 600 .65rem var(--font-mono); }
+
+@media (max-width: 720px) { .sound-toggle-label { display: none; } }
+@media (prefers-reduced-motion: reduce) { .sound-toggle, .sound-toggle-icon { transition: none !important; animation: none !important; } }

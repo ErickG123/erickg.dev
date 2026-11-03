@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CASE_STUDIES_DATA } from '../../core/data/case-studies.data';
 import { CaseStudy, CaseStudySection } from '../../core/models/case-study.interface';
 import { SeoService } from '../../core/seo.service';
+import { GameStateService } from '../../core/state/game-state.service';
 
 @Component({
   selector: 'app-case-study-detail',
@@ -14,6 +15,32 @@ import { SeoService } from '../../core/seo.service';
 export class CaseStudyDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private seo = inject(SeoService);
+  currentLang = inject(GameStateService).currentLang;
+
+  readonly architectureLayers = [
+    {
+      id: 'interface', character: '画面', reading: 'がめん', labelPt: 'Interface', labelEn: 'Interface', tech: 'Angular',
+      detailPt: 'A documentação posiciona o Angular na interface do aplicativo, apresentando os fluxos de inspeção, comparação e análise.',
+      detailEn: 'The documentation places Angular at the application interface, presenting inspection, comparison, and analysis flows.'
+    },
+    {
+      id: 'desktop', character: '連携', reading: 'れんけい', labelPt: 'Aplicativo desktop', labelEn: 'Desktop app', tech: 'Tauri 2',
+      detailPt: 'O Tauri conecta a interface aos comandos nativos por IPC tipado; os contratos também descrevem progresso e cancelamento.',
+      detailEn: 'Tauri connects the interface to native commands through typed IPC; the contracts also describe progress and cancellation.'
+    },
+    {
+      id: 'engine', character: '比較', reading: 'ひかく', labelPt: 'Motor de comparação', labelEn: 'Comparison engine', tech: 'Rust',
+      detailPt: 'O backend Rust separa casos de uso, domínio, introspecção dos esquemas, comparação e geração de scripts SQL.',
+      detailEn: 'The Rust backend separates use cases, domain logic, schema introspection, comparison, and SQL script generation.'
+    },
+    {
+      id: 'sources', character: '接続', reading: 'せつぞく', labelPt: 'Origens de dados', labelEn: 'Data sources', tech: 'SQL Server · SQL files',
+      detailPt: 'O guia documenta comparação entre bancos conectados e arquivos SQL, mantendo o fluxo de análise no aplicativo desktop.',
+      detailEn: 'The user guide documents comparisons between connected databases and SQL files, with the analysis flow kept in the desktop app.'
+    }
+  ];
+  selectedArchitectureIndex = signal(0);
+  selectedArchitecture = computed(() => this.architectureLayers[this.selectedArchitectureIndex()]);
 
   caseStudy = signal<CaseStudy | null>(null);
   allStudies = CASE_STUDIES_DATA;

@@ -5,17 +5,18 @@
   </div>
 
   @if (project().image) {
-    <div class="project-visual" [class.project-visual--yomiflow-poster]="project().id === '1'" [class.is-poster-active]="posterActive()">
+    <div class="project-visual" [class.project-visual--poster]="!!project().poster" [class.project-visual--quiet]="project().poster?.style === 'quiet'" [class.project-visual--technical]="project().poster?.style === 'technical'" [class.project-visual--flow]="project().poster?.style === 'flow'" [class.project-visual--forensic]="project().poster?.style === 'forensic'" [class.project-visual--resilience]="project().poster?.style === 'resilience'" [class.is-poster-active]="posterActive()">
       <app-manga-image [src]="project().image!" [alt]="project().imageAlt || ((currentLang() === 'pt' ? 'Captura de tela do projeto ' : 'Screenshot of ') + project().title)" aspectRatio="16:9"></app-manga-image>
-      @if (project().id === '1') {
-        <span class="project-poster-mark" aria-hidden="true">読</span>
-        <span class="project-poster-credit" aria-hidden="true">YOMI / IMMERSION STUDY</span>
+      @if (project().poster; as poster) {
+        <span class="project-poster-mark" aria-hidden="true"><ruby>{{ poster.character }}<rt>{{ poster.reading }}</rt></ruby></span>
+        <span class="project-poster-credit" aria-hidden="true">{{ poster.credit }}</span>
+        <span class="project-poster-caption" aria-hidden="true">{{ currentLang() === 'pt' ? poster.meaning : poster.meaningEn }}</span>
         <span class="project-poster-brush" aria-hidden="true"></span>
         <button
           class="project-poster-toggle"
           type="button"
           [attr.aria-pressed]="posterActive()"
-          [attr.aria-label]="currentLang() === 'pt' ? (posterActive() ? 'Recolher composição do pôster YomiFlow' : 'Explorar composição do pôster YomiFlow') : (posterActive() ? 'Reset YomiFlow poster composition' : 'Explore YomiFlow poster composition')"
+          [attr.aria-label]="currentLang() === 'pt' ? (posterActive() ? 'Recolher composição do pôster ' + project().title : 'Explorar composição do pôster ' + project().title) : (posterActive() ? 'Reset poster composition for ' + project().title : 'Explore poster composition for ' + project().title)"
           (click)="togglePoster()"
         >{{ posterActive() ? '−' : '+' }}</button>
       }

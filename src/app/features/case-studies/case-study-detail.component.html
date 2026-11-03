@@ -28,6 +28,36 @@
       </div>
     </header>
 
+    <section class="architecture-map" aria-labelledby="architecture-map-title">
+      <header class="architecture-map-heading">
+        <div>
+          <span class="architecture-map-kicker"><ruby>設計<rt>せっけい</rt></ruby><span>SEKKEI · SYSTEM DESIGN</span></span>
+          <h2 id="architecture-map-title">{{ currentLang() === 'pt' ? 'Um mapa da arquitetura' : 'A map of the architecture' }}</h2>
+          <p>{{ currentLang() === 'pt' ? 'Selecione uma camada para ver o papel descrito nos documentos do projeto.' : 'Select a layer to see its role as described in the project documents.' }}</p>
+        </div>
+        <span class="architecture-map-index" aria-hidden="true">SL / 01</span>
+      </header>
+
+      <div class="architecture-flow" role="group" [attr.aria-label]="currentLang() === 'pt' ? 'Camadas da arquitetura do SchemaLens' : 'SchemaLens architecture layers'">
+        @for (layer of architectureLayers; track layer.id; let index = $index) {
+          <button class="architecture-node" [class.is-selected]="selectedArchitectureIndex() === index" type="button" [attr.aria-pressed]="selectedArchitectureIndex() === index" (click)="selectedArchitectureIndex.set(index)">
+            <span class="architecture-node-number">0{{ index + 1 }}</span>
+            <span class="architecture-node-kanji" aria-hidden="true"><ruby>{{ layer.character }}<rt>{{ layer.reading }}</rt></ruby></span>
+            <span class="architecture-node-label">{{ currentLang() === 'pt' ? layer.labelPt : layer.labelEn }}</span>
+            <span class="architecture-node-tech">{{ layer.tech }}</span>
+          </button>
+        }
+      </div>
+
+      <div class="architecture-note" aria-live="polite" aria-atomic="true">
+        <span class="architecture-note-mark" aria-hidden="true">印</span>
+        <div>
+          <span class="architecture-note-label">{{ currentLang() === 'pt' ? 'CAMADA SELECIONADA' : 'SELECTED LAYER' }} · {{ selectedArchitecture().character }}</span>
+          <p>{{ currentLang() === 'pt' ? selectedArchitecture().detailPt : selectedArchitecture().detailEn }}</p>
+        </div>
+      </div>
+    </section>
+
     <section class="case-study-reading" aria-label="Explorar o estudo de caso">
       <div class="case-reading-heading">
         <span class="case-kicker">LEITURA DO PROJETO</span>

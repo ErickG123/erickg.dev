@@ -9,6 +9,14 @@ export interface Project {
   demoType?: 'sleuth' | 'forge' | 'link';
   image?: string;
   imageAlt?: string;
+  poster?: {
+    character: string;
+    reading: string;
+    meaning: string;
+    meaningEn: string;
+    credit: string;
+    style: 'quiet' | 'technical' | 'flow' | 'forensic' | 'resilience';
+  };
   url?: string;
   repositoryUrl?: string;
   demoUrl?: string;

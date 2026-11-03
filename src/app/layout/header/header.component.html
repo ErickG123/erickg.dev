@@ -28,6 +28,10 @@
     <button class="gba-btn" (click)="toggleLanguage()" [attr.aria-label]="currentLang() === 'pt' ? 'Switch to English' : 'Mudar para português'" type="button">
       {{ currentLang() === 'pt' ? 'EN' : 'PT' }}
     </button>
+    <button class="sound-toggle" [class.is-playing]="ambientAudio.isPlaying()" (click)="ambientAudio.toggle()" [attr.aria-pressed]="ambientAudio.isPlaying()" [attr.aria-label]="currentLang() === 'pt' ? (ambientAudio.isPlaying() ? 'Desativar som ambiente original' : 'Ativar som ambiente original') : (ambientAudio.isPlaying() ? 'Turn off original ambient sound' : 'Turn on original ambient sound')" type="button">
+      <span class="sound-toggle-icon" aria-hidden="true">{{ ambientAudio.isPlaying() ? '◖' : '♫' }}</span>
+      <span class="sound-toggle-label">{{ currentLang() === 'pt' ? (ambientAudio.isPlaying() ? 'Som ativo' : 'Som') : (ambientAudio.isPlaying() ? 'Sound on' : 'Sound') }}</span>
+    </button>
     <button class="gba-btn" (click)="toggleTheme()" type="button" [attr.aria-label]="themeService.isDarkMode() ? 'Ativar tema claro' : 'Ativar tema escuro'">
       {{ themeService.isDarkMode() ? '☼' : '☾' }}
     </button>

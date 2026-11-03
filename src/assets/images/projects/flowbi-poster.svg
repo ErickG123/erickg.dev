@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">FlowBI — fluxos de dados</title>
+  <desc id="desc">Ilustração original de nós conectados formando fluxos para dashboards e automações.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#292b27"/><stop offset="1" stop-color="#171816"/></linearGradient>
+    <pattern id="tone" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#f0eee8" opacity=".14"/></pattern>
+    <linearGradient id="flow" x1="0" x2="1"><stop stop-color="#d87968" stop-opacity=".15"/><stop offset=".55" stop-color="#d87968"/><stop offset="1" stop-color="#d9b9a3" stop-opacity=".65"/></linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><rect width="1200" height="675" fill="url(#tone)"/>
+  <path d="M0 112H1200M0 566H1200" stroke="#f0eee8" stroke-opacity=".15"/>
+  <text x="62" y="73" fill="#e28b79" font-family="monospace" font-size="18" letter-spacing="5">VISUAL SYSTEMS / 01</text>
+  <text x="62" y="206" fill="#f0eee8" font-family="Arial,sans-serif" font-size="88" font-weight="700" letter-spacing="-5">FlowBI</text>
+  <text x="66" y="250" fill="#aaa99f" font-family="monospace" font-size="18" letter-spacing="3">DASHBOARDS · RULES · DATA</text>
+  <g fill="none" stroke="url(#flow)" stroke-width="4">
+    <path d="M110 422C230 422 225 348 337 348S464 470 575 470 704 318 808 318 938 412 1094 412"/>
+    <path d="M110 474C214 474 242 534 358 534S495 424 605 424 714 520 835 520 981 460 1094 460" stroke-opacity=".55"/>
+    <path d="M110 368C222 368 236 290 350 290S470 374 578 374 714 248 823 248 963 330 1094 330" stroke-opacity=".35"/>
+  </g>
+  <g fill="#20211e" stroke="#d87968" stroke-width="3">
+    <circle cx="110" cy="422" r="17"/><circle cx="337" cy="348" r="17"/><circle cx="575" cy="470" r="17"/><circle cx="808" cy="318" r="17"/><circle cx="1094" cy="412" r="17"/>
+    <circle cx="110" cy="474" r="9"/><circle cx="358" cy="534" r="9"/><circle cx="605" cy="424" r="9"/><circle cx="835" cy="520" r="9"/><circle cx="1094" cy="460" r="9"/>
+    <circle cx="110" cy="368" r="9"/><circle cx="350" cy="290" r="9"/><circle cx="578" cy="374" r="9"/><circle cx="823" cy="248" r="9"/><circle cx="1094" cy="330" r="9"/>
+  </g>
+  <text x="62" y="625" fill="#aaa99f" font-family="monospace" font-size="15" letter-spacing="3">PROCESS INTELLIGENCE / FLOWBI</text>
+  <path d="M1010 604h128" stroke="#d87968" stroke-width="4"/>
+</svg>

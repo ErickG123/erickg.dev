@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Angular Smart Interceptor — rotas resilientes</title>
+  <desc id="desc">Ilustração original de caminhos HTTP atravessando uma sequência de pontos de controle.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#292b27"/><stop offset="1" stop-color="#171816"/></linearGradient>
+    <pattern id="tone" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#f0eee8" opacity=".13"/></pattern>
+    <linearGradient id="route" x1="0" x2="1"><stop stop-color="#d87968" stop-opacity=".15"/><stop offset=".48" stop-color="#d87968"/><stop offset="1" stop-color="#f0eee8" stop-opacity=".65"/></linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/><rect width="1200" height="675" fill="url(#tone)"/>
+  <path d="M0 112H1200M0 566H1200" stroke="#f0eee8" stroke-opacity=".15"/>
+  <text x="62" y="73" fill="#e28b79" font-family="monospace" font-size="18" letter-spacing="5">HTTP RESILIENCE / 03</text>
+  <text x="62" y="206" fill="#f0eee8" font-family="Arial,sans-serif" font-size="68" font-weight="700" letter-spacing="-3">Smart Interceptor</text>
+  <text x="66" y="250" fill="#aaa99f" font-family="monospace" font-size="18" letter-spacing="3">RETRY · DEDUPLICATE · RECOVER</text>
+  <g fill="none" stroke="url(#route)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M76 378h226l66-76h187l60 76h180l70-76h252"/>
+    <path d="M76 449h167l62 62h208l71-62h194l60 62h233" stroke-opacity=".52"/>
+    <path d="M76 520h244l60-60h134" stroke-opacity=".34"/>
+  </g>
+  <g fill="#20211e" stroke="#d87968" stroke-width="3">
+    <rect x="281" y="357" width="42" height="42" transform="rotate(45 302 378)"/>
+    <rect x="534" y="357" width="42" height="42" transform="rotate(45 555 378)"/>
+    <rect x="775" y="357" width="42" height="42" transform="rotate(45 796 378)"/>
+    <circle cx="76" cy="378" r="9"/><circle cx="1121" cy="302" r="9"/>
+  </g>
+  <g fill="#f0eee8" font-family="monospace" font-size="15" letter-spacing="2">
+    <text x="268" y="334">RETRY</text><text x="510" y="334">DEDUP</text><text x="764" y="334">TOKEN</text>
+  </g>
+  <text x="62" y="625" fill="#aaa99f" font-family="monospace" font-size="15" letter-spacing="3">A SMALL LAYER BETWEEN FAILURE AND RECOVERY</text>
+</svg>

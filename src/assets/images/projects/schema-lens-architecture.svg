@@ -19,7 +19,6 @@
   <path d="M70 126H280" stroke="#d87968" stroke-width="5"/>
   <text x="70" y="81" fill="#d87968" font-family="monospace" font-size="18" letter-spacing="4">ESTUDO DE CASO / FERRAMENTAS DE DADOS</text>
   <text x="70" y="218" fill="#f0eee8" font-family="Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="-4">SchemaLens</text>
-  <text x="1075" y="214" fill="#d87968" font-family="serif" font-size="94" text-anchor="middle" opacity=".85">図</text>
   <text x="73" y="258" fill="#aaa99f" font-family="monospace" font-size="16" letter-spacing="2">INSPECIONAR · COMPARAR · ENTENDER IMPACTO</text>
 
   <g font-family="monospace" text-anchor="middle">

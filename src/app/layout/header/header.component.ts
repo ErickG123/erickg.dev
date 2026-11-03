@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { GameStateService } from '../../core/state/game-state.service';
 import { ThemeService } from '../../core/theme.service';
+import { AmbientAudioService } from '../../core/ambient-audio.service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ export class HeaderComponent {
   translate = inject(TranslateService);
   gameState = inject(GameStateService);
   themeService = inject(ThemeService);
+  ambientAudio = inject(AmbientAudioService);
   private elementRef = inject(ElementRef<HTMLElement>);
   
   currentLang = this.gameState.currentLang;

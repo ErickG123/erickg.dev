@@ -1,10 +1,11 @@
-import { Component, HostBinding, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, HostListener, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { trigger, transition, style, animate, query } from '@angular/animations';
 import { HeaderComponent } from './layout/header/header.component';
 import { AchievementToastComponent } from './shared/components/achievement-toast/achievement-toast.component';
 import { SeoService } from './core/seo.service';
 import { SwUpdate } from '@angular/service-worker';
+import { GameStateService } from './core/state/game-state.service';
 
 export const routeAnimations = trigger('routeAnimations', [
   transition('* <=> *', [
@@ -36,10 +37,12 @@ export const routeAnimations = trigger('routeAnimations', [
   styleUrls: ['./app.scss'],
   animations: [routeAnimations]
 })
-export class App implements OnInit {
+export class App implements OnInit, AfterViewInit {
   seo = inject(SeoService);
   swUpdate = inject(SwUpdate);
+  currentLang = inject(GameStateService).currentLang;
   currentYear = new Date().getFullYear();
+  readingProgress = signal(0);
 
   @HostBinding('@.disabled')
   get animationsDisabled(): boolean {
@@ -63,6 +66,22 @@ export class App implements OnInit {
         }
       });
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.updateReadingProgress();
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  updateReadingProgress(event?: Event): void {
+    const main = document.getElementById('main-content');
+    const page = document.scrollingElement;
+    const target = event?.target instanceof HTMLElement
+      ? event.target
+      : [main, page].find(element => element && element.scrollTop > 0) ?? main ?? page;
+    if (!target) return;
+    const distance = target.scrollHeight - target.clientHeight;
+    this.readingProgress.set(distance > 0 ? Math.round((target.scrollTop / distance) * 100) : 0);
   }
 
   prepareRoute(outlet: RouterOutlet) {

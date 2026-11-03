@@ -1,10 +1,14 @@
 <a href="#main-content" class="skip-link">PULAR PARA O CONTEÚDO PRINCIPAL [TAB]</a>
 
+<div class="ink-reading-progress" role="progressbar" [attr.aria-label]="currentLang() === 'pt' ? 'Progresso da leitura' : 'Reading progress'" aria-valuemin="0" aria-valuemax="100" [attr.aria-valuenow]="readingProgress()">
+  <span [style.transform]="'scaleX(' + readingProgress() / 100 + ')'" aria-hidden="true"></span>
+</div>
+
 <app-achievement-toast></app-achievement-toast>
 
 <div class="flex flex-column" style="min-height: 100vh;">
   <app-header></app-header>
-  <main id="main-content" tabindex="-1" class="flex-grow-1 p-4 route-container" [@routeAnimations]="prepareRoute(outlet)" aria-label="Conteúdo Principal">
+  <main id="main-content" tabindex="-1" class="flex-grow-1 p-4 route-container" [@routeAnimations]="prepareRoute(outlet)" (scroll)="updateReadingProgress($event)" aria-label="Conteúdo Principal">
     <router-outlet #outlet="outlet"></router-outlet>
   </main>
   
