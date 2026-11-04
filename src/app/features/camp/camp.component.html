@@ -60,38 +60,92 @@
       }
     </div>
     @if (weather(); as current) {
-      <article class="camp-postcard-preview" [class.camp-postcard-preview--dawn]="timeOfDay() === 'dawn'"
-        [class.camp-postcard-preview--day]="timeOfDay() === 'day'" [class.camp-postcard-preview--sunset]="timeOfDay() === 'sunset'"
-        [class.camp-postcard-preview--night]="timeOfDay() === 'night'" [class.camp-postcard-preview--rain]="weatherVisual() === 'rain'"
-        [class.camp-postcard-preview--snow]="weatherVisual() === 'snow'" [class.camp-postcard-preview--cloudy]="weatherVisual() === 'cloudy'"
-        [class.camp-postcard-preview--storm]="weatherVisual() === 'storm'">
-        <div class="camp-postcard-preview__landscape" aria-hidden="true">
-          <span class="camp-postcard-preview__stars camp-postcard-preview__stars--one"></span>
-          <span class="camp-postcard-preview__stars camp-postcard-preview__stars--two"></span>
-          <span class="camp-postcard-preview__stars camp-postcard-preview__stars--three"></span>
-          <span class="camp-postcard-preview__stars camp-postcard-preview__stars--four"></span>
-          <span class="camp-postcard-preview__sun"></span>
-          <span class="camp-postcard-preview__mountain camp-postcard-preview__mountain--back"></span>
-          <span class="camp-postcard-preview__mountain camp-postcard-preview__mountain--front"></span>
-          <span class="camp-postcard-preview__lake"></span>
-          <span class="camp-postcard-preview__pine camp-postcard-preview__pine--one"></span>
-          <span class="camp-postcard-preview__pine camp-postcard-preview__pine--two"></span>
-          <span class="camp-postcard-preview__pine camp-postcard-preview__pine--three"></span>
-          <span class="camp-postcard-preview__tent"><i></i></span>
-          <span class="camp-postcard-preview__fire"><i></i><b></b></span>
-          <span class="camp-postcard-preview__weather" aria-hidden="true"></span>
-          <span class="camp-postcard-preview__grain"></span>
-        </div>
-        <span class="camp-postcard-preview__seal" aria-hidden="true">旅</span>
-        <span class="camp-postcard-preview__edition" aria-hidden="true">旅の記録 · {{ localTime() }}</span>
-        <div class="camp-postcard-preview__meta">
-          <span>{{ 'CAMP.POSTCARD_KICKER' | transloco }}</span>
-          <strong>{{ displayLocation() }}</strong>
-          <span>{{ localTime() }} · {{ 'CAMP.LOCAL_TIME' | transloco }}</span>
-          <div><b>{{ current.temperature }}°</b><span>{{ weatherConditionKey() | transloco }}</span></div>
-        </div>
-        <small><span>ERICKG.DEV</span><span>FIELD NOTE · {{ timeOfDay() | uppercase }}</span></small>
-      </article>
+      <svg #postcardArtwork class="camp-postcard-preview" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 630" role="img" [attr.aria-label]="'CAMP.POSTCARD_TITLE' | transloco">
+        <defs>
+          <linearGradient id="postcard-sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" [attr.stop-color]="postcardPalette().skyTop" />
+            <stop offset=".72" [attr.stop-color]="postcardPalette().skyBottom" />
+            <stop offset="1" [attr.stop-color]="postcardPalette().ground" />
+          </linearGradient>
+          <linearGradient id="postcard-lake" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" [attr.stop-color]="postcardPalette().lake" />
+            <stop offset="1" stop-color="#172321" />
+          </linearGradient>
+          <linearGradient id="postcard-caption" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#111817" stop-opacity=".94" />
+            <stop offset=".78" stop-color="#111817" stop-opacity=".76" />
+            <stop offset="1" stop-color="#111817" stop-opacity=".46" />
+          </linearGradient>
+          <pattern id="postcard-grain" width="8" height="8" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r=".65" fill="#f4ead5" fill-opacity=".24" />
+          </pattern>
+        </defs>
+        <rect width="1200" height="630" fill="url(#postcard-sky)" />
+        <rect x="1" y="1" width="1198" height="628" fill="none" stroke="#f1e8d0" stroke-opacity=".42" stroke-width="2" />
+        <circle cx="950" [attr.cy]="timeOfDay() === 'day' ? 150 : 128" r="54" [attr.fill]="postcardPalette().sun" fill-opacity=".96" />
+        <g fill="#f1e4cb" [attr.opacity]="timeOfDay() === 'day' ? .15 : .78">
+          <circle cx="120" cy="92" r="2" /><circle cx="264" cy="180" r="2.5" />
+          <circle cx="421" cy="76" r="1.8" /><circle cx="578" cy="143" r="2" />
+          <circle cx="728" cy="88" r="2.3" /><circle cx="852" cy="206" r="1.8" />
+          <circle cx="1080" cy="178" r="2" /><circle cx="1000" cy="248" r="1.5" />
+        </g>
+        @if (weatherVisual() === 'cloudy' || weatherVisual() === 'storm') {
+          <g [attr.fill]="weatherVisual() === 'storm' ? '#20232d' : '#caced0'" fill-opacity=".24">
+            <ellipse cx="854" cy="236" rx="118" ry="23" /><ellipse cx="946" cy="232" rx="82" ry="30" />
+            <ellipse cx="1021" cy="240" rx="92" ry="20" />
+          </g>
+        }
+        <path d="M0 396 180 253 315 334 505 170 720 342 872 245 1200 381V630H0Z" [attr.fill]="postcardPalette().mountainBack" />
+        <path d="m0 454 182-86 132 63 205-113 176 101 150-75 355 119v167H0Z" [attr.fill]="postcardPalette().mountainFront" />
+        <rect y="476" width="1200" height="154" fill="url(#postcard-lake)" />
+        <g [attr.stroke]="postcardPalette().sun" stroke-width="2" stroke-opacity=".58">
+          <path d="M570 508h102m-135 20h168m-122 20h82m-167 20h247m-174 20h118" />
+        </g>
+        <g [attr.fill]="postcardPalette().mountainFront">
+          <path d="m146 492 55-143 55 143z m-8-39 63-17 63 17z" />
+          <path d="m1030 493 72-181 72 181z m-15-53 87-23 87 23z" />
+          <path d="m916 500 43-108 43 108z" opacity=".86" />
+        </g>
+        <g fill="#28221d"><path d="M195 492h12v-70h-12z" /><path d="M1097 493h13v-85h-13z" /><path d="M954 500h10v-49h-10z" /></g>
+        <ellipse cx="899" cy="486" rx="128" ry="13" fill="#0e1312" fill-opacity=".34" />
+        <path d="m775 480 125-180 125 180z" [attr.fill]="postcardPalette().tent" />
+        <path d="m782 475 118-169 118 169z" fill="#d09a70" />
+        <path d="m876 480 24-90 25 90z" [attr.fill]="postcardPalette().tentDoor" />
+        <path d="m900 303v175m-121-2 121-173 121 173" fill="none" [attr.stroke]="postcardPalette().accent" stroke-opacity=".7" stroke-width="3" />
+        <g>
+          <path d="M694 525h52v7h-52zm5 12h48v6h-48z" fill="#514038" />
+          <path d="M717 522c-22-21 0-40 4-55 24 22 20 38 8 55z" fill="#ed9b60" />
+          <path d="M720 521c-8-12 4-21 6-29 11 14 5 25 2 29z" fill="#f6d18d" />
+        </g>
+        @if (weatherVisual() === 'rain' || weatherVisual() === 'storm') {
+          <g stroke="#d6e2e7" stroke-opacity=".46" stroke-width="2">
+            <path d="m75 110-13 32m130-74-13 32m116 91-13 32m157-98-13 32m176-72-13 32m133 88-13 32m163-126-13 32m155 89-13 32m82-185-13 32m-730 265-13 32m136-68-13 32m288-47-13 32m370 3-13 32" />
+          </g>
+        } @else if (weatherVisual() === 'snow') {
+          <g fill="#f2eee6" fill-opacity=".82">
+            <circle cx="76" cy="201" r="3" /><circle cx="211" cy="117" r="2" /><circle cx="359" cy="243" r="2.5" />
+            <circle cx="502" cy="102" r="2" /><circle cx="648" cy="187" r="3" /><circle cx="805" cy="120" r="2" />
+            <circle cx="977" cy="221" r="2.5" /><circle cx="1122" cy="112" r="2" /><circle cx="1080" cy="354" r="2" />
+          </g>
+        }
+        <rect x="10" y="10" width="1180" height="610" fill="none" stroke="#efe3cc" stroke-opacity=".3" />
+        <rect y="398" width="1200" height="232" fill="url(#postcard-caption)" />
+        <path d="M76 418v136" [attr.stroke]="postcardPalette().accent" stroke-width="5" />
+        <g fill="none" stroke="#efe3cc" stroke-opacity=".34"><rect x="54" y="398" width="1092" height="178" /></g>
+        <text x="96" y="435" [attr.fill]="postcardPalette().accent" font-family="monospace" font-size="20" font-weight="600" letter-spacing="2">野営 · FIELD NOTE</text>
+        <text x="94" y="486" fill="#f1eee8" font-family="sans-serif" [attr.font-size]="postcardLocationFontSize()" font-weight="700" letter-spacing="-1">{{ displayLocation() }}</text>
+        <text x="96" y="520" [attr.fill]="postcardPalette().accent" font-family="monospace" font-size="20">{{ localTime() }} · {{ 'CAMP.LOCAL_TIME' | transloco }}</text>
+        <text x="96" y="566" fill="#f1eee8" font-family="sans-serif" font-size="55" font-weight="700" letter-spacing="-3">{{ current.temperature }}°</text>
+        <text x="238" y="560" fill="#d1cec5" font-family="sans-serif" font-size="21">{{ weatherConditionKey() | transloco }}</text>
+        <g transform="rotate(4 1096 98)" fill="none" [attr.stroke]="postcardPalette().accent" stroke-width="3">
+          <rect x="1050" y="52" width="92" height="92" />
+        </g>
+        <text x="1096" y="118" [attr.fill]="postcardPalette().accent" font-family="serif" font-size="58" text-anchor="middle">旅</text>
+        <text x="1116" y="538" fill="#e7e0d2" font-family="monospace" font-size="12" text-anchor="end">FIELD NOTE / {{ timeOfDay() | uppercase }}</text>
+        <text x="1116" y="558" fill="#e7e0d2" font-family="monospace" font-size="14" font-weight="600" text-anchor="end">ERICKG.DEV · CAMPING POSTCARD</text>
+        <rect width="1200" height="630" fill="url(#postcard-grain)" pointer-events="none" />
+      </svg>
     }
   </section>
 
